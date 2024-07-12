@@ -73,7 +73,7 @@ isa_reg_display();
 return 0;
 }
 
-
+/*
 static int cmd_m(char *args)
 {
 int len;
@@ -85,6 +85,53 @@ for (i=0;i<len;i++)
 addr+=4;
 }
 return 0;
+}
+*/
+
+static int cmd_m(char *args){
+    //获取内存起始地址和扫描长度。
+    if(args == NULL){
+        printf("too few parameter! \n");
+        return 1;
+    }
+
+    char *arg = strtok(args," ");
+    if(arg == NULL){
+        printf("too few parameter! \n");
+        return 1;
+    }
+    int  n = atoi(arg);
+    char *EXPR = strtok(NULL," ");
+    if(EXPR == NULL){
+        printf("too few parameter! \n");
+        return 1;
+    }
+    if(strtok(NULL," ")!=NULL){
+        printf("too many parameter! \n");
+        return 1;
+    }
+    bool success = true;
+    //vaddr_t addr = expr(EXPR , &success);
+    if (success!=true){
+        printf("ERRO!!\n");
+        return 1;
+    }
+    char *str;
+   // vaddr_t addr = atoi(EXPR);
+    vaddr_t addr =  strtol( EXPR,&str,16 );
+   // printf("%#lX\n",ad);
+    //进行内存扫描,每次四个字节;
+    for(int i = 0 ; i < n ; i++){
+        uint32_t data = paddr_read(addr + i * 4,4);
+        printf("0x%08x  " , addr + i * 4 );
+        for(int j =0 ; j < 4 ; j++){
+            printf("0x%02x " , data & 0xff);
+            data = data >> 8 ;
+        }
+        printf("\n");
+    }
+
+    return 0;
 }
 
 
