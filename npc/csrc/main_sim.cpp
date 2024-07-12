@@ -49,7 +49,7 @@ int main(int argc,char** argv,char** env){
 		sim_time++;
 	}
 
-	m_trace->close;
+	m_trace->close();
 
 	delete dut;
 
