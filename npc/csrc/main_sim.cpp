@@ -10,15 +10,15 @@ vluint64_t sim_time=0;
 
 
 void single_cycle() {
-	top->clk = 0; top->eval();
-	top->clk = 1; top->eval();
+	dut->clk = 0; dut->eval();
+	dut->clk = 1; dut->eval();
         }
 
 
 void reset(int n) {
-	top->rst = 1;
+	dut->rst = 1;
 	while (n -- > 0) single_cycle();
-	top->rst = 0;
+	dut->rst = 0;
         }
 
 
