@@ -23,7 +23,7 @@ int main(int argc,char** argv,char** env){
 		dut->clk = 1;dut->eval();
 
 	}
-	top->rst=0;
+	dut->rst=0;
 
 
 	int a,b;
