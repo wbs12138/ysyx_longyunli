@@ -38,7 +38,7 @@ int main(int argc,char** argv,char** env){
 		
 		dut->eval();
 
-		printf("a&b==%d",a&b);
+		printf("a&b==%d\n",a&b);
 		if((dut->clk==1) && (a&b==1)){
 			printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",sim_time,dut->a,dut->b,dut->led);
 		}
