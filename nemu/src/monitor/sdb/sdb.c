@@ -74,6 +74,19 @@ return 0;
 }
 
 
+static int cmd_p(char* args) {
+  bool success;
+  word_t res = expr(args, &success);
+  if (!success) {
+    puts("invalid expression");
+  } else {
+    printf("%u\n", res);
+  }
+  return 0;
+}
+
+
+
 static int cmd_m(char *args)
 {
 int len;
@@ -101,7 +114,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si","Execute by step",cmd_si},
   { "reg","Ask for the register",cmd_reg},
-  { "m","Ask for the memory",cmd_m}
+  { "m","Ask for the memory",cmd_m},
+  {"p", "Usage: p EXPR. Calculate the expression, e.g. p $eax + 1", cmd_p }
   /* TODO: Add more commands */
 
 };
