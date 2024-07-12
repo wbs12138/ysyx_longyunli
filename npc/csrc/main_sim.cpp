@@ -35,7 +35,7 @@ int main(int argc,char** argv,char** env){
 		dut->a=a;
 		dut->b=b;
 		}
-
+		printf("1");
 		dut->eval();
 
 		if((dut->clk==1) && (a&b==1)){
