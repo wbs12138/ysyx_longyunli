@@ -76,12 +76,12 @@ return 0;
 
 static int cmd_m(char *args)
 {
-long unsigned int len;
-long unsigned int addr;
-sscanf(args,"%ld %lx",&len,&addr);
+int len;
+int addr;
+sscanf(args,"%d %x",&len,&addr);
 static int i;
 for (i=0;i<len;i++)
-{printf("%lx:%08x\n",addr,paddr_read(addr,4));
+{printf("%x:%08x\n",addr,paddr_read(addr,4));
 addr+=4;
 }
 return 0;
