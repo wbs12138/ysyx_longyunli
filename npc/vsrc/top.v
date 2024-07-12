@@ -10,7 +10,7 @@ module top(
     else begin
 	    if(a&b)begin
       if (count == 0) led <= {led[14:0], led[15]};
-      count <= (count >= 1000000 ? 32'b0 : count + 1);
+      count <= (count >= 1000 ? 32'b0 : count + 1);
     end
   end
   end
