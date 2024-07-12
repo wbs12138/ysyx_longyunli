@@ -16,7 +16,14 @@ int main(int argc,char** argv,char** env){
 	m_trace->open("waveform.vcd");
 
 
-	reset(10);
+	int n=10;
+	dut->rst=1;
+	while(n-->0){
+		dut->clk = 0;dut->eval();
+		dut->clk = 1;dut->eval();
+
+	}
+	top->rst=0;
 
 
 	int a,b;
@@ -51,15 +58,3 @@ int main(int argc,char** argv,char** env){
 }
 
 
-
-void single_cycle(Ptr dut) {
-        dut->clk = 0; dut->eval();
-        dut->clk = 1; dut->eval();
-        }
-
-
-void reset(int n,Ptr dut) {
-        dut->rst = 1;
-        while (n -- > 0) single_cycle();
-        dut->rst = 0;
-        }
