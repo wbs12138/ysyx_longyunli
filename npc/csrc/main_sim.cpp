@@ -46,18 +46,19 @@ int main(int argc,char** argv,char** env){
 	delete dut;
 
 	exit(EXIT_SUCCESS);
-
+	
+	return 0;
 }
 
 
 
-void single_cycle() {
+void single_cycle(Ptr dut) {
         dut->clk = 0; dut->eval();
         dut->clk = 1; dut->eval();
         }
 
 
-void reset(int n) {
+void reset(int n,Ptr dut) {
         dut->rst = 1;
         while (n -- > 0) single_cycle();
         dut->rst = 0;
