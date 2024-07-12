@@ -35,12 +35,12 @@ int main(int argc,char** argv,char** env){
 		dut->a=a;
 		dut->b=b;
 		}
-
+		
 		dut->eval();
-		printf("clk=%d",dut->clk);
+
+		printf("a&b==%d",a&b);
 		if((dut->clk==1) && (a&b==1)){
-			printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",\
-					sim_time,dut->a,dut->b,dut->led);
+			printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",sim_time,dut->a,dut->b,dut->led);
 		}
 
 		m_trace->dump(sim_time);
