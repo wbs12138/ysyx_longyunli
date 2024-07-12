@@ -8,21 +8,6 @@
 vluint64_t sim_time=0;
 
 
-
-void single_cycle() {
-	dut->clk = 0; dut->eval();
-	dut->clk = 1; dut->eval();
-        }
-
-
-void reset(int n) {
-	dut->rst = 1;
-	while (n -- > 0) single_cycle();
-	dut->rst = 0;
-        }
-
-
-
 int main(int argc,char** argv,char** env){
 	Vtop *dut = new Vtop;
 	Verilated::traceEverOn(true);
@@ -30,16 +15,6 @@ int main(int argc,char** argv,char** env){
 	dut->trace(m_trace,5);
 	m_trace->open("waveform.vcd");
 
-	void single_cycle() {
-  		top->clk = 0; top->eval();
-  		top->clk = 1; top->eval();
-	}
-
-	void reset(int n) {
-  		top->rst = 1;
-  		while (n -- > 0) single_cycle();
-  		top->rst = 0;
-	}
 
 	reset(10);
 
@@ -73,3 +48,17 @@ int main(int argc,char** argv,char** env){
 	exit(EXIT_SUCCESS);
 
 }
+
+
+
+void single_cycle() {
+        dut->clk = 0; dut->eval();
+        dut->clk = 1; dut->eval();
+        }
+
+
+void reset(int n) {
+        dut->rst = 1;
+        while (n -- > 0) single_cycle();
+        dut->rst = 0;
+        }
