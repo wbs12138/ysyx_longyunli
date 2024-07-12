@@ -56,7 +56,7 @@ sim:
 
 wave:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --trace --top-module $(TOPNAME)
+	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME)
 	obj_dir/V$(TOPNAME)
 	gtkwave waveform.vcd
 
