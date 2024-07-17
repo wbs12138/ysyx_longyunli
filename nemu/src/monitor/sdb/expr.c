@@ -14,218 +14,329 @@
 ***************************************************************************************/
 
 #include <isa.h>
-
-/* We use the POSIX regex functions to process regular expressions.
- * Type 'man regex' for more information about POSIX regex functions.
- */
 #include <regex.h>
 #include <assert.h>
+#include <string.h>
+
+int max(int a, int b)
+{
+    return a>b?a:b;
+}
+
+
+
 enum {
-  TK_NOTYPE = 256, TK_EQ,
-  TK_NUM, // 10 & 16
-  TK_REG,
-  TK_VAR,
+  TK_NOTYPE = 256, 
+  NUM       = 1  ,
+  HEX       = 2  ,
+  EQ        = 3  ,
+  NOTEQ     = 4  ,
+  OR        = 5  ,
+  AND       = 6  ,
+  LEQ       = 7  ,
+  REQ       = 8  ,
+  REGISTER  = 9  ,
+  LPARE     = 10 ,
+  RPARE     = 11 ,
+  ADD       = 12 ,
+  SUB       = 13 ,
+  PLUS      = 14 ,
+  DIV       = 15 ,
+  NOT       = 16
+
 };
+
+
+
 
 static struct rule {
-  const char *regex;
-  int token_type;
-} rules[] = {
+    const char *regex;
+    int token_type;
+}   rules[] = {
 
-  /* TODO: Add more rules.
-   * Pay attention to the precedence level of different rules.
-   */
 
-  {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
-  {"-", '-'},
-  {"\\*", '*'},
-  {"/", '/'},
-  {"==", TK_EQ},        // equal
-  {"\\(", '('},
-  {"\\)", ')'},
+    {" +",                  TK_NOTYPE},    
+    {"\\+",                 PLUS},         
+    {"\\-",                 SUB},       
+    {"\\*",                 PLUS},      
+    {"\\/",                 DIV},         
 
-  {"[0-9]+", TK_NUM}, // TODO: non-capture notation (?:pattern) makes compilation failed
-  {"\\$\\w+", TK_REG},
-  {"[A-Za-z_]\\w*", TK_VAR},
+    {"\\(",                 LPARE},
+    {"\\)",                 RPARE},
+    
+    {"\\<\\=",              LEQ},            
+    {"\\>\\=",              REQ},
+    {"\\=\\=",              EQ},        
+    {"\\!\\=",              NOTEQ},
+
+    {"\\&\\&",              AND},
+    {"\\|\\|",              OR},       
+    {"\\!",                 NOT},
+
+    {"\\$[a-zA-Z]*[0-9]*",  REGISTER},
+
+    {"0[xX][0-9a-fA-F]+",   HEX},
+    {"[0-9]*",              NUM},
 };
+
+
+
 
 #define NR_REGEX ARRLEN(rules)
 
 static regex_t re[NR_REGEX] = {};
 
-/* Rules are used for many times.
- * Therefore we compile them only once before any usage.
- */
+
+
+
 void init_regex() {
   int i;
-  int ret;
+  int compile_resu;
 
   for (i = 0; i < NR_REGEX; i ++) {
-    ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-    assert(!ret);
+    compile_resu = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
+    assert(!compile_resu);
+
   }
 }
 
-//void init_regex() {
-//  int i;
-//  char error_msg[128];
-//  int ret;
 
-//  for (i = 0; i < NR_REGEX; i ++) {
-//    ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-//    if (ret != 0) {
-//      regerror(ret, &re[i], error_msg, 128);
-//      panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
-//    }
-//  }
-//}
+
+
 
 typedef struct token {
   int type;
   char str[32];
 } Token;
 
+
+
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 
-int find_major(int p, int q) {
-  int ret = -1, par = 0, op_type = 0;
-  for (int i = p; i <= q; i++) {
-    if (tokens[i].type == TK_NUM) {
-      continue;
-    }
-    if (tokens[i].type == '(') {
-      par++;
-    } else if (tokens[i].type == ')') {
-      if (par == 0) {
-        return -1;
-      }
-      par--;
-    } else if (par > 0) {
-      continue;
-    } else {
-      int tmp_type = 0;
-      switch (tokens[i].type) {
-      case '*': case '/': tmp_type = 1; break;
-      case '+': case '-': tmp_type = 2; break;
-      default: assert(0);
-      }
-      if (tmp_type >= op_type) {
-        op_type = tmp_type;
-        ret = i;
-      }
-    }
-  }
-  if (par != 0) return -1;
-  return ret;
-}
 
 
-bool check_parentheses(int p, int q) {
-    printf("p:%d,q:%d\n",p,q);
-    printf("the left char %d,the right char %c\n",tokens[p].type,tokens[q].type);
-  if (tokens[p].type=='(' && tokens[q].type==')') {
-    int par = 0;
-    for (int i = p; i <= q; i++) {
-      if (tokens[i].type=='(') par++;
-      else if (tokens[i].type==')') par--;
-
-      if (par == 0) return i==q; // the leftest parenthese is matched
-    }
-  }
-  return false;
-}
 
 
-static bool make_token(char *e) {
-  int position = 0;
-  int i;
-  regmatch_t pmatch;
 
-  nr_token = 0;
-  while (e[position] != '\0') {
-    /* Try all rules one by one. */
-    for (i = 0; i < NR_REGEX; i ++) {
-      int reg_res = regexec(&re[i], e + position, 1, &pmatch, 0);
-      if (reg_res == 0 && pmatch.rm_so == 0) {
-        char *substr_start = e + position;
-        int substr_len = pmatch.rm_eo;
+bool check_parentheses(int p, int q) 
+{
 
-        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
+    if (tokens[p].type== LPARE && tokens[q].type== RPARE ) 
+    {
+        int par = 0;
+        for (int i = p; i <= q; i++) 
+        {
+            if (tokens[i].type== LPARE ) par++;
+            else if (tokens[i].type== RPARE ) par--;
 
-        position += substr_len;
-
-        if (rules[i].token_type == TK_NOTYPE) break;
-
-        tokens[nr_token].type = rules[i].token_type;
-        switch (rules[i].token_type) {
-          case TK_NUM:
-          case TK_REG:
-          case TK_VAR:
-            strncpy(tokens[nr_token].str, substr_start, substr_len);
-            tokens[nr_token].str[substr_len] = '\0';
-            // todo: handle overflow (token exceeding size of 32B)
+            if (par == 0)
+            {
+                if (i==q)
+                    return true;
+                else
+                    return false;
+            }    
+                
         }
-        nr_token++;
-
-        break;
-      }
     }
-
-    if (i == NR_REGEX) {
-      printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-      return false;
-    }
-  }
-
-  return true;
+    
+    return false;
 }
 
 
 
 
-word_t eval(int p, int q, bool *ok) {
-  *ok = true;
-  if (p > q) {
-    *ok = false;
-    return 0;
-  } else if (p == q) {
-    if (tokens[p].type != TK_NUM) {
-      *ok = false;
-      return 0;
-    }
-    word_t ret = strtol(tokens[p].str, NULL, 10);
-    return ret;
-  } else if (check_parentheses(p, q)) {
-    return eval(p+1, q-1, ok);
-  } else {    
-    int major = find_major(p, q);
-    if (major < 0) {
-      *ok = false;
-      return 0;
+
+
+static bool make_token(char *e) 
+{
+    int position = 0;
+    int i;
+    regmatch_t pmatch;
+
+    nr_token = 0;
+    
+    while (e[position] != '\0') 
+    {
+    
+        for (i = 0; i < NR_REGEX; i ++) 
+        {
+            
+            int reg_res = regexec(&re[i], e + position, 1, &pmatch, 0);
+            
+            
+            if (reg_res == 0 && pmatch.rm_so == 0) 
+            {
+                char *substr_start = e + position;
+                int substr_len = pmatch.rm_eo;
+
+        
+                position += substr_len;
+
+            
+                if (rules[i].token_type == TK_NOTYPE) break;
+
+                tokens[nr_token].type = rules[i].token_type;
+        
+                switch (rules[i].token_type) 
+                {
+                    case NUM:
+                    case REGISTER:
+                    case HEX:
+                        strncpy(tokens[nr_token].str, substr_start, substr_len);break;
+                    
+                    case EQ:
+                        strcpy(tokens[nr_token].str, "==");break;
+
+                    case NOTEQ:
+                        strcpy(tokens[nr_token].str, "!=");break;
+
+                    case AND:
+                        strcpy(tokens[nr_token].str, "&&");break;
+
+                    case OR:
+                        strcpy(tokens[nr_token].str, "||");break;
+
+                    case LEQ:
+                        strcpy(tokens[nr_token].str, "<=");break;
+                        
+                    case REQ:
+                        strcpy(tokens[nr_token].str, ">=");break;
+
+                    default:
+                        break;
+            
+                }
+
+                nr_token++;
+
+                break;
+            }
+        }
+
+        if (i == NR_REGEX) 
+        {
+            printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+            return false;
+        }
     }
 
-    word_t val1 = eval(p, major-1, ok);
-    if (!*ok) return 0;
-    word_t val2 = eval(major+1, q, ok);
-    if (!*ok) return 0;
-
-    switch(tokens[major].type) {
-      case '+': return val1 + val2;
-      case '-': return val1 - val2;
-      case '*': return val1 * val2;
-      case '/': if (val2 == 0) {
-        *ok = false;
-        return 0;
-      } 
-      return (sword_t)val1 / (sword_t)val2; // e.g. -1/2, may not pass the expr test
-      default: assert(0);
-    }
-  }
+    return true;
 }
+
+
+
+
+
+uint32_t eval(int p, int q) 
+{
+    if (p == q) 
+    {
+        word_t resul = strtol(tokens[p].str,NULL,10);
+        return resul ;
+    
+    }
+
+    else if (check_parentheses(p, q) == true) 
+    {    
+        return eval(p + 1, q - 1);
+    }
+
+    else 
+    {
+        int op = -1;
+
+        bool flag = false;
+
+        for(int i = p ; i <= q ; i ++)
+        {
+            if(tokens[i].type == LPARE)
+            {
+                while(tokens[i].type != RPARE)
+                    i ++;
+            }
+            if(!flag && tokens[i].type == OR ){
+                flag = true;
+                op = max(op,i);
+            }
+
+            if(!flag && tokens[i].type == ADD ){
+				flag = true;
+                op = max(op,i);
+            }
+
+            if(!flag && tokens[i].type == NOTEQ){
+                flag = true;
+                op = max(op,i);
+            }
+
+            if(!flag && tokens[i].type == EQ){
+                flag = true;
+                op = max(op,i);
+            }
+            if(!flag && tokens[i].type == LEQ){
+                flag = true;
+                op = max(op, i);
+            }
+            if(!flag && tokens[i].type == REQ){
+                flag = true;
+                op = max(op, i);
+            }
+            if(!flag && tokens[i].type == ADD){
+                flag = true;
+                op = max(op, i);
+            }
+            if(!flag && tokens[i].type == SUB){
+                flag = true;
+                op = max(op, i);
+            }
+            if(!flag && tokens[i].type == PLUS){
+                op = max(op, i);
+            }
+            if(!flag && tokens[i].type == DIV){
+                op = max(op, i);
+            }
+        }
+        
+        int  op_type = tokens[op].type;
+
+        
+        uint32_t  val1 = eval(p, op - 1);
+        uint32_t  val2 = eval(op + 1, q);
+
+        switch (op_type) {
+            case ADD:
+                return val1 + val2;
+            case SUB:
+                return val1 - val2;
+            case PLUS:
+                return val1 * val2;
+            case DIV:
+                if(val2 == 0){
+                    printf("division can't zero;\n");
+                    return 0;
+                }
+                return val1 / val2;
+            case EQ:
+                return val1 == val2;
+            case NOTEQ:
+                return val1 != val2;
+            case OR:
+                return val1 || val2;
+            case AND:
+                return val1 && val2;
+            default:
+                printf("No Op type.");
+                assert(0);
+        }
+    }
+}
+
+
+
+
 
 
 
@@ -235,6 +346,6 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
 
-  return eval(0, nr_token-1, success);
+  return eval(0, nr_token-1);
 }
 
