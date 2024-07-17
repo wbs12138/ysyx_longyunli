@@ -262,7 +262,7 @@ uint32_t eval(int p, int q)
                 op = max(op,i);
             }
 
-            if(!flag && tokens[i].type == ADD ){
+            if(!flag && tokens[i].type == AND ){
 				flag = true;
                 op = max(op,i);
             }
@@ -343,9 +343,11 @@ uint32_t eval(int p, int q)
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
+    printf("the1\n");
     return 0;
   }
-
+  printf("come\n");
   return eval(0, nr_token-1);
+
 }
 
