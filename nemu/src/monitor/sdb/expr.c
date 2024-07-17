@@ -125,7 +125,7 @@ int find_major(int p, int q) {
 
 bool check_parentheses(int p, int q) {
     printf("p:%d,q:%d\n",p,q);
-    printf("the left char %d,the right char%d\n",tokens[p].type,tokens[q].type);
+    printf("the left char %d,the right char %c\n",tokens[p].type,tokens[q].type);
   if (tokens[p].type=='(' && tokens[q].type==')') {
     int par = 0;
     for (int i = p; i <= q; i++) {
