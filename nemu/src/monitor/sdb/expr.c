@@ -233,8 +233,9 @@ static bool make_token(char *e)
 uint32_t eval(int p, int q) 
 {
     if (p == q) 
-    {
-        word_t resul = strtol(tokens[p].str,NULL,10);
+    {   printf("onlyone\n");
+        int resul = strtol(tokens[p].str,NULL,10);
+        printf("resul=%d\n",resul);
         return resul ;
     
     }
@@ -291,6 +292,7 @@ uint32_t eval(int p, int q)
                 op = max(op, i);
             }
             if(!flag && tokens[i].type == SUB){
+                printf("sub\n");
                 flag = true;
                 op = max(op, i);
             }
