@@ -19,7 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
-
+#include <assert.h>
 enum {
   TK_NOTYPE = 256, TK_EQ,
   TK_NUM, // 10 & 16
@@ -59,17 +59,27 @@ static regex_t re[NR_REGEX] = {};
  */
 void init_regex() {
   int i;
-  char error_msg[128];
   int ret;
 
   for (i = 0; i < NR_REGEX; i ++) {
     ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-    if (ret != 0) {
-      regerror(ret, &re[i], error_msg, 128);
-      panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
-    }
+    assert(!ret);
   }
 }
+
+//void init_regex() {
+//  int i;
+//  char error_msg[128];
+//  int ret;
+
+//  for (i = 0; i < NR_REGEX; i ++) {
+//    ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
+//    if (ret != 0) {
+//      regerror(ret, &re[i], error_msg, 128);
+//      panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
+//    }
+//  }
+//}
 
 typedef struct token {
   int type;

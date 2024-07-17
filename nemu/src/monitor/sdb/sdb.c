@@ -68,7 +68,7 @@ static int cmd_q(char *args) {
 }
 
 
-static int cmd_reg(char *args){
+static int cmd_info(char *args){
 isa_reg_display();
 return 0;
 }
@@ -87,7 +87,7 @@ static int cmd_p(char* args) {
 
 
 
-static int cmd_m(char *args)
+static int cmd_x(char *args)
 {
 int len;
 int addr;
@@ -113,8 +113,8 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si","Execute by step",cmd_si},
-  { "reg","Ask for the register",cmd_reg},
-  { "m","Ask for the memory",cmd_m},
+  { "info","Ask for the register",cmd_info},
+  { "x","Ask for the memory",cmd_x},
   {"p", "Usage: p EXPR. Calculate the expression, e.g. p $eax + 1", cmd_p }
   /* TODO: Add more commands */
 
