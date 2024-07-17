@@ -233,9 +233,9 @@ static bool make_token(char *e)
 uint32_t eval(int p, int q) 
 {
     if (p == q) 
-    {   printf("onlyone\n");
+    {   
         int resul = strtol(tokens[p].str,NULL,10);
-        printf("resul=%d\n",resul);
+        
         return resul ;
     
     }
@@ -287,7 +287,6 @@ uint32_t eval(int p, int q)
                 op = max(op, i);
             }
             if(!flag && tokens[i].type == ADD){
-                printf("add\n");
                 flag = true;
                 op = max(op, i);
             }
@@ -350,7 +349,6 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   *success = true;
-  printf("come\n");
   return eval(0, nr_token-1);
 
 }
