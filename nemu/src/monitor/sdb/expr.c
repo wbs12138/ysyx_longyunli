@@ -56,7 +56,7 @@ static struct rule {
 
 
     {" +",                  TK_NOTYPE},    
-    {"\\+",                 PLUS},         
+    {"\\+",                 ADD},         
     {"\\-",                 SUB},       
     {"\\*",                 PLUS},      
     {"\\/",                 DIV},         
