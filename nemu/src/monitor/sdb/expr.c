@@ -230,7 +230,7 @@ int pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	    if(tokens[i].type == REGISTER )
-	    {   printf("register:%d\n",i);
+	    {   
 	        bool flag = true;
 
 	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
@@ -252,9 +252,9 @@ int pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
         if(tokens[i].type == HEX)
-        {   printf("hex:%d\n",i);
+        {   
             int value = strtol(tokens[i].str, NULL, 16);
-            printf("value=%d\n",value);
+            
             int2char(value, tokens[i].str);
         }
     }
@@ -270,7 +270,7 @@ int pre_process()
 		(tokens[i].type == SUB && i == 0)
 	  )
 	{
-	    printf("fushu:%d\n",i);
+	    
 	    tokens[i].type = TK_NOTYPE;
 	    
 	    for(int j = 31 ; j >= 0 ; j --)
@@ -297,7 +297,7 @@ int pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	    if(tokens[i].type == NOT)
-	    {   printf("not:%d\n",i);
+	    {   
 	        tokens[i].type = TK_NOTYPE;
 	        int tmp = char2int(tokens[i+1].str);
 	        if(tmp == 0)
@@ -406,7 +406,7 @@ uint32_t eval(int p, int q)
 {   
 
     if (p == q) 
-    {   printf("tokens[%d].str:%s\n",p,tokens[p].str); 
+    {    
         int resul = strtol(tokens[p].str,NULL,10);
         
         return resul ;
@@ -484,12 +484,12 @@ uint32_t eval(int p, int q)
 
         switch (op_type) 
         {
-            case ADD:{printf("val1=%d,val2=%d\n",val1,val2);
-                return val1 + val2;}
+            case ADD:
+                return val1 + val2;
             case SUB:
                 return val1 - val2;
-            case PLUS:{printf("val1=%d,val2=%d\n",val1,val2);
-                return val1 * val2;}
+            case PLUS:
+                return val1 * val2;
             case DIV:
                 if(val2 == 0){
                     printf("division can't zero;\n");
@@ -529,7 +529,6 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
-  printf("len:%d\n",len);
   return eval(0, len-1);
 
 }
