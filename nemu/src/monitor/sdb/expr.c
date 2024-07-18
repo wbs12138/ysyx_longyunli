@@ -384,7 +384,7 @@ void int2char(int num,char ret[])
 	char *p = ret;
 	do
 	{
-		char temp = num % 10;
+		int temp = num % 10;
         printf("process temp=%c\n",temp);
 		*(p++) = temp + '0';		
 //		*(p++) = num + 0x30;
