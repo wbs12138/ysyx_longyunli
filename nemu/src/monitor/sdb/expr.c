@@ -239,6 +239,8 @@ int pre_process()
 
 	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
 
+            printf("\ntmp=%u",tmp);
+
 	        if(flag)
             {
 		        int2char(tmp, tokens[i].str); 
@@ -411,7 +413,6 @@ uint32_t eval(int p, int q)
     if (p == q) 
     {    
         int resul = strtol(tokens[p].str,NULL,10);
-        printf("\nresul=%u\n",resul);
         
         return resul ;
     
