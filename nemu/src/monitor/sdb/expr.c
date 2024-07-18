@@ -411,6 +411,7 @@ uint32_t eval(int p, int q)
     if (p == q) 
     {    
         int resul = strtol(tokens[p].str,NULL,10);
+        printf("\nresul=%u\n",resul);
         
         return resul ;
     
