@@ -237,7 +237,8 @@ int pre_process()
 
 	        if(flag)
             {
-		        int2char(tmp, tokens[i].str); // transfrom the str --> $egx
+		        int2char(tmp, tokens[i].str); 
+                printf("reg:%s\n",tokens[i].str);
 	        }
             else
             {
