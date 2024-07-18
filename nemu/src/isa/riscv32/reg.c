@@ -45,7 +45,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     {   
         if(strcmp(regs[i],s)==0)
         {
-            return cpu.gpr[i];
+            return gpr(i);
         }
     }
     printf("not find the register.\n");
