@@ -213,7 +213,7 @@ int char2int(char s[]);
 void int2char(int x,char str[]);
 
 
-void pre_process()
+int pre_process()
 {
  
     int tokens_len = 0;
@@ -351,7 +351,7 @@ void pre_process()
             }
 		}
     }
-
+    return tokens_len;
 }
 
 int char2int(char s[])
@@ -400,7 +400,8 @@ void int2char(int x,char str[])
 
 
 uint32_t eval(int p, int q) 
-{   pre_process();
+{   
+
     if (p == q) 
     {   
         int resul = strtol(tokens[p].str,NULL,10);
@@ -522,8 +523,10 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+  int len;
   *success = true;
-  return eval(0, nr_token-1);
+  len=pre_process();
+  return eval(0, len-1);
 
 }
 
