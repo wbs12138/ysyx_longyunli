@@ -403,6 +403,7 @@ void int2char(int x,char str[])
         flag/=10;
         str[tmp_index ++] = a+'0';
     }
+    str[tmp_index]='\0';
 
 }
 
