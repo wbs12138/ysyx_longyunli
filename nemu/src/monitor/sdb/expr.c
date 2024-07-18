@@ -209,6 +209,10 @@ static bool make_token(char *e)
 }
 
 
+int char2int(char s[]);
+void int2char(int x,char str[]);
+
+
 void pre_process()
 {
  
@@ -319,16 +323,17 @@ void pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	if(	(tokens[i].type == PLUS && i > 0\
-        && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != RESGISTER
+      && tokens[i-1].type != NUM && tokens[i-1].type != HEX \
+      && tokens[i-1].type != REGISTER
 		    && tokens[i+1].type == NUM 
 		    )
                 ||
 		(tokens[i].type == PLUS && i > 0
-                    && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != RESGISTER
+    && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != REGISTER
                     && tokens[i+1].type == HEX
                     )
 		||
-                (tokens[i].type == '*' && i == 0)
+                (tokens[i].type == PLUS && i == 0)
           )
 		{
             tokens[i].type = TK_NOTYPE;
@@ -348,15 +353,53 @@ void pre_process()
 		}
     }
 
+}
 
-
-
+int char2int(char s[])
+{
+    int s_size=strlen(s);
+    int res=0;
+    for(int i=0;i<s_size;i++)
+    {
+        res+=s[i]-'0';
+        res*=10;
+    }
+    res/=10;
+    return res;
 
 }
 
 
-uint32_t eval(int p, int q) 
+
+
+
+void int2char(int x,char str[])
 {
+    int len=strlen(str);
+    memset(str,0,len);
+    int tmp_index=0;
+    int tmp_x=x;
+    int x_size=0;
+    int flag=1;
+    while(tmp_x){
+    tmp_x/=10;
+    x_size++;
+    flag*=10;
+    }
+
+    flag/=10;
+    while(x)
+    {
+        int a=x/flag;
+        x%=flag;
+        flag/=10;
+        str[tmp_index ++] = a+'0';
+    }
+
+}
+
+uint32_t eval(int p, int q) 
+{   pre_process();
     if (p == q) 
     {   
         int resul = strtol(tokens[p].str,NULL,10);
