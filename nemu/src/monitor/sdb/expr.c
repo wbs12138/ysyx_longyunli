@@ -241,10 +241,9 @@ int pre_process()
 
 
 	        if(flag)
-            {   char s[32];
-                int2char(2147483648,s);
+            {   
 		        int2char(tmp, tokens[i].str);
-                printf("the tokens[i].str is %s\n",tokens[i].str); 
+                
 	        }
             else
             {
