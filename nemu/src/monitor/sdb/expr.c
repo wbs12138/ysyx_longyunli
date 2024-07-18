@@ -228,7 +228,7 @@ void pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	    if(tokens[i].type == REGISTER )
-	    {
+	    {   printf("register:%d\n",i);
 	        bool flag = true;
 
 	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
@@ -249,7 +249,7 @@ void pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
         if(tokens[i].type == HEX)
-        {
+        {   printf("hex:%d\n",i);
             int value = strtol(tokens[i].str, NULL, 16);
 
             int2char(value, tokens[i].str);
@@ -267,7 +267,7 @@ void pre_process()
 		(tokens[i].type == SUB && i == 0)
 	  )
 	{
-	    
+	    printf("fushu:%d\n",i);
 	    tokens[i].type = TK_NOTYPE;
 	    
 	    for(int j = 31 ; j >= 0 ; j --)
@@ -294,7 +294,7 @@ void pre_process()
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	    if(tokens[i].type == NOT)
-	    {
+	    {   printf("not:%d\n",i);
 	        tokens[i].type = TK_NOTYPE;
 	        int tmp = char2int(tokens[i+1].str);
 	        if(tmp == 0)
@@ -326,8 +326,7 @@ void pre_process()
       && tokens[i-1].type != NUM && tokens[i-1].type != HEX \
       && tokens[i-1].type != REGISTER
 		    && tokens[i+1].type == NUM 
-		    )
-                ||
+		    )||
 		(tokens[i].type == PLUS && i > 0
     && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != REGISTER
                     && tokens[i+1].type == HEX
@@ -335,7 +334,7 @@ void pre_process()
 		||
                 (tokens[i].type == PLUS && i == 0)
           )
-		{
+		{   printf("zhizhen:%d\n",i);
             tokens[i].type = TK_NOTYPE;
             int tmp = char2int(tokens[i+1].str);
             uintptr_t a = (uintptr_t)tmp;
@@ -397,6 +396,8 @@ void int2char(int x,char str[])
     }
 
 }
+
+
 
 uint32_t eval(int p, int q) 
 {   pre_process();
