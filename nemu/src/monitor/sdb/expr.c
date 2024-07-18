@@ -243,7 +243,8 @@ int pre_process()
 
 	        if(flag)
             {
-		        int2char(tmp, tokens[i].str); 
+		        int2char(tmp, tokens[i].str);
+                printf("the tokens[i].str is %s\n",tokens[i].str); 
 	        }
             else
             {
