@@ -389,7 +389,7 @@ void int2char(int num,char ret[])
 		num /= 10;
 	}while(num);
 	
-	printf("%s\r\n", ret);
+	printf("%s\n", ret);
 	
 	int len = strlen(ret);
 	int i = 0;
@@ -400,7 +400,7 @@ void int2char(int num,char ret[])
 		ret[(len - 1 - i)] = temp; 
 	}
 	
-	printf("%s\r\n", ret);
+	printf("%s\n", ret);
 	
 }
 
