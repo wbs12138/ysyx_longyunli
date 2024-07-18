@@ -265,38 +265,38 @@ int pre_process()
     }
     
 
-    // for(int i = 0 ; i < tokens_len ; i ++)
-    // {
-	// if(
-    // (tokens[i].type == SUB && i > 0 &&
-    // (tokens[i-1].type != NUM || tokens[i-1].type != HEX ||tokens[i-1].type != REGISTER ) &&
-    // (tokens[i+1].type == NUM || tokens[i+1].type == HEX ||tokens[i+1].type == REGISTER ))
-	// 	||
-	// 	(tokens[i].type == SUB && i == 0)
-	//   )
-	// {
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+	if(
+    (tokens[i].type == SUB && i > 0 &&\
+    (tokens[i-1].type != NUM || tokens[i-1].type != HEX ||tokens[i-1].type != REGISTER ) &&\
+    (tokens[i+1].type == NUM || tokens[i+1].type == HEX ||tokens[i+1].type == REGISTER ))
+		||
+		(tokens[i].type == SUB && i == 0)
+	  )
+	{
 	    
-	//     tokens[i].type = TK_NOTYPE;
+	    tokens[i].type = TK_NOTYPE;
 	    
-	//     for(int j = 31 ; j >= 0 ; j --)
-    //     {
-	// 	    tokens[i+1].str[j] = tokens[i+1].str[j-1];
-	//     }
-	//     tokens[i+1].str[0] = '-';
+	    for(int j = 31 ; j >= 0 ; j --)
+        {
+		    tokens[i+1].str[j] = tokens[i+1].str[j-1];
+	    }
+	    tokens[i+1].str[0] = '-';
 	    
-	//     for(int j = 0 ; j < tokens_len ; j ++)
-    //     {
-	// 	    if(tokens[j].type == TK_NOTYPE)
-	// 	    {
-	// 	        for(int k = j +1 ; k < tokens_len ; k ++)
-    //             {
-	// 		        tokens[k - 1] = tokens[k];
-	// 	        }
-	// 	        tokens_len -- ;
-	// 	    }
-	//     }
-	// }
-    // }
+	    for(int j = 0 ; j < tokens_len ; j ++)
+        {
+		    if(tokens[j].type == TK_NOTYPE)
+		    {
+		        for(int k = j +1 ; k < tokens_len ; k ++)
+                {
+			        tokens[k - 1] = tokens[k];
+		        }
+		        tokens_len -- ;
+		    }
+	    }
+	}
+    }
 
     
     for(int i = 0 ; i < tokens_len ; i ++)
@@ -493,7 +493,6 @@ uint32_t eval(int p, int q)
                 op = max(op, i);
             }
             if(!flag && tokens[i].type == SUB){
-                printf("sub\n");
                 flag = true;
                 op = max(op, i);
             }
