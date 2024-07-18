@@ -436,7 +436,7 @@ uint32_t eval(int p, int q)
 
     if (p == q) 
     {    
-        int resul = strtol(tokens[p].str,NULL,10);
+        uint32_t resul = strtol(tokens[p].str,NULL,10);
         
         return resul ;
     
