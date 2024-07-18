@@ -189,8 +189,8 @@ static bool make_token(char *e)
                     case HEX:
                         strncpy(tokens[nr_token].str, substr_start, substr_len);break;
                     case REGISTER:{
-                        strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);break; 
-                        printf("token.string:%s\n",tokens[nr_token].str);
+                        strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);
+                        printf("token.string:%s\n",tokens[nr_token].str);break; 
                     }
                     default:
                         break;
