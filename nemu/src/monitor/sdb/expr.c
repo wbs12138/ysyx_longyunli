@@ -242,7 +242,8 @@ int pre_process()
             printf("\ntmp=%x\n",tmp);
 
 	        if(flag)
-            {
+            {   char s[32];
+                int2char(12345,s);
 		        int2char(tmp, tokens[i].str);
                 printf("the tokens[i].str is %s\n",tokens[i].str); 
 	        }
