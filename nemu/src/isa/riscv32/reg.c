@@ -35,6 +35,7 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 
 word_t isa_reg_str2val(const char *s, bool *success) {
     int i;
+    printf("reg_name=%s",s);
     int idx=99;
     for(i=0;i<32;i++)
     {
