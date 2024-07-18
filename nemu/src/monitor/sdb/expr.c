@@ -239,7 +239,6 @@ int pre_process()
 
 	        uint32_t tmp = isa_reg_str2val(tokens[i].str, &flag);
 
-            printf("\ntmp=%x\n",tmp);
 
 	        if(flag)
             {   char s[32];
@@ -385,13 +384,11 @@ void int2char(uint32_t num,char ret[])
 	do
 	{
 		int temp = num % 10;
-        printf("process temp=%d\n",temp);
 		*(p++) = temp + '0';		
 //		*(p++) = num + 0x30;
 		num /= 10;
 	}while(num);
 	
-	printf("%s\n", ret);
 	
 	int len = strlen(ret);
 	int i = 0;
@@ -402,7 +399,6 @@ void int2char(uint32_t num,char ret[])
 		ret[(len - 1 - i)] = temp; 
 	}
 	
-	printf("%s\n", ret);
 	
 }
 
