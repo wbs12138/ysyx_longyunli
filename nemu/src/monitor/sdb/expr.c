@@ -152,7 +152,8 @@ bool check_parentheses(int p, int q)
 
 static bool make_token(char *e) 
 {   for(int i=0;i<32;i++)
-    {tokens[i].type=0;}
+    {tokens[i].type=0;
+     strcpy(tokens[i].str,"0");}
     int position = 0;
     int i;
     regmatch_t pmatch;
