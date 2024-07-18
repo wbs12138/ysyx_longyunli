@@ -188,8 +188,10 @@ static bool make_token(char *e)
                     case NUM:
                     case HEX:
                         strncpy(tokens[nr_token].str, substr_start, substr_len);break;
-                    case REGISTER:
+                    case REGISTER:{
                         strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);break; 
+                        printf("token.string:%s\n",tokens[nr_token].str);
+                    }
                     default:
                         break;
             
@@ -235,7 +237,7 @@ int pre_process()
 	        bool flag = true;
 
 	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
-            
+
 	        if(flag)
             {
 		        int2char(tmp, tokens[i].str); 
