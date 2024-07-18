@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include <isa.h>
+#include <assert.h>
 #include "local-include/reg.h"
 
 const char *regs[] = {
@@ -33,5 +34,24 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-  return 0;
+    int i;
+    int idx=99;
+    for(i=0;i<32;i++)
+    {
+        if(strcmp(s,regs[i])==0)
+        {
+            idx=i;
+        }
+    }
+    if(!*success){
+        printf("system problem\n");
+        assert(0);}
+    else if(idx==99){
+        printf("not find the register.\n");
+        return 0;}
+    else 
+        return gpr(i);
+
+
+    
 }
