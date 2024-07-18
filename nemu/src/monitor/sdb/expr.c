@@ -337,7 +337,7 @@ int pre_process()
 		||
                 (tokens[i].type == PLUS && i == 0)
           )
-		{   printf("zhizhen:%d\n",i);
+		{
             tokens[i].type = TK_NOTYPE;
             int tmp = char2int(tokens[i+1].str);
             uintptr_t a = (uintptr_t)tmp;

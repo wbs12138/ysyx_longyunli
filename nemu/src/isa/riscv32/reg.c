@@ -38,8 +38,11 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+    
+    printf("s:%s\n",s);
+
     for(int i=0;i<32;i++)
-    {
+    {   
         if(strcmp(regs[i],s)==0)
         {
             return cpu.gpr[i];
