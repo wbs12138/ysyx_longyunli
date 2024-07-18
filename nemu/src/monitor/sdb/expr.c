@@ -377,35 +377,60 @@ int char2int(char s[])
 
 }
 
-
-
-
-
-void int2char(int x,char str[])
+void int2char(int num,char ret[])
 {
-    int len=strlen(str);
-    memset(str,0,len);
-    int tmp_index=0;
-    int tmp_x=x;
-    int x_size=0;
-    int flag=1;
-    while(tmp_x){
-    tmp_x/=10;
-    x_size++;
-    flag*=10;
-    }
-
-    flag/=10;
-    while(x)
-    {
-        int a=x/flag;
-        x%=flag;
-        flag/=10;
-        str[tmp_index ++] = a+'0';
-    }
-    str[tmp_index]='\0';
-
+	ret[0] = '\0';
+	char *p = ret;
+	do
+	{
+		char temp = num % 10;
+		*(p++) = temp + '0';		
+//		*(p++) = num + 0x30;
+		num /= 10;
+	}while(num);
+	
+	printf("%s\r\n", ret);
+	
+	int len = strlen(ret);
+	int i = 0;
+	for(i=0; i<len/2; i++)
+	{
+		char temp = ret[i];
+		ret[i] = ret[(len - 1 - i)];
+		ret[(len - 1 - i)] = temp; 
+	}
+	
+	printf("%s\r\n", ret);
+	
 }
+
+
+
+// void int2char(int x,char str[])
+// {
+//     int len=strlen(str);
+//     memset(str,0,len);
+//     int tmp_index=0;
+//     int tmp_x=x;
+//     int x_size=0;
+//     int flag=1;
+//     while(tmp_x){
+//     tmp_x/=10;
+//     x_size++;
+//     flag*=10;
+//     }
+
+//     flag/=10;
+//     while(x)
+//     {
+//         int a=x/flag;
+//         x%=flag;
+//         flag/=10;
+//         str[tmp_index ++] = a+'0';
+//     }
+//     str[tmp_index]='\0';
+
+// }
 
 
 
