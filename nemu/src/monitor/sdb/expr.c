@@ -216,7 +216,7 @@ static bool make_token(char *e)
 
 
 int char2int(char s[]);
-void int2char(int x,char str[]);
+void int2char(uint32_t x,char str[]);
 
 
 int pre_process()
@@ -378,7 +378,7 @@ int char2int(char s[])
 
 }
 
-void int2char(int num,char ret[])
+void int2char(uint32_t num,char ret[])
 {
 	ret[0] = '\0';
 	char *p = ret;
