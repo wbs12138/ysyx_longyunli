@@ -190,6 +190,7 @@ static bool make_token(char *e)
                         strncpy(tokens[nr_token].str, substr_start, substr_len);break;
                     case REGISTER:{
                         strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);
+                        tokens[nr_token].str[2]='\0';
                         printf("substr_start_reg:%d\n",*substr_start_reg);
                         printf("substr_len:%d\n",substr_len-1);
                         printf("char1:%s\nchar2:%s\n",substr_start_reg,substr_start_reg+1);
