@@ -239,7 +239,7 @@ int pre_process()
 
 	        uint32_t tmp = isa_reg_str2val(tokens[i].str, &flag);
 
-            printf("\ntmp=%u",tmp);
+            printf("\ntmp=%x",tmp);
 
 	        if(flag)
             {
