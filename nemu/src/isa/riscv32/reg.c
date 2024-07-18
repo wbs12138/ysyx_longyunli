@@ -38,40 +38,16 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-    int i;
-    int j;
-    size_t len = strlen(s);
-    char *s1 = (char *)malloc(len+1);
-
-    strcpy(s1,s);
-
-    for (i=j=0;s[i]!='\0';i++)
+    for(int i=0;i<32;i++)
     {
-        if(s[i]!='$')
+        if(strcmp(regs[i],s)==0)
         {
-            s1[j++]=s[i];
-        }
-
-    }
-    s1[j]='\0';
-    printf("s:%s\n",s1);
-    int idx=99;
-    for(i=0;i<32;i++)
-    {
-        if(strcmp(s1,reg_name(i))==0)
-        {
-            idx=i;
-            printf("idx:%d",idx);
+            return cpu.gpr[i];
         }
     }
-    if(!*success){
-        printf("system problem\n");
-        assert(0);}
-    else if(idx==99){
-        printf("not find the register.\n");
-        return 0;}
-    else 
-        return gpr(i);
+    printf("not find the register.\n");
+    return 0;
+    
 
 
     
