@@ -15,7 +15,11 @@
 
 #include <isa.h>
 #include <assert.h>
+#include <string.h>
 #include "local-include/reg.h"
+#include <stdint.h>
+
+
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -35,11 +39,26 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 
 word_t isa_reg_str2val(const char *s, bool *success) {
     int i;
-    printf("reg_name=%s",s);
+    int j;
+    size_t len = strlen(s);
+    char *s1 = (char *)malloc(len+1);
+
+    strcpy(s1,s);
+
+    for (i=j=0;s[i]!='\0';i++)
+    {
+        if(s[i]!='$')
+        {
+            s1[j++]=s[i];
+        }
+
+    }
+    s1[j]='\0';
+    printf("s:%s\n",s1);
     int idx=99;
     for(i=0;i<32;i++)
     {
-        if(strcmp(s,reg_name(i))==0)
+        if(strcmp(s1,reg_name(i))==0)
         {
             idx=i;
         }
