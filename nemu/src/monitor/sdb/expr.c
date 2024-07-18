@@ -235,11 +235,10 @@ int pre_process()
 	        bool flag = true;
 
 	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
-            printf("tmp:%d",tmp);
+            printf("tmp:%d\n",tmp);
 	        if(flag)
             {
 		        int2char(tmp, tokens[i].str); 
-                printf("reg:%s\n",tokens[i].str);
 	        }
             else
             {
