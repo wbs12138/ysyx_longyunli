@@ -251,7 +251,7 @@ int pre_process()
         if(tokens[i].type == HEX)
         {   printf("hex:%d\n",i);
             int value = strtol(tokens[i].str, NULL, 16);
-
+            printf("value=%d",value);
             int2char(value, tokens[i].str);
         }
     }
