@@ -485,8 +485,8 @@ uint32_t eval(int p, int q)
                 return val1 + val2;}
             case SUB:
                 return val1 - val2;
-            case PLUS:
-                return val1 * val2;
+            case PLUS:{printf("val1=%d,val2=%d\n",val1,val2);
+                return val1 * val2;}
             case DIV:
                 if(val2 == 0){
                     printf("division can't zero;\n");
