@@ -186,25 +186,7 @@ static bool make_token(char *e)
                     case REGISTER:
                     case HEX:
                         strncpy(tokens[nr_token].str, substr_start, substr_len);break;
-                    
-                    case EQ:
-                        strcpy(tokens[nr_token].str, "==");break;
-
-                    case NOTEQ:
-                        strcpy(tokens[nr_token].str, "!=");break;
-
-                    case AND:
-                        strcpy(tokens[nr_token].str, "&&");break;
-
-                    case OR:
-                        strcpy(tokens[nr_token].str, "||");break;
-
-                    case LEQ:
-                        strcpy(tokens[nr_token].str, "<=");break;
-                        
-                    case REQ:
-                        strcpy(tokens[nr_token].str, ">=");break;
-
+    
                     default:
                         break;
             
@@ -227,7 +209,150 @@ static bool make_token(char *e)
 }
 
 
+void pre_process()
+{
+ 
+    int tokens_len = 0;
 
+    for(int i = 0 ; i < 30 ; i ++)
+    {
+	if(tokens[i].type == 0)
+	    break;
+	tokens_len ++;
+    }
+
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+	    if(tokens[i].type == REGISTER )
+	    {
+	        bool flag = true;
+
+	        int tmp = isa_reg_str2val(tokens[i].str, &flag);
+
+	        if(flag)
+            {
+		        int2char(tmp, tokens[i].str); // transfrom the str --> $egx
+	        }
+            else
+            {
+		        printf("Transfrom error. \n");
+		        assert(0);
+	        }
+	    }
+    }
+    
+
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+        if(tokens[i].type == HEX)
+        {
+            int value = strtol(tokens[i].str, NULL, 16);
+
+            int2char(value, tokens[i].str);
+        }
+    }
+    
+
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+	if(
+    (tokens[i].type == SUB && i > 0 &&\
+    (tokens[i-1].type != NUM || tokens[i-1].type != HEX ||tokens[i-1].type != REGISTER ) &&\
+    (tokens[i+1].type == NUM || tokens[i+1].type == HEX ||tokens[i+1].type == REGISTER ))
+		||
+		(tokens[i].type == SUB && i == 0)
+	  )
+	{
+	    
+	    tokens[i].type = TK_NOTYPE;
+	    
+	    for(int j = 31 ; j >= 0 ; j --)
+        {
+		    tokens[i+1].str[j] = tokens[i+1].str[j-1];
+	    }
+	    tokens[i+1].str[0] = '-';
+	    
+	    for(int j = 0 ; j < tokens_len ; j ++)
+        {
+		    if(tokens[j].type == TK_NOTYPE)
+		    {
+		        for(int k = j +1 ; k < tokens_len ; k ++)
+                {
+			        tokens[k - 1] = tokens[k];
+		        }
+		        tokens_len -- ;
+		    }
+	    }
+	}
+    }
+
+    
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+	    if(tokens[i].type == NOT)
+	    {
+	        tokens[i].type = TK_NOTYPE;
+	        int tmp = char2int(tokens[i+1].str);
+	        if(tmp == 0)
+            {
+		        memset(tokens[i+1].str, 0 ,sizeof(tokens[i+1].str));
+		        tokens[i+1].str[0] = '1';
+	        }
+	        else
+            {
+		        memset(tokens[i+1].str, 0 , sizeof(tokens[i+1].str));
+	        }
+	        for(int j = 0 ; j < tokens_len ; j ++)
+            {
+		        if(tokens[j].type == TK_NOTYPE)
+		        {
+		            for(int k = j +1 ; k < tokens_len ; k ++)
+                    {
+			            tokens[k - 1] = tokens[k];
+		            }
+		            tokens_len -- ;
+		        }
+	        }
+	    }
+    }
+    
+    for(int i = 0 ; i < tokens_len ; i ++)
+    {
+	if(	(tokens[i].type == PLUS && i > 0\
+        && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != RESGISTER
+		    && tokens[i+1].type == NUM 
+		    )
+                ||
+		(tokens[i].type == PLUS && i > 0
+                    && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != RESGISTER
+                    && tokens[i+1].type == HEX
+                    )
+		||
+                (tokens[i].type == '*' && i == 0)
+          )
+		{
+            tokens[i].type = TK_NOTYPE;
+            int tmp = char2int(tokens[i+1].str);
+            uintptr_t a = (uintptr_t)tmp;
+            int value = *((int*)a);
+            int2char(value, tokens[i+1].str);	    
+            // 
+            for(int j = 0 ; j < tokens_len ; j ++){
+                if(tokens[j].type == TK_NOTYPE){
+                    for(int k = j +1 ; k < tokens_len ; k ++){
+                    tokens[k - 1] = tokens[k];
+                }
+                    tokens_len -- ;
+                }
+            }
+		}
+    }
+
+
+
+
+
+}
 
 
 uint32_t eval(int p, int q) 
@@ -246,7 +371,7 @@ uint32_t eval(int p, int q)
     }
 
     else 
-    {   printf("right.\n");
+    {
 
         int op = -1;
 
@@ -309,7 +434,8 @@ uint32_t eval(int p, int q)
         uint32_t  val1 = eval(p, op - 1);
         uint32_t  val2 = eval(op + 1, q);
 
-        switch (op_type) {
+        switch (op_type) 
+        {
             case ADD:
                 return val1 + val2;
             case SUB:
@@ -330,8 +456,12 @@ uint32_t eval(int p, int q)
                 return val1 || val2;
             case AND:
                 return val1 && val2;
+            case LEQ:
+                return val1 <= val2;
+            case REQ:
+                return val1 >= val2;
             default:
-                printf("No Op type.");
+                printf("error by some pre-process");
                 assert(0);
         }
     }
