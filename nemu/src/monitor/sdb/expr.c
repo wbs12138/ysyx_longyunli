@@ -172,6 +172,7 @@ static bool make_token(char *e)
             if (reg_res == 0 && pmatch.rm_so == 0) 
             {
                 char *substr_start = e + position;
+                char *substr_start_reg = e + position + 1;
                 int substr_len = pmatch.rm_eo;
 
         
@@ -185,10 +186,10 @@ static bool make_token(char *e)
                 switch (rules[i].token_type) 
                 {
                     case NUM:
-                    case REGISTER:
                     case HEX:
                         strncpy(tokens[nr_token].str, substr_start, substr_len);break;
-    
+                    case REGISTER:
+                        strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);break; 
                     default:
                         break;
             
