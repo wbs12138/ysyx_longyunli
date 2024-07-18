@@ -526,6 +526,7 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
+  printf("len:%d",len);
   return eval(0, len-1);
 
 }
