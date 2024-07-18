@@ -481,8 +481,8 @@ uint32_t eval(int p, int q)
 
         switch (op_type) 
         {
-            case ADD:
-                return val1 + val2;
+            case ADD:{printf("val1=%d,val2=%d\n",val1,val2);
+                return val1 + val2;}
             case SUB:
                 return val1 - val2;
             case PLUS:
