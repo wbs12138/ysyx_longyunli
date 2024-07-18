@@ -404,7 +404,7 @@ uint32_t eval(int p, int q)
 {   
 
     if (p == q) 
-    {   
+    {   printf("tokens[%d].str:%s\n",p,tokens[p].str); 
         int resul = strtol(tokens[p].str,NULL,10);
         
         return resul ;
