@@ -365,8 +365,9 @@ uint32_t char2int(char s[])
     for(int i=0;s[i]!='\0';i++)
     {
         res+=s[i]-'0';
+        printf("res1=%u\n",res);
         res*=10;
-        printf("res=%u\n",res);
+        printf("res2=%u\n",res);
     }
     res/=10;
     return res;
