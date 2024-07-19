@@ -298,42 +298,14 @@ int pre_process()
 	}
     }
 
-//*************************************not*****************************
-    // for(int i = 0 ; i < tokens_len ; i ++)
-    // {
-	//     if(tokens[i].type == NOT)
-	//     {   
-	//         tokens[i].type = TK_NOTYPE;
-	//         int tmp = char2int(tokens[i+1].str);
-	//         if(tmp == 0)
-    //         {
-	// 	        memset(tokens[i+1].str, 0 ,sizeof(tokens[i+1].str));
-	// 	        tokens[i+1].str[0] = '1';
-	//         }
-	//         else
-    //         {
-	// 	        memset(tokens[i+1].str, 0 , sizeof(tokens[i+1].str));
-	//         }
-	//         for(int j = 0 ; j < tokens_len ; j ++)
-    //         {
-	// 	        if(tokens[j].type == TK_NOTYPE)
-	// 	        {
-	// 	            for(int k = j +1 ; k < tokens_len ; k ++)
-    //                 {
-	// 		            tokens[k - 1] = tokens[k];
-	// 	            }
-	// 	            tokens_len -- ;
-	// 	        }
-	//         }
-	//     }
-    // }
+
 //*************************************jieyinyong*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	if(	(tokens[i].type == PLUS && i > 0
       && tokens[i-1].type != NUM && tokens[i-1].type != HEX 
       && tokens[i-1].type != REGISTER
-		    && (tokens[i+1].type == NUM || tokens[i+1].type == HEX)
+		    && (tokens[i+1].type == NUM || tokens[i+1].type == HEX || tokens[i+1].type == REGISTER)
 		    )
 		||
             (tokens[i].type == PLUS && i == 0)
