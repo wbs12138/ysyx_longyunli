@@ -342,7 +342,7 @@ int pre_process()
             tokens[i].type = TK_NOTYPE;
             uint32_t tmp = char2int(tokens[i+1].str);
             
-            printf("tmp=%lx\n",(long)tmp);
+            printf("tmp=%x\n",tmp);
 
             uint32_t value = *((uint32_t *)(long)tmp);
             printf("value=%u\n",value);
