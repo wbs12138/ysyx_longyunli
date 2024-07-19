@@ -361,9 +361,8 @@ int pre_process()
 
 uint32_t char2int(char s[])
 {
-    uint32_t s_size=strlen(s);
     uint32_t res=0;
-    for(int i=0;i<s_size;i++)
+    for(int i=0;s[i]!='\0';i++)
     {
         res+=s[i]-'0';
         res*=10;
