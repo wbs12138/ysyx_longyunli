@@ -333,20 +333,15 @@ int pre_process()
 	if(	(tokens[i].type == PLUS && i > 0
       && tokens[i-1].type != NUM && tokens[i-1].type != HEX 
       && tokens[i-1].type != REGISTER
-		    && tokens[i+1].type == NUM 
-		    )||
-		(tokens[i].type == PLUS && i > 0
-    && tokens[i-1].type != NUM && tokens[i-1].type != HEX && tokens[i-1].type != REGISTER
-                    && tokens[i+1].type == HEX
-                    )
+		    && (tokens[i+1].type == NUM || tokens[i+1].type == HEX)
+		    )
 		||
-                (tokens[i].type == PLUS && i == 0)
+            (tokens[i].type == PLUS && i == 0)
           )
 		{
             tokens[i].type = TK_NOTYPE;
-            int tmp = char2int(tokens[i+1].str);
-            uintptr_t a = (uintptr_t)tmp;
-            int value = *((int*)a);
+            uint32_t tmp = char2int(tokens[i+1].str);
+            uint32_t value = *((uint32_t *)(long)tmp);
             int2char(value, tokens[i+1].str);	    
             // 
             for(int j = 0 ; j < tokens_len ; j ++){
