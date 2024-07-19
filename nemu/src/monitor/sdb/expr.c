@@ -41,8 +41,8 @@ enum {
   ADD       = 12 ,
   SUB       = 13 ,
   PLUS      = 14 ,
-  DIV       = 15 ,
-  NOT       = 16
+  DIV       = 15 
+//   NOT       = 16
 
 };
 
@@ -71,7 +71,7 @@ static struct rule {
 
     {"\\&\\&",              AND},
     {"\\|\\|",              OR},       
-    {"\\!",                 NOT},
+    // {"\\!",                 NOT},
 
     {"\\$[a-zA-Z]*[0-9]*",  REGISTER},
 
@@ -230,7 +230,7 @@ int pre_process()
 	    break;
 	tokens_len ++;
     }
-
+//*************************************register*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	    if(tokens[i].type == REGISTER )
@@ -253,7 +253,7 @@ int pre_process()
 	    }
     }
     
-
+//*************************************hex*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
         if(tokens[i].type == HEX)
@@ -264,12 +264,12 @@ int pre_process()
         }
     }
     
-
+//*************************************fushu*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	if(
     (tokens[i].type == SUB && i > 0 &&\
-    (tokens[i-1].type != NUM || tokens[i-1].type != HEX ||tokens[i-1].type != REGISTER ) &&\
+    (tokens[i-1].type != NUM && tokens[i-1].type != HEX &&tokens[i-1].type != REGISTER ) &&\
     (tokens[i+1].type == NUM || tokens[i+1].type == HEX ||tokens[i+1].type == REGISTER ))
 		||
 		(tokens[i].type == SUB && i == 0)
@@ -298,36 +298,36 @@ int pre_process()
 	}
     }
 
-    
-    for(int i = 0 ; i < tokens_len ; i ++)
-    {
-	    if(tokens[i].type == NOT)
-	    {   
-	        tokens[i].type = TK_NOTYPE;
-	        int tmp = char2int(tokens[i+1].str);
-	        if(tmp == 0)
-            {
-		        memset(tokens[i+1].str, 0 ,sizeof(tokens[i+1].str));
-		        tokens[i+1].str[0] = '1';
-	        }
-	        else
-            {
-		        memset(tokens[i+1].str, 0 , sizeof(tokens[i+1].str));
-	        }
-	        for(int j = 0 ; j < tokens_len ; j ++)
-            {
-		        if(tokens[j].type == TK_NOTYPE)
-		        {
-		            for(int k = j +1 ; k < tokens_len ; k ++)
-                    {
-			            tokens[k - 1] = tokens[k];
-		            }
-		            tokens_len -- ;
-		        }
-	        }
-	    }
-    }
-    
+//*************************************not*****************************
+    // for(int i = 0 ; i < tokens_len ; i ++)
+    // {
+	//     if(tokens[i].type == NOT)
+	//     {   
+	//         tokens[i].type = TK_NOTYPE;
+	//         int tmp = char2int(tokens[i+1].str);
+	//         if(tmp == 0)
+    //         {
+	// 	        memset(tokens[i+1].str, 0 ,sizeof(tokens[i+1].str));
+	// 	        tokens[i+1].str[0] = '1';
+	//         }
+	//         else
+    //         {
+	// 	        memset(tokens[i+1].str, 0 , sizeof(tokens[i+1].str));
+	//         }
+	//         for(int j = 0 ; j < tokens_len ; j ++)
+    //         {
+	// 	        if(tokens[j].type == TK_NOTYPE)
+	// 	        {
+	// 	            for(int k = j +1 ; k < tokens_len ; k ++)
+    //                 {
+	// 		            tokens[k - 1] = tokens[k];
+	// 	            }
+	// 	            tokens_len -- ;
+	// 	        }
+	//         }
+	//     }
+    // }
+//*************************************jieyinyong*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
 	if(	(tokens[i].type == PLUS && i > 0\
@@ -400,34 +400,6 @@ void int2char(uint32_t num,char ret[])
 	
 	
 }
-
-
-
-// void int2char(int x,char str[])
-// {
-//     int len=strlen(str);
-//     memset(str,0,len);
-//     int tmp_index=0;
-//     int tmp_x=x;
-//     int x_size=0;
-//     int flag=1;
-//     while(tmp_x){
-//     tmp_x/=10;
-//     x_size++;
-//     flag*=10;
-//     }
-
-//     flag/=10;
-//     while(x)
-//     {
-//         int a=x/flag;
-//         x%=flag;
-//         flag/=10;
-//         str[tmp_index ++] = a+'0';
-//     }
-//     str[tmp_index]='\0';
-
-// }
 
 
 
