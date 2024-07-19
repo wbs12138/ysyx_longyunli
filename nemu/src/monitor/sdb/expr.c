@@ -340,7 +340,7 @@ int pre_process()
           )
 		{
             tokens[i].type = TK_NOTYPE;
-            printf("string=%x\n",*tokens[i+1].str);
+            printf("string=%s\n",tokens[i+1].str);
             uint32_t tmp = char2int(tokens[i+1].str);
             
             printf("tmp=%x\n",tmp);
