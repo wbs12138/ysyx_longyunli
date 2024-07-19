@@ -366,6 +366,7 @@ uint32_t char2int(char s[])
     {
         res+=s[i]-'0';
         res*=10;
+        printf("res=%u\n",res);
     }
     res/=10;
     return res;
