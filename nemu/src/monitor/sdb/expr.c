@@ -215,7 +215,7 @@ static bool make_token(char *e)
 }
 
 
-int char2int(char s[]);
+uint32_t char2int(char s[]);
 void int2char(uint32_t x,char str[]);
 
 
@@ -359,10 +359,10 @@ int pre_process()
     return tokens_len;
 }
 
-int char2int(char s[])
+uint32_t char2int(char s[])
 {
-    int s_size=strlen(s);
-    int res=0;
+    uint32_t s_size=strlen(s);
+    uint32_t res=0;
     for(int i=0;i<s_size;i++)
     {
         res+=s[i]-'0';
