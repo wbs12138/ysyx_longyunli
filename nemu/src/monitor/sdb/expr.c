@@ -340,6 +340,8 @@ int pre_process()
           )
 		{
             tokens[i].type = TK_NOTYPE;
+            int s[5]={1,2,3,4,5};
+            printf("the address is %ls\n",&s[0]);
             uint32_t tmp = char2int(tokens[i+1].str);
             printf("tmp=%u\n",tmp);
             uint32_t value = *((uint32_t *)(long)tmp);
