@@ -340,13 +340,8 @@ int pre_process()
           )
 		{
             tokens[i].type = TK_NOTYPE;
-            printf("string=%s\n",tokens[i+1].str);
             uint32_t tmp = char2int(tokens[i+1].str);
-            
-            printf("tmp=%x\n",tmp);
-
             uint32_t value = *((uint32_t *)(long)tmp);
-            printf("value=%u\n",value);
             int2char(value, tokens[i+1].str);	    
             // 
             for(int j = 0 ; j < tokens_len ; j ++){
@@ -525,8 +520,6 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   int len;
-  int s[5]={1,2,3,4,5};
-  printf("the address is %p\n",&s[0]);
   *success = true;
   len=pre_process();
   return eval(0, len-1);
