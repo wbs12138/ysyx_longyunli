@@ -399,7 +399,7 @@ uint32_t eval(int p, int q)
         for(int i = p ; i <= q ; i ++)
         {
             if(tokens[i].type == LPARE)
-            {   
+            {   printf("come at %d\n",i);
                 while(tokens[i].type != RPARE||lpare_num!=1){
                     if(tokens[i].type==LPARE)
                         lpare_num++;
@@ -449,9 +449,10 @@ uint32_t eval(int p, int q)
             }
             if(!flag && tokens[i].type == DIV){
                 op = max(op, i);
-            }
+            }printf("op is %d\n",op);
+            
         }
-        printf("op is %d\n",op);
+        
         int  op_type = tokens[op].type;
         
 
