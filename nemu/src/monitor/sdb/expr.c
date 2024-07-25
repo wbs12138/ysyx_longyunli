@@ -134,7 +134,7 @@ bool check_parentheses(int p, int q)
 
 
             if (par == 0)
-            {
+            {printf("i=%d,q=%d\n",i,q);
                 if (i==q)
                     return true;
                 else
@@ -384,7 +384,7 @@ uint32_t eval(int p, int q)
     }
 
     else if (check_parentheses(p, q) == true) 
-    {    printf("q=%d\n",q);
+    {    
         return eval(p + 1, q - 1);
     }
 
