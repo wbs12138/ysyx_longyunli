@@ -132,9 +132,9 @@ bool check_parentheses(int p, int q)
             if (tokens[i].type== LPARE ) par++;
             else if (tokens[i].type== RPARE ) par--;
 
-
+            printf("par=%d\n",par);
             if (par == 0)
-            {printf("i=%d,q=%d\n",i,q);
+            {
                 if (i==q)
                     return true;
                 else
