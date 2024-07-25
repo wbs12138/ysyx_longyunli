@@ -392,7 +392,7 @@ uint32_t eval(int p, int q)
     {
         int lpare_num=0;
 
-        int op = 1000000;
+        int op = 10000;
 
         bool flag = false;
 
@@ -461,8 +461,7 @@ uint32_t eval(int p, int q)
         uint32_t  val1 = eval(p, op - 1);
         uint32_t  val2 = eval(op + 1, q);
 
-        printf("val1=%u\n",val1);
-        printf("val2=%u\n",val2);
+
 
         switch (op_type) 
         {
