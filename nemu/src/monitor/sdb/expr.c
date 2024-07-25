@@ -451,9 +451,9 @@ uint32_t eval(int p, int q)
                 op = max(op, i);
             }
         }
-        
-        int  op_type = tokens[op].type;
         printf("op is %d\n",op);
+        int  op_type = tokens[op].type;
+        
 
         
         uint32_t  val1 = eval(p, op - 1);
