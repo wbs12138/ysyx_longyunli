@@ -308,7 +308,7 @@ int pre_process()
     {
 	if(	(tokens[i].type == PLUS && i > 0
       && tokens[i-1].type != NUM && tokens[i-1].type != HEX 
-      && tokens[i-1].type != REGISTER
+      && tokens[i-1].type != REGISTER && tokens[i-1].type != RPARE && tokens[i-1].type != LPARE
 		    && (tokens[i+1].type == NUM || tokens[i+1].type == HEX || tokens[i+1].type == REGISTER)
 		    )
 		||
@@ -451,7 +451,7 @@ uint32_t eval(int p, int q)
             if(!flag && tokens[i].type == DIV){
                 op = min(op, i);
             }
-            printf("op=%d\n",op);
+            
         }
         
         int  op_type = tokens[op].type;
