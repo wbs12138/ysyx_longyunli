@@ -395,7 +395,7 @@ uint32_t eval(int p, int q)
         int op = 65535;
 
         bool flag = false;
-
+         printf("q=%d\n",q);  
         for(int i = q ; i >= p ; i --)
         {
             if(tokens[i].type == RPARE)
@@ -453,7 +453,7 @@ uint32_t eval(int p, int q)
             if(!flag && tokens[i].type == DIV){
                 op = min(op, i);
             }
-        printf("i=%d\n",i);   
+        
         }
         
         int  op_type = tokens[op].type;
