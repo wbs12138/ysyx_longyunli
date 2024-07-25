@@ -406,6 +406,8 @@ uint32_t eval(int p, int q)
                         lpare_num++;
                     if(tokens[i].type==LPARE)
                         lpare_num--;
+                    if(i==0)
+                    break;;
                     i --;
                 }
                 
