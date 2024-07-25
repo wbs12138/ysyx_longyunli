@@ -24,6 +24,8 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+void test_expr();
+
 
 void test_expr() {
   FILE *fp = fopen("/home/ubuntu/ics2022/nemu/tools/gen-expr/build/input", "r");
