@@ -397,7 +397,7 @@ uint32_t eval(int p, int q)
         for(int i = p ; i <= q ; i ++)
         {
             if(tokens[i].type == LPARE)
-            {   lpare_num=1;
+            {   
                 while(tokens[i].type != RPARE||lpare_num!=1){
                     if(tokens[i].type==LPARE)
                         lpare_num++;
