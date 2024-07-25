@@ -187,7 +187,9 @@ static bool make_token(char *e)
                 {
                     case NUM:
                     case HEX:
-                        strncpy(tokens[nr_token].str, substr_start, substr_len);break;
+                        strncpy(tokens[nr_token].str, substr_start, substr_len);
+                        tokens[nr_token].str[substr_len]='\0';
+                        break;
                     case REGISTER:{
                         strncpy(tokens[nr_token].str, substr_start_reg, substr_len - 1);
                         tokens[nr_token].str[2]='\0';
