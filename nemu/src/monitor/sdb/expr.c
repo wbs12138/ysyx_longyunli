@@ -392,7 +392,7 @@ uint32_t eval(int p, int q)
     {
         int lpare_num=0;
 
-        int op = -1;
+        int op = 1000000;
 
         bool flag = false;
 
