@@ -453,6 +453,7 @@ uint32_t eval(int p, int q)
         }
         
         int  op_type = tokens[op].type;
+        printf("op is %d\n",op);
 
         
         uint32_t  val1 = eval(p, op - 1);
