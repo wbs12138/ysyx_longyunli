@@ -405,6 +405,7 @@ uint32_t eval(int p, int q)
                         lpare_num--;
                     i ++;
                 }
+                printf("exit\n");
             }
             if(!flag && tokens[i].type == OR ){
                 flag = true;
