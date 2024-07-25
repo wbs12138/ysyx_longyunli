@@ -18,9 +18,9 @@
 #include <assert.h>
 #include <string.h>
 
-int max(int a, int b)
+int min(int a, int b)
 {
-    return a>b?a:b;
+    return a<b?a:b;
 }
 
 
@@ -396,64 +396,64 @@ uint32_t eval(int p, int q)
 
         bool flag = false;
 
-        for(int i = p ; i <= q ; i ++)
+        for(int i = q ; i >= p ; i --)
         {
-            if(tokens[i].type == LPARE)
+            if(tokens[i].type == RPARE)
             {   lpare_num=0;
-                printf("come at %d\n",i);
-                while(tokens[i].type != RPARE||lpare_num!=1){
-                    if(tokens[i].type==LPARE)
-                        lpare_num++;
+                
+                while(tokens[i].type != LPARE||lpare_num!=1){
                     if(tokens[i].type==RPARE)
+                        lpare_num++;
+                    if(tokens[i].type==LPARE)
                         lpare_num--;
-                    i ++;
+                    i --;
                 }
-                printf("exit at %d\n",i);
+                
             }
             if(!flag && tokens[i].type == OR ){
                 flag = true;
-                op = max(op,i);
+                op = min(op,i);
             }
 
             if(!flag && tokens[i].type == AND ){
 				flag = true;
-                op = max(op,i);
+                op = min(op,i);
             }
 
             if(!flag && tokens[i].type == NOTEQ){
                 flag = true;
-                op = max(op,i);
+                op = min(op,i);
             }
 
             if(!flag && tokens[i].type == EQ){
                 flag = true;
-                op = max(op,i);
+                op = min(op,i);
             }
             if(!flag && tokens[i].type == LEQ){
                 flag = true;
-                op = max(op, i);
+                op = min(op, i);
             }
             if(!flag && tokens[i].type == REQ){
                 flag = true;
-                op = max(op, i);
+                op = min(op, i);
             }
             if(!flag && tokens[i].type == ADD){
                 flag = true;
-                op = max(op, i);
+                op = min(op, i);
             }
             if(!flag && tokens[i].type == SUB){
                 flag = true;
-                op = max(op, i);
+                op = min(op, i);
             }
             if(!flag && tokens[i].type == PLUS){
-                op = max(op, i);
+                op = min(op, i);
             }
             if(!flag && tokens[i].type == DIV){
-                op = max(op, i);
-            }printf("op is %d\n",op);
+                op = min(op, i);
+            }
             
         }
-        
+        printf("op is %d\n",op);
         int  op_type = tokens[op].type;
         
 
