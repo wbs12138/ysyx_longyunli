@@ -451,7 +451,7 @@ uint32_t eval(int p, int q)
             if(!flag && tokens[i].type == DIV){
                 op = min(op, i);
             }
-            
+        printf("i=%d\n",i);   
         }
         
         int  op_type = tokens[op].type;
