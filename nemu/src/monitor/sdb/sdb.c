@@ -28,7 +28,7 @@ void test_expr();
 
 
 void test_expr() {
-  FILE *fp = fopen("/home/ubuntu/ics2022/nemu/tools/gen-expr/build/input", "r");
+  FILE *fp = fopen("/home/wangbaosen/ysyx/ysyx-workbench/nemu/tools/gen-expr/build/input", "r");
   if (fp == NULL) perror("test_expr error");
 
   char *e = NULL;
