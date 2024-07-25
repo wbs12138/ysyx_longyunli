@@ -384,7 +384,7 @@ uint32_t eval(int p, int q)
     }
 
     else if (check_parentheses(p, q) == true) 
-    {    
+    {    printf("q=%d\n",q);
         return eval(p + 1, q - 1);
     }
 
@@ -395,7 +395,7 @@ uint32_t eval(int p, int q)
         int op = 65535;
 
         bool flag = false;
-         printf("q=%d\n",q);  
+           
         for(int i = q ; i >= p ; i --)
         {
             if(tokens[i].type == RPARE)
