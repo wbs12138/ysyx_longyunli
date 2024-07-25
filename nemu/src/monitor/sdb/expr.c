@@ -126,10 +126,12 @@ bool check_parentheses(int p, int q)
     if (tokens[p].type== LPARE && tokens[q].type== RPARE ) 
     {
         int par = 0;
+
         for (int i = p; i <= q; i++) 
         {
             if (tokens[i].type== LPARE ) par++;
             else if (tokens[i].type== RPARE ) par--;
+
 
             if (par == 0)
             {
