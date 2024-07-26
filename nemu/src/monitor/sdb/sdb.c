@@ -223,12 +223,7 @@ void sdb_mainloop() {
 void init_sdb() {
   /* Compile the regular expressions. */
   init_regex();
-  uint32_t a1=0-66;
-  uint32_t a2=(0-66)/33;
-  uint32_t a3=4294967230/33;
 
-
-printf("0-66=%u,(0-66)/33=%u,4294967230/33=%u\n",a1,a2,a3); 
   //test_expr();
 
   /* Initialize the watchpoint pool. */
