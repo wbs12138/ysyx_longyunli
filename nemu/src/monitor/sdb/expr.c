@@ -235,7 +235,7 @@ int pre_process()
 	    break;
 	tokens_len ++;
     }
-    printf("len=%d\n",tokens_len);
+   
   
 //*************************************register*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
