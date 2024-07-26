@@ -397,7 +397,11 @@ uint32_t eval(int p, int q)
 
         int op = 65535;
 
+        int op_pd=0;
+
         bool flag = false;
+
+        bool flag_pd=false;
            
         for(int i = q ; i >= p ; i --)
         {   
@@ -450,15 +454,20 @@ uint32_t eval(int p, int q)
                 flag = true;
                 op = min(op, i);
             }
-            if(!flag && tokens[i].type == PLUS){
+            if(!flag && !flag_pd && tokens[i].type == PLUS){
+                flag_pd=true;
+                op_pd=i;
                 op = min(op, i);
             }
-            if(!flag && tokens[i].type == DIV){
+            if(!flag && !flag_pd && tokens[i].type == DIV){
+                flag_pd=true;
+                op_pd=i;
                 op = min(op, i);
             }
-        printf("op=%d\n",op);
-        }
         
+        }
+        if(flag==false)op=op_pd;
+
         int  op_type = tokens[op].type;
         
 
