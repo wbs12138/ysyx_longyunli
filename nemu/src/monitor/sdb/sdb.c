@@ -223,7 +223,7 @@ void sdb_mainloop() {
 void init_sdb() {
   /* Compile the regular expressions. */
   init_regex();
-uint32_t testnumex=12-69+((0 -66  )/33  );
+uint32_t testnumex=((0 -66  )/33  );
 printf("testnumex=%u",testnumex); 
   //test_expr();
 
