@@ -229,13 +229,13 @@ int pre_process()
  
     int tokens_len = 0;
 
-    for(int i = 0 ; i < 30 ; i ++)
+    for(int i = 0 ; i < 65535 ; i ++)
     {
 	if(tokens[i].type == 0)
 	    break;
 	tokens_len ++;
     }
-    printf("tokens_len=%d",tokens_len);
+    printf("tokens_len=%d\n",tokens_len);
 //*************************************register*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
@@ -514,7 +514,7 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
-  printf("len=%d",len);
+  printf("len=%d\n",len);
   return eval(0, len-1);
 
 }
