@@ -30,94 +30,190 @@ static char *code_format =
 "  printf(\"%%u\", result); "
 "  return 0; "
 "}";
-int index_gen = 0;
-
-int choose(int n){
-  int a=rand()%3;
-  return a;
-}
-
-void gen_num(){
-  int num_width=rand()%4+1;
-  int num_width_r=num_width;
-  int num_rand;
-  char c;
-  while(num_width){
-    if(num_width==num_width_r)
-      num_rand=rand()%9+1;
-    else
-      num_rand=rand()%10;
-    num_width--;
-    c = num_rand + '0';
-    buf[index_gen ++] = c;
-  }  
-    
-}
-void gen(char c){
-    buf[index_gen ++] = c;
-}
-void gen_rand_op(){
-    char op[4] = {'+', '-', '*', '/'};
-    int op_position = rand() % 4;
-    buf[index_gen ++] = op[op_position];
-}
 
 
+
+static char *buf_start = NULL;
+static char *buf_end = buf+(sizeof(buf)/sizeof(buf[0]));
+
+static int choose(int n) {
+  return rand() % n;
+}
+
+static void gen_space() {
+  int size = choose(4);
+  if (buf_start < buf_end) {
+    int n_writes = snprintf(buf_start, buf_end-buf_start, "%*s", size, "");
+    if (n_writes > 0) {
+      buf_start += n_writes;
+    }
+  }
+}
+
+static void gen_num() {
+  int num = choose(INT8_MAX);
+  if (buf_start < buf_end) {
+    int n_writes = snprintf(buf_start, buf_end-buf_start, "%d", num);
+    if (n_writes > 0) {
+      buf_start += n_writes;
+    }
+  }
+  gen_space();
+}
+
+static void gen_char(char c) {
+  int n_writes = snprintf(buf_start, buf_end-buf_start, "%c", c);
+  if (buf_start < buf_end) {
+    if (n_writes > 0) {
+      buf_start += n_writes;
+    }
+  }
+}
+
+static char ops[] = {'+', '-', '*', '/'};
+static void gen_rand_op() {
+  int op_index = choose(sizeof(ops));
+  char op = ops[op_index];
+  gen_char(op);
+}
 
 static void gen_rand_expr() {
-    //    buf[0] = '\0';	
-   if(index_gen > 65530)
-       	printf("overSize\n");
-       int  rand_num=choose(3);
-    switch (rand_num) {
-	case 0:
-	    gen_num();
-	    break;
-	case 1:
-	    gen('(');
-	    gen_rand_expr();
-	    gen(')');
-	    break;
-	default:
-	    gen_rand_expr();
-	    gen_rand_op();
-	    gen_rand_expr();
-	    break;
-    }
+  switch (choose(3))
+  {
+  case 0: gen_num(); break;
+  case 1: gen_char('('); gen_rand_expr(); gen_char(')'); break;
+  default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+  }
 }
-
-
 
 int main(int argc, char *argv[]) {
-    int seed = time(0);
-    srand(seed);
-    int loop = 1;
-    if (argc > 1) {
-	sscanf(argv[1], "%d", &loop);
-    }
-    int i;
-    for (i = 0; i < loop; i ++) {
-	gen_rand_expr();
-	buf[index_gen] = '\0';
-	sprintf(code_buf, code_format, buf);
+  int seed = time(0);
+  srand(seed);
+  int loop = 1;
+  if (argc > 1) {
+    sscanf(argv[1], "%d", &loop);
+  }
+  int i;
+  for (i = 0; i < loop; i ++) {
+    buf_start = buf;
 
-	FILE *fp = fopen("/tmp/.code.c", "w");
-	assert(fp != NULL);
-	fputs(code_buf, fp);
-	fclose(fp);
+    gen_rand_expr();
 
-	int ret = system("gcc /tmp/.code.c -Wall -Werror -o /tmp/.expr");
-	if (ret != 0) continue;
 
-	fp = popen("/tmp/.expr", "r");
-	assert(fp != NULL);
+    sprintf(code_buf, code_format, buf);
 
-	int result;
-	ret = fscanf(fp, "%d", &result);
-	pclose(fp);
+    FILE *fp = fopen("/tmp/.code.c", "w");
+    assert(fp != NULL);
+    fputs(code_buf, fp);
+    fclose(fp);
 
-	printf("%u %s\n", result, buf);
-	index_gen = 0;
-    }
-    return 0;
+    int ret = system("gcc /tmp/.code.c -Wall -Werror -o /tmp/.expr");
+    // filter div-by-zero expressions
+    if (ret != 0) continue;
+
+    fp = popen("/tmp/.expr", "r");
+    assert(fp != NULL);
+
+    uint64_t result;
+    int _ = fscanf(fp, "%lu", &result);
+    _ = _;
+    pclose(fp);
+
+    printf("%lu %s\n", result, buf);
+  }
+  return 0;
 }
+// int index_gen = 0;
+
+// int choose(int n){
+//   int a=rand()%3;
+//   return a;
+// }
+
+// void gen_num(){
+//   int num_width=rand()%4+1;
+//   int num_width_r=num_width;
+//   int num_rand;
+//   char c;
+//   while(num_width){
+//     if(num_width==num_width_r)
+//       num_rand=rand()%9+1;
+//     else
+//       num_rand=rand()%10;
+//     num_width--;
+//     c = num_rand + '0';
+//     buf[index_gen ++] = c;
+//   }  
+    
+// }
+// void gen(char c){
+//     buf[index_gen ++] = c;
+// }
+// void gen_rand_op(){
+//     char op[4] = {'+', '-', '*', '/'};
+//     int op_position = rand() % 4;
+//     buf[index_gen ++] = op[op_position];
+// }
+
+// int oversize;
+
+// static void gen_rand_expr() {
+//     //    buf[0] = '\0';	
+    
+//     if(index_gen > 65530)oversize=1;
+       	
+//     int  rand_num=choose(3);
+//     switch (rand_num) {
+// 	  case 0:
+// 	    gen_num();
+// 	    break;
+// 	  case 1:
+// 	    gen('(');
+// 	    gen_rand_expr();
+// 	    gen(')');
+// 	    break;
+// 	  default:
+// 	    gen_rand_expr();
+// 	    gen_rand_op();
+// 	    gen_rand_expr();
+// 	    break;
+//     }
+// }
+
+
+
+// int main(int argc, char *argv[]) {
+  
+//     int seed = time(0);
+//     srand(seed);
+//     int loop = 1;
+//     if (argc > 1) {
+// 	sscanf(argv[1], "%d", &loop);
+//     }
+//     int i;
+//     for (i = 0; i < loop; i ++) {
+// 	oversize=0;
+//   gen_rand_expr();
+// 	buf[index_gen] = '\0';
+// 	sprintf(code_buf, code_format, buf);
+
+// 	FILE *fp = fopen("/tmp/.code.c", "w");
+// 	assert(fp != NULL);
+// 	fputs(code_buf, fp);
+// 	fclose(fp);
+
+// 	int ret = system("gcc /tmp/.code.c -O2 -Wall -Werror -o /tmp/.expr");
+// 	if (ret != 0 || oversize==1) continue;
+
+// 	fp = popen("/tmp/.expr", "r");
+// 	assert(fp != NULL);
+
+// 	int result;
+// 	ret = fscanf(fp, "%d", &result);
+// 	pclose(fp);
+
+// 	printf("%u %s\n", result, buf);
+// 	index_gen = 0;
+//     }
+//     return 0;
+// }

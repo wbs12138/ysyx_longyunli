@@ -43,7 +43,6 @@ void test_expr() {
     e[read-1] = '\0';
 
     word_t res = expr(e, &success);
-    printf("expected: %u, got: %u\n", correct_res, res);
 
     assert(success);
     if (res != correct_res) {
