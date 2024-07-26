@@ -131,7 +131,7 @@ bool check_parentheses(int p, int q)
         {
             if (tokens[i].type== LPARE ) par++;
             else if (tokens[i].type== RPARE ) par--;
-            printf("p=%d,q=%d,i=%d,par=%d\n",p,q,i,par);
+            
 
             
             if (par == 0)
@@ -235,7 +235,7 @@ int pre_process()
 	    break;
 	tokens_len ++;
     }
-    printf("tokens_len=%d\n",tokens_len);
+  
 //*************************************register*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
     {
@@ -514,7 +514,7 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
-  printf("len=%d\n",len);
+  
   return eval(0, len-1);
 
 }
