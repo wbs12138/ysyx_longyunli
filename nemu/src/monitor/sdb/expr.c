@@ -475,7 +475,9 @@ uint32_t eval(int p, int q)
         uint32_t  val1 = eval(p, op - 1);
         uint32_t  val2 = eval(op + 1, q);
 
-
+        int32_t resu_tmp;
+        int32_t val1_tmp;
+        int32_t val2_tmp;
 
         switch (op_type) 
         {
@@ -483,14 +485,23 @@ uint32_t eval(int p, int q)
                 return val1 + val2;
             case SUB:
                 return val1 - val2;
-            case PLUS:
-                return val1 * val2;
+            case PLUS:{
+                val1_tmp=(int32_t)val1;
+                val2_tmp=(int32_t)val2;
+                resu_tmp=val1_tmp*val2_tmp;
+
+                return (uint32_t)resu_tmp; }
             case DIV:
                 if(val2 == 0){
                     printf("division can't zero;\n");
                     return 0;
                 }
-                return val1 / val2;
+
+                val1_tmp=(int32_t)val1;
+                val2_tmp=(int32_t)val2;
+                resu_tmp=val1_tmp/val2_tmp;
+
+                return (uint32_t)resu_tmp;
             case EQ:
                 return val1 == val2;
             case NOTEQ:
