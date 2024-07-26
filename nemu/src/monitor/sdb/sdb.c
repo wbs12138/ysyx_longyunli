@@ -223,7 +223,7 @@ void sdb_mainloop() {
 void init_sdb() {
   /* Compile the regular expressions. */
   init_regex();
-int testnumex=6-189 -435  +1421+((175   -40  *(44-58)))/7/6/116  -(4-(((32)*(0-(12-69+((0 -66  )/33  )+9506)/76/69*(32)/46  +
+int testnumex=((175   -40  *(44-58)))/7/6/116  -(4-(((32)*(0-(12-69+((0 -66  )/33  )+9506)/76/69*(32)/46  +
 71  )*90+55  )))*(77 /85   -85   )/95   *(15-62-10);
 printf("testnumex=%d",testnumex); 
   //test_expr();
