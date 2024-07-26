@@ -154,7 +154,7 @@ bool check_parentheses(int p, int q)
 
 
 static bool make_token(char *e) 
-{   for(int i=0;i<32;i++)
+{   for(int i=0;i<65535;i++)
     {tokens[i].type=0;
      strcpy(tokens[i].str,"0");}
     int position = 0;
@@ -235,6 +235,7 @@ int pre_process()
 	    break;
 	tokens_len ++;
     }
+    printf("len=%d\n",tokens_len);
   
 //*************************************register*****************************
     for(int i = 0 ; i < tokens_len ; i ++)
@@ -514,7 +515,6 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
-  printf("len=%d\n",len);
   
   return eval(0, len-1);
 
