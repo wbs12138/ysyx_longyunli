@@ -399,7 +399,7 @@ uint32_t eval(int p, int q)
         bool flag = false;
            
         for(int i = q ; i >= p ; i --)
-        {   printf("i=%d\n",i);
+        {   
             if(tokens[i].type == RPARE)
             {   lpare_num=0;
                 
@@ -514,6 +514,7 @@ word_t expr(char *e, bool *success) {
   int len;
   *success = true;
   len=pre_process();
+  printf("len=%d\n",len);
   
   return eval(0, len-1);
 
