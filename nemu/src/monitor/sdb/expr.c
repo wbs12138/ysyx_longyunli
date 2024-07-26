@@ -111,7 +111,7 @@ typedef struct token {
 
 
 
-static Token tokens[32] __attribute__((used)) = {};
+static Token tokens[65535] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 
@@ -132,7 +132,7 @@ bool check_parentheses(int p, int q)
             if (tokens[i].type== LPARE ) par++;
             else if (tokens[i].type== RPARE ) par--;
 
-            printf("p=%d,q=%d,i=%d,par=%d\n",p,q,i,par);
+            
             if (par == 0)
             {
                 if (i==q)
