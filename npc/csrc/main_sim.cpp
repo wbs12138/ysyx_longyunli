@@ -16,32 +16,39 @@ int main(int argc,char** argv,char** env){
 	m_trace->open("waveform.vcd");
 
 
-	int n=10;
-	dut->rst=1;
-	while(n-->0){
-		dut->clk = 0;dut->eval();
-		dut->clk = 1;dut->eval();
+	// int n=10;
+	// dut->rst=1;
+	// while(n-->0){
+	// 	dut->clk = 0;dut->eval();
+	// 	dut->clk = 1;dut->eval();
 
-	}
-	dut->rst=0;
+	// }
+	// dut->rst=0;
 
 
 	int a,b;
 	while(sim_time<MAX_SIM_TIME){
-		dut->clk^=1;
-		if(dut->clk==0){
-		a=rand()%2;
-		b=rand()%2;
-		dut->a=a;
-		dut->b=b;
-		}
+		// dut->clk^=1;
+		// if(dut->clk==0){
+		// a=rand()%2;
+		// b=rand()%2;
+		// dut->a=a;
+		// dut->b=b;
+		// }
+		dut->X0=rand()%4;
+		dut->X1=rand()%4;
+		dut->X2=rand()%4;
+		dut->X3=rand()%4;
+		dut->Y =rand()%4;
+		
 		
 		dut->eval();
 
-		if((dut->clk==1) && (a&b==1)){
-			printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",\
-					sim_time,dut->a,dut->b,dut->led);
-		}
+		// if((dut->clk==1) && (a&b==1)){
+		// 	printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",\
+		// 			sim_time,dut->a,dut->b,dut->led);
+		// }
+		printf("x0=%d,x1=%d,x2=%d,x3=%d,y=%d,f=%d\n",X0,X1,X2,X3,Y,F);
 
 		m_trace->dump(sim_time);
 

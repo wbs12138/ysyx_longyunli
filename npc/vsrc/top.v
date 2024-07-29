@@ -1,18 +1,14 @@
 module top(
-  input clk,
-  input rst,
-  input a,b,
-  output reg [15:0] led
+  input [1:0] Y,X0,X1,X2,X3,
+  output [1:0] F
+  
 );
-  reg [31:0] count;
-  always @(posedge clk) begin
-    if (rst) begin led <= 1; count <= 0; end
-    else begin
-	    if(a&b)begin
-      if (count == 0) led <= {led[14:0], led[15]};
-      count <= (count >= 1000 ? 32'b0 : count + 1);
-    end
-  end
-  end
+  
+  MuxKey #(4, 2, 2) inst_muxkey (F, Y, {
+    2'b00, X0,
+    2'b01, X1,
+    2'b10, X2,
+    2'b11, X3
+    
+  });
 endmodule
-
