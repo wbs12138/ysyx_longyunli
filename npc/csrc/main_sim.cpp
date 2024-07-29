@@ -48,7 +48,7 @@ int main(int argc,char** argv,char** env){
 		// 	printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",\
 		// 			sim_time,dut->a,dut->b,dut->led);
 		// }
-		printf("x0=%d,x1=%d,x2=%d,x3=%d,y=%d,f=%d\n",X0,X1,X2,X3,Y,F);
+		printf("x0=%d,x1=%d,x2=%d,x3=%d,y=%d,f=%d\n",dut->X0,dut->X1,dut->X2,dut->X3,dut->Y,dut->F);
 
 		m_trace->dump(sim_time);
 
