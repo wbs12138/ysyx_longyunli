@@ -23,12 +23,37 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode + 1);
     // Body
-    bufp->chgBit(oldp+0,(vlSelf->clk));
-    bufp->chgBit(oldp+1,(vlSelf->rst));
-    bufp->chgBit(oldp+2,(vlSelf->a));
-    bufp->chgBit(oldp+3,(vlSelf->b));
-    bufp->chgSData(oldp+4,(vlSelf->led),16);
-    bufp->chgIData(oldp+5,(vlSelf->top__DOT__count),32);
+    if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[0U])) {
+        bufp->chgCData(oldp+0,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__key_list[0]),2);
+        bufp->chgCData(oldp+1,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__key_list[1]),2);
+        bufp->chgCData(oldp+2,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__key_list[2]),2);
+        bufp->chgCData(oldp+3,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__key_list[3]),2);
+    }
+    if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
+        bufp->chgCData(oldp+4,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__pair_list[0]),4);
+        bufp->chgCData(oldp+5,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__pair_list[1]),4);
+        bufp->chgCData(oldp+6,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__pair_list[2]),4);
+        bufp->chgCData(oldp+7,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__pair_list[3]),4);
+        bufp->chgCData(oldp+8,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__data_list[0]),2);
+        bufp->chgCData(oldp+9,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__data_list[1]),2);
+        bufp->chgCData(oldp+10,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__data_list[2]),2);
+        bufp->chgCData(oldp+11,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__data_list[3]),2);
+        bufp->chgCData(oldp+12,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__lut_out),2);
+        bufp->chgBit(oldp+13,(vlSelf->top__DOT__inst_muxkey__DOT__i0__DOT__hit));
+    }
+    bufp->chgCData(oldp+14,(vlSelf->Y),2);
+    bufp->chgCData(oldp+15,(vlSelf->X0),2);
+    bufp->chgCData(oldp+16,(vlSelf->X1),2);
+    bufp->chgCData(oldp+17,(vlSelf->X2),2);
+    bufp->chgCData(oldp+18,(vlSelf->X3),2);
+    bufp->chgCData(oldp+19,(vlSelf->F),2);
+    bufp->chgSData(oldp+20,((0x48cU | (((IData)(vlSelf->X0) 
+                                        << 0xcU) | 
+                                       (((IData)(vlSelf->X1) 
+                                         << 8U) | (
+                                                   ((IData)(vlSelf->X2) 
+                                                    << 4U) 
+                                                   | (IData)(vlSelf->X3)))))),16);
 }
 
 void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
@@ -36,11 +61,8 @@ void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
     // Init
     Vtop___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vtop___024root*>(voidSelf);
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VlUnpacked<CData/*0:0*/, 1> __Vm_traceActivity;
-    for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
-        __Vm_traceActivity[__Vi0] = 0;
-    }
     // Body
     vlSymsp->__Vm_activity = false;
-    __Vm_traceActivity[0U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[1U] = 0U;
 }
