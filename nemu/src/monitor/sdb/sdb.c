@@ -43,6 +43,7 @@ void test_expr() {
     printf("correct_res=%u\n",correct_res);
     read = getline(&e, &len, fp);
     e[read-1] = '\0';
+    printf("e=%s\n",e);
 
     word_t res = expr(e, &success);
 
