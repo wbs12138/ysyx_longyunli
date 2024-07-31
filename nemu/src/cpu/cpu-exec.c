@@ -48,6 +48,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
         {printf("entered2\n");
             bool success = false;
             printf("check1\n");
+            printf("wp_pool[i].expr=%s\n",wp_pool[i].expr);
             int tmp = expr(wp_pool[i].expr,&success);
             printf("check2\n");
             if(success){printf("entered3\n");
