@@ -40,11 +40,10 @@ void test_expr() {
 
   while (true) {
     if(fscanf(fp, "%u ", &correct_res) == -1) break;
-    printf("correct_res=%u\n",correct_res);
-    printf("e1=%s\n",e);
     read = getline(&e, &len, fp);
     e[read-1] = '\0';
     printf("e2=%s\n",e);
+    printf("len=%ld\n",len);
 
     word_t res = expr(e, &success);
 
