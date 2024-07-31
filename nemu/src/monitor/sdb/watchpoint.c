@@ -13,21 +13,25 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
+#include "watchpoint.h"
 #include "sdb.h"
 
 #define NR_WP 32
-
+/*
 typedef struct watchpoint {
-  int NO;
-  struct watchpoint *next;
-
-  /* TODO: Add more members if necessary */
-
+    int NO;
+    struct watchpoint *next;
+    //  TODO: Add more members if necessary 
+    bool flag; // use / unuse
+    char expr[100];
+    int new_value;
+    int old_value;
 } WP;
 
-static WP wp_pool[NR_WP] = {};
-static WP *head = NULL, *free_ = NULL;
 
+static WP *head = NULL, *free_ = NULL;
+*/
+static WP wp_pool[NR_WP] = {};
 void init_wp_pool() {
   int i;
   for (i = 0; i < NR_WP; i ++) {
@@ -39,5 +43,69 @@ void init_wp_pool() {
   free_ = wp_pool;
 }
 
-/* TODO: Implement the functionality of watchpoint */
+WP* new_wp(){
+    for(WP* p = free_ ; p -> next != NULL ; p = p -> next){
+        if( p -> flag == false){
+            p -> flag = true;
+            if(head == NULL){
+                head = p;
+            }
+            return p;
+        }
+    }
+    printf("No unuse point.\n");
+    assert(0);
+    return NULL;
+}
+void free_wp(WP *wp){
+    if(head -> NO == wp -> NO){
+        head -> flag = false;
+        head = NULL;
+        printf("Delete watchpoint  success.\n");
+        return ;
+    }
+    for(WP* p = head ; p -> next != NULL ; p = p -> next){
+        if(p -> next -> NO  == wp -> NO)
+        {
+            p -> next = p -> next -> next;
+            p -> next -> flag = false; // 没有被使用
+            printf("free succes.\n");
+            return ;
+        }
+    }
+}
+
+
+
+void sdb_watchpoint_display(){
+    bool flag = true;
+    for(int i = 0 ; i < NR_WP ; i ++){
+        if(wp_pool[i].flag){
+            printf("Watchpoint.No: %d, expr = \"%s\", old_value = %d, new_value = %d\n",
+                    wp_pool[i].NO, wp_pool[i].expr,wp_pool[i].old_value, wp_pool[i].new_value);
+                flag = false;
+        }
+    }
+    if(flag) printf("No watchpoint now.\n");
+}
+void delete_watchpoint(int no){
+    for(int i = 0 ; i < NR_WP ; i ++)
+        if(wp_pool[i].NO == no){
+            free_wp(&wp_pool[i]);
+            return ;
+        }
+}
+void create_watchpoint(char* args){
+    WP* p =  new_wp();
+    strcpy(p -> expr, args);
+    bool success = false;
+    int tmp = expr(p -> expr,&success);
+   if(success) p -> old_value = tmp;
+   else printf("创建watchpoint的时候expr求值出现问题\n");
+    printf("Create watchpoint No.%d success.\n", p -> NO);
+}
+
+
+
+
 
