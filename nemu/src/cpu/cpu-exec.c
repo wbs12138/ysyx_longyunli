@@ -43,11 +43,13 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
     IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
     // Scan all watchpoint.
     printf("entered1\n");
-    for(int i = 0 ; i < NR_WP; i ++){printf("wp_pool[%d].flag=%d\n",i,wp_pool[i].flag);
+    for(int i = 0 ; i < NR_WP; i ++){printf("wp_pool[%d].flag=%d\n",i,wp_pool_flag(i));
         if(wp_pool_flag(i))
         {printf("entered2\n");
             bool success = false;
+            printf("check1\n");
             int tmp = expr(wp_pool[i].expr,&success);
+            printf("check2\n");
             if(success){printf("entered3\n");
                 if(tmp != wp_pool[i].old_value)
                 {printf("entered4\n");
