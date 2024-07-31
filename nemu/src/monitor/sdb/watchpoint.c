@@ -79,10 +79,11 @@ int wp_pool_flag(int i){
 }
 
 
-// char *wp_pool_expr(int i){
-//     return wp_pool[i].expr;
-
-// }
+char* wp_pool_expr(int i){
+    static char expre_str[100];
+    strcpy(expre_str,wp_pool[i].expr);
+    return expre_str;
+}
 
 
 

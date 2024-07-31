@@ -30,7 +30,7 @@ void delete_watchpoint(int no);
 void create_watchpoint(char* args);
 int wp_pool_flag(int i);
 
-//char *wp_pool_expr(int i);
+char *wp_pool_expr(int i);
 
 
 #endif
