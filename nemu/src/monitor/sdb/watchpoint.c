@@ -35,6 +35,8 @@ void init_wp_pool() {
   free_ = wp_pool;
 }
 
+
+
 WP* new_wp(){
     for(WP* p = free_ ; p -> next != NULL ; p = p -> next){
         if( p -> flag == false){
@@ -45,10 +47,15 @@ WP* new_wp(){
             return p;
         }
     }
-    printf("No unuse point.\n");
+
+    printf("No valid unused point.\n");
     assert(0);
     return NULL;
+
 }
+
+
+
 void free_wp(WP *wp){
     if(head -> NO == wp -> NO){
         head -> flag = false;
@@ -60,7 +67,7 @@ void free_wp(WP *wp){
         if(p -> next -> NO  == wp -> NO)
         {
             p -> next = p -> next -> next;
-            p -> next -> flag = false; // 没有被使用
+            p -> next -> flag = false; 
             printf("free succes.\n");
             return ;
         }
@@ -80,6 +87,9 @@ void sdb_watchpoint_display(){
     }
     if(flag) printf("No watchpoint now.\n");
 }
+
+
+
 void delete_watchpoint(int no){
     for(int i = 0 ; i < NR_WP ; i ++)
         if(wp_pool[i].NO == no){
@@ -87,13 +97,19 @@ void delete_watchpoint(int no){
             return ;
         }
 }
+
+
+
 void create_watchpoint(char* args){
     WP* p =  new_wp();
     strcpy(p -> expr, args);
     bool success = false;
     int tmp = expr(p -> expr,&success);
-   if(success) p -> old_value = tmp;
-   else printf("创建watchpoint的时候expr求值出现问题\n");
+   if(success){
+    p -> old_value = tmp;
+    p -> new_value = tmp;
+   }
+   else printf("Invalid expression!\n");
     printf("Create watchpoint No.%d success.\n", p -> NO);
 }
 
