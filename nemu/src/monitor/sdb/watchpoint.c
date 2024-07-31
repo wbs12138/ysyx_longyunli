@@ -72,6 +72,12 @@ void free_wp(WP *wp){
 }
 
 
+int wp_pool_flag(int i){
+    return wp_pool[i].flag;
+}
+
+
+
 
 void sdb_watchpoint_display(){
     bool flag = true;
