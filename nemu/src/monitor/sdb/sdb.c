@@ -40,11 +40,12 @@ void test_expr() {
 
   while (true) {
     if(fscanf(fp, "%u ", &correct_res) == -1) break;
+    printf("correct_res=%u\n",correct_res);
     read = getline(&e, &len, fp);
     e[read-1] = '\0';
 
     word_t res = expr(e, &success);
-  printf("expected: %u, got: %u\n", correct_res, res);
+
     assert(success);
     if (res != correct_res) {
       puts(e);
@@ -248,7 +249,7 @@ void init_sdb() {
   /* Compile the regular expressions. */
   init_regex();
 
-  //test_expr();
+  test_expr();
 
   /* Initialize the watchpoint pool. */
   init_wp_pool();
