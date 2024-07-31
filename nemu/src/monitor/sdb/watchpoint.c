@@ -20,7 +20,7 @@
 
 
 
-static WP wp_pool[NR_WP] = {};
+//static WP wp_pool[NR_WP] = {};
 static WP *head ;
 static WP *free_ ;
 
