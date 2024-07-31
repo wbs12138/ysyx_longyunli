@@ -42,15 +42,15 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
     if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
     IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
     // Scan all watchpoint.
-    printf("entered\n");
+    printf("entered1\n");
     for(int i = 0 ; i < NR_WP; i ++){
         if(wp_pool[i].flag)
-        {
+        {printf("entered2\n");
             bool success = false;
             int tmp = expr(wp_pool[i].expr,&success);
-            if(success){
+            if(success){printf("entered3\n");
                 if(tmp != wp_pool[i].old_value)
-                {
+                {printf("entered4\n");
                     nemu_state.state = NEMU_STOP;
                     wp_pool[i].new_value = tmp;
                     printf("NO.%d : expression:\"%s\",old:%d,new:%d\n",\
