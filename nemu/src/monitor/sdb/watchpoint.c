@@ -18,7 +18,21 @@
 
 #define NR_WP 32
 
+typedef struct watchpoint {
+    int NO;
+    struct watchpoint *next;
 
+    // TODO: Add more members if necessary
+
+    bool flag; 
+    char expr[100];
+    int new_value;
+    int old_value;
+
+} WP;
+
+
+static WP wp_pool[NR_WP] ;
 
 static WP *head ;
 static WP *free_ ;
