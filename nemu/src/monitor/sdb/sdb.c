@@ -42,8 +42,6 @@ void test_expr() {
     if(fscanf(fp, "%u ", &correct_res) == -1) break;
     read = getline(&e, &len, fp);
     e[read-1] = '\0';
-    printf("e2=%s\n",e);
-    printf("len=%ld\n",len);
 
     word_t res = expr(e, &success);
 
