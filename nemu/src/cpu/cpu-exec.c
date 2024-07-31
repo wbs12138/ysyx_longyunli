@@ -41,24 +41,26 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
     if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
     IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
-    // Scan all watchpoint.
-    printf("entered1\n");
-    for(int i = 0 ; i < NR_WP; i ++){printf("wp_pool[%d].flag=%d\n",i,wp_pool_flag(i));
+    
+    
+    for(int i = 0 ; i < NR_WP; i ++){
         if(wp_pool_flag(i))
-        {printf("entered2\n");
+        {
             bool success = false;
-            printf("check1\n");
-            printf("wp_pool[i].expr=%s\n",wp_pool[i].expr);
+            
             char *expr1=wp_pool_expr(i);
+
             int tmp = expr(expr1,&success);
-            printf("check2\n");
-            if(success){printf("entered3\n");
-                if(tmp != wp_pool[i].old_value)
-                {printf("entered4\n");
+
+            int old_value = wp_pool_old_value(i);
+
+            if(success){
+                if(tmp != old_value)
+                {
                     nemu_state.state = NEMU_STOP;
-                    wp_pool[i].new_value = tmp;
+                    wp_pool_write_new_value(i,tmp);
                     printf("NO.%d : expression:\"%s\",old:%d,new:%d\n",\
-                    wp_pool[i].NO, wp_pool[i].expr,wp_pool[i].old_value, wp_pool[i].new_value);
+                    i, expr1,old_value, tmp);
                     return ;
                 }
             }

@@ -78,6 +78,16 @@ int wp_pool_flag(int i){
     return wp_pool[i].flag;
 }
 
+int wp_pool_old_value(int i){
+    return wp_pool[i].old_value;
+}
+
+
+void wp_pool_write_new_value(int i,int value){
+    wp_pool[i].new_value=value;
+    return;
+}
+
 
 char* wp_pool_expr(int i){
     static char expre_str[100];
