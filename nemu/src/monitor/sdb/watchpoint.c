@@ -18,6 +18,8 @@
 
 #define NR_WP 32
 
+
+
 static WP *head ;
 static WP *free_ ;
 
@@ -76,6 +78,11 @@ int wp_pool_flag(int i){
     return wp_pool[i].flag;
 }
 
+
+// char *wp_pool_expr(int i){
+//     return wp_pool[i].expr;
+
+// }
 
 
 
