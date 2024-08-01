@@ -17,9 +17,6 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/watchpoint.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/sdb.h>
-
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -37,39 +34,10 @@ void device_update();
 
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
-    if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
+  if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
-    if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
-    IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
-    
-    
-    for(int i = 0 ; i < NR_WP; i ++){
-        if(wp_pool_flag(i))
-        {
-            bool success = false;
-            
-            char *expr1=wp_pool_expr(i);
-
-            int tmp = expr(expr1,&success);
-
-            int old_value = wp_pool_old_value(i);
-
-            if(success){
-                if(tmp != old_value)
-                {
-                    nemu_state.state = NEMU_STOP;
-                    wp_pool_write_new_value(i,tmp);
-                    printf("NO.%d : expression:\"%s\",old:%d,new:%d\n",\
-                    i, expr1,old_value, tmp);
-                    return ;
-                }
-            }
-            else{
-                printf("expr error.\n");
-                assert(0);
-            }
-        }
-    }
+  if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
+  IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {

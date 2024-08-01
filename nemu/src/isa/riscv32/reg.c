@@ -14,12 +14,7 @@
 ***************************************************************************************/
 
 #include <isa.h>
-#include <assert.h>
-#include <string.h>
 #include "local-include/reg.h"
-#include <stdint.h>
-
-
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -29,32 +24,8 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
-for(int i=0;i<32;i++){
-	printf("%d:%s\t%x\n",i,reg_name(i),gpr(i));
-}
-printf("%d:%s\t%x\n",33,"pc",cpu.pc);
-
-
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-    
-
-    for(int i=0;i<32;i++)
-    {   
-        if(strcmp(regs[i],s)==0){
-            
-            return gpr(i);
-        }
-        else if(strcmp("pc",s)==0){
-
-            return cpu.pc;
-        }
-    }
-    printf("not find the register.\n");
-    return 0;
-    
-
-
-    
+  return 0;
 }
