@@ -37,7 +37,7 @@ printf("%d:%s\t%x\n",33,"pc",cpu.pc);
 
 }
 
-word_t isa_reg_str2val(const char *s, bool *success) {
+uint32_t isa_reg_str2val(const char *s, bool *success) {
     
 
     for(int i=0;i<32;i++)
@@ -47,7 +47,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
             return gpr(i);
         }
         else if(strcmp("pc",s)==0){
-
+            printf("pc=%u\n",cpu.pc);
             return cpu.pc;
         }
     }
