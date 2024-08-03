@@ -79,8 +79,9 @@ void free_wp(WP *wp){
     for(WP* p = head ; p -> next != NULL ; p = p -> next){
         if(p -> next -> NO  == wp -> NO)
         {
-            p -> next = p -> next -> next;
             p -> next -> flag = false; 
+            p -> next = p -> next -> next;
+            
             printf("free succes.\n");
             return ;
         }
