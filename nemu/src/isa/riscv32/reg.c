@@ -47,7 +47,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
             return gpr(i);
         }
         else if(strcmp("pc",s)==0){
-            printf("pc=%u\n",cpu.pc);
+            
             return cpu.pc;
         }
     }
