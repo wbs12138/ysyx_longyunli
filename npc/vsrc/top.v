@@ -9,7 +9,7 @@ wire [31:0] pc_next ;
 
 assign pc_next = pc + 4'h4 ;
 
-Reg #(32,32'h80000000) inst_pc (pc,pc_next,1'b1);
+Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 wire [11:0] imm1;
 
