@@ -18,10 +18,15 @@ static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 
 static const uint32_t img [] = {
-  0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
-  0b000000000101_00001_000_00100_0010011,  // addi r4 r1 0x05
-  0b000000000001_00001_000_00101_0010011,  // addi r5 r1 0x01
-  0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
+//   0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
+//   0b000000000101_00001_000_00100_0010011,  // addi r4 r1 0x05
+//   0b000000000001_00001_000_00101_0010011,  // addi r5 r1 0x01
+//   0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
+0x00000297,  // auipc t0,0
+  0x00028823,  // sb  zero,16(t0)
+  0x0102c503,  // lbu a0,16(t0)
+  0x00100073,  // ebreak (used as nemu_trap)
+  0xdeadbeef,  // some data
 };
 
 
