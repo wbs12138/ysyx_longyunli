@@ -6,16 +6,8 @@
 #include "Vtop.h"
 
 #define MAX_SIM_TIME 6
-#define CONFIG_MBASE 0x80000000
-#define CONFIG_MSIZE 0x8000000
-#define RESET_VECTOR 0x80000000
-#define PG_ALIGN __attribute((aligned(4096)))
 
 vluint64_t sim_time=0;
-
-uint32_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
-
-uint32_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 
 static const uint32_t img [] = {
 //   0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
@@ -31,25 +23,20 @@ static const uint32_t img [] = {
 
 
 void init_iram() {
-	
-  memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
-  
 
+  uint32_t *iram = NULL ;
+
+  iram = malloc(sizeof(uint32_t)*10000);
+	
+  memcpy(iram, img, sizeof(img));
+  
   return ;
 }
 
-static inline uint32_t host_read(void *addr, int len) {
-  switch (len) {
-    case 1: return *(uint8_t  *)addr;
-    case 2: return *(uint16_t *)addr;
-    case 4: return *(uint32_t *)addr;
-    default: assert(0);
-  }
-}
+
 
 static uint32_t pmem_read(uint32_t addr, int len) {
-  uint32_t ret = host_read(guest_to_host(addr), len);
-  printf("the zhizhen=%n\n",guest_to_host(RESET_VECTOR));
+  uint32_t ret = iram((addr - 0x80000000)/4)
   return ret;
 }
 
