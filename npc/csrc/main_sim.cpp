@@ -27,7 +27,7 @@ uint32_t *iram = NULL ;
 
 void init_iram() {
 
-  iram = (uint32_t *)malloc(sizeof(uint32_t)*10000);
+  iram = (uint32_t *)malloc(sizeof(uint32_t)*100);
 	
   memcpy(iram, img, sizeof(img));
   
