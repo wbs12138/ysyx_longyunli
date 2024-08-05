@@ -72,11 +72,9 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
-		
-
 		dut->ist = pmem_read(dut->pc);
 
-		printf("clk=%d\n,pc=%u\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
+		printf("clk=%d\n,pc=%lx\n,ist=%lx\n",dut->clk,dut->pc,dut->ist);
 		
 		dut->eval();
 
