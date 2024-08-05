@@ -36,7 +36,8 @@ void init_iram() {
 
 
 static uint32_t pmem_read(uint32_t addr, int len) {
-  uint32_t ret = iram((addr - 0x80000000)/4)
+  uint32_t idx = (addr - 0x80000000)/4 ;
+  uint32_t ret = iram[idx];
   return ret;
 }
 
