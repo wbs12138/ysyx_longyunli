@@ -8,7 +8,7 @@
 #define MAX_SIM_TIME 6
 #define CONFIG_MBASE 0x80000000
 #define CONFIG_MSIZE 0x8000000
-#define RESET_VECTOR (uint32_t 0x80000000) +0x0
+#define RESET_VECTOR 0x80000000
 
 vluint64_t sim_time=0;
 
