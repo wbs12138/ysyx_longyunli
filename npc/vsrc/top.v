@@ -37,7 +37,7 @@ assign rf_raddr = rs1 ;
 
 assign wen= 'b1 ;
 
-assign rf_wdata = rf_rdata + {20{imm1[11]},imm1} ;
+assign rf_wdata = rf_rdata + {{20{imm1[11]}},imm1} ;
 
 RegisterFile #(5,32) inst_RegisterFile 
 (clk,rf_wdata,rf_waddr,rf_wen,rf_rdata,rf_raddr);
