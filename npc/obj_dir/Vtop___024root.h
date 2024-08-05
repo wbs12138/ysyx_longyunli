@@ -18,8 +18,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     VL_IN8(reset,0,0);
     CData/*4:0*/ top__DOT__rs2;
     CData/*0:0*/ top__DOT__addi;
+    CData/*4:0*/ top__DOT__rf_waddr;
     CData/*0:0*/ top__DOT__rf_wen;
-    CData/*4:0*/ top__DOT__inst_RegisterFile__DOT__raddr;
     CData/*0:0*/ __VstlFirstIteration;
     CData/*0:0*/ __VicoFirstIteration;
     CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;

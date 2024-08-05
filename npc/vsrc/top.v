@@ -29,13 +29,13 @@ wire [31:0] rf_wdata,rf_rdata;
 
 wire [4:0] rf_waddr,rf_raddr;
 
-wire wen;
+wire rf_wen;
 
 assign rf_waddr = rd ;
 
 assign rf_raddr = rs1 ;
 
-assign wen= 'b1 ;
+assign rf_wen= 'b1 ;
 
 assign rf_wdata = rf_rdata + {{20{imm1[11]}},imm1} ;
 

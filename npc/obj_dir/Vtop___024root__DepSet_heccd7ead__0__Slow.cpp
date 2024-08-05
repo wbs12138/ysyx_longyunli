@@ -92,6 +92,17 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_next = ((IData)(4U) + vlSelf->pc);
     vlSelf->top__DOT__addi = (IData)((0x13U == (0x707fU 
                                                 & vlSelf->ist)));
+    vlSelf->top__DOT__rf_waddr = ((IData)(vlSelf->top__DOT__addi)
+                                   ? (0x1fU & (vlSelf->ist 
+                                               >> 7U))
+                                   : 0U);
+    vlSelf->top__DOT__rf_rdata = ((0U == ((IData)(vlSelf->top__DOT__addi)
+                                           ? (0x1fU 
+                                              & (vlSelf->ist 
+                                                 >> 0xfU))
+                                           : 0U)) ? 0U
+                                   : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                  [vlSelf->top__DOT__rf_waddr]);
 }
 
 VL_ATTR_COLD void Vtop___024root___eval_triggers__stl(Vtop___024root* vlSelf);
@@ -169,8 +180,8 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__rs2 = VL_RAND_RESET_I(5);
     vlSelf->top__DOT__addi = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__rf_rdata = VL_RAND_RESET_I(32);
+    vlSelf->top__DOT__rf_waddr = VL_RAND_RESET_I(5);
     vlSelf->top__DOT__rf_wen = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__inst_RegisterFile__DOT__raddr = VL_RAND_RESET_I(5);
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__Vi0] = VL_RAND_RESET_I(32);
     }
