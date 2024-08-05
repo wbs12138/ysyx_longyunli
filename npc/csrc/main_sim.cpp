@@ -63,6 +63,7 @@ int main(int argc,char** argv,char** env){
 
 	}
 	dut->reset=0;
+	dut->clk=0;
 	m_trace->dump(sim_time);
 	sim_time++;
 
