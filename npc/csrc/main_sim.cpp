@@ -6,9 +6,14 @@
 #include "Vtop.h"
 
 #define MAX_SIM_TIME 6
+#define CONFIG_MBASE 0x80000000
+#define RESET_VECTOR ((uint32_t 0x80000000) +0x0)
+
 vluint64_t sim_time=0;
 
+static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
+uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 
 static const uint32_t img [] = {
   0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
@@ -17,11 +22,10 @@ static const uint32_t img [] = {
   0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
 };
 
-uint32_t *iram_start = 0x80000000;
 
 void init_iram() {
 	
-  memcpy(iram_start, img, sizeof(img));
+  memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
 
   return ;
 }
@@ -37,7 +41,7 @@ static inline uint32_t host_read(void *addr, int len) {
 }
 
 static uint32_t pmem_read(uint32_t addr, int len) {
-  uint32_t ret = host_read(addr, len);
+  uint32_t ret = host_read(guest_to_host(addr), len);
   return ret;
 }
 
