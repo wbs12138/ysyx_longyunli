@@ -7,7 +7,7 @@ module top(
 
 wire [31:0] pc_next ;
 
-assign pc_next = pc + 4'h4 ;
+assign pc_next = pc + 4'd4 ;
 
 Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 

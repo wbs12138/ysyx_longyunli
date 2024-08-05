@@ -16,7 +16,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
-    CData/*4:0*/ top__DOT__rs2;
     CData/*0:0*/ top__DOT__addi;
     CData/*4:0*/ top__DOT__rf_waddr;
     CData/*0:0*/ __VstlFirstIteration;
