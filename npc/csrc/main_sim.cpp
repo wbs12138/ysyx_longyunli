@@ -9,6 +9,7 @@
 #define CONFIG_MBASE 0x80000000
 #define CONFIG_MSIZE 0x8000000
 #define RESET_VECTOR 0x80000000
+#define PG_ALIGN __attribute((aligned(4096)))
 
 vluint64_t sim_time=0;
 
