@@ -27,12 +27,6 @@ void init_iram() {
 }
 
 
-static uint32_t pmem_read(uint32_t addr, int len) {
-  uint32_t ret = host_read(addr, len);
-  return ret;
-}
-
-
 static inline uint32_t host_read(void *addr, int len) {
   switch (len) {
     case 1: return *(uint8_t  *)addr;
@@ -41,6 +35,14 @@ static inline uint32_t host_read(void *addr, int len) {
     default: assert(0);return 0;
   }
 }
+
+static uint32_t pmem_read(uint32_t addr, int len) {
+  uint32_t ret = host_read(addr, len);
+  return ret;
+}
+
+
+
 
 
 
