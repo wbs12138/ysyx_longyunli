@@ -28,7 +28,7 @@ void init_iram() {
 
 
 static uint32_t pmem_read(uint32_t addr, int len) {
-  uint32_t ret = host_read(guest_to_host(addr), len);
+  uint32_t ret = host_read(addr, len);
   return ret;
 }
 
@@ -67,7 +67,7 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
-		dut->ist = pmem_read(dut->pc);
+		dut->ist = pmem_read(dut->pc,4);
 		
 		dut->eval();
 
