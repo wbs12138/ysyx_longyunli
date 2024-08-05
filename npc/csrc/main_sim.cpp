@@ -15,7 +15,7 @@ vluint64_t sim_time=0;
 
 uint32_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
-uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
+uint32_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 
 static const uint32_t img [] = {
 //   0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
@@ -32,7 +32,7 @@ static const uint32_t img [] = {
 
 void init_iram() {
 	
-  memcpy(pmem, img, sizeof(img));
+  memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
 
   return ;
 }
