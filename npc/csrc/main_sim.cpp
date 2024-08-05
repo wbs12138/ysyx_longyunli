@@ -33,7 +33,7 @@ static const uint32_t img [] = {
 void init_iram() {
 	
   memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
-  printf("the zhizhen=%n\n",guest_to_host(RESET_VECTOR));
+  
 
   return ;
 }
@@ -49,6 +49,7 @@ static inline uint32_t host_read(void *addr, int len) {
 
 static uint32_t pmem_read(uint32_t addr, int len) {
   uint32_t ret = host_read(guest_to_host(addr), len);
+  printf("the zhizhen=%n\n",guest_to_host(RESET_VECTOR));
   return ret;
 }
 
