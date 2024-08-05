@@ -80,6 +80,8 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
+		printf("clk=%d\n",dut->clk);
+
 		dut->ist = pmem_read(dut->pc,4);
 		
 		dut->eval();
