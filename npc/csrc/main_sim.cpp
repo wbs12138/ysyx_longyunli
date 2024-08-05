@@ -70,9 +70,9 @@ int main(int argc,char** argv,char** env){
 	int a,b;
 	while(sim_time<MAX_SIM_TIME){
 
-		dut->clk^=1;
-
 		dut->ist = pmem_read(dut->pc);
+		
+		dut->clk^=1;
 		
 		dut->eval();
 
