@@ -22,9 +22,11 @@ static const uint32_t img [] = {
 };
 
 
+uint32_t *iram = NULL ;
+
+
 void init_iram() {
 
-  uint32_t *iram = NULL ;
 
   iram = malloc(sizeof(uint32_t)*10000);
 	
