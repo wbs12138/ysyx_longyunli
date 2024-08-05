@@ -55,6 +55,8 @@ int main(int argc,char** argv,char** env){
 	m_trace->open("waveform.vcd");
 
 
+	init_iram();
+
 	int n=2;
 	dut->reset=1;
 	while(n-->0){
@@ -70,9 +72,11 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
-		printf("clk=%d\n,pc=%u\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
+		
 
 		dut->ist = pmem_read(dut->pc);
+
+		printf("clk=%d\n,pc=%u\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
 		
 		dut->eval();
 
