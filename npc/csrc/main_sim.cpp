@@ -10,15 +10,11 @@
 vluint64_t sim_time=0;
 
 static const uint32_t img [] = {
-  0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
-  0b000000000101_00001_000_00100_0010011,  // addi r4 r1 0x05
-  0b000000000001_00001_000_00101_0010011,  // addi r5 r1 0x01
-  0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
-//   0x00000297,  // auipc t0,0
-//   0x00028823,  // sb  zero,16(t0)
-//   0x0102c503,  // lbu a0,16(t0)
-//   0x00100073,  // ebreak (used as nemu_trap)
-//   0xdeadbeef,  // some data
+  0x00300093,  // addi r1 r0 0x03
+  0x00508213,  // addi r4 r1 0x05
+  0x00108293,  // addi r5 r1 0x01
+  0x00128313,  // addi r6 r5 0x01
+
 };
 
 
@@ -44,16 +40,12 @@ static uint32_t pmem_read(uint32_t addr) {
 
 
 
-
-
-
 int main(int argc,char** argv,char** env){
 	Vtop *dut = new Vtop;
 	Verilated::traceEverOn(true);
 	VerilatedVcdC *m_trace = new VerilatedVcdC;
 	dut->trace(m_trace,5);
 	m_trace->open("waveform.vcd");
-
 
 	init_iram();
 
@@ -86,6 +78,8 @@ int main(int argc,char** argv,char** env){
 	m_trace->close();
 
 	delete dut;
+
+	free(iram);
 
 	exit(EXIT_SUCCESS);
 	
