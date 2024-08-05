@@ -27,13 +27,13 @@ void init_iram() {
 }
 
 
-static word_t pmem_read(paddr_t addr, int len) {
-  word_t ret = host_read(guest_to_host(addr), len);
+static uint32_t pmem_read(paddr_t addr, int len) {
+  uint32_t ret = host_read(guest_to_host(addr), len);
   return ret;
 }
 
 
-static inline word_t host_read(void *addr, int len) {
+static inline uint32_t host_read(void *addr, int len) {
   switch (len) {
     case 1: return *(uint8_t  *)addr;
     case 2: return *(uint16_t *)addr;
