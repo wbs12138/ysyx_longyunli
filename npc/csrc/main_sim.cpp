@@ -70,7 +70,7 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
-		printf("clk=%d\n,pc=%d\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
+		printf("clk=%d\n,pc=%u\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
 
 		dut->ist = pmem_read(dut->pc,4);
 		
