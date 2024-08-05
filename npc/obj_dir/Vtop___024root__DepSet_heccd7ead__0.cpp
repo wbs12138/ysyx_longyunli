@@ -50,19 +50,15 @@ void Vtop___024root___eval_act(Vtop___024root* vlSelf) {
 }
 
 void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf);
-void Vtop___024root___nba_sequent__TOP__1(Vtop___024root* vlSelf);
 
 void Vtop___024root___eval_nba(Vtop___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_nba\n"); );
     // Body
-    if ((2ULL & vlSelf->__VnbaTriggered.word(0U))) {
+    if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
         Vtop___024root___nba_sequent__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[1U] = 1U;
-    }
-    if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
-        Vtop___024root___nba_sequent__TOP__1(vlSelf);
     }
 }
 
@@ -89,22 +85,13 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
             = vlSelf->top__DOT__rf_wen;
         __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 1U;
     }
+    vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
+                   : vlSelf->top__DOT__pc_next);
     if (__VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0) {
         vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
             = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
     }
-}
-
-VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__1(Vtop___024root* vlSelf) {
-    (void)vlSelf;  // Prevent unused variable warning
-    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___nba_sequent__TOP__1\n"); );
-    // Body
-    if ((1U & vlSelf->pc)) {
-        vlSelf->top__DOT__inst_pc__DOT__dout = 0x80000000U;
-    } else if (vlSelf->top__DOT__inst_pc__DOT__wen) {
-        vlSelf->top__DOT__inst_pc__DOT__dout = 1U;
-    }
+    vlSelf->top__DOT__pc_next = ((IData)(4U) + vlSelf->pc);
 }
 
 void Vtop___024root___eval_triggers__act(Vtop___024root* vlSelf);
@@ -114,7 +101,7 @@ bool Vtop___024root___eval_phase__act(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_phase__act\n"); );
     // Init
-    VlTriggerVec<2> __VpreTriggered;
+    VlTriggerVec<1> __VpreTriggered;
     CData/*0:0*/ __VactExecute;
     // Body
     Vtop___024root___eval_triggers__act(vlSelf);
