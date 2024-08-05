@@ -82,32 +82,23 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
     __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
     CData/*4:0*/ __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0;
     __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
-    CData/*0:0*/ __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0;
-    __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
     // Body
-    __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0U;
-    if (vlSelf->top__DOT__rf_wen) {
-        __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 
-            = (vlSelf->top__DOT__rf_rdata + (((- (IData)(
-                                                         ((IData)(vlSelf->top__DOT__addi) 
-                                                          & (vlSelf->ist 
-                                                             >> 0x1fU)))) 
-                                              << 0xcU) 
-                                             | ((IData)(vlSelf->top__DOT__addi)
-                                                 ? 
-                                                (vlSelf->ist 
-                                                 >> 0x14U)
-                                                 : 0U)));
-        __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 
-            = vlSelf->top__DOT__rf_waddr;
-        __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 1U;
-    }
+    __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 
+        = (vlSelf->top__DOT__rf_rdata + (((- (IData)(
+                                                     ((IData)(vlSelf->top__DOT__addi) 
+                                                      & (vlSelf->ist 
+                                                         >> 0x1fU)))) 
+                                          << 0xcU) 
+                                         | ((IData)(vlSelf->top__DOT__addi)
+                                             ? (vlSelf->ist 
+                                                >> 0x14U)
+                                             : 0U)));
+    __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 
+        = vlSelf->top__DOT__rf_waddr;
     vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
                    : vlSelf->top__DOT__pc_next);
-    if (__VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0) {
-        vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
-            = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
-    }
+    vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
+        = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
     vlSelf->top__DOT__rf_rdata = ((0U == ((IData)(vlSelf->top__DOT__addi)
                                            ? (0x1fU 
                                               & (vlSelf->ist 

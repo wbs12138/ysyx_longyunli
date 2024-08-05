@@ -13,7 +13,7 @@ Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 wire [11:0] imm1;
 
-wire [4:0] rs1,rs2,rd;
+wire [4:0] rs1,rd;
 
 wire addi ; 
 
