@@ -1,11 +1,47 @@
 #include <stdlib.h>
 #include <iostream>
+#include <assert.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
 
-#define MAX_SIM_TIME 2000000
+#define MAX_SIM_TIME 6
 vluint64_t sim_time=0;
+
+
+
+static const uint32_t img [] = {
+  0b000000000011_00000_000_00001_0010011,  // addi r1 r0 0x03
+  0b000000000101_00001_000_00100_0010011,  // addi r4 r1 0x05
+  0b000000000001_00001_000_00101_0010011,  // addi r5 r1 0x01
+  0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
+};
+
+uint32_t *iram_start = 0x80000000;
+
+void init_iram() {
+	
+  memcpy(iram_start, img, sizeof(img));
+
+  return ;
+}
+
+
+static word_t pmem_read(paddr_t addr, int len) {
+  word_t ret = host_read(guest_to_host(addr), len);
+  return ret;
+}
+
+
+static inline word_t host_read(void *addr, int len) {
+  switch (len) {
+    case 1: return *(uint8_t  *)addr;
+    case 2: return *(uint16_t *)addr;
+    case 4: return *(uint32_t *)addr;
+    default: assert(0);return 0;
+  }
+}
+
 
 
 int main(int argc,char** argv,char** env){
@@ -16,39 +52,24 @@ int main(int argc,char** argv,char** env){
 	m_trace->open("waveform.vcd");
 
 
-	// int n=10;
-	// dut->rst=1;
-	// while(n-->0){
-	// 	dut->clk = 0;dut->eval();
-	// 	dut->clk = 1;dut->eval();
+	int n=2;
+	dut->rst=1;
+	while(n-->0){
+		dut->clk = 0;dut->eval();
+		dut->clk = 1;dut->eval();
 
-	// }
-	// dut->rst=0;
+	}
+	dut->rst=0;
 
 
 	int a,b;
 	while(sim_time<MAX_SIM_TIME){
-		// dut->clk^=1;
-		// if(dut->clk==0){
-		// a=rand()%2;
-		// b=rand()%2;
-		// dut->a=a;
-		// dut->b=b;
-		// }
-		dut->X0=rand()%4;
-		dut->X1=rand()%4;
-		dut->X2=rand()%4;
-		dut->X3=rand()%4;
-		dut->Y =rand()%4;
-		
+
+		dut->clk^=1;
+
+		dut->ist = pmem_read(dut->pc);
 		
 		dut->eval();
-
-		// if((dut->clk==1) && (a&b==1)){
-		// 	printf("sim_time = %ld,a = %d,b = %d,led = %hx\n",\
-		// 			sim_time,dut->a,dut->b,dut->led);
-		// }
-		printf("x0=%d,x1=%d,x2=%d,x3=%d,y=%d,f=%d\n",dut->X0,dut->X1,dut->X2,dut->X3,dut->Y,dut->F);
 
 		m_trace->dump(sim_time);
 
@@ -63,5 +84,7 @@ int main(int argc,char** argv,char** env){
 	
 	return 0;
 }
+
+
 
 
