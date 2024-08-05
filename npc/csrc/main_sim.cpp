@@ -32,7 +32,7 @@ static const uint32_t img [] = {
 
 void init_iram() {
 	
-  memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
+  memcpy(pmem, img, sizeof(img));
 
   return ;
 }
