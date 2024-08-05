@@ -22,7 +22,7 @@ static const uint32_t img [] = {
 //   0b000000000101_00001_000_00100_0010011,  // addi r4 r1 0x05
 //   0b000000000001_00001_000_00101_0010011,  // addi r5 r1 0x01
 //   0b000000000001_00101_000_00110_0010011,  // addi r6 r5 0x01
-0x00000297,  // auipc t0,0
+  0x00000297,  // auipc t0,0
   0x00028823,  // sb  zero,16(t0)
   0x0102c503,  // lbu a0,16(t0)
   0x00100073,  // ebreak (used as nemu_trap)
@@ -41,7 +41,7 @@ static inline uint32_t host_read(void *addr, int len) {
   switch (len) {
     case 1: return *(uint8_t  *)addr;
     case 2: return *(uint16_t *)addr;
-    case 4: return *(uint32_t *)addr;
+    case 4: return *(uint32_t *)pmem;
     default: assert(0);
   }
 }
