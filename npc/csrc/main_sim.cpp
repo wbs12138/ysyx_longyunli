@@ -5,7 +5,7 @@
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
 
-#define MAX_SIM_TIME 6
+#define MAX_SIM_TIME 12
 
 vluint64_t sim_time=0;
 
