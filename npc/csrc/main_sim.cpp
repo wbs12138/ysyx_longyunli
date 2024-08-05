@@ -5,7 +5,7 @@
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
 
-#define MAX_SIM_TIME 12
+#define MAX_SIM_TIME 20
 
 vluint64_t sim_time=0;
 
@@ -51,12 +51,20 @@ int main(int argc,char** argv,char** env){
 
 	int n=2;
 	dut->reset=1;
+	sim_time++;
+	m_trace->dump(sim_time);
 	while(n-->0){
 		dut->clk = 0;dut->eval();
+		m_trace->dump(sim_time);
+		sim_time++;
 		dut->clk = 1;dut->eval();
+		m_trace->dump(sim_time);
+		sim_time++;
 
 	}
 	dut->reset=0;
+	m_trace->dump(sim_time);
+	sim_time++;
 
 
 	int a,b;

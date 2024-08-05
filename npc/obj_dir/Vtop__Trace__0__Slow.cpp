@@ -163,19 +163,14 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
     bufp->fullSData(oldp+38,(((IData)(vlSelf->top__DOT__addi)
                                ? (vlSelf->ist >> 0x14U)
                                : 0U)),12);
-    bufp->fullCData(oldp+39,(((IData)(vlSelf->top__DOT__addi)
+    bufp->fullCData(oldp+39,(vlSelf->top__DOT__rf_raddr),5);
+    bufp->fullCData(oldp+40,(((IData)(vlSelf->top__DOT__addi)
                                ? (0x1fU & (vlSelf->ist 
-                                           >> 0xfU))
-                               : 0U)),5);
-    bufp->fullCData(oldp+40,(vlSelf->top__DOT__rf_waddr),5);
+                                           >> 7U)) : 0U)),5);
     bufp->fullBit(oldp+41,(vlSelf->top__DOT__addi));
-    bufp->fullIData(oldp+42,((((0U == ((IData)(vlSelf->top__DOT__addi)
-                                        ? (0x1fU & 
-                                           (vlSelf->ist 
-                                            >> 0xfU))
-                                        : 0U)) ? 0U
-                                : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                               [vlSelf->top__DOT__rf_waddr]) 
+    bufp->fullIData(oldp+42,((((0U == (IData)(vlSelf->top__DOT__rf_raddr))
+                                ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                               [vlSelf->top__DOT__rf_raddr]) 
                               + (((- (IData)(((IData)(vlSelf->top__DOT__addi) 
                                               & (vlSelf->ist 
                                                  >> 0x1fU)))) 
@@ -183,10 +178,7 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                                ? (vlSelf->ist 
                                                   >> 0x14U)
                                                : 0U)))),32);
-    bufp->fullIData(oldp+43,(((0U == ((IData)(vlSelf->top__DOT__addi)
-                                       ? (0x1fU & (vlSelf->ist 
-                                                   >> 0xfU))
-                                       : 0U)) ? 0U : 
-                              vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                              [vlSelf->top__DOT__rf_waddr])),32);
+    bufp->fullIData(oldp+43,(((0U == (IData)(vlSelf->top__DOT__rf_raddr))
+                               ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                              [vlSelf->top__DOT__rf_raddr])),32);
 }

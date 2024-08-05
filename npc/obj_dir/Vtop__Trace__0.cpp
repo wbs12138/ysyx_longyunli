@@ -65,18 +65,14 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
     bufp->chgSData(oldp+37,(((IData)(vlSelf->top__DOT__addi)
                               ? (vlSelf->ist >> 0x14U)
                               : 0U)),12);
-    bufp->chgCData(oldp+38,(((IData)(vlSelf->top__DOT__addi)
+    bufp->chgCData(oldp+38,(vlSelf->top__DOT__rf_raddr),5);
+    bufp->chgCData(oldp+39,(((IData)(vlSelf->top__DOT__addi)
                               ? (0x1fU & (vlSelf->ist 
-                                          >> 0xfU))
-                              : 0U)),5);
-    bufp->chgCData(oldp+39,(vlSelf->top__DOT__rf_waddr),5);
+                                          >> 7U)) : 0U)),5);
     bufp->chgBit(oldp+40,(vlSelf->top__DOT__addi));
-    bufp->chgIData(oldp+41,((((0U == ((IData)(vlSelf->top__DOT__addi)
-                                       ? (0x1fU & (vlSelf->ist 
-                                                   >> 0xfU))
-                                       : 0U)) ? 0U : 
-                              vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                              [vlSelf->top__DOT__rf_waddr]) 
+    bufp->chgIData(oldp+41,((((0U == (IData)(vlSelf->top__DOT__rf_raddr))
+                               ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                              [vlSelf->top__DOT__rf_raddr]) 
                              + (((- (IData)(((IData)(vlSelf->top__DOT__addi) 
                                              & (vlSelf->ist 
                                                 >> 0x1fU)))) 
@@ -84,12 +80,9 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                               ? (vlSelf->ist 
                                                  >> 0x14U)
                                               : 0U)))),32);
-    bufp->chgIData(oldp+42,(((0U == ((IData)(vlSelf->top__DOT__addi)
-                                      ? (0x1fU & (vlSelf->ist 
-                                                  >> 0xfU))
-                                      : 0U)) ? 0U : 
-                             vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                             [vlSelf->top__DOT__rf_waddr])),32);
+    bufp->chgIData(oldp+42,(((0U == (IData)(vlSelf->top__DOT__rf_raddr))
+                              ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                             [vlSelf->top__DOT__rf_raddr])),32);
 }
 
 void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
