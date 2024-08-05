@@ -12,7 +12,7 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   end
 
   assign rdata = (raddr=='b0) ?     'b0     :
-                                    rf[waddr];
+                                    rf[raddr];
   
 
 endmodule
