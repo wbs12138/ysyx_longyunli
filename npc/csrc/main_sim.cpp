@@ -53,13 +53,13 @@ int main(int argc,char** argv,char** env){
 
 
 	int n=2;
-	dut->rst=1;
+	dut->reset=1;
 	while(n-->0){
 		dut->clk = 0;dut->eval();
 		dut->clk = 1;dut->eval();
 
 	}
-	dut->rst=0;
+	dut->reset=0;
 
 
 	int a,b;
