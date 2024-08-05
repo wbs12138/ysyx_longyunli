@@ -27,7 +27,6 @@ uint32_t *iram = NULL ;
 
 void init_iram() {
 
-
   iram = (uint32_t *)malloc(sizeof(uint32_t)*10000);
 	
   memcpy(iram, img, sizeof(img));
@@ -71,7 +70,7 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 
-		printf("clk=%d\n,ist=%d\n",dut->clk,dut->ist);
+		printf("clk=%d\n,pc=%d\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
 
 		dut->ist = pmem_read(dut->pc,4);
 		
