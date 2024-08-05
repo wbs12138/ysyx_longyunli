@@ -36,7 +36,7 @@ void init_iram() {
 
 
 
-static uint32_t pmem_read(uint32_t addr, int len) {
+static uint32_t pmem_read(uint32_t addr) {
   uint32_t idx = (addr - 0x80000000)/4 ;
   uint32_t ret = iram[idx];
   return ret;
@@ -72,7 +72,7 @@ int main(int argc,char** argv,char** env){
 
 		printf("clk=%d\n,pc=%u\n,ist=%d\n",dut->clk,dut->pc,dut->ist);
 
-		dut->ist = pmem_read(dut->pc,4);
+		dut->ist = pmem_read(dut->pc);
 		
 		dut->eval();
 
