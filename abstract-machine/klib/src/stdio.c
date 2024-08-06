@@ -9,7 +9,7 @@
 static void reverse(char *s, int len) {
   int time=len/2;
   int cur_time=0;
-  char *end = s + len - 1;//printf("s=%s,len=%d,end=%s\n",s,len,end);
+  char *end = s + len - 1;
   char tmp;
   while (cur_time < time) {
     tmp = *s;
@@ -25,16 +25,19 @@ static void reverse(char *s, int len) {
 static int itoa(int n, char *s, int base) {
   assert(base <= 16);
 
-  int i = 0, sign = n, bit, left_n;
+  int i = 0, sign = n, bit;
   if (sign < 0) n = -n;
-  do {
+  while (n > 0 ){
     bit = n % base;
     if (bit >= 10) s[i++] = 'a' + bit - 10;
     else s[i++] = '0' + bit;
-    left_n=n/base;
-  } while (left_n > 0);
+    n=n/base;
+    
+  } 
+
   if (sign < 0) s[i++] = '-';
   s[i] = '\0';
+
   reverse(s, i);
 
   return i;
@@ -47,6 +50,7 @@ int sprintf(char *out, const char *fmt, ...) {
   char *start = out;
 
   for (; *fmt != '\0'; ++fmt) {
+    
     if (*fmt != '%') {
       *out = *fmt;
       ++out;
@@ -60,14 +64,15 @@ int sprintf(char *out, const char *fmt, ...) {
         out += strlen(out);
         break;
       }
+      
     }
+    
   }
   *out = '\0';
   va_end(pArgs);
 
   return out - start;
 }
-
 
 
 int printf(const char *fmt, ...) {
