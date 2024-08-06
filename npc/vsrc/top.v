@@ -4,7 +4,6 @@ module top(
     input [31:0] ist
             );
 
-//import "DPI-C" function void ebreak();
 
 wire [31:0] pc_next ;
 
