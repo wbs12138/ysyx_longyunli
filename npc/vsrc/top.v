@@ -43,10 +43,8 @@ assign rf_wdata = rf_rdata + {{20{imm1[11]}},imm1} ;
 RegisterFile #(5,32) inst_RegisterFile 
 (clk,rf_wdata,rf_waddr,rf_wen,rf_rdata,rf_raddr);
 
-always@(*)
-begin
-    if(ist==32'h00000073)
-        ebreak();
-end
+
+dpi_c_ebreak inst_dpi_c_ebreak(ist);
+
 
 endmodule
