@@ -92,7 +92,6 @@ int main(int argc,char** argv,char** env){
 
 		sim_time++;
 
-		printf("ebreak=%d\n",ebreak_dpi);
 	}
 
 	m_trace->close();
