@@ -4,8 +4,19 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
+#include "svdpi.h"
+#include "Vtop__Dpi.h"
 
-#define MAX_SIM_TIME 20
+
+int ebreak_dpi=0;
+
+void ebreak(){
+	ebreak_dpi=1;
+	return;
+}
+
+
+#define MAX_SIM_TIME 20000
 
 vluint64_t sim_time=0;
 
@@ -14,6 +25,7 @@ static const uint32_t img [] = {
   0x00508213,  // addi r4 r1 0x05
   0x00108293,  // addi r5 r1 0x01
   0x00128313,  // addi r6 r5 0x01
+  0x00000073,
 
 };
 
@@ -68,7 +80,7 @@ int main(int argc,char** argv,char** env){
 
 
 	int a,b;
-	while(sim_time<MAX_SIM_TIME){
+	while(sim_time<MAX_SIM_TIME&&ebreak_dpi==0){
 
 		dut->clk^=1;
 		
@@ -79,6 +91,8 @@ int main(int argc,char** argv,char** env){
 		m_trace->dump(sim_time);
 
 		sim_time++;
+
+		printf("ebreak=%d\n",ebreak_dpi);
 	}
 
 	m_trace->close();
