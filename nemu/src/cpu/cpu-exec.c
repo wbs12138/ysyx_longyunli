@@ -125,7 +125,7 @@ static void statistic() {
 }
 
 void assert_fail_msg() {
-  display_inst();
+  
   isa_reg_display();
   statistic();
 }
@@ -133,6 +133,7 @@ void assert_fail_msg() {
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {
   //Assert(0,1,1);
+  display_inst();
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
