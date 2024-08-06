@@ -20,13 +20,14 @@ static void reverse(char *s, int len) {
 static int itoa(int n, char *s, int base) {
   assert(base <= 16);
 
-  int i = 0, sign = n, bit;
+  int i = 0, sign = n, bit, left_n;
   if (sign < 0) n = -n;
   do {
     bit = n % base;
     if (bit >= 10) s[i++] = 'a' + bit - 10;
     else s[i++] = '0' + bit;
-  } while ((n /= base) > 0);
+    left_n=n/base;
+  } while (left_n > 0);
   if (sign < 0) s[i++] = '-';
   s[i] = '\0';
   reverse(s, i);
