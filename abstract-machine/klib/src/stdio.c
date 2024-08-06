@@ -7,12 +7,17 @@
 
 
 static void reverse(char *s, int len) {
-  char *end = s + len - 1;
+  int time=len/2;
+  int cur_time=0;
+  char *end = s + len - 1;//printf("s=%s,len=%d,end=%s\n",s,len,end);
   char tmp;
-  while (s < end) {
+  while (cur_time < time) {
     tmp = *s;
     *s = *end;
     *end = tmp;
+    s++;
+    end--;
+    cur_time++;
   }
 }
 
