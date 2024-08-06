@@ -19,6 +19,7 @@
 #include <locale.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/watchpoint.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/sdb.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 
 
 /* The assembly code of instructions executed is only output to the screen
@@ -124,7 +125,7 @@ static void statistic() {
 }
 
 void assert_fail_msg() {
-  //display_inst();
+  display_inst();
   isa_reg_display();
   statistic();
 }

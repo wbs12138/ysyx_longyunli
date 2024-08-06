@@ -1,4 +1,5 @@
 #include <common.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 
 #define MAX_IRINGBUF 16
 
