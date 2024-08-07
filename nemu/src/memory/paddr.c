@@ -20,6 +20,8 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/include/cpu/decode.h>
 
+#define MTRACE 1
+
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
 #else // CONFIG_PMEM_GARRAY
@@ -54,7 +56,7 @@ void init_mem() {
 
 word_t paddr_read(paddr_t addr, int len) {
   #ifdef MTRACE
-  trace_memory(addr,len,NULL);
+  trace_memory(addr,len,0xFFFFFFFF,0);
   #endif
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
@@ -64,7 +66,7 @@ word_t paddr_read(paddr_t addr, int len) {
 
 void paddr_write(paddr_t addr, int len, word_t data) {
   #ifdef MTRACE
-  trace_memory(addr,len,data);
+  trace_memory(addr,len,data,1);
   #endif
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
