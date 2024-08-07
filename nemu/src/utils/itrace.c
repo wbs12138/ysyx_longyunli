@@ -480,11 +480,11 @@ static void init_tail_rec_list() {
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   
-	Log("specified ELF file: %s", elf_file);printf("in0\n");
+	Log("specified ELF file: %s", elf_file);Log("in");
   int fd = open(elf_file, O_RDONLY|O_SYNC);
-  printf("in1\n");
+  Log("in!");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
-  printf("in2\n");
+  Log("in!!");
   Elf64_Ehdr eh;
 	read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
