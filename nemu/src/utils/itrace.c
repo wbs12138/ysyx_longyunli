@@ -146,6 +146,7 @@ static void read_elf_header(int fd, Elf64_Ehdr *eh) {
 
 void ftrace_write(const char *format, ...) {
     FILE *fp = fopen(OUTPUT_FILE, "a"); // 以追加模式打开文件
+	printf("open_file\n");
     if (fp != NULL) {
         va_list args;
         va_start(args, format);
