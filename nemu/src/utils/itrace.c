@@ -479,8 +479,8 @@ static void init_tail_rec_list() {
 /* ELF64 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
-  
-	Log("specified ELF file: %s", elf_file);Log("in");
+  Log("in");
+	Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Log("in!");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
