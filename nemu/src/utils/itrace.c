@@ -29,8 +29,12 @@ void display_inst() {
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   char buf[128]; // 128 should be enough!
   char *p;
-
+  int msg1_over=0;
   do {
+    if(msg1_over==0){
+      printf("the instruction saved is:\n");
+      msg1_over=1;
+    }
     p = buf;
     p += sprintf(buf, "%s" FMT_WORD ": %08x ", (i+1)%MAX_IRINGBUF==end?" --> ":"     ", iringbuf[i].pc, iringbuf[i].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
