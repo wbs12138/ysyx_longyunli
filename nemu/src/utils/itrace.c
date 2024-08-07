@@ -137,6 +137,14 @@ static void read_elf_header(int fd, Elf64_Ehdr *eh) {
 	assert(lseek(fd, 0, SEEK_SET) == 0);
   assert(read(fd, (void *)eh, sizeof(Elf64_Ehdr)) == sizeof(Elf64_Ehdr));
 
+   if (eh->e_ident[EI_MAG0] != ELFMAG0 ||
+        eh->e_ident[EI_MAG1] != ELFMAG1 ||
+        eh->e_ident[EI_MAG2] != ELFMAG2 ||
+        eh->e_ident[EI_MAG3] != ELFMAG3) {
+        printf("Not an ELF file\n");
+        
+    }
+
 	  // check if is elf using fixed format of Magic: 7f 45 4c 46 ...
   if(strncmp((char*)eh->e_ident, "\177ELF", 4)) {
 		panic("malformed ELF file");
