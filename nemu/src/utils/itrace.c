@@ -479,12 +479,12 @@ static void init_tail_rec_list() {
 /* ELF64 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
-  Log("in");
-	Log("specified ELF file: %s", elf_file);
+  //Log("in");
+	//Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
-  Log("in!");
+  //Log("in!");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
-  Log("in!!");
+  //Log("in!!");
   Elf64_Ehdr eh;
 	read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
