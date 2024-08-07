@@ -13,16 +13,16 @@ int p_cur = 0;
 bool full = false;
 
 void trace_inst(word_t pc, uint32_t inst) {
-  printf("in_write\n");
+  
   iringbuf[p_cur].pc = pc;
   iringbuf[p_cur].inst = inst;
   p_cur = (p_cur + 1) % MAX_IRINGBUF;
   full = full || p_cur == 0;
 }
 
-void display_inst() {printf("in\n");
+void display_inst() {
   if (!full && !p_cur) return;
-printf("in!\n");
+
   int end = p_cur;
   int i = full?p_cur:0;
 
