@@ -17,6 +17,7 @@
 #include <cpu/cpu.h>
 #include <cpu/ifetch.h>
 #include <cpu/decode.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 
 #define R(i) gpr(i)
 #define Mr vaddr_read
@@ -136,5 +137,8 @@ static int decode_exec(Decode *s) {
 
 int isa_exec_once(Decode *s) {
   s->isa.inst.val = inst_fetch(&s->snpc, 4);
+  #ifdef CONFIG_ITRACE
+    trace_inst(s->pc, s->isa.inst.val);printf("ok\n");
+  #endif
   return decode_exec(s);
 }
