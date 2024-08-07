@@ -125,6 +125,7 @@ static void statistic() {
 }
 
 void assert_fail_msg() {
+  display_memory();
   display_inst();
   isa_reg_display();
   statistic();
