@@ -32,7 +32,7 @@ void display_inst() {
   int msg1_over=0;
   do {
     if(msg1_over==0){
-      printf("the instruction saved is:\n");
+      printf("     the instruction saved is:\n");
       msg1_over=1;
     }
     p = buf;
