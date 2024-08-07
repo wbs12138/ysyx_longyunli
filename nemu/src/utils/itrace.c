@@ -482,8 +482,9 @@ void parse_elf(const char *elf_file) {
   
 	Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
+  printf("in1\n");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
-  
+  printf("in2\n");
   Elf64_Ehdr eh;
 	read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
