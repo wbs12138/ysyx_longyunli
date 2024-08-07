@@ -82,7 +82,7 @@ static int parse_args(int argc, char *argv[]) {
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:d:p:e", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
     switch (o) {
       case 'e': elf_file = optarg; break;
       case 'b': sdb_set_batch_mode(); break;
