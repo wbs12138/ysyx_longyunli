@@ -498,8 +498,12 @@ void parse_elf(const char *elf_file) {
   assert(read(fd, (void *)&eh, sizeof(Elf64_Ehdr)) == sizeof(Elf64_Ehdr));
 	//read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
+  
+  printf("e_shoff=%lx,lseek=%ld\n",eh.e_shoff,lseek(fd, eh.e_shoff, SEEK_SET));
+  assert(lseek(fd, eh.e_shoff, SEEK_SET) == eh.e_shoff);
 
   Elf64_Shdr sh_tbl[eh.e_shentsize * eh.e_shnum];
+  
 	read_section_headers(fd, eh, sh_tbl);
   display_section_headers(fd, eh, sh_tbl);
 
