@@ -480,7 +480,7 @@ static void init_tail_rec_list() {
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   
-	Log("specified ELF file: %s", elf_file);
+	Log("specified ELF file: %s", elf_file);printf("in0\n");
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   printf("in1\n");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
