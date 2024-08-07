@@ -144,6 +144,7 @@ static void read_elf_header(int fd, Elf64_Ehdr *eh) {
         printf("Not an ELF file\n");
         
     }
+	else printf("nice\n");
 
 	  // check if is elf using fixed format of Magic: 7f 45 4c 46 ...
   if(strncmp((char*)eh->e_ident, "\177ELF", 4)) {
