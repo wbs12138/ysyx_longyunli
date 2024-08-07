@@ -146,7 +146,6 @@ static void read_elf_header(int fd, Elf64_Ehdr *eh) {
 
 void ftrace_write(const char *format, ...) {
     FILE *fp = fopen(OUTPUT_FILE, "a"); // 以追加模式打开文件
-	printf("open_file\n");
     if (fp != NULL) {
         va_list args;
         va_start(args, format);
@@ -389,7 +388,7 @@ static void read_section(int fd, Elf64_Shdr sh, void *dst) {
 }
 
 static void read_section_headers(int fd, Elf64_Ehdr eh, Elf64_Shdr *sh_tbl) {
-	printf("e_shoff=%d,lseek=%ld\n",eh.e_ehsize,lseek(fd, eh.e_shoff, SEEK_SET));
+	printf("e_shoff=%lx,lseek=%ld\n",eh.e_shoff,lseek(fd, eh.e_shoff, SEEK_SET));
 	assert(lseek(fd, eh.e_shoff, SEEK_SET) == eh.e_shoff);
 	for(int i = 0; i < eh.e_shnum; i++) {
 		assert(read(fd, (void *)&sh_tbl[i], eh.e_shentsize) == eh.e_shentsize);
