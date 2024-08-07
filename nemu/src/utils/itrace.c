@@ -388,6 +388,7 @@ static void read_section(int fd, Elf64_Shdr sh, void *dst) {
 }
 
 static void read_section_headers(int fd, Elf64_Ehdr eh, Elf64_Shdr *sh_tbl) {
+	printf("lseek=%ld\n",lseek(fd, eh.e_shoff, SEEK_SET));
 	assert(lseek(fd, eh.e_shoff, SEEK_SET) == eh.e_shoff);
 	for(int i = 0; i < eh.e_shnum; i++) {
 		assert(read(fd, (void *)&sh_tbl[i], eh.e_shentsize) == eh.e_shentsize);
@@ -479,12 +480,9 @@ static void init_tail_rec_list() {
 /* ELF64 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
-  //Log("in");
 	//Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
-  //Log("in!");
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
-  //Log("in!!");
   Elf64_Ehdr eh;
 	read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
