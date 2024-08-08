@@ -497,6 +497,18 @@ void parse_elf(const char *elf_file) {
   read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
 
+
+
+  FILE *fp;
+  fp = fopen(elf_file, "rb");
+  Assert(fp!=NULL,"%d\n",1);
+  Elf64_Ehdr eh2;
+  Assert(fread(&eh2, sizeof(Elf64_Ehdr), 1, fp) != 1,"%d\n",2);
+  printf("eh2_shoff=%lx\n",eh2.e_shoff);
+
+
+
+
   Elf64_Shdr sh_tbl[eh.e_shentsize * eh.e_shnum];
   
 	read_section_headers(fd, eh, sh_tbl);
