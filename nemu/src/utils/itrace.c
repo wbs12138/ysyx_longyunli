@@ -153,27 +153,6 @@ static void read_elf_header(int fd, Elf64_Ehdr *eh) {
 }
 
 
-static void read_elf_header2(int fd, Elf32_Ehdr *eh) {
-	assert(lseek(fd, 0, SEEK_SET) == 0);
-  assert(read(fd, (void *)eh, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
-
-   if (eh->e_ident[EI_MAG0] != ELFMAG0 ||
-        eh->e_ident[EI_MAG1] != ELFMAG1 ||
-        eh->e_ident[EI_MAG2] != ELFMAG2 ||
-        eh->e_ident[EI_MAG3] != ELFMAG3) {
-        printf("Not an ELF file\n");
-        
-    }
-	
-
-	  // check if is elf using fixed format of Magic: 7f 45 4c 46 ...
-  if(strncmp((char*)eh->e_ident, "\177ELF", 4)) {
-		panic("malformed ELF file");
-	}
-}
-
-
-
 
 void ftrace_write(const char *format, ...) {
     FILE *fp = fopen(OUTPUT_FILE, "a"); // 以追加模式打开文件
@@ -750,9 +729,8 @@ void parse_elf(const char *elf_file) {
 
 
 
-Elf32_Ehdr eh4;
-  read_elf_header2(fd, &eh4);
-  display_elf_hedaer2(eh4);
+
+
 
 
 
@@ -760,7 +738,7 @@ Elf32_Ehdr eh4;
   assert(lseek(fd, 0, SEEK_SET) == 0);
   assert(read(fd, (void *)&eh3, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
   printf("eh3_shoff=%x\n",eh3.e_shoff);
-
+  display_elf_hedaer2(eh3);
 
 
 
