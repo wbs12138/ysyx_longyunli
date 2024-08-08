@@ -507,6 +507,8 @@ void parse_elf(const char *elf_file) {
   fread_re=fread(&eh2, sizeof(Elf64_Ehdr), 1, fp);
   printf("fread_re=%d\n",fread_re);
   printf("eh2_shoff=%lx\n",eh2.e_shoff);
+  int is_big_endian = (eh2.e_ident[EI_DATA] == ELFDATA2MSB);
+  printf("is_big_endian=%d\n",is_big_endian);
 
 
 
