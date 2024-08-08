@@ -540,7 +540,7 @@ static void remove_tail_rec() {
 	free(node);
 }
 
-int call_num=0;
+//int call_num=0;
 
 void trace_func_call(paddr_t pc, paddr_t target, bool is_tail) {
 	if (symbol_tbl == NULL) return;
@@ -551,12 +551,12 @@ void trace_func_call(paddr_t pc, paddr_t target, bool is_tail) {
 
 	int i = find_symbol_func(target, true);
 	
-	int time = call_num;
+	// int time = call_num;
 
-	while(time>0){
-		ftrace_write("  ");
-		time--;
-	}
+	// while(time>0){
+	// 	ftrace_write("  ");
+	// 	time--;
+	// }
 
 	ftrace_write(FMT_PADDR ": %*scall [%s@" FMT_PADDR "]\n",
 		pc,
@@ -568,7 +568,7 @@ void trace_func_call(paddr_t pc, paddr_t target, bool is_tail) {
 	if (is_tail) {
 		insert_tail_rec(pc, target);
 	}
-	call_num++;
+	//call_num++;
 }
 
 void trace_func_ret(paddr_t pc) {
@@ -578,12 +578,12 @@ void trace_func_ret(paddr_t pc) {
 
 	int i = find_symbol_func(pc, false);
 
-	int time = call_num;
+	// int time = call_num;
 
-	while(time>0){
-		ftrace_write("  ");
-		time--;
-	}
+	// while(time>0){
+	// 	ftrace_write("  ");
+	// 	time--;
+	// }
 	
 	ftrace_write(FMT_PADDR ": %*sret [%s]\n",
 		pc,
@@ -602,6 +602,6 @@ void trace_func_ret(paddr_t pc) {
 			trace_func_ret(ret_target);
 		}
 	}
-	call_num--;
+	//call_num--;
 }
 
