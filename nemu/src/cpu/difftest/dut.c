@@ -100,6 +100,8 @@ for(int i=0;i<reg_num;i++){
 }
 printf("%d:\t%x\n",33,ref_r->pc);
 
+printf("\n\n\n");
+
 }
 
 static void checkregs(CPU_state *ref, vaddr_t pc) {
