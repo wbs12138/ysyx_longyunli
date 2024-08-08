@@ -490,13 +490,7 @@ static void init_tail_rec_list() {
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   Log("specified ELF file: %s", elf_file);
-  printf("elf1=%s\n",elf_file);
-  char *elf_file2="/home/wangbaosen/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/string-riscv32-nemu.elf";
-  printf("elf2=%s\n",elf_file2);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
-  printf("fd=%d\n",fd);
-  int fd2 = open(elf_file2, O_RDONLY|O_SYNC);
-  printf("fd2=%d\n",fd2);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
   Elf64_Ehdr eh;
   
