@@ -493,13 +493,21 @@ void parse_elf(const char *elf_file) {
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
   Elf64_Ehdr eh;
-  
   read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
 
-  int ret;
-  ret = lseek(fd, 0, SEEK_END);
-  printf("file value = %d\n", ret);
+//   int ret;
+//   ret = lseek(fd, 0, SEEK_END);
+//   printf("file value = %d\n", ret);
+
+
+
+
+  Elf32_Ehdr eh3;
+  assert(lseek(fd, 0, SEEK_SET) == 0);
+  assert(read(fd, (void *)&eh3, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
+  printf("eh3_shoff=%x\n",eh3.e_shoff);
+
 
 
 
