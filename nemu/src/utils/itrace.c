@@ -11,7 +11,7 @@
 #define MAX_IRINGBUF 16
 #define MAX_MRINGBUF 32
 
-#define OUTPUT_FILE "ftrace.txt"
+#define OUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/ftrace.txt"
 
 typedef struct {
   word_t pc;
@@ -155,13 +155,13 @@ static void read_elf_header(int fd, Elf32_Ehdr *eh) {
 
 
 void ftrace_write(const char *format, ...) {
-    FILE *fp = fopen(OUTPUT_FILE, "a"); // 以追加模式打开文件
+    FILE *fp = fopen(OUTPUT_FILE, "a"); 
     if (fp != NULL) {
         va_list args;
         va_start(args, format);
-        vfprintf(fp, format, args); // 使用 vfprintf() 进行格式化输出
+        vfprintf(fp, format, args); 
         va_end(args);
-        fclose(fp); // 关闭文件
+        fclose(fp); 
     } else {
         printf("Error opening file %s\n", OUTPUT_FILE);
     }
@@ -491,6 +491,7 @@ static void init_tail_rec_list() {
 /* ELF32 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
+  remove(OUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
