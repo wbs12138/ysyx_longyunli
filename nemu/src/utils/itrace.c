@@ -503,7 +503,9 @@ void parse_elf(const char *elf_file) {
   fp = fopen(elf_file, "rb");
   Assert(fp!=NULL,"%d\n",1);
   Elf64_Ehdr eh2;
-  Assert(fread(&eh2, sizeof(Elf64_Ehdr), 1, fp) != 1,"%d\n",2);
+  int fread_re;
+  fread_re=fread(&eh2, sizeof(Elf64_Ehdr), 1, fp);
+  printf("fread_re=%d\n",fread_re);
   printf("eh2_shoff=%lx\n",eh2.e_shoff);
 
 
