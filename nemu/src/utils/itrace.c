@@ -509,6 +509,7 @@ void parse_elf(const char *elf_file) {
   printf("eh2_shoff=%lx\n",eh2.e_shoff);
   int is_big_endian = (eh2.e_ident[EI_DATA] == ELFDATA2MSB);
   printf("is_big_endian=%d\n",is_big_endian);
+  printf("eh2_shoff_small_endian=%lx\n",__builtin_bswap64(eh2.e_shoff));
 
 
 
