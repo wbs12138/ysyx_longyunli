@@ -14,7 +14,6 @@
 ***************************************************************************************/
 
 #include <common.h>
-#include <assert.h>
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
@@ -25,7 +24,6 @@ int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM
   am_init_monitor();
-  assert(0);
 #else
   init_monitor(argc, argv);
 #endif
