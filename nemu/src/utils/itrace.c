@@ -491,6 +491,7 @@ void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
+  printf("fd=%d\n",fd);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
   Elf64_Ehdr eh;
   
