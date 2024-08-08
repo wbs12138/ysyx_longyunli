@@ -497,6 +497,10 @@ void parse_elf(const char *elf_file) {
   read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
 
+  int ret;
+  ret = lseek(fd, 0, SEEK_END);
+  printf("file value = %d\n", ret);
+
 
 
   FILE *fp;
