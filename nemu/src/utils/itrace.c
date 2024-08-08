@@ -119,7 +119,7 @@ typedef struct {
 	char name[32]; // func name, 32 should be enough
 	paddr_t addr;
 	unsigned char info;
-	Elf64_Xword size;
+	Elf32_Xword size;
 } SymEntry;
 
 SymEntry *symbol_tbl = NULL; // dynamic allocated
@@ -133,9 +133,9 @@ typedef struct tail_rec_node {
 } TailRecNode;
 TailRecNode *tail_rec_head = NULL; // linklist with head, dynamic allocated
 
-static void read_elf_header(int fd, Elf64_Ehdr *eh) {
+static void read_elf_header(int fd, Elf32_Ehdr *eh) {
 	assert(lseek(fd, 0, SEEK_SET) == 0);
-  assert(read(fd, (void *)eh, sizeof(Elf64_Ehdr)) == sizeof(Elf64_Ehdr));
+  assert(read(fd, (void *)eh, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
 
    if (eh->e_ident[EI_MAG0] != ELFMAG0 ||
         eh->e_ident[EI_MAG1] != ELFMAG1 ||
@@ -168,7 +168,7 @@ void ftrace_write(const char *format, ...) {
 }
 
 
-static void display_elf_hedaer(Elf64_Ehdr eh) {
+static void display_elf_hedaer(Elf32_Ehdr eh) {
 	/* Storage capacity class */
 	ftrace_write("Storage class\t= ");
 	switch(eh.e_ident[EI_CLASS])
@@ -393,245 +393,20 @@ static void display_elf_hedaer(Elf64_Ehdr eh) {
 
 
 
-
-static void display_elf_hedaer2(Elf32_Ehdr eh) {
-	/* Storage capacity class */
-	ftrace_write("Storage class\t= ");
-	switch(eh.e_ident[EI_CLASS])
-	{
-		case ELFCLASS32:
-			ftrace_write("32-bit objects\n");
-			break;
-
-		case ELFCLASS64:
-			ftrace_write("64-bit objects\n");
-			break;
-
-		default:
-			ftrace_write("INVALID CLASS\n");
-			break;
-	}
-
-	/* Data Format */
-	ftrace_write("Data format\t= ");
-	switch(eh.e_ident[EI_DATA])
-	{
-		case ELFDATA2LSB:
-			ftrace_write("2's complement, little endian\n");
-			break;
-
-		case ELFDATA2MSB:
-			ftrace_write("2's complement, big endian\n");
-			break;
-
-		default:
-			ftrace_write("INVALID Format\n");
-			break;
-	}
-
-	/* OS ABI */
-	ftrace_write("OS ABI\t\t= ");
-	switch(eh.e_ident[EI_OSABI])
-	{
-		case ELFOSABI_SYSV:
-			ftrace_write("UNIX System V ABI\n");
-			break;
-
-		case ELFOSABI_HPUX:
-			ftrace_write("HP-UX\n");
-			break;
-
-		case ELFOSABI_NETBSD:
-			ftrace_write("NetBSD\n");
-			break;
-
-		case ELFOSABI_LINUX:
-			ftrace_write("Linux\n");
-			break;
-
-		case ELFOSABI_SOLARIS:
-			ftrace_write("Sun Solaris\n");
-			break;
-
-		case ELFOSABI_AIX:
-			ftrace_write("IBM AIX\n");
-			break;
-
-		case ELFOSABI_IRIX:
-			ftrace_write("SGI Irix\n");
-			break;
-
-		case ELFOSABI_FREEBSD:
-			ftrace_write("FreeBSD\n");
-			break;
-
-		case ELFOSABI_TRU64:
-			ftrace_write("Compaq TRU64 UNIX\n");
-			break;
-
-		case ELFOSABI_MODESTO:
-			ftrace_write("Novell Modesto\n");
-			break;
-
-		case ELFOSABI_OPENBSD:
-			ftrace_write("OpenBSD\n");
-			break;
-
-		case ELFOSABI_ARM_AEABI:
-			ftrace_write("ARM EABI\n");
-			break;
-
-		case ELFOSABI_ARM:
-			ftrace_write("ARM\n");
-			break;
-
-		case ELFOSABI_STANDALONE:
-			ftrace_write("Standalone (embedded) app\n");
-			break;
-
-		default:
-			ftrace_write("Unknown (0x%x)\n", eh.e_ident[EI_OSABI]);
-			break;
-	}
-
-	/* ELF filetype */
-	ftrace_write("Filetype \t= ");
-	switch(eh.e_type)
-	{
-		case ET_NONE:
-			ftrace_write("N/A (0x0)\n");
-			break;
-
-		case ET_REL:
-			ftrace_write("Relocatable\n");
-			break;
-
-		case ET_EXEC:
-			ftrace_write("Executable\n");
-			break;
-
-		case ET_DYN:
-			ftrace_write("Shared Object\n");
-			break;
-		default:
-			ftrace_write("Unknown (0x%x)\n", eh.e_type);
-			break;
-	}
-
-	/* ELF Machine-id */
-	ftrace_write("Machine\t\t= ");
-	switch(eh.e_machine)
-	{
-		case EM_NONE:
-			ftrace_write("None (0x0)\n");
-			break;
-
-		case EM_386:
-			ftrace_write("INTEL x86 (0x%x)\n", EM_386);
-			break;
-
-		case EM_X86_64:
-			ftrace_write("AMD x86_64 (0x%x)\n", EM_X86_64);
-			break;
-
-		case EM_AARCH64:
-			ftrace_write("AARCH64 (0x%x)\n", EM_AARCH64);
-			break;
-
-		default:
-			ftrace_write(" 0x%x\n", eh.e_machine);
-			break;
-	}
-
-	/* Entry point */
-	ftrace_write("Entry point\t= 0x%08lx\n", eh.e_entry);
-
-	/* ELF header size in bytes */
-	ftrace_write("ELF header size\t= 0x%08x\n", eh.e_ehsize);
-
-	/* Program Header */
-	ftrace_write("Program Header\t= ");
-	ftrace_write("0x%08lx\n", eh.e_phoff);		/* start */
-	ftrace_write("\t\t  %d entries\n", eh.e_phnum);	/* num entry */
-	ftrace_write("\t\t  %d bytes\n", eh.e_phentsize);	/* size/entry */
-
-	/* Section header starts at */
-	ftrace_write("Section Header\t= ");
-	ftrace_write("0x%08lx\n", eh.e_shoff);		/* start */
-	ftrace_write("\t\t  %d entries\n", eh.e_shnum);	/* num entry */
-	ftrace_write("\t\t  %d bytes\n", eh.e_shentsize);	/* size/entry */
-	ftrace_write("\t\t  0x%08x (string table offset)\n", eh.e_shstrndx);
-
-	/* File flags (Machine specific)*/
-	ftrace_write("File flags \t= 0x%08x\n", eh.e_flags);
-
-	/* ELF file flags are machine specific.
-	 * INTEL implements NO flags.
-	 * ARM implements a few.
-	 * Add support below to parse ELF file flags on ARM
-	 */
-	int32_t ef = eh.e_flags;
-	ftrace_write("\t\t  ");
-
-	if(ef & EF_ARM_RELEXEC)
-		ftrace_write(",RELEXEC ");
-
-	if(ef & EF_ARM_HASENTRY)
-		ftrace_write(",HASENTRY ");
-
-	if(ef & EF_ARM_INTERWORK)
-		ftrace_write(",INTERWORK ");
-
-	if(ef & EF_ARM_APCS_26)
-		ftrace_write(",APCS_26 ");
-
-	if(ef & EF_ARM_APCS_FLOAT)
-		ftrace_write(",APCS_FLOAT ");
-
-	if(ef & EF_ARM_PIC)
-		ftrace_write(",PIC ");
-
-	if(ef & EF_ARM_ALIGN8)
-		ftrace_write(",ALIGN8 ");
-
-	if(ef & EF_ARM_NEW_ABI)
-		ftrace_write(",NEW_ABI ");
-
-	if(ef & EF_ARM_OLD_ABI)
-		ftrace_write(",OLD_ABI ");
-
-	if(ef & EF_ARM_SOFT_FLOAT)
-		ftrace_write(",SOFT_FLOAT ");
-
-	if(ef & EF_ARM_VFP_FLOAT)
-		ftrace_write(",VFP_FLOAT ");
-
-	if(ef & EF_ARM_MAVERICK_FLOAT)
-		ftrace_write(",MAVERICK_FLOAT ");
-
-	ftrace_write("\n");
-
-	/* MSB of flags conatins ARM EABI version */
-	ftrace_write("ARM EABI\t= Version %d\n", (ef & EF_ARM_EABIMASK)>>24);
-
-	ftrace_write("\n");	/* End of ELF header */
-}
-
-static void read_section(int fd, Elf64_Shdr sh, void *dst) {
+static void read_section(int fd, Elf32_Shdr sh, void *dst) {
 	assert(dst != NULL);
 	assert(lseek(fd, (off_t)sh.sh_offset, SEEK_SET) == (off_t)sh.sh_offset);
 	assert(read(fd, dst, sh.sh_size) == sh.sh_size);
 }
 
-static void read_section_headers(int fd, Elf64_Ehdr eh, Elf64_Shdr *sh_tbl) {
-	printf("e_shoff=%lx,lseek=%ld\n",eh.e_shoff,lseek(fd, eh.e_shoff, SEEK_SET));
+static void read_section_headers(int fd, Elf32_Ehdr eh, Elf32_Shdr *sh_tbl) {
 	assert(lseek(fd, eh.e_shoff, SEEK_SET) == eh.e_shoff);
 	for(int i = 0; i < eh.e_shnum; i++) {
 		assert(read(fd, (void *)&sh_tbl[i], eh.e_shentsize) == eh.e_shentsize);
 	}
 }
 
-static void display_section_headers(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[]) {
+static void display_section_headers(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[]) {
   // warn: C99
 	char sh_str[sh_tbl[eh.e_shstrndx].sh_size];
   read_section(fd, sh_tbl[eh.e_shstrndx], sh_str);
@@ -661,15 +436,15 @@ static void display_section_headers(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[]) 
 	ftrace_write("\n");	/* end of section header table */
 }
 
-static void read_symbol_table(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[], int sym_idx) {
-  Elf64_Sym sym_tbl[sh_tbl[sym_idx].sh_size];
+static void read_symbol_table(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[], int sym_idx) {
+  Elf32_Sym sym_tbl[sh_tbl[sym_idx].sh_size];
   read_section(fd, sh_tbl[sym_idx], sym_tbl);
   
   int str_idx = sh_tbl[sym_idx].sh_link;
   char str_tbl[sh_tbl[str_idx].sh_size];
   read_section(fd, sh_tbl[str_idx], str_tbl);
   
-  int sym_count = (sh_tbl[sym_idx].sh_size / sizeof(Elf64_Sym));
+  int sym_count = (sh_tbl[sym_idx].sh_size / sizeof(Elf32_Sym));
 	// log
   ftrace_write("Symbol count: %d\n", sym_count);
   ftrace_write("====================================================\n");
@@ -679,7 +454,7 @@ static void read_symbol_table(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[], int sy
     ftrace_write(" %-3d    %016lx %-4d %-10ld %s\n",
       i,
       sym_tbl[i].st_value, 
-      ELF64_ST_TYPE(sym_tbl[i].st_info),
+      ELF32_ST_TYPE(sym_tbl[i].st_info),
 			sym_tbl[i].st_size,
       str_tbl + sym_tbl[i].st_name
     );
@@ -698,7 +473,7 @@ static void read_symbol_table(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[], int sy
   }
 }
 
-static void read_symbols(int fd, Elf64_Ehdr eh, Elf64_Shdr sh_tbl[]) {
+static void read_symbols(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[]) {
   for (int i = 0; i < eh.e_shnum; i++) {
 		switch (sh_tbl[i].sh_type) {
 		case SHT_SYMTAB: case SHT_DYNSYM:
@@ -713,52 +488,18 @@ static void init_tail_rec_list() {
 	tail_rec_head->next = NULL;
 }
 
-/* ELF64 as default */
+/* ELF32 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
-  Elf64_Ehdr eh;
+  Elf32_Ehdr eh;
   read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
 
-//   int ret;
-//   ret = lseek(fd, 0, SEEK_END);
-//   printf("file value = %d\n", ret);
 
-
-
-
-
-
-
-
-  Elf32_Ehdr eh3;
-  assert(lseek(fd, 0, SEEK_SET) == 0);
-  assert(read(fd, (void *)&eh3, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
-  printf("eh3_shoff=%x\n",eh3.e_shoff);
-  display_elf_hedaer2(eh3);
-
-
-
-  FILE *fp;
-  fp = fopen(elf_file, "rb");
-  Assert(fp!=NULL,"%d\n",1);
-  Elf64_Ehdr eh2;
-  int fread_re;
-  fread_re=fread(&eh2, sizeof(Elf64_Ehdr), 1, fp);
-  printf("fread_re=%d\n",fread_re);
-  printf("eh2_shoff=%lx\n",eh2.e_shoff);
-  int is_big_endian = (eh2.e_ident[EI_DATA] == ELFDATA2MSB);
-  printf("is_big_endian=%d\n",is_big_endian);
-  printf("match=%d\n",is_big_endian != (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__));
-  printf("eh2_shoff_small_endian=%lx\n",__builtin_bswap64(eh2.e_shoff));
-
-
-
-
-  Elf64_Shdr sh_tbl[eh.e_shentsize * eh.e_shnum];
+  Elf32_Shdr sh_tbl[eh.e_shentsize * eh.e_shnum];
   
 	read_section_headers(fd, eh, sh_tbl);
   display_section_headers(fd, eh, sh_tbl);
@@ -773,7 +514,7 @@ void parse_elf(const char *elf_file) {
 static int find_symbol_func(paddr_t target, bool is_call) {
 	int i;
 	for (i = 0; i < symbol_tbl_size; i++) {
-		if (ELF64_ST_TYPE(symbol_tbl[i].info) == STT_FUNC) {
+		if (ELF32_ST_TYPE(symbol_tbl[i].info) == STT_FUNC) {
 			if (is_call) {
 				if (symbol_tbl[i].addr == target) break;
 			} else {
