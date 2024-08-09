@@ -25,6 +25,11 @@ int main(int argc, char *argv[]) {
 #ifdef CONFIG_TARGET_AM
   am_init_monitor();
 #else
+  int i=1;
+  do{
+    printf("%s\n",argv[i-1]);
+    i+=1;
+  }while(i!=argc+1);
   init_monitor(argc, argv);
 #endif
 
