@@ -49,7 +49,7 @@ clean:
 
 CSRCS_SIM = ./csrc/main_sim.cpp
 
-sim:
+run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME)
 	obj_dir/V$(TOPNAME)
@@ -57,7 +57,7 @@ sim:
 wave:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME)
-	obj_dir/V$(TOPNAME)
+	obj_dir/V$(TOPNAME) $(IMG)
 	gtkwave waveform.vcd
 
 
