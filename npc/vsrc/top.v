@@ -53,7 +53,7 @@ RegisterFile #(5,32) inst_RegisterFile
 
 wire [31:0] pc_next ;
 
-assign pc_next  =   jalr ?  (rf_rdata + imm) & 32'hfffffffe;
+assign pc_next  =   jalr ?  (rf_rdata + imm) & 32'hfffffffe :
                     jal  ?  pc+imm  :
                     pc + 4          ;
 
