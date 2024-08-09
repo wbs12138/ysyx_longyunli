@@ -54,6 +54,7 @@ static inline void host_write(void *addr, int len, uint32_t data) {
 
 static uint32_t pmem_read(uint32_t addr, int len) {
   uint32_t ret = host_read(guest_to_host(addr), len);
+  printf("ret==%u\n",ret);
   return ret;
 }
 
@@ -87,7 +88,6 @@ void load_img(){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
-  printf("pmem=%u\n",pmem[1]);
   return ;
 }
 
@@ -138,6 +138,7 @@ int main(int argc,char** argv,char** env){
 		dut->clk^=1;
 		
 		dut->ist = pmem_read(dut->pc,4);
+		printf("pc=%x\n",dut->pc);
 		
 		dut->eval();
 
