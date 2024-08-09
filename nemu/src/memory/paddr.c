@@ -55,7 +55,7 @@ void init_mem() {
 
 word_t paddr_read(paddr_t addr, int len) {
   #ifdef CONFIG_MTRACE
-  #if   defined(CONFIG_PMEM_MALLOC)
+  #ifndef CONFIG_PMEM_MALLOC
   assert(0);
   #endif
   trace_memory(addr,len,0xFFFFFFFF,0);
