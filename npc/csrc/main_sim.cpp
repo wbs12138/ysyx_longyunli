@@ -63,7 +63,7 @@ static void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  printf("physical memory area [\" %d \", \" %d \"]", PMEM_LEFT, PMEM_RIGHT);
+  printf("physical memory area [\" %x \", \" %x \"]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 static char *img_file = NULL;
@@ -86,7 +86,7 @@ void load_img(){
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
-
+	printf("pmem=%d\n",pmem);
   fclose(fp);
   return ;
 }
