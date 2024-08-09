@@ -14,6 +14,7 @@ void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VicoTriggered.word(0U))) {
         Vtop___024root___ico_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -27,15 +28,49 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     if ((0x73U == vlSelf->ist)) {
         Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP();
     }
+    vlSelf->top__DOT__rf_rdata = ((0U == (0x1fU & (vlSelf->ist 
+                                                   >> 0xfU)))
+                                   ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                  [(0x1fU & (vlSelf->ist 
+                                             >> 0xfU))]);
     vlSelf->top__DOT__addi = (IData)((0x13U == (0x707fU 
                                                 & vlSelf->ist)));
-    vlSelf->top__DOT__rf_raddr = ((IData)(vlSelf->top__DOT__addi)
-                                   ? (0x1fU & (vlSelf->ist 
-                                               >> 0xfU))
-                                   : 0U);
-    vlSelf->top__DOT__rf_rdata = ((0U == (IData)(vlSelf->top__DOT__rf_raddr))
-                                   ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                                  [vlSelf->top__DOT__rf_raddr]);
+    vlSelf->top__DOT__inst_u = ((0x17U == (0x7fU & vlSelf->ist)) 
+                                | (0x37U == (0x7fU 
+                                             & vlSelf->ist)));
+    vlSelf->top__DOT__jalr = (IData)((0x67U == (0x707fU 
+                                                & vlSelf->ist)));
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
+        = (((IData)(vlSelf->top__DOT__addi) | (IData)(vlSelf->top__DOT__jalr))
+            ? VL_SHIFTR_III(32,32,32, vlSelf->ist, 0x14U)
+            : ((IData)(vlSelf->top__DOT__inst_u) ? 
+               (0xfffff000U & vlSelf->ist) : ((0x6fU 
+                                               == (0x7fU 
+                                                   & vlSelf->ist))
+                                               ? ((0x80000U 
+                                                   & (vlSelf->ist 
+                                                      >> 0xcU)) 
+                                                  | ((0x7f800U 
+                                                      & (vlSelf->ist 
+                                                         << 0xbU)) 
+                                                     | ((0x400U 
+                                                         & (vlSelf->ist 
+                                                            << 2U)) 
+                                                        | (0x3ffU 
+                                                           & (vlSelf->ist 
+                                                              >> 9U)))))
+                                               : 0U)));
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
+        = (vlSelf->pc + (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2));
+    vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__jalr)
+                                  ? (0xfffffffeU & 
+                                     (vlSelf->top__DOT__rf_rdata 
+                                      + (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
+                                  : ((0x6fU == (0x7fU 
+                                                & vlSelf->ist))
+                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
+                                      : ((IData)(4U) 
+                                         + vlSelf->pc)));
 }
 
 void Vtop___024root___eval_triggers__ico(Vtop___024root* vlSelf);
@@ -70,7 +105,7 @@ void Vtop___024root___eval_nba(Vtop___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
         Vtop___024root___nba_sequent__TOP__0(vlSelf);
-        vlSelf->__Vm_traceActivity[1U] = 1U;
+        vlSelf->__Vm_traceActivity[2U] = 1U;
     }
 }
 
@@ -83,30 +118,52 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
     __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
     CData/*4:0*/ __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0;
     __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
+    CData/*0:0*/ __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0;
+    __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0;
     // Body
-    __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 
-        = (vlSelf->top__DOT__rf_rdata + (((- (IData)(
-                                                     ((IData)(vlSelf->top__DOT__addi) 
-                                                      & (vlSelf->ist 
-                                                         >> 0x1fU)))) 
-                                          << 0xcU) 
-                                         | ((IData)(vlSelf->top__DOT__addi)
-                                             ? (vlSelf->ist 
-                                                >> 0x14U)
-                                             : 0U)));
-    __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 
-        = ((IData)(vlSelf->top__DOT__addi) ? (0x1fU 
-                                              & (vlSelf->ist 
-                                                 >> 7U))
-            : 0U);
+    __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 0U;
+    if (((IData)(vlSelf->top__DOT__addi) | (IData)(vlSelf->top__DOT__inst_u))) {
+        __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0 
+            = ((IData)(vlSelf->top__DOT__addi) ? (vlSelf->top__DOT__rf_rdata 
+                                                  + 
+                                                  (((- (IData)(
+                                                               (1U 
+                                                                & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
+                                                                   >> 0xbU)))) 
+                                                    << 0xcU) 
+                                                   | (0xfffU 
+                                                      & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
+                : ((0x17U == (0x7fU & vlSelf->ist))
+                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
+                    : ((0x37U == (0x7fU & vlSelf->ist))
+                        ? (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)
+                        : 0U)));
+        __VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0 
+            = (0x1fU & (vlSelf->ist >> 7U));
+        __VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0 = 1U;
+    }
     vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
                    : vlSelf->top__DOT__pc_next);
-    vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
-        = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
-    vlSelf->top__DOT__rf_rdata = ((0U == (IData)(vlSelf->top__DOT__rf_raddr))
+    if (__VdlySet__top__DOT__inst_RegisterFile__DOT__rf__v0) {
+        vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
+            = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
+    }
+    vlSelf->top__DOT__rf_rdata = ((0U == (0x1fU & (vlSelf->ist 
+                                                   >> 0xfU)))
                                    ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-                                  [vlSelf->top__DOT__rf_raddr]);
-    vlSelf->top__DOT__pc_next = ((IData)(4U) + vlSelf->pc);
+                                  [(0x1fU & (vlSelf->ist 
+                                             >> 0xfU))]);
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
+        = (vlSelf->pc + (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2));
+    vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__jalr)
+                                  ? (0xfffffffeU & 
+                                     (vlSelf->top__DOT__rf_rdata 
+                                      + (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
+                                  : ((0x6fU == (0x7fU 
+                                                & vlSelf->ist))
+                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
+                                      : ((IData)(4U) 
+                                         + vlSelf->pc)));
 }
 
 void Vtop___024root___eval_triggers__act(Vtop___024root* vlSelf);

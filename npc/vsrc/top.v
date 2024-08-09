@@ -18,7 +18,7 @@ assign inst_i=addi|jalr;
 assign inst_u=auipc|lui;
 assign inst_j=jal;
 
-wire [11:0] imm;
+wire [31:0] imm;
 
 wire [4:0] rs1,rd;
 
