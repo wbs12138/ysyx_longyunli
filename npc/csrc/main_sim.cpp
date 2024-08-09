@@ -73,7 +73,7 @@ void load_img(){
   }
 
   FILE *fp = fopen(img_file, "rb");
-  Assert(fp, "Can not open '%s'", img_file);
+  assert(fp);
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
