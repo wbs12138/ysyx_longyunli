@@ -61,7 +61,7 @@ static void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT, PMEM_RIGHT);
+  printf("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 static char *img_file = NULL;
@@ -69,7 +69,7 @@ static char *img_file = NULL;
 //static long load_img() 
 void load_img(){
   if (img_file == NULL) {
-    Log("No image is given. Use the default build-in image.");
+    printf("No image is given. Use the default build-in image.");
     return ;
   }
 
@@ -79,7 +79,7 @@ void load_img(){
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  Log("The image is %s, size = %ld", img_file, size);
+  printf("The image is %s, size = %ld", img_file, size);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
@@ -148,9 +148,9 @@ int main(int argc,char** argv,char** env){
 	m_trace->close();
 
 	if(ebreak_dpi==1)
-	Log("NPC running over,because the dpi-c ebreak matters");
+	printf("NPC running over,because the dpi-c ebreak matters");
 	else
-	Log("NPC running over,because up to the max_sim_time");
+	printf("NPC running over,because up to the max_sim_time");
 
 	delete dut;
 
