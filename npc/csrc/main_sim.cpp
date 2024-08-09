@@ -54,7 +54,9 @@ static inline void host_write(void *addr, int len, uint32_t data) {
 
 static uint32_t pmem_read(uint32_t addr, int len) {
   uint32_t ret = host_read(guest_to_host(addr), len);
-  printf("ret==%u\n",ret);
+  printf("ret=%x\n",ret);
+  uint32_t index=(addr-0x80000000);
+  printf("pmem[%x]=%x\n",index,pmem[index]);
   return ret;
 }
 
