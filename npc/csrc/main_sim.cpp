@@ -94,7 +94,7 @@ void load_img(){
 
 int main(int argc,char** argv,char** env){
 	
-	assert(argc==2);
+	//assert(argc==2);
 	
 	int i=1;
     do{
