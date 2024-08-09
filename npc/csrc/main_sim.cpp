@@ -87,6 +87,7 @@ void load_img(){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
+  printf("pmem=%u\n",pmem[1]);
   return ;
 }
 
