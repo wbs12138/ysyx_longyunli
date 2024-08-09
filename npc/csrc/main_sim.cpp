@@ -63,7 +63,7 @@ static void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  printf("physical memory area [\" %ld \", \" %ld \"]", PMEM_LEFT, PMEM_RIGHT);
+  printf("physical memory area [\" %d \", \" %d \"]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 static char *img_file = NULL;
