@@ -12,7 +12,7 @@
 #define MAX_SIM_TIME 20000
 #define CONFIG_MBASE 0x80000000
 #define CONFIG_MSIZE 0x8000000
-#define CONFIG_PC_RESET_OFFSET 0x80000000
+#define CONFIG_PC_RESET_OFFSET 0x0
 #define PMEM_LEFT  ((uint32_t)CONFIG_MBASE)
 #define PMEM_RIGHT ((uint32_t)CONFIG_MBASE + CONFIG_MSIZE - 1)
 #define PMEM_LEFT  ((uint32_t)CONFIG_MBASE)
@@ -29,7 +29,7 @@ void ebreak(){
 	return;
 }
 
-static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
+static uint8_t *pmem = NULL;
 
 uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 uint32_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
