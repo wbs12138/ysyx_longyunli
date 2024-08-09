@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <assert.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/include/utils.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
@@ -16,6 +17,9 @@
 #define PMEM_LEFT  ((uint32_t)CONFIG_MBASE)
 #define RESET_VECTOR (PMEM_LEFT + CONFIG_PC_RESET_OFFSET)
 #define PG_ALIGN __attribute((aligned(4096)))
+#define Log(format, ...) \
+    _Log(ANSI_FMT("[%s:%d %s] " format, ANSI_FG_BLUE) "\n", \
+        __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 
 vluint64_t sim_time=0;
 
