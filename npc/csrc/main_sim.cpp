@@ -101,7 +101,7 @@ int main(int argc,char** argv,char** env){
 
 	img_file=argv[1];
 
-	load_image();
+	load_img();
 
 	init_mem();
 
@@ -134,7 +134,7 @@ int main(int argc,char** argv,char** env){
 
 		dut->clk^=1;
 		
-		dut->ist = pmem_read(dut->pc);
+		dut->ist = pmem_read(dut->pc,4);
 		
 		dut->eval();
 
