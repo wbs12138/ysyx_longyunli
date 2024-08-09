@@ -28,7 +28,7 @@ VL_ATTR_COLD void Vtop___024root__trace_init_sub__TOP__0(Vtop___024root* vlSelf,
     tracep->declBit(c+3,0,"inst_i",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+4,0,"inst_u",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+43,0,"inst_j",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBus(c+5,0,"imm",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 11,0);
+    tracep->declBus(c+5,0,"imm",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
     tracep->declBus(c+46,0,"rs1",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+47,0,"rd",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+48,0,"rf_wdata",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
@@ -138,7 +138,7 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
     bufp->fullBit(oldp+3,(((IData)(vlSelf->top__DOT__addi) 
                            | (IData)(vlSelf->top__DOT__jalr))));
     bufp->fullBit(oldp+4,(vlSelf->top__DOT__inst_u));
-    bufp->fullSData(oldp+5,((0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)),12);
+    bufp->fullIData(oldp+5,(vlSelf->top__DOT__imm),32);
     bufp->fullBit(oldp+6,(((IData)(vlSelf->top__DOT__addi) 
                            | (IData)(vlSelf->top__DOT__inst_u))));
     bufp->fullIData(oldp+7,(vlSelf->top__DOT__inst_RegisterFile__DOT__rf[0]),32);
@@ -184,28 +184,34 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                        >> 0xfU))),5);
     bufp->fullCData(oldp+47,((0x1fU & (vlSelf->ist 
                                        >> 7U))),5);
-    bufp->fullIData(oldp+48,(((IData)(vlSelf->top__DOT__addi)
-                               ? (vlSelf->top__DOT__rf_rdata 
-                                  + (((- (IData)((1U 
-                                                  & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
-                                                     >> 0xbU)))) 
-                                      << 0xcU) | (0xfffU 
-                                                  & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
-                               : ((0x17U == (0x7fU 
-                                             & vlSelf->ist))
-                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
-                                   : ((0x37U == (0x7fU 
-                                                 & vlSelf->ist))
-                                       ? (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)
-                                       : 0U)))),32);
+    bufp->fullIData(oldp+48,((IData)((0xfffffffffffffULL 
+                                      & ((IData)(vlSelf->top__DOT__addi)
+                                          ? ((QData)((IData)(vlSelf->top__DOT__rf_rdata)) 
+                                             + (((QData)((IData)(
+                                                                 (0xfffffU 
+                                                                  & (- (IData)(
+                                                                               (1U 
+                                                                                & (vlSelf->top__DOT__imm 
+                                                                                >> 0xbU))))))) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(vlSelf->top__DOT__imm))))
+                                          : ((0x17U 
+                                              == (0x7fU 
+                                                  & vlSelf->ist))
+                                              ? ((QData)((IData)(vlSelf->pc)) 
+                                                 + (QData)((IData)(vlSelf->top__DOT__imm)))
+                                              : ((0x37U 
+                                                  == 
+                                                  (0x7fU 
+                                                   & vlSelf->ist))
+                                                  ? (QData)((IData)(vlSelf->top__DOT__imm))
+                                                  : 0ULL)))))),32);
     bufp->fullIData(oldp+49,(vlSelf->top__DOT__rf_rdata),32);
     bufp->fullIData(oldp+50,(((IData)(vlSelf->top__DOT__jalr)
                                ? (0xfffffffeU & (vlSelf->top__DOT__rf_rdata 
-                                                 + 
-                                                 (0xfffU 
-                                                  & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
+                                                 + vlSelf->top__DOT__imm))
                                : ((0x6fU == (0x7fU 
                                              & vlSelf->ist))
-                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
+                                   ? (vlSelf->pc + vlSelf->top__DOT__imm)
                                    : ((IData)(4U) + vlSelf->pc)))),32);
 }

@@ -42,7 +42,7 @@ assign rf_raddr = rs1 ;
 
 assign rf_wen= addi | auipc | lui ;
 
-assign rf_wdata =   addi ? rf_rdata + {{20{imm[11]}},imm}   :
+assign rf_wdata =   addi ? rf_rdata + {{20{imm[11]}},imm[11:0]}   :
                     auipc? pc + imm                         :
                     lui  ? imm                              :
                     'b0;

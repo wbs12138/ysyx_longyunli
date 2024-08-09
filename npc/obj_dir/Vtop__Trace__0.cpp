@@ -29,7 +29,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
         bufp->chgBit(oldp+2,(((IData)(vlSelf->top__DOT__addi) 
                               | (IData)(vlSelf->top__DOT__jalr))));
         bufp->chgBit(oldp+3,(vlSelf->top__DOT__inst_u));
-        bufp->chgSData(oldp+4,((0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)),12);
+        bufp->chgIData(oldp+4,(vlSelf->top__DOT__imm),32);
         bufp->chgBit(oldp+5,(((IData)(vlSelf->top__DOT__addi) 
                               | (IData)(vlSelf->top__DOT__inst_u))));
     }
@@ -76,26 +76,34 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
     bufp->chgBit(oldp+44,((0x37U == (0x7fU & vlSelf->ist))));
     bufp->chgCData(oldp+45,((0x1fU & (vlSelf->ist >> 0xfU))),5);
     bufp->chgCData(oldp+46,((0x1fU & (vlSelf->ist >> 7U))),5);
-    bufp->chgIData(oldp+47,(((IData)(vlSelf->top__DOT__addi)
-                              ? (vlSelf->top__DOT__rf_rdata 
-                                 + (((- (IData)((1U 
-                                                 & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
-                                                    >> 0xbU)))) 
-                                     << 0xcU) | (0xfffU 
-                                                 & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
-                              : ((0x17U == (0x7fU & vlSelf->ist))
-                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
-                                  : ((0x37U == (0x7fU 
-                                                & vlSelf->ist))
-                                      ? (0xfffU & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)
-                                      : 0U)))),32);
+    bufp->chgIData(oldp+47,((IData)((0xfffffffffffffULL 
+                                     & ((IData)(vlSelf->top__DOT__addi)
+                                         ? ((QData)((IData)(vlSelf->top__DOT__rf_rdata)) 
+                                            + (((QData)((IData)(
+                                                                (0xfffffU 
+                                                                 & (- (IData)(
+                                                                              (1U 
+                                                                               & (vlSelf->top__DOT__imm 
+                                                                                >> 0xbU))))))) 
+                                                << 0x20U) 
+                                               | (QData)((IData)(vlSelf->top__DOT__imm))))
+                                         : ((0x17U 
+                                             == (0x7fU 
+                                                 & vlSelf->ist))
+                                             ? ((QData)((IData)(vlSelf->pc)) 
+                                                + (QData)((IData)(vlSelf->top__DOT__imm)))
+                                             : ((0x37U 
+                                                 == 
+                                                 (0x7fU 
+                                                  & vlSelf->ist))
+                                                 ? (QData)((IData)(vlSelf->top__DOT__imm))
+                                                 : 0ULL)))))),32);
     bufp->chgIData(oldp+48,(vlSelf->top__DOT__rf_rdata),32);
     bufp->chgIData(oldp+49,(((IData)(vlSelf->top__DOT__jalr)
                               ? (0xfffffffeU & (vlSelf->top__DOT__rf_rdata 
-                                                + (0xfffU 
-                                                   & vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2)))
+                                                + vlSelf->top__DOT__imm))
                               : ((0x6fU == (0x7fU & vlSelf->ist))
-                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
+                                  ? (vlSelf->pc + vlSelf->top__DOT__imm)
                                   : ((IData)(4U) + vlSelf->pc)))),32);
 }
 
