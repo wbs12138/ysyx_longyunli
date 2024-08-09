@@ -30,6 +30,9 @@ int main(int argc, char *argv[]) {
     printf("argc[%d]=%s\n",i,argv[i-1]);
     i+=1;
   }while(i!=argc+1);
+  #ifdef CONFIG_TARGET_AM
+  printf("am_mode\n");
+  #endif
   init_monitor(argc, argv);
 #endif
 
