@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 #else
   int i=1;
   do{
-    printf("%s\n",argv[i-1]);
+    printf("argc[%d]=%s\n",i,argv[i-1]);
     i+=1;
   }while(i!=argc+1);
   init_monitor(argc, argv);
