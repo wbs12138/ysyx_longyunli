@@ -184,34 +184,26 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                        >> 0xfU))),5);
     bufp->fullCData(oldp+47,((0x1fU & (vlSelf->ist 
                                        >> 7U))),5);
-    bufp->fullIData(oldp+48,((IData)((0xfffffffffffffULL 
-                                      & ((IData)(vlSelf->top__DOT__addi)
-                                          ? ((QData)((IData)(vlSelf->top__DOT__rf_rdata)) 
-                                             + (((QData)((IData)(
-                                                                 (0xfffffU 
-                                                                  & (- (IData)(
-                                                                               (1U 
-                                                                                & (vlSelf->top__DOT__imm 
-                                                                                >> 0xbU))))))) 
-                                                 << 0x20U) 
-                                                | (QData)((IData)(vlSelf->top__DOT__imm))))
-                                          : ((0x17U 
-                                              == (0x7fU 
-                                                  & vlSelf->ist))
-                                              ? ((QData)((IData)(vlSelf->pc)) 
-                                                 + (QData)((IData)(vlSelf->top__DOT__imm)))
-                                              : ((0x37U 
-                                                  == 
-                                                  (0x7fU 
-                                                   & vlSelf->ist))
-                                                  ? (QData)((IData)(vlSelf->top__DOT__imm))
-                                                  : 0ULL)))))),32);
+    bufp->fullIData(oldp+48,(((IData)(vlSelf->top__DOT__addi)
+                               ? (vlSelf->top__DOT__rf_rdata 
+                                  + (((- (IData)((1U 
+                                                  & (vlSelf->top__DOT__imm 
+                                                     >> 0xbU)))) 
+                                      << 0xcU) | (0xfffU 
+                                                  & vlSelf->top__DOT__imm)))
+                               : ((0x17U == (0x7fU 
+                                             & vlSelf->ist))
+                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                                   : ((0x37U == (0x7fU 
+                                                 & vlSelf->ist))
+                                       ? vlSelf->top__DOT__imm
+                                       : 0U)))),32);
     bufp->fullIData(oldp+49,(vlSelf->top__DOT__rf_rdata),32);
     bufp->fullIData(oldp+50,(((IData)(vlSelf->top__DOT__jalr)
                                ? (0xfffffffeU & (vlSelf->top__DOT__rf_rdata 
                                                  + vlSelf->top__DOT__imm))
                                : ((0x6fU == (0x7fU 
                                              & vlSelf->ist))
-                                   ? (vlSelf->pc + vlSelf->top__DOT__imm)
+                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
                                    : ((IData)(4U) + vlSelf->pc)))),32);
 }
