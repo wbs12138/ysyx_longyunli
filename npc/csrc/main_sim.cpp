@@ -14,6 +14,8 @@
 #define CONFIG_MSIZE 0x8000000
 #define CONFIG_PC_RESET_OFFSET 0x0
 #define PMEM_LEFT  ((uint32_t)CONFIG_MBASE)
+#define PMEM_RIGHT ((uint32_t)CONFIG_MBASE + CONFIG_MSIZE - 1)
+#define PMEM_LEFT  ((uint32_t)CONFIG_MBASE)
 #define RESET_VECTOR (PMEM_LEFT + CONFIG_PC_RESET_OFFSET)
 #define PG_ALIGN __attribute((aligned(4096)))
 
@@ -61,7 +63,7 @@ static void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  printf("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT, PMEM_RIGHT);
+  printf("physical memory area [\" %ld \", \" %ld \"]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 static char *img_file = NULL;
