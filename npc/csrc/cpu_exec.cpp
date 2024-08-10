@@ -75,6 +75,43 @@ void exec_cpu(uint32_t exec_time){
 		return ;}
     else return;
 }
+uint32_t read_reg(int index){
+
+     if(index==0)return dut-> rf0;
+else if(index==1)return dut-> rf1;
+else if(index==2)return dut-> rf2;
+else if(index==3)return dut-> rf3;
+else if(index==4)return dut-> rf4;
+else if(index==5)return dut-> rf5;
+else if(index==6)return dut-> rf6;
+else if(index==7)return dut-> rf7;
+else if(index==8)return dut-> rf8;
+else if(index==9)return dut-> rf9;
+else if(index==10)return dut->rf10;
+else if(index==11)return dut->rf11;
+else if(index==12)return dut->rf12;
+else if(index==13)return dut->rf13;
+else if(index==14)return dut->rf14;
+else if(index==15)return dut->rf15;
+else if(index==16)return dut->rf16;
+else if(index==17)return dut->rf17;
+else if(index==18)return dut->rf18;
+else if(index==19)return dut->rf19;
+else if(index==20)return dut->rf20;
+else if(index==21)return dut->rf21;
+else if(index==22)return dut->rf22;
+else if(index==23)return dut->rf23;
+else if(index==24)return dut->rf24;
+else if(index==25)return dut->rf25;
+else if(index==26)return dut->rf26;
+else if(index==27)return dut->rf27;
+else if(index==28)return dut->rf28;
+else if(index==29)return dut->rf29;
+else if(index==30)return dut->rf30;
+else if(index==31)return dut->rf31;
+else            return 0;
+
+}
 
 	
 void end_cpu(){
@@ -121,43 +158,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     return 0;
 }
 
-uint32_t read_reg(int index){
 
-     if(index==0)return dut-> rf0;
-else if(index==1)return dut-> rf1;
-else if(index==2)return dut-> rf2;
-else if(index==3)return dut-> rf3;
-else if(index==4)return dut-> rf4;
-else if(index==5)return dut-> rf5;
-else if(index==6)return dut-> rf6;
-else if(index==7)return dut-> rf7;
-else if(index==8)return dut-> rf8;
-else if(index==9)return dut-> rf9;
-else if(index==10)return dut->rf10;
-else if(index==11)return dut->rf11;
-else if(index==12)return dut->rf12;
-else if(index==13)return dut->rf13;
-else if(index==14)return dut->rf14;
-else if(index==15)return dut->rf15;
-else if(index==16)return dut->rf16;
-else if(index==17)return dut->rf17;
-else if(index==18)return dut->rf18;
-else if(index==19)return dut->rf19;
-else if(index==20)return dut->rf20;
-else if(index==21)return dut->rf21;
-else if(index==22)return dut->rf22;
-else if(index==23)return dut->rf23;
-else if(index==24)return dut->rf24;
-else if(index==25)return dut->rf25;
-else if(index==26)return dut->rf26;
-else if(index==27)return dut->rf27;
-else if(index==28)return dut->rf28;
-else if(index==29)return dut->rf29;
-else if(index==30)return dut->rf30;
-else if(index==31)return dut->rf31;
-else            return 0;
-
-}
 
 
 
