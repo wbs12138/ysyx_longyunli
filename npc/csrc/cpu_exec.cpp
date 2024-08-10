@@ -43,7 +43,7 @@ uint32_t previous_pc=0;
 void exec_cpu(uint32_t exec_time){
 	
 	if( curse==1 ){
-		printf("the process of npc has been over,please restart NPC again\n");
+		printf("\033[1;34mthe process of npc has been over,please restart NPC again\033[0m\n");
 		return;
 	}
 
