@@ -82,7 +82,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                      << 0xcU) | (0xfffU 
                                                  & vlSelf->top__DOT__imm)))
                               : ((0x17U == (0x7fU & vlSelf->ist))
-                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
                                   : ((0x37U == (0x7fU 
                                                 & vlSelf->ist))
                                       ? vlSelf->top__DOT__imm
@@ -103,7 +103,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                               ? (0xfffffffeU & (vlSelf->top__DOT__rf_rdata 
                                                 + vlSelf->top__DOT__imm))
                               : ((0x6fU == (0x7fU & vlSelf->ist))
-                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                                  ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
                                   : ((IData)(4U) + vlSelf->pc)))),32);
 }
 

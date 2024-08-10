@@ -6,7 +6,7 @@ import "DPI-C" function void ebreak();
 
 always@(*)
 begin
-    if(ist==32'h00000073)
+    if(ist==32'h00100073)
         ebreak();
 end
 

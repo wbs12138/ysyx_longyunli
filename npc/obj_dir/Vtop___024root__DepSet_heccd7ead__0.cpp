@@ -47,19 +47,23 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                   ? (0xfffff000U & vlSelf->ist)
                                   : ((0x6fU == (0x7fU 
                                                 & vlSelf->ist))
-                                      ? ((0x100000U 
-                                          & (vlSelf->ist 
-                                             >> 0xbU)) 
-                                         | ((0xff000U 
-                                             & vlSelf->ist) 
-                                            | ((0x800U 
-                                                & (vlSelf->ist 
-                                                   >> 9U)) 
-                                               | (0x7feU 
-                                                  & (vlSelf->ist 
-                                                     >> 0x14U)))))
+                                      ? (((- (IData)(
+                                                     (vlSelf->ist 
+                                                      >> 0x1fU))) 
+                                          << 0x15U) 
+                                         | ((0x100000U 
+                                             & (vlSelf->ist 
+                                                >> 0xbU)) 
+                                            | ((0xff000U 
+                                                & vlSelf->ist) 
+                                               | ((0x800U 
+                                                   & (vlSelf->ist 
+                                                      >> 9U)) 
+                                                  | (0x7feU 
+                                                     & (vlSelf->ist 
+                                                        >> 0x14U))))))
                                       : 0U)));
-    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
         = (vlSelf->pc + vlSelf->top__DOT__imm);
     vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__jalr)
                                   ? (0xfffffffeU & 
@@ -67,7 +71,7 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                       + vlSelf->top__DOT__imm))
                                   : ((0x6fU == (0x7fU 
                                                 & vlSelf->ist))
-                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
                                       : ((IData)(4U) 
                                          + vlSelf->pc)));
 }
@@ -138,7 +142,7 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                    | (0xfffU 
                                                       & vlSelf->top__DOT__imm)))
                 : ((0x17U == (0x7fU & vlSelf->ist))
-                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
                     : ((0x37U == (0x7fU & vlSelf->ist))
                         ? vlSelf->top__DOT__imm : (
                                                    (0x6fU 
@@ -169,7 +173,7 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
                                              >> 0xfU))]);
     vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
                    : vlSelf->top__DOT__pc_next);
-    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
         = (vlSelf->pc + vlSelf->top__DOT__imm);
     vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__jalr)
                                   ? (0xfffffffeU & 
@@ -177,7 +181,7 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
                                       + vlSelf->top__DOT__imm))
                                   : ((0x6fU == (0x7fU 
                                                 & vlSelf->ist))
-                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2
+                                      ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3
                                       : ((IData)(4U) 
                                          + vlSelf->pc)));
 }
