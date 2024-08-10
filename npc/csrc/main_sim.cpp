@@ -1,6 +1,6 @@
 #include "npc_sources.h"
 #include "npc_compile.h"
-
+#include "npc_sdb.h"
 
 int main(int argc,char** argv,char** env){
 	
