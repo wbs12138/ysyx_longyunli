@@ -17,7 +17,7 @@ int main(int argc,char** argv,char** env){
 	init_sdb();
 	load_img(img_file);
 	if(argc>=3){
-		if(argv[3]=="is_batch_mode"){
+		if(*argv[3]=="is_batch_mode"){
 			sdb_main_loop(1);}
 			}
 	else
