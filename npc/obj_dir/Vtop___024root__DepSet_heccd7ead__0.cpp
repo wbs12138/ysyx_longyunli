@@ -47,18 +47,17 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                   ? (0xfffff000U & vlSelf->ist)
                                   : ((0x6fU == (0x7fU 
                                                 & vlSelf->ist))
-                                      ? ((0x80000U 
+                                      ? ((0x100000U 
                                           & (vlSelf->ist 
-                                             >> 0xcU)) 
-                                         | ((0x7f800U 
-                                             & (vlSelf->ist 
-                                                << 0xbU)) 
-                                            | ((0x400U 
+                                             >> 0xbU)) 
+                                         | ((0xff000U 
+                                             & vlSelf->ist) 
+                                            | ((0x800U 
                                                 & (vlSelf->ist 
-                                                   << 2U)) 
-                                               | (0x3ffU 
+                                                   >> 9U)) 
+                                               | (0x7feU 
                                                   & (vlSelf->ist 
-                                                     >> 9U)))))
+                                                     >> 0x14U)))))
                                       : 0U)));
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_2 
         = (vlSelf->pc + vlSelf->top__DOT__imm);
