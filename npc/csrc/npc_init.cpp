@@ -36,7 +36,7 @@ void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  printf("physical memory area [\" %x \", \" %x \"]", PMEM_LEFT, PMEM_RIGHT);
+  printf("\033[1;36mphysical memory area [\" %x \", \" %x \"]\033[0m\r\n", PMEM_LEFT, PMEM_RIGHT);
 }
 
 
@@ -44,7 +44,7 @@ void init_mem() {
 //static long load_img() 
 void load_img(char *img_file){
   if (img_file == NULL) {
-    printf("No image is given. Use the default build-in image.");
+    printf("\033[1;31mNo image is given. Use the default build-in image.\033[0m\n");
     return ;
   }
 
@@ -54,7 +54,7 @@ void load_img(char *img_file){
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  printf("The image is %s, size = %ld", img_file, size);
+  printf("\033[1;36mThe image is %s, size = %ld\033[0m\r\n", img_file, size);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
