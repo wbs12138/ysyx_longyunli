@@ -23,6 +23,7 @@ $(SRC_AUTO_BIND): $(NXDC_FILES)
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
+CSRCS_SIM = ./csrc/main_sim.cpp
 
 # rules for NVBoard
 include $(NVBOARD_HOME)/scripts/nvboard.mk
@@ -47,7 +48,6 @@ clean:
 	rm -rf $(BUILD_DIR)
 	rm -rf obj_dir
 
-CSRCS_SIM = ./csrc/main_sim.cpp
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME)
