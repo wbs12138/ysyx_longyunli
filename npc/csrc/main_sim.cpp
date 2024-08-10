@@ -1,6 +1,5 @@
 #include "npc_sources.h"
 #include "npc_compile.h"
-#include "npc_sdb.h"
 
 int main(int argc,char** argv,char** env){
 	
@@ -17,7 +16,7 @@ int main(int argc,char** argv,char** env){
 	init_sdb();
 	load_img(img_file);
 	if(argc>=3){
-		if(argv[3]=="is_batch_mode"){
+		if(strcmp(argv[3],"is_batch_mode")==0){
 			sdb_main_loop(1);}
 			}
 	else
