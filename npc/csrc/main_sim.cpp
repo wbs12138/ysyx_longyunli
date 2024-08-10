@@ -15,6 +15,7 @@ int main(int argc,char** argv,char** env){
     
 	init_mem();
 	init_sdb();
+	printf("here\n");
 	load_img(img_file);
 
 	if(argc>=4){
