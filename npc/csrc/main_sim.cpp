@@ -113,7 +113,7 @@ int main(int argc,char** argv,char** env){
 
 	load_img();
 
-	init_mem();
+	//init_mem();
 
 	Vtop *dut = new Vtop;
 	Verilated::traceEverOn(true);
