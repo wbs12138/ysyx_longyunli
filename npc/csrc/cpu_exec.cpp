@@ -45,7 +45,7 @@ void exec_cpu(uint32_t exec_time){
 
 	
 
-	if( (sim_time>=MAX_SIM_TIME || ebreak_dpi) && curse==1 ){
+	if( curse==1 ){
 		printf("the process of npc has been over,please restart NPC again\n");
 		return;
 	}
@@ -66,7 +66,7 @@ void exec_cpu(uint32_t exec_time){
 
 		sim_time++;
         
-        if(ebreak_dpi||sim_time>=MAX_SIM_TIME){printf("out\n");break;}
+        if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
 
     }
     if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;
