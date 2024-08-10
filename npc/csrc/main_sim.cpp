@@ -15,9 +15,8 @@ int main(int argc,char** argv,char** env){
     
 	init_mem();
 	init_sdb();
-	printf("here\n");
 	load_img(img_file);
-
+	printf("here\n");
 	if(argc>=4){
 		if(argv[3]=="is_batch_mode"){printf("here\n");
 			sdb_main_loop(1);}
