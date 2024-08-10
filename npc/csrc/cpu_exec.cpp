@@ -125,8 +125,6 @@ void end_cpu(){
     m_trace->close();
 
 	delete dut;
-
-	exit(EXIT_SUCCESS);
 	
 	return ;
 }
