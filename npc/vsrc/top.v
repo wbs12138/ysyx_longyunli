@@ -40,11 +40,13 @@ assign rf_waddr = rd ;
 
 assign rf_raddr = rs1 ;
 
-assign rf_wen= addi | auipc | lui ;
+assign rf_wen= addi | auipc | lui | jal | jalr ;
 
 assign rf_wdata =   addi ? rf_rdata + {{20{imm[11]}},imm[11:0]}   :
                     auipc? pc + imm                         :
                     lui  ? imm                              :
+                    jal  ? pc + 4                           :
+                    jalr ? pc + 4                           :
                     'b0;
 
 
