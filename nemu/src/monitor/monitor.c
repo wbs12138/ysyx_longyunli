@@ -64,9 +64,6 @@ static long load_img() {
   assert(ret == 1);
 
   fclose(fp);
-  uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
-  for(int i=0;i<=1000;i++)
-  printf("pmem[%x]=%x\n",i,pmem_start[i]);
   return size;
 }
 

@@ -54,11 +54,11 @@ static inline void host_write(void *addr, int len, uint32_t data) {
 
 static uint32_t pmem_read(uint32_t addr, int len) {
   uint32_t ret = host_read(guest_to_host(addr), len);
-  printf("ret=%x\n",ret);
-  uint32_t index=(addr-0x80000000);
-  printf("pmem[%x]=%x\n",index,pmem[index]);
-  uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
-  printf("pmem_start[%x]=%x\n",index,pmem_start[index]);
+//   printf("ret=%x\n",ret);
+//   uint32_t index=(addr-0x80000000);
+//   printf("pmem[%x]=%x\n",index,pmem[index]);
+//   uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
+//   printf("pmem_start[%x]=%x\n",index,pmem_start[index]);
   return ret;
 }
 
@@ -92,16 +92,11 @@ void load_img(){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
-  uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
-  for(int i=0;i<=1000;i++)
-  printf("pmem[%x]=%x\n",i,pmem_start[i]);
   return ;
 }
 
 
 int main(int argc,char** argv,char** env){
-	
-	//assert(argc==2);
 	
 	int i=1;
     do{
