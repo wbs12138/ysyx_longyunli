@@ -2,7 +2,7 @@
 #include "npc_init.h"
 
 
-static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
+uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
 uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 uint32_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
@@ -25,12 +25,12 @@ static inline void host_write(void *addr, int len, uint32_t data) {
   }
 }
 
-static uint32_t pmem_read(uint32_t addr, int len) {
+uint32_t pmem_read(uint32_t addr, int len) {
   uint32_t ret = host_read(guest_to_host(addr), len);
   return ret;
 }
 
-static void pmem_write(uint32_t addr, int len, uint32_t data) {
+void pmem_write(uint32_t addr, int len, uint32_t data) {
   host_write(guest_to_host(addr), len, data);
 }
 
