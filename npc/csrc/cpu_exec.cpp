@@ -10,6 +10,9 @@ void ebreak(){
 	ebreak_dpi=1;
 	return;
 }
+
+void exec_cpu(uint32_t exec_time);
+
 int curse ;
 vluint64_t sim_time=0;
 Vtop *dut = new Vtop;
@@ -36,6 +39,7 @@ void init_cpu(){
 	dut->reset=0;
 	m_trace->dump(sim_time);
 	sim_time++;
+	exec_cpu(1);
 }
     
 uint32_t previous_pc=0;
