@@ -7,7 +7,7 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   input [ADDR_WIDTH-1:0] raddr
 );
 
-export "DPI-C" function read_reg;
+export "DPI-C" function read_reg(int reg_index);
 
   reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
   always @(posedge clk) begin
