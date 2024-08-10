@@ -12,9 +12,9 @@ void ebreak(){
 }
 
 vluint64_t sim_time=0;
-
+Vtop *dut = new Vtop;
 void init_cpu(){
-    Vtop *dut = new Vtop;
+    
 	Verilated::traceEverOn(true);
 	VerilatedVcdC *m_trace = new VerilatedVcdC;
 	dut->trace(m_trace,5);
