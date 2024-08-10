@@ -20,10 +20,12 @@ int main(int argc,char** argv,char** env){
 
 	char *img_file=NULL;
 	img_file=argv[1];
-
+    
+	init_mem();
 	load_img(img_file);
 
-	//init_mem();
+
+	
 
 	Vtop *dut = new Vtop;
 	Verilated::traceEverOn(true);
