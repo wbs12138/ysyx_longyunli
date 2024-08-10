@@ -90,6 +90,9 @@ void load_img(){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
+  uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
+  for(int i=0;i<=1000;i++)
+  printf("pmem[%x]=%x\n",i,pmem_start[i]);
   return ;
 }
 
