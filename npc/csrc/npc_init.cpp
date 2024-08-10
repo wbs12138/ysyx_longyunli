@@ -38,7 +38,7 @@ void init_mem() {
   printf("physical memory area [\" %x \", \" %x \"]", PMEM_LEFT, PMEM_RIGHT);
 }
 
-static char *img_file = NULL;
+
 
 //static long load_img() 
 void load_img(){

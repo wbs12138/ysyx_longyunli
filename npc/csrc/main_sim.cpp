@@ -1,5 +1,5 @@
 #include "npc_sources.h"
-
+#include "npc_compile.h"
 
 vluint64_t sim_time=0;
 
