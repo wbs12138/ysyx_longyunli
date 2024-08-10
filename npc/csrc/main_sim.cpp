@@ -18,8 +18,6 @@ int main(int argc,char** argv,char** env){
     	i+=1;
   	}while(i!=argc+1);
 
-	char 
-
 	char *img_file=NULL;
 	img_file=argv[1];
 
