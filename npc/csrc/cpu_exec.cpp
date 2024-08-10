@@ -1,5 +1,6 @@
 #include "npc_sources.h"
 #include "cpu_exec.h"
+#include "npc_expr.h"
 #include "npc_init.h"
 #include "npc_watchpoint.h"
 #include <string.h>
@@ -10,7 +11,7 @@ void ebreak(){
 	ebreak_dpi=1;
 	return;
 }
-
+int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
 
 int curse ;
@@ -66,9 +67,11 @@ void exec_cpu(uint32_t exec_time){
 		m_trace->dump(sim_time);
 
 		sim_time++;
+		
+		if(check_watchpoint()==1)break;
         
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
-
+		
     }
     if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;
                     printf("\033[1;34m[%s,%d]Success!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n",__FILE__,__LINE__);
@@ -163,7 +166,35 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     return 0;
 }
 
+int check_watchpoint(){
+	    for(int i = 0 ; i < NR_WP; i ++){
+        if(wp_pool_flag(i))
+        {
+            bool success = false;
+            
+            char *expr1=wp_pool_expr(i);
 
+            int tmp = expr(expr1,&success);
+
+            int old_value = wp_pool_old_value(i);
+
+            if(success){
+                if(tmp != old_value)
+                {
+                    wp_pool_write_new_value(i,tmp);
+                    printf("NO.%d : expression:\"%s\",old:%d,new:%d\n",\
+                    i, expr1,old_value, tmp);
+                    return 1;
+                }
+				else return 0;
+            }
+            else{
+                printf("expr error.\n");
+                assert(0);
+            }
+        }
+    }
+}
 
 
 
