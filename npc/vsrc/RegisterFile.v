@@ -17,7 +17,7 @@ export "DPI-C" function read_reg;
   assign rdata = (raddr=='b0) ?     'b0     :
                                     rf[raddr];
   
-function uint32_t read_reg(int reg_index);
+function [31:0] read_reg(input [4:0] reg_index);
   return rf[reg_index];
 endfuction
 
