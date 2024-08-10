@@ -24,7 +24,7 @@ wire [4:0] rs1,rd;
 
 assign imm =  inst_i ? {20'b0,ist[31:20]}   : 
               inst_u ? {ist[31:12],12'b0}   :
-              inst_j ? {12'b0,ist[31],ist[7:0],ist[8],ist[18:9]}:'b0;
+              inst_j ? {11'b0,ist[31],ist[19:12],ist[20],ist[30:21],1'b0}:'b0;
 
 assign rs1 = ist[19:15] ;
 
