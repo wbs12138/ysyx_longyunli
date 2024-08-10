@@ -6,6 +6,9 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   output [DATA_WIDTH-1:0] rdata,
   input [ADDR_WIDTH-1:0] raddr
 );
+
+export "DPI-C" function read_reg();
+
   reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
@@ -14,5 +17,10 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   assign rdata = (raddr=='b0) ?     'b0     :
                                     rf[raddr];
   
+function uint32_t read_reg(int reg_index);
+  return rf[reg_index];
+endfuction
+
+
 
 endmodule
