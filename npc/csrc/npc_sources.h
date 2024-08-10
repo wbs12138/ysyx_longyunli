@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <assert.h>
+#include <cstdint.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vtop.h"

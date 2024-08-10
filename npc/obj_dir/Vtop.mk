@@ -42,7 +42,6 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	cpu_exec \
-	main_fpga \
 	main_sim \
 	npc_expr \
 	npc_init \
@@ -51,8 +50,7 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/wangbaosen/ysyx/ysyx-workbench/npc/csrc \
-	/home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/fpga \
+	./csrc \
 
 
 ### Default rules...
@@ -64,19 +62,17 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-cpu_exec.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/cpu_exec.cpp
+cpu_exec.o: ./csrc/cpu_exec.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main_fpga.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/fpga/main_fpga.cpp
+main_sim.o: ./csrc/main_sim.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main_sim.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/main_sim.cpp
+npc_expr.o: ./csrc/npc_expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-npc_expr.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_expr.cpp
+npc_init.o: ./csrc/npc_init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-npc_init.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_init.cpp
+npc_sdb.o: ./csrc/npc_sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-npc_sdb.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_sdb.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-npc_watchpoint.o: /home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_watchpoint.cpp
+npc_watchpoint.o: ./csrc/npc_watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
