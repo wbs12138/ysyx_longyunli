@@ -16,6 +16,9 @@
 #include <regex.h>
 #include <assert.h>
 #include <string.h>
+#include "npc_init.h"
+#include "cpu_exec.h"
+
 
 int min(int a, int b)
 {

@@ -1,6 +1,8 @@
 #include "npc_sources.h"
 #include "cpu_exec.h"
 #include "npc_init.h"
+#include "npc_watchpoint.h"
+#include <string.h>
 
 extern uint32_t read_reg(int reg_index);
 
@@ -37,15 +39,22 @@ void init_cpu(){
 	sim_time++;
 }
     
+uint32_t previous_pc=0;
 
-int exec_cpu(uint32_t exec_time){
+void exec_cpu(uint32_t exec_time){
+	if( sim_time>=MAX_SIM_TIME || ebreak_dpi ){
+		printf("the process of npc has been over,please restart NPC again\n");
+		return;
+	}
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
         
         dut->clk^=1;
 		
-		dut->ist = pmem_read(dut->pc,4);
-		printf("pc=%x\n",dut->pc);
+		if(previous_pc!=dut->pc)
+			dut->ist = pmem_read(dut->pc,4);
+		
+		previous_pc=dut->pc;
 		
 		dut->eval();
 
@@ -58,12 +67,15 @@ int exec_cpu(uint32_t exec_time){
     }
     if(ebreak_dpi){ end_cpu();
                     printf("\033[1;34m[%s,%d]Success!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n",__FILE__,__LINE__);
-                    return 2;}
+					printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m");
+					printf("at pc = %x\n",dut->pc);
+                    return ;}
     else if(sim_time>=MAX_SIM_TIME){
         end_cpu();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because up to the max_sim_time\033[0m\n",__FILE__,__LINE__);
-        return 1;}
-    else return 0;
+        printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m\n");
+		return ;}
+    else return;
 }
 
 	
@@ -77,5 +89,42 @@ void end_cpu(){
 	
 	return ;
 }
+
+
+const char *regs[] = {
+  "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+  "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+  "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+  "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
+void isa_reg_display() {
+for(int i=0;i<32;i++){
+	printf("%d:%s\t%x\n",i,regs[i],read_reg(i));
+}
+printf("%d:%s\t%x\n",33,"pc",dut->pc);
+
+}
+
+uint32_t isa_reg_str2val(const char *s, bool *success) {
+    
+    for(int i=0;i<32;i++)
+    {   
+        if(strcmp(regs[i],s)==0){
+            
+            return read_reg(i);
+        }
+        else if(strcmp("pc",s)==0){
+            
+            return dut->pc;
+        }
+    }
+    printf("not find the register.\n");
+    return 0;
+}
+
+
+
+
 
 

@@ -19,6 +19,7 @@
 #include "npc_sdb.h"
 #include "npc_watchpoint.h"
 #include "cpu_exec.h"
+#include "npc_init.h"
 
 
 void init_regex();
@@ -62,7 +63,6 @@ return 0;
 
 
 static int cmd_q(char *args) {
-  nemu_state.state = NEMU_QUIT;
 	return -1;
 }
 
@@ -98,7 +98,7 @@ int addr;
 sscanf(args,"%d %x",&len,&addr);
 static int i;
 for (i=0;i<len;i++)
-{printf("%x:%08x\n",addr,paddr_read(addr,4));
+{printf("%x:%08x\n",addr,pmem_read(addr,4));
 addr+=4;
 }
 return 0;
@@ -129,15 +129,15 @@ static struct {
   const char *description;
   int (*handler) (char *);
 } cmd_table [] = {
-  { "help", "Display information about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
-  { "si","Execute by step",cmd_si},
-  { "info","r for the register,w for the watchpoint",cmd_info},
-  { "x","Ask for the memory",cmd_x},
-  { "p", "Calculate the expression", cmd_p },
-  { "d", "Delete the watchpoint", cmd_d },
-  { "w", "Create the watchpoint", cmd_w }
+  { "help", "Display information about all supported commands", cmd_help },//
+  { "c", "Continue the execution of the program", cmd_c },//
+  { "q", "Exit NEMU", cmd_q },//
+  { "si","Execute by step",cmd_si},//
+  { "info","r for the register,w for the watchpoint",cmd_info},//
+  { "x","Ask for the memory",cmd_x},//
+  { "p", "Calculate the expression", cmd_p },//
+  { "d", "Delete the watchpoint", cmd_d },//
+  { "w", "Create the watchpoint", cmd_w }//
   /* TODO: Add more commands */
 
 };
