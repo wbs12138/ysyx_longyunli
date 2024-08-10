@@ -21,4 +21,4 @@ function [31:0] read_reg(input [4:0] reg_index);
   return rf[reg_index];
 endfuction
 
-endmodule
+
