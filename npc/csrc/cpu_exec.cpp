@@ -66,7 +66,7 @@ void exec_cpu(uint32_t exec_time){
 
 		sim_time++;
         
-        if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
+        if(ebreak_dpi||sim_time>=MAX_SIM_TIME){printf("out\n");break;}
 
     }
     if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;
