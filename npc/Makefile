@@ -21,6 +21,7 @@ $(SRC_AUTO_BIND): $(NXDC_FILES)
 
 # project source
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
+VSRCS += $(shell find $(abspath ./vsrc) -name "*.sv")
 CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
 CSRCS_SIM = $(shell find $(abspath ./csrc) -name "*.cpp")
