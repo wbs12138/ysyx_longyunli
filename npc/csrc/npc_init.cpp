@@ -42,7 +42,7 @@ void init_mem() {
 
 
 //static long load_img() 
-void load_img(){
+void load_img(char *img_file){
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.");
     return ;

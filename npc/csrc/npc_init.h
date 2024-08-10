@@ -1,9 +1,8 @@
 #ifndef NPC_INIT_H
 #define NPC_INIT_H
 
-//extern char *img_file ;
 
-void load_img();
+void load_img(char *img_file);
 
 uint32_t pmem_read(uint32_t addr, int len);
 
