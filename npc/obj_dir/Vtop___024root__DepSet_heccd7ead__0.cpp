@@ -166,13 +166,77 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
         vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
             = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
     }
+    vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
+                   : vlSelf->top__DOT__pc_next);
+    vlSelf->rf0 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0U];
+    vlSelf->rf1 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [1U];
+    vlSelf->rf2 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [2U];
+    vlSelf->rf3 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [3U];
+    vlSelf->rf4 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [4U];
+    vlSelf->rf5 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [5U];
+    vlSelf->rf6 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [6U];
+    vlSelf->rf7 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [7U];
+    vlSelf->rf8 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [8U];
+    vlSelf->rf9 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [9U];
+    vlSelf->rf10 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xaU];
+    vlSelf->rf11 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xbU];
+    vlSelf->rf12 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xcU];
+    vlSelf->rf13 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xdU];
+    vlSelf->rf14 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xeU];
+    vlSelf->rf15 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0xfU];
+    vlSelf->rf16 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x10U];
+    vlSelf->rf17 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x11U];
+    vlSelf->rf18 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x12U];
+    vlSelf->rf19 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x13U];
+    vlSelf->rf20 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x14U];
+    vlSelf->rf21 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x15U];
+    vlSelf->rf22 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x16U];
+    vlSelf->rf23 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x17U];
+    vlSelf->rf24 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x18U];
+    vlSelf->rf25 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x19U];
+    vlSelf->rf26 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1aU];
+    vlSelf->rf27 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1bU];
+    vlSelf->rf28 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1cU];
+    vlSelf->rf29 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1dU];
+    vlSelf->rf30 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1eU];
+    vlSelf->rf31 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+        [0x1fU];
     vlSelf->top__DOT__rf_rdata = ((0U == (0x1fU & (vlSelf->ist 
                                                    >> 0xfU)))
                                    ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
                                   [(0x1fU & (vlSelf->ist 
                                              >> 0xfU))]);
-    vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
-                   : vlSelf->top__DOT__pc_next);
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
         = (vlSelf->pc + vlSelf->top__DOT__imm);
     vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__jalr)
