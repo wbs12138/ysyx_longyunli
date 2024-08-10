@@ -13,10 +13,11 @@ void ebreak(){
 
 vluint64_t sim_time=0;
 Vtop *dut = new Vtop;
+VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
     
 	Verilated::traceEverOn(true);
-	VerilatedVcdC *m_trace = new VerilatedVcdC;
+	
 	dut->trace(m_trace,5);
 	m_trace->open("waveform.vcd");
 
