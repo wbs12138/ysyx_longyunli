@@ -44,7 +44,7 @@ void init_mem() {
 //static long load_img() 
 void load_img(char *img_file){
   if (img_file == NULL) {
-    printf("\033[1;31mNo image is given. Use the default build-in image.\033[0m\n");
+    printf("\033[1;31m[%s:%d]No image is given. Use the default build-in image.\033[0m\n",__FILE__,__LINE__);
     return ;
   }
 
@@ -54,7 +54,7 @@ void load_img(char *img_file){
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  printf("\033[1;34mThe image is %s, size = %ld\033[0m\r\n", img_file, size);
+  printf("\033[1;34m[%s:%d]The image is %s, size = %ld\033[0m\r\n",__FILE__,__LINE__, img_file, size);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
