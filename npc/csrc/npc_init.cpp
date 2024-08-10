@@ -36,7 +36,7 @@ void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, rand(), CONFIG_MSIZE);
-  printf("\033[1;34mphysical memory area [\" %x \", \" %x \"]\033[0m\r\n", PMEM_LEFT, PMEM_RIGHT);
+  printf("\033[1;34m[%s:%d]physical memory area [\" %x \", \" %x \"]\033[0m\r\n", __FILE__,__LINE__,PMEM_LEFT, PMEM_RIGHT);
 }
 
 
