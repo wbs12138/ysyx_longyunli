@@ -18,8 +18,8 @@ int main(int argc,char** argv,char** env){
 	load_img(img_file);
 
 	if(argc>=4){
-		if(argv[3]=="is_batch_mode")
-			sdb_main_loop(1);
+		if(argv[3]=="is_batch_mode"){printf("here\n");
+			sdb_main_loop(1);}
 			}
 	else
 		sdb_main_loop(0);
