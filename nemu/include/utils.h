@@ -16,7 +16,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#include "/home/wangbaosen/ysyx/ysyx-workbench/nemu/include/common.h"
+#include <common.h>
 
 // ----------- state -----------
 

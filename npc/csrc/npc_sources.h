@@ -13,7 +13,6 @@
 #include "Vtop.h"
 #include "svdpi.h"
 #include "Vtop__Dpi.h"
-#include "/home/wangbaosen/ysyx/ysyx-workbench/nemu/include/utils.h"
 
 #define MAX_SIM_TIME 200
 #define CONFIG_MBASE 0x80000000
