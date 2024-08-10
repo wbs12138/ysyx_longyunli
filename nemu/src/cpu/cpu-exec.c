@@ -17,6 +17,7 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
+#include <assert.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/watchpoint.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/sdb.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
@@ -108,6 +109,7 @@ static void execute(uint64_t n) {
   Decode s;
   for (;n > 0; n --) {
     exec_once(&s, cpu.pc);
+    assert(0);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
     if (nemu_state.state != NEMU_RUNNING) break;
