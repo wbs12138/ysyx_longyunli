@@ -58,6 +58,7 @@ void exec_cpu(uint32_t exec_time){
 		printf("the process of npc has been over,please restart NPC again\n");
 		return;
 	}
+	
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
         
@@ -78,7 +79,7 @@ void exec_cpu(uint32_t exec_time){
 
     }
     
-    else return;
+    return;
 }
 uint32_t read_reg(int index){
 
