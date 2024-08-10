@@ -21,6 +21,4 @@ function int read_reg(int reg_index);
   return rf[reg_index];
 endfuction
 
-
-
 endmodule
