@@ -18,6 +18,7 @@
 #include <string.h>
 #include "npc_init.h"
 #include "cpu_exec.h"
+#include "npc_sources.h"
 
 
 int min(int a, int b)
