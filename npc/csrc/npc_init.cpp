@@ -1,4 +1,5 @@
 #include "npc_sources.h"
+#include "npc_init.h"
 
 
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
