@@ -60,5 +60,15 @@ void load_img(char *img_file){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
+  printf("\033\
+                                                                          \n\
+       **     *      *****        ****                                    \n\
+       * *    *      *    *      *    *                                   \n\
+       *  *   *      *    *     *                                         \n\
+       *   *  *      *****      *                                         \n\
+       *    * *      *          *     *                                   \n\
+       *     **      *           *****                                    \n\
+                                                                          \n\
+\033[0m\r\n");
   return ;
 }
