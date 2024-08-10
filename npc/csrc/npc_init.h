@@ -1,6 +1,6 @@
 #ifndef NPC_INIT_H
 #define NPC_INIT_H
-
+#include "npc_sources.h"
 
 void load_img(char *img_file);
 
