@@ -168,7 +168,7 @@ static int cmd_help(char *args) {
   return 0;
 }
 
-void sdb_mainloop(int is_batch_mode) {
+void npc_sdb_mainloop(int is_batch_mode) {
   init_cpu();
   if (is_batch_mode) {  
     cmd_c(NULL);
