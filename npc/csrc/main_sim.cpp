@@ -57,6 +57,8 @@ static uint32_t pmem_read(uint32_t addr, int len) {
   printf("ret=%x\n",ret);
   uint32_t index=(addr-0x80000000);
   printf("pmem[%x]=%x\n",index,pmem[index]);
+  uint8_t *pmem_start = guest_to_host(RESET_VECTOR);
+  printf("pmem_start[%x]=%x\n",index,pmem_start[index]);
   return ret;
 }
 
