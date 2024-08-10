@@ -60,6 +60,6 @@ void load_img(char *img_file){
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
   assert(ret == 1);
   fclose(fp);
-  printf("\033[1;33moo      o      ooooo        oooo    \no o    o      o    o      o    o   \no  o   o      o    o     o         \no   o  o      ooooo      o         \no    o o      o          o     o   \no     oo      o           ooooo    \n\033[0m\r\n");
+  printf("\033[1;34moo      o      ooooo        oooo    \no o    o      o    o      o    o   \no  o   o      o    o     o         \no   o  o      ooooo      o         \no    o o      o          o     o   \no     oo      o           ooooo    \n\033[0m\r\n");
   return ;
 }
