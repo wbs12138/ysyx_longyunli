@@ -1,7 +1,40 @@
 module top(
     input clk,reset,
     output reg [31:0] pc,
-    input [31:0] ist
+    input [31:0] ist,
+  output [31:0] rf0,
+  output [31:0] rf1,
+  output [31:0] rf2,
+  output [31:0] rf3,
+  output [31:0] rf4,
+  output [31:0] rf5,
+  output [31:0] rf6,
+  output [31:0] rf7,
+  output [31:0] rf8,
+  output [31:0] rf9,
+  output [31:0] rf10,
+  output [31:0] rf11,
+  output [31:0] rf12,
+  output [31:0] rf13,
+  output [31:0] rf14,
+  output [31:0] rf15,
+  output [31:0] rf16,
+  output [31:0] rf17,
+  output [31:0] rf18,
+  output [31:0] rf19,
+  output [31:0] rf20,
+  output [31:0] rf21,
+  output [31:0] rf22,
+  output [31:0] rf23,
+  output [31:0] rf24,
+  output [31:0] rf25,
+  output [31:0] rf26,
+  output [31:0] rf27,
+  output [31:0] rf28,
+  output [31:0] rf29,
+  output [31:0] rf30,
+  output [31:0] rf31
+
             );
 
 wire addi,jal,jalr,auipc,lui;
@@ -51,7 +84,7 @@ assign rf_wdata =   addi ? rf_rdata + {{20{imm[11]}},imm[11:0]}   :
 
 
 RegisterFile #(5,32) inst_RegisterFile 
-(clk,rf_wdata,rf_waddr,rf_wen,rf_rdata,rf_raddr);
+(clk,rf_wdata,rf_waddr,rf_wen,rf_rdata,rf_raddr,rf0,rf1,rf2,rf3,rf4,rf5,rf6,rf7,rf8,rf9,rf10,rf11,rf12,rf13,rf14,rf15,rf16,rf17,rf18,rf19,rf20,rf21,rf22,rf23,rf24,rf25,rf26,rf27,rf28,rf29,rf30,rf31);
 
 wire [31:0] pc_next ;
 
@@ -63,6 +96,5 @@ Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 
 dpi_c_ebreak inst_dpi_c_ebreak(ist);
-
 
 endmodule

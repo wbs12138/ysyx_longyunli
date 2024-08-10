@@ -4,8 +4,6 @@
 #include "npc_watchpoint.h"
 #include <string.h>
 
-extern uint32_t read_reg(int reg_index);
-
 int ebreak_dpi=0;
 
 void ebreak(){
@@ -123,7 +121,43 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     return 0;
 }
 
+uint32_t read_reg(int index){
 
+     if(index==0)return  rf0;
+else if(index==1)return  rf1;
+else if(index==2)return  rf2;
+else if(index==3)return  rf3;
+else if(index==4)return  rf4;
+else if(index==5)return  rf5;
+else if(index==6)return  rf6;
+else if(index==7)return  rf7;
+else if(index==8)return  rf8;
+else if(index==9)return  rf9;
+else if(index==10)return rf10;
+else if(index==11)return rf11;
+else if(index==12)return rf12;
+else if(index==13)return rf13;
+else if(index==14)return rf14;
+else if(index==15)return rf15;
+else if(index==16)return rf16;
+else if(index==17)return rf17;
+else if(index==18)return rf18;
+else if(index==19)return rf19;
+else if(index==20)return rf20;
+else if(index==21)return rf21;
+else if(index==22)return rf22;
+else if(index==23)return rf23;
+else if(index==24)return rf24;
+else if(index==25)return rf25;
+else if(index==26)return rf26;
+else if(index==27)return rf27;
+else if(index==28)return rf28;
+else if(index==29)return rf29;
+else if(index==30)return rf30;
+else if(index==31)return rf31;
+else            return 0;
+
+}
 
 
 
