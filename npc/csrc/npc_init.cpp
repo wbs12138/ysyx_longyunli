@@ -54,7 +54,7 @@ void load_img(char *img_file){
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  printf("\036[1;36mThe image is %s, size = %ld\036[0m\r\n", img_file, size);
+  printf("\033[1;34mThe image is %s, size = %ld\033[0m\r\n", img_file, size);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
