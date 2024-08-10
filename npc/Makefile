@@ -51,7 +51,7 @@ clean:
 
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME)
+	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) -lreadline
 	obj_dir/V$(TOPNAME) $(IMG) $(ELF)
 
 wave:

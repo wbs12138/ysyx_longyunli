@@ -13,8 +13,8 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include </usr/include/readline/history.h>
-#include </usr/include/readline/readline.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 #include "npc_expr.h"
 #include "npc_sources.h"
 #include "npc_sdb.h"
