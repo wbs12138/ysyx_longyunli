@@ -24,6 +24,7 @@
 #define RESET_VECTOR (PMEM_LEFT + CONFIG_PC_RESET_OFFSET)
 #define PG_ALIGN __attribute((aligned(4096)))
 #define uint32_t unsigned int
+#define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 
 
 #endif
