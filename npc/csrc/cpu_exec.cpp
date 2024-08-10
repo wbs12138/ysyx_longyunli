@@ -10,12 +10,12 @@ void ebreak(){
 	ebreak_dpi=1;
 	return;
 }
-
+int curse ;
 vluint64_t sim_time=0;
 Vtop *dut = new Vtop;
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
-    
+    curse=0;
 	Verilated::traceEverOn(true);
 	
 	dut->trace(m_trace,5);
@@ -41,10 +41,7 @@ void init_cpu(){
 uint32_t previous_pc=0;
 
 void exec_cpu(uint32_t exec_time){
-	int curse = 0;
-
 	
-
 	if( curse==1 ){
 		printf("the process of npc has been over,please restart NPC again\n");
 		return;
