@@ -61,7 +61,6 @@ void load_img(char *img_file){
   assert(ret == 1);
   fclose(fp);
   printf("\033\
-                                          \n\
        **     *      *****        ****    \n\
        * *    *      *    *      *    *   \n\
        *  *   *      *    *     *         \n\
