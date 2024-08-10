@@ -1,7 +1,7 @@
 #ifndef NPC_INIT_H
 #define NPC_INIT_H
 
-extern char *img_file ;
+//extern char *img_file ;
 
 void load_img();
 
