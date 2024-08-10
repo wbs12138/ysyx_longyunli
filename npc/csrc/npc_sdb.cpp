@@ -210,4 +210,7 @@ void init_sdb() {
 
   /* Initialize the watchpoint pool. */
   init_wp_pool();
+
+  printf("\033[1;34m[%s,%d]SDB has done!\033[0m\r\n",__FILE__,__LINE__);
+					
 }
