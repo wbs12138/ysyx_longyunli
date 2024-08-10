@@ -25,7 +25,7 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ico_sequent__TOP__0\n"); );
     // Body
-    if ((0x73U == vlSelf->ist)) {
+    if ((0x100073U == vlSelf->ist)) {
         Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP();
     }
     vlSelf->top__DOT__rf_rdata = ((0U == (0x1fU & (vlSelf->ist 
