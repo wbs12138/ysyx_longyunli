@@ -9,7 +9,7 @@
 #include "svdpi.h"
 #include "Vtop__Dpi.h"
 
-#define MAX_SIM_TIME 2000
+#define MAX_SIM_TIME 200
 #define CONFIG_MBASE 0x80000000
 #define CONFIG_MSIZE 0x8000000
 #define CONFIG_PC_RESET_OFFSET 0x0
