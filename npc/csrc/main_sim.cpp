@@ -143,7 +143,7 @@ int main(int argc,char** argv,char** env){
 		dut->clk^=1;
 		
 		dut->ist = pmem_read(dut->pc,4);
-		printf("pc=%x\n",dut->pc);
+		//printf("pc=%x\n",dut->pc);
 		
 		dut->eval();
 
