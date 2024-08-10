@@ -66,13 +66,13 @@ void exec_cpu(uint32_t exec_time){
     }
     if(ebreak_dpi){ end_cpu();
                     printf("\033[1;34m[%s,%d]Success!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n",__FILE__,__LINE__);
-					printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m");
+					printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m",__FILE__,__LINE__);
 					printf("at pc = %x\n",dut->pc);
                     return ;}
     else if(sim_time>=MAX_SIM_TIME){
         end_cpu();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because up to the max_sim_time\033[0m\n",__FILE__,__LINE__);
-        printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m\n");
+        printf("\033[1;32m[%s,%d]HIT BAD TRAP!\033[0m\n",__FILE__,__LINE__);
 		return ;}
     else return;
 }
