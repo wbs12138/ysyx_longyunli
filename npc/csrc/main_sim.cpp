@@ -68,7 +68,7 @@ int main(int argc,char** argv,char** env){
 	m_trace->close();
 
 	if(ebreak_dpi==1)
-	printf("\033[1;36mSuccess!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n");
+	printf("\033[1;34mSuccess!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n");
 	else
 	printf("\033[1;31mFail!\nNPC running over,because up to the max_sim_time\033[0m\n");
 
