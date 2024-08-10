@@ -16,6 +16,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "npc_expr.h"
+#include "npc_sources.h"
 #include "npc_sdb.h"
 #include "npc_watchpoint.h"
 #include "cpu_exec.h"
@@ -80,7 +81,7 @@ static int cmd_info(char *args){
 
 static int cmd_p(char* args) {
   bool success;
-  word_t res = expr(args, &success);
+  uint32_t res = expr(args, &success);
   if (!success) {
     puts("invalid expression");
   } else {
