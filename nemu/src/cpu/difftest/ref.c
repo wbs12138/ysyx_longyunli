@@ -15,8 +15,11 @@
 
 #include <isa.h>
 #include <cpu/cpu.h>
+#include <cpu/decode.h>
 #include <difftest-def.h>
 #include <memory/paddr.h>
+
+
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
   if(direction == DIFFTEST_TO_DUT)
@@ -28,18 +31,33 @@ __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction)
 }
 
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
-  // if(direction == DIFFTEST_TO_DUT){
+  if(direction == DIFFTEST_TO_DUT)
+    memcpy(dut,&cpu,sizeof(CPU_state));
+  
+  else
+    memcpy(&cpu,dut,sizeof(CPU_state));
 
-  // }
-  // else{
+  return ;
+}
 
-  // }
-  assert(0);
+static void exec_once_diff(Decode *s, vaddr_t pc) {
+  s->pc = pc;
+  s->snpc = pc;
+  isa_exec_once(s);
+  cpu.pc = s->dnpc;
+  return;
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
-  assert(0);
+  Decode s;
+  for (;n > 0; n --) {
+    exec_once_diff(&s, cpu.pc);
+  }
+  return;
 }
+
+
+
 
 __EXPORT void difftest_raise_intr(word_t NO) {
   assert(0);
