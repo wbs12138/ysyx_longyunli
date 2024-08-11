@@ -6,7 +6,7 @@ uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 uint32_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
-uint8_t* guest_to_host_extern(uint32_t paddr)return guest_to_host(uint32_t paddr);
+uint8_t* guest_to_host_extern(uint32_t paddr){return guest_to_host(uint32_t paddr);}
 
 static inline uint32_t host_read(void *addr, int len) {
   switch (len) {
