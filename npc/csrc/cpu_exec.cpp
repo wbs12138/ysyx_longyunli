@@ -17,6 +17,10 @@ void ebreak(){
 
 CPU_state npc_cpu_state;
 
+int dnpc=0;
+
+bool ftrace1=0,ftrace2=0,ftrace3=0,ftrace4=0;
+
 uint32_t read_cpu_state_pc(){
     return npc_cpu_state.pc;
 }
@@ -106,14 +110,14 @@ void exec_cpu(uint32_t exec_time){
             break;
         }
 
-        if(dut->ftrace1)
-        trace_func_call(dut->pc, dut->dnpc, false);
-        else if(dut->ftrace2)
+        if(ftrace1)
+        trace_func_call(dut->pc, dnpc, false);
+        else if(ftrace2)
         trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
-        else if(dut->ftrace3)
-        trace_func_call(dut->pc, dut->dnpc, false);
-        else if (dut->ftrace4)
-        trace_func_call(dut->pc, dut->dnpc, true);
+        else if(ftrace3)
+        trace_func_call(dut->pc, dnpc, false);
+        else if (ftrace4)
+        trace_func_call(dut->pc, dnpc, true);
         
 
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
@@ -248,3 +252,12 @@ int check_watchpoint(){
             }
         }
 		else return 0;}return 0;}
+
+extern "C" void ftrace_update(int dnpc_v,bool trace1,bool trace2, bool trace3, bool trace4){
+    ftrace1=trace1;
+    ftrace2=trace2;
+    ftrace3=trace3;
+    ftrace4=trace4;
+    dnpc=dnpc_v;
+
+}
