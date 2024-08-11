@@ -38,7 +38,8 @@ void init_difftest(char *ref_so_file, long img_size) {
   (dlsym(handle, "difftest_exec"));
   assert(difftest_exec);
 
-  void (*difftest_init)(int) = dlsym(handle, "difftest_init");
+  void (*difftest_init)(int) = reinterpret_cast<void (*)(int)>\
+  (dlsym(handle, "difftest_init"));
   assert(difftest_init);
 
     printf("\033[1;34m[%s:%d]The difftest_so is %s\033[0m\r\n",__FILE__,__LINE__, ref_so_file);
