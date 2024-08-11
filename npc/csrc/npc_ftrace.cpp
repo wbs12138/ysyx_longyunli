@@ -325,6 +325,7 @@ static void display_section_headers(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[]) 
 }
 
 static void read_symbol_table(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[], int sym_idx) {
+  assert(0);
   Elf32_Sym sym_tbl[sh_tbl[sym_idx].sh_size];
   read_section(fd, sh_tbl[sym_idx], sym_tbl);
   
