@@ -27,7 +27,7 @@ assign ftrace4 = jalr&&(rd==5'b0)&&(imm=='b0);
 
 always@(*)
 begin
-    ftrace_update(pc_next ,{30'b0,ftrace1},{30'b0,ftrace2},{30'b0,ftrace3},{30'b0,ftrace4});
+    ftrace_update(pc_next ,{31'b0,ftrace1},{31'b0,ftrace2},{31'b0,ftrace3},{31'b0,ftrace4});
 end
 
 
