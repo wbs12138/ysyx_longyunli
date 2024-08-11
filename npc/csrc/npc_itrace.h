@@ -5,7 +5,7 @@
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <elf.h>
+//#include <elf.h>
 #include "npc_sources.h"
 
 
