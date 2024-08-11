@@ -436,12 +436,11 @@ void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
 	
 	
 	if (symbol_tbl == NULL) return;
-	
-	assert(symbol_tbl==NULL);
 
 	++call_depth;
 
 	if (call_depth <= 2) return; // ignore _trm_init & main
+	assert(0);
 
 	int i = find_symbol_func(target, true);
 	
