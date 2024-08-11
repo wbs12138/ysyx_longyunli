@@ -45,6 +45,7 @@ VM_USER_CLASSES = \
 	cpu_exec \
 	main_sim \
 	npc_expr \
+	npc_ftrace \
 	npc_init \
 	npc_itrace \
 	npc_sdb \
@@ -69,6 +70,8 @@ cpu_exec.o: ./csrc/cpu_exec.cpp
 main_sim.o: ./csrc/main_sim.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc_expr.o: ./csrc/npc_expr.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+npc_ftrace.o: ./csrc/npc_ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc_init.o: ./csrc/npc_init.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

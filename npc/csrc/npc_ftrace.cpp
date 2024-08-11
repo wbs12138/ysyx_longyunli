@@ -36,7 +36,7 @@ static void read_elf_header(int fd, Elf32_Ehdr *eh) {
 
 	  // check if is elf using fixed format of Magic: 7f 45 4c 46 ...
   if(strncmp((char*)eh->e_ident, "\177ELF", 4)) {
-		panic("malformed ELF file");
+		printf("malformed ELF file");assert(0);
 	}
 }
 
@@ -381,9 +381,8 @@ void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   printf("\033[1;34m[%s:%d]The elf_file is %s\033[0m\r\n",__FILE__,__LINE__, elf_file);
   remove(OUTPUT_FILE);
-  Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
-  Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
+  assert(fd >= 0);
   Elf32_Ehdr eh;
   read_elf_header(fd, &eh);
   display_elf_hedaer(eh);
@@ -447,7 +446,7 @@ void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
 	// 	time--;
 	// }
 
-	ftrace_write(FMT_PADDR ": %*scall [%s@" FMT_PADDR "]\n",
+	ftrace_write("0x%08" "x" ": %*scall [%s@" "0x%08" "x" "]\n",
 		pc,
 		(call_depth-3)*2, "",
 		i>=0?symbol_tbl[i].name:"???",
@@ -474,7 +473,7 @@ void trace_func_ret(uint32_t pc) {
 	// 	time--;
 	// }
 	
-	ftrace_write(FMT_PADDR ": %*sret [%s]\n",
+	ftrace_write("0x%08" "x" ": %*sret [%s]\n",
 		pc,
 		(call_depth-3)*2, "",
 		i>=0?symbol_tbl[i].name:"???"
