@@ -11,10 +11,14 @@ int main(int argc,char** argv,char** env){
 
 	char *img_file=NULL;
 	img_file=argv[1];
+
+	char *elf_file=NULL;
+	elf_file=argv[2];
     
 	init_mem();
 	init_sdb();
 	load_img(img_file);
+	parse_elf(elf_file);
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
 	else

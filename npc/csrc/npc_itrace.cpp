@@ -54,7 +54,7 @@ void display_inst() {
 
 typedef struct {
 	char name[32]; // func name, 32 should be enough
-	paddr_t addr;
+	uint32_t addr;
 	unsigned char info;
 	Elf32_Xword size;
 } SymEntry;
@@ -64,8 +64,8 @@ int symbol_tbl_size = 0;
 int call_depth = 0;
 
 typedef struct tail_rec_node {
-	paddr_t pc;
-	paddr_t depend;
+	uint32_t pc;
+	uint32_t depend;
 	struct tail_rec_node *next;
 } TailRecNode;
 TailRecNode *tail_rec_head = NULL; // linklist with head, dynamic allocated
@@ -428,6 +428,7 @@ static void init_tail_rec_list() {
 /* ELF32 as default */
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
+  printf("\033[1;34m[%s:%d]The elf_file is %s\033[0m\r\n",__FILE__,__LINE__, elf_file);
   remove(OUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
@@ -449,7 +450,7 @@ void parse_elf(const char *elf_file) {
 	close(fd);
 }
 
-static int find_symbol_func(paddr_t target, bool is_call) {
+static int find_symbol_func(uint32_t target, bool is_call) {
 	int i;
 	for (i = 0; i < symbol_tbl_size; i++) {
 		if (ELF32_ST_TYPE(symbol_tbl[i].info) == STT_FUNC) {
@@ -463,7 +464,7 @@ static int find_symbol_func(paddr_t target, bool is_call) {
 	return i<symbol_tbl_size?i:-1;
 }
 
-static void insert_tail_rec(paddr_t pc, paddr_t depend) {
+static void insert_tail_rec(uint32_t pc, uint32_t depend) {
 	TailRecNode *node = (TailRecNode *)malloc(sizeof(TailRecNode));
 	node->pc = pc;
 	node->depend = depend;
@@ -479,7 +480,7 @@ static void remove_tail_rec() {
 
 //int call_num=0;
 
-void trace_func_call(paddr_t pc, paddr_t target, bool is_tail) {
+void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
 	if (symbol_tbl == NULL) return;
 
 	++call_depth;
@@ -508,7 +509,7 @@ void trace_func_call(paddr_t pc, paddr_t target, bool is_tail) {
 	//call_num++;
 }
 
-void trace_func_ret(paddr_t pc) {
+void trace_func_ret(uint32_t pc) {
 	if (symbol_tbl == NULL) return;
 	
 	if (call_depth <= 2) return; // ignore _trm_init & main
@@ -534,7 +535,7 @@ void trace_func_ret(paddr_t pc) {
 	if (node != NULL) {
 		int depend_i = find_symbol_func(node->depend, true);
 		if (depend_i == i) {
-			paddr_t ret_target = node->pc;
+			uint32_t ret_target = node->pc;
 			remove_tail_rec();
 			trace_func_ret(ret_target);
 		}

@@ -3,5 +3,6 @@
 
 #include "npc_init.h"
 #include "npc_sdb.h"
+#include "npc_itrace.h"
 
 #endif

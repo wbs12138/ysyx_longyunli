@@ -15,6 +15,9 @@ void ebreak(){
 int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
 
+uint32_t previous_pc;
+uint32_t previous_ist;
+
 int curse ;
 vluint64_t sim_time=0;
 Vtop *dut = new Vtop;
@@ -39,11 +42,16 @@ void init_cpu(){
 		sim_time++;
 	}
 	dut->reset=0;
+    dut->eval();
+    dut->ist = pmem_read(dut->pc,4);	
+	dut->eval();
+    trace_inst(dut->pc,dut->ist);
+    previous_pc=dut->pc;
+    previous_ist=dut->ist;
 	m_trace->dump(sim_time);
 	sim_time++;
 }
     
-uint32_t previous_pc=0;
 
 void exec_cpu(uint32_t exec_time){
 	
@@ -58,10 +66,7 @@ void exec_cpu(uint32_t exec_time){
         dut->clk^=1;
         dut->eval();
 		
-		if(previous_pc!=dut->pc)
-			dut->ist = pmem_read(dut->pc,4);
-		
-		previous_pc=dut->pc;
+		dut->ist = pmem_read(dut->pc,4);
 		
 		dut->eval();
 
@@ -72,7 +77,17 @@ void exec_cpu(uint32_t exec_time){
 		if(check_watchpoint()==1)break;
 
         trace_inst(dut->pc,dut->ist);
+
+        if(dut->ftrace1)
+        trace_func_call(dut->pc, dut->dnpc, false);
+        else if(dut->ftrace2)
+        trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
+        else if(dut->trace3)
+        trace_func_call(dut->pc, dut->dnpc, false);
+        else if (dut->ftrace4)
+        trace_func_call(dut->pc, dut->dnpc, true);
         
+
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
 		
     }

@@ -33,7 +33,12 @@ module top(
   output [31:0] rf28,
   output [31:0] rf29,
   output [31:0] rf30,
-  output [31:0] rf31
+  output [31:0] rf31,
+  output ftrace1,
+  output ftrace2,
+  output ftrace3,
+  output ftrace4,
+  output [31:0] dnpc
 
             );
 
@@ -96,5 +101,16 @@ Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 
 dpi_c_ebreak inst_dpi_c_ebreak(ist);
+
+assign ftrace1 = jal&&(rd==5'b1);
+
+assign ftrace2 = (ist==32'h00008067) ;
+
+assign ftrace3 = jalr&&(rd==5'b1);
+
+assign ftrace4 = jalr&&(rd==5'b0)&&(imm=='b0);
+
+assign dnpc = pc_next ;
+
 
 endmodule
