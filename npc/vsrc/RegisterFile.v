@@ -4,41 +4,10 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   input [ADDR_WIDTH-1:0] waddr,
   input wen,
   output [DATA_WIDTH-1:0] rdata,
-  input [ADDR_WIDTH-1:0] raddr,
-  output [DATA_WIDTH-1:0] rf0,
-  output [DATA_WIDTH-1:0] rf1,
-  output [DATA_WIDTH-1:0] rf2,
-  output [DATA_WIDTH-1:0] rf3,
-  output [DATA_WIDTH-1:0] rf4,
-  output [DATA_WIDTH-1:0] rf5,
-  output [DATA_WIDTH-1:0] rf6,
-  output [DATA_WIDTH-1:0] rf7,
-  output [DATA_WIDTH-1:0] rf8,
-  output [DATA_WIDTH-1:0] rf9,
-  output [DATA_WIDTH-1:0] rf10,
-  output [DATA_WIDTH-1:0] rf11,
-  output [DATA_WIDTH-1:0] rf12,
-  output [DATA_WIDTH-1:0] rf13,
-  output [DATA_WIDTH-1:0] rf14,
-  output [DATA_WIDTH-1:0] rf15,
-  output [DATA_WIDTH-1:0] rf16,
-  output [DATA_WIDTH-1:0] rf17,
-  output [DATA_WIDTH-1:0] rf18,
-  output [DATA_WIDTH-1:0] rf19,
-  output [DATA_WIDTH-1:0] rf20,
-  output [DATA_WIDTH-1:0] rf21,
-  output [DATA_WIDTH-1:0] rf22,
-  output [DATA_WIDTH-1:0] rf23,
-  output [DATA_WIDTH-1:0] rf24,
-  output [DATA_WIDTH-1:0] rf25,
-  output [DATA_WIDTH-1:0] rf26,
-  output [DATA_WIDTH-1:0] rf27,
-  output [DATA_WIDTH-1:0] rf28,
-  output [DATA_WIDTH-1:0] rf29,
-  output [DATA_WIDTH-1:0] rf30,
-  output [DATA_WIDTH-1:0] rf31
+  input [ADDR_WIDTH-1:0] raddr
 
 );
+import "DPI-C" function void regfile_update(input int rf1,input int rf2,input int rf3,input int rf4,input int rf5,input int rf6,input int rf7,input int rf8,input int rf9,input int rf10,input int rf11,input int rf12,input int rf13,input int rf14,input int rf15,input int rf16,input int rf17,input int rf18,input int rf19,input int rf20,input int rf21,input int rf22,input int rf23,input int rf24,input int rf25,input int rf26,input int rf27,input int rf28,input int rf29,input int rf30 ,input int rf31);
 
   reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
   always @(posedge clk) begin
@@ -48,38 +17,10 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   assign rdata = (raddr=='b0) ?     'b0     :
                                     rf[raddr];
   
-  assign rf0 =32'b0;
-  assign rf1 =rf[1];
-  assign rf2 =rf[2];
-  assign rf3 =rf[3];
-  assign rf4 =rf[4];
-  assign rf5 =rf[5];
-  assign rf6 =rf[6];
-  assign rf7 =rf[7];
-  assign rf8 =rf[8];
-  assign rf9 =rf[9];
-  assign rf10=rf[10];
-  assign rf11=rf[11];
-  assign rf12=rf[12];
-  assign rf13=rf[13];
-  assign rf14=rf[14];
-  assign rf15=rf[15];
-  assign rf16=rf[16];
-  assign rf17=rf[17];
-  assign rf18=rf[18];
-  assign rf19=rf[19];
-  assign rf20=rf[20];
-  assign rf21=rf[21];
-  assign rf22=rf[22];
-  assign rf23=rf[23];
-  assign rf24=rf[24];
-  assign rf25=rf[25];
-  assign rf26=rf[26];
-  assign rf27=rf[27];
-  assign rf28=rf[28];
-  assign rf29=rf[29];
-  assign rf30=rf[30];
-  assign rf31=rf[31];
 
+  always@(*)
+  begin
+    regfile_update(rf[1],rf[2],rf[3],rf[4],rf[5],rf[6],rf[7],rf[8],rf[9],rf[10],rf[11],rf[12],rf[13],rf[14],rf[15],rf[16],rf[17],rf[18],rf[19],rf[20],rf[21],rf[22],rf[23],rf[24],rf[25],rf[26],rf[27],rf[28],rf[29],rf[30] rf[31]);
+  end
 
 endmodule

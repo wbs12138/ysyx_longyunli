@@ -21,6 +21,8 @@ int dnpc=0;
 
 int ftrace1=0,ftrace2=0,ftrace3=0,ftrace4=0;
 
+uint32_t read_reg[32];
+
 uint32_t read_cpu_state_pc(){
     return npc_cpu_state.pc;
 }
@@ -104,7 +106,7 @@ void exec_cpu(uint32_t exec_time){
 
         trace_inst(dut->pc,dut->ist);
         update_state();
-        //error_happen = difftest_step(npc_cpu_state.pc);
+        error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
             sim_time = MAX_SIM_TIME;
             break;
@@ -137,47 +139,9 @@ void exec_cpu(uint32_t exec_time){
 }
 
 
-uint32_t read_reg(int index){
-
-     if(index==0)return dut-> rf0;
-else if(index==1)return dut-> rf1;
-else if(index==2)return dut-> rf2;
-else if(index==3)return dut-> rf3;
-else if(index==4)return dut-> rf4;
-else if(index==5)return dut-> rf5;
-else if(index==6)return dut-> rf6;
-else if(index==7)return dut-> rf7;
-else if(index==8)return dut-> rf8;
-else if(index==9)return dut-> rf9;
-else if(index==10)return dut->rf10;
-else if(index==11)return dut->rf11;
-else if(index==12)return dut->rf12;
-else if(index==13)return dut->rf13;
-else if(index==14)return dut->rf14;
-else if(index==15)return dut->rf15;
-else if(index==16)return dut->rf16;
-else if(index==17)return dut->rf17;
-else if(index==18)return dut->rf18;
-else if(index==19)return dut->rf19;
-else if(index==20)return dut->rf20;
-else if(index==21)return dut->rf21;
-else if(index==22)return dut->rf22;
-else if(index==23)return dut->rf23;
-else if(index==24)return dut->rf24;
-else if(index==25)return dut->rf25;
-else if(index==26)return dut->rf26;
-else if(index==27)return dut->rf27;
-else if(index==28)return dut->rf28;
-else if(index==29)return dut->rf29;
-else if(index==30)return dut->rf30;
-else if(index==31)return dut->rf31;
-else            return 0;
-
-}
-
 void update_state(){
     for(int i=0;i<=31;i++){
-        npc_cpu_state.gpr[i]=read_reg(i);
+        npc_cpu_state.gpr[i]=read_reg[i];
     }
     npc_cpu_state.pc = dut->pc;
 }
@@ -201,7 +165,7 @@ const char *regs[] = {
 
 void isa_reg_display() {
 for(int i=0;i<32;i++){
-	printf("%d:%s\t%x\n",i,regs[i],read_reg(i));
+	printf("%d:%s\t%x\n",i,regs[i],read_reg[i]);
 }
 printf("%d:%s\t%x\n",33,"pc",dut->pc);
 
@@ -213,7 +177,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     {   
         if(strcmp(regs[i],s)==0){
             
-            return read_reg(i);
+            return read_reg[i];
         }
         else if(strcmp("pc",s)==0){
             
@@ -261,3 +225,8 @@ void ftrace_update(int dnpc_v,int trace1,int trace2, int trace3, int trace4){
     dnpc=dnpc_v;
 
 }
+
+void regfile_update(int rf1,int rf2,int rf3,int rf4,int rf5,int rf6,int rf7,int rf8,int rf9,int rf10,int rf11,int rf12,int rf13,int rf14,int rf15,int rf16,int rf17,int rf18,int rf19,int rf20,int rf21,int rf22,int rf23,int rf24,int rf25,int rf26,int rf27,int rf28,int rf29,int rf30 ,int rf31){
+read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf4;read_reg[5]= rf5;read_reg[6]= rf6;read_reg[7]= rf7;read_reg[8]= rf8;read_reg[9]= rf9;read_reg[10]= rf10;read_reg[11]= rf11;read_reg[12]= rf12;read_reg[13]= rf13;read_reg[14]= rf14;read_reg[15]= rf15;read_reg[16]= rf16;read_reg[17]= rf17;read_reg[18]= rf18;read_reg[19]= rf19;read_reg[20]= rf20;read_reg[21]= rf21;read_reg[22]= rf22;read_reg[23]= rf23;read_reg[24]= rf24;read_reg[25]= rf25;read_reg[26]= rf26;read_reg[27]= rf27;read_reg[28]= rf28;read_reg[29]= rf29;read_reg[30]= rf30 ;read_reg[31]= rf31;
+}
+
