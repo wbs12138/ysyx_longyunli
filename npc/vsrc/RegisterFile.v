@@ -49,7 +49,7 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   assign rdata = (raddr=='b0) ?     'b0     :
                                     rf[raddr];
   
-  assign rf0 =rf[0];
+  assign rf0 =32'b0;
   assign rf1 =rf[1];
   assign rf2 =rf[2];
   assign rf3 =rf[3];
