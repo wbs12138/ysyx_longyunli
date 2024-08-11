@@ -54,7 +54,7 @@ void exec_cpu(uint32_t exec_time){
 
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
-        
+        for(int edge = 0; edge <= 1; edge++){
         dut->clk^=1;
 		
 		if(previous_pc!=dut->pc)
@@ -66,7 +66,7 @@ void exec_cpu(uint32_t exec_time){
 
 		m_trace->dump(sim_time);
 
-		sim_time++;
+		sim_time++;}
 		
 		if(check_watchpoint()==1)break;
 
