@@ -31,11 +31,11 @@ void init_difftest(char *ref_so_file, long img_size) {
   assert(difftest_memcpy);
 
   difftest_regcpy = reinterpret_cast<void (*)(void*, bool)>\
-  dlsym(handle, "difftest_regcpy");
+  (dlsym(handle, "difftest_regcpy"));
   assert(difftest_regcpy);
 
   difftest_exec = reinterpret_cast<void (*)(uint64_t)>\
-  dlsym(handle, "difftest_exec");
+  (dlsym(handle, "difftest_exec"));
   assert(difftest_exec);
 
   void (*difftest_init)(int) = dlsym(handle, "difftest_init");
