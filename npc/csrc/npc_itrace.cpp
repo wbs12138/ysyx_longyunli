@@ -45,7 +45,7 @@ void display_inst() {
     p = buf;
     p += sprintf(buf, "%x:%08x\t", iringbuf[i].pc, iringbuf[i].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
-    if ((i+1)%MAX_IRINGBUF==end)puts(" --> ")else puts("     ");
+    if ((i+1)%MAX_IRINGBUF==end)puts(" --> ");else puts("     ");
     if ((i+1)%MAX_IRINGBUF==end) printf(ANSI_FG_RED);
     puts(buf);
   } while ((i = (i+1)%MAX_IRINGBUF) != end);
