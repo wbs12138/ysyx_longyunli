@@ -42,9 +42,9 @@ void display_inst() {
       msg1_over=1;
     }
     p = buf;
-    p += sprintf(buf, "%x:%x", iringbuf[i].pc, iringbuf[i].inst);assert(0);
+    p += sprintf(buf, "%x:%x", iringbuf[i].pc, iringbuf[i].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
-
+assert(0);
     if ((i+1)%MAX_IRINGBUF==end) printf(ANSI_FG_RED);
     puts(buf);
   } while ((i = (i+1)%MAX_IRINGBUF) != end);
