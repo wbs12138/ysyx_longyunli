@@ -22,7 +22,7 @@ uint32_t read_cpu_state_pc(){
 }
 
 uint32_t read_cpu_state_gpr(int ind){
-    return npc_cpu_state.gpr[i];
+    return npc_cpu_state.gpr[ind];
 }
 
 int check_watchpoint();
