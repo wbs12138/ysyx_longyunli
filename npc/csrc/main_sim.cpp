@@ -16,7 +16,7 @@ int main(int argc,char** argv,char** env){
 	elf_file=argv[2];
 
 	char *so_file=NULL;
-	elf_file=argv[4];
+	so_file=argv[4];
 
 	long img_size;
     
