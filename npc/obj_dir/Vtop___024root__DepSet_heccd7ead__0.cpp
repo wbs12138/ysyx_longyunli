@@ -172,8 +172,6 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
     }
     vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
                    : vlSelf->dnpc);
-    vlSelf->rf0 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0U];
     vlSelf->rf1 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
         [1U];
     vlSelf->rf2 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
