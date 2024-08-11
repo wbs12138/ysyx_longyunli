@@ -151,6 +151,8 @@ void Vtop___024root___eval_nba(Vtop___024root* vlSelf) {
     }
 }
 
+void Vtop___024root____Vdpiimwrap_top__DOT__inst_RegisterFile__DOT__regfile_update_TOP(IData/*31:0*/ rf1, IData/*31:0*/ rf2, IData/*31:0*/ rf3, IData/*31:0*/ rf4, IData/*31:0*/ rf5, IData/*31:0*/ rf6, IData/*31:0*/ rf7, IData/*31:0*/ rf8, IData/*31:0*/ rf9, IData/*31:0*/ rf10, IData/*31:0*/ rf11, IData/*31:0*/ rf12, IData/*31:0*/ rf13, IData/*31:0*/ rf14, IData/*31:0*/ rf15, IData/*31:0*/ rf16, IData/*31:0*/ rf17, IData/*31:0*/ rf18, IData/*31:0*/ rf19, IData/*31:0*/ rf20, IData/*31:0*/ rf21, IData/*31:0*/ rf22, IData/*31:0*/ rf23, IData/*31:0*/ rf24, IData/*31:0*/ rf25, IData/*31:0*/ rf26, IData/*31:0*/ rf27, IData/*31:0*/ rf28, IData/*31:0*/ rf29, IData/*31:0*/ rf30, IData/*31:0*/ rf31);
+
 VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -205,75 +207,76 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
         vlSelf->top__DOT__inst_RegisterFile__DOT__rf[__VdlyDim0__top__DOT__inst_RegisterFile__DOT__rf__v0] 
             = __VdlyVal__top__DOT__inst_RegisterFile__DOT__rf__v0;
     }
-    vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
-                   : vlSelf->top__DOT__pc_next);
-    vlSelf->rf1 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [1U];
-    vlSelf->rf2 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [2U];
-    vlSelf->rf3 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [3U];
-    vlSelf->rf4 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [4U];
-    vlSelf->rf5 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [5U];
-    vlSelf->rf6 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [6U];
-    vlSelf->rf7 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [7U];
-    vlSelf->rf8 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [8U];
-    vlSelf->rf9 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [9U];
-    vlSelf->rf10 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xaU];
-    vlSelf->rf11 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xbU];
-    vlSelf->rf12 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xcU];
-    vlSelf->rf13 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xdU];
-    vlSelf->rf14 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xeU];
-    vlSelf->rf15 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0xfU];
-    vlSelf->rf16 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x10U];
-    vlSelf->rf17 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x11U];
-    vlSelf->rf18 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x12U];
-    vlSelf->rf19 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x13U];
-    vlSelf->rf20 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x14U];
-    vlSelf->rf21 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x15U];
-    vlSelf->rf22 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x16U];
-    vlSelf->rf23 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x17U];
-    vlSelf->rf24 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x18U];
-    vlSelf->rf25 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x19U];
-    vlSelf->rf26 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1aU];
-    vlSelf->rf27 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1bU];
-    vlSelf->rf28 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1cU];
-    vlSelf->rf29 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1dU];
-    vlSelf->rf30 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1eU];
-    vlSelf->rf31 = vlSelf->top__DOT__inst_RegisterFile__DOT__rf
-        [0x1fU];
+    Vtop___024root____Vdpiimwrap_top__DOT__inst_RegisterFile__DOT__regfile_update_TOP(
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [1U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [2U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [3U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [4U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [5U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [6U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [7U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [8U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [9U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xaU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xbU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xcU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xdU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xeU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xfU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x10U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x11U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x12U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x13U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x14U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x15U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x16U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x17U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x18U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x19U], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1aU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1bU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1cU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1dU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1eU], 
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0x1fU]);
     vlSelf->top__DOT__rf_rdata = ((0U == (0x1fU & (vlSelf->ist 
                                                    >> 0xfU)))
                                    ? 0U : vlSelf->top__DOT__inst_RegisterFile__DOT__rf
                                   [(0x1fU & (vlSelf->ist 
                                              >> 0xfU))]);
+    vlSelf->pc = ((IData)(vlSelf->reset) ? 0x80000000U
+                   : vlSelf->top__DOT__pc_next);
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_3 
         = (vlSelf->pc + vlSelf->top__DOT__imm);
     Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ftrace__DOT__ftrace_update_TOP(

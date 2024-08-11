@@ -14,38 +14,6 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , reset{vlSymsp->TOP.reset}
     , pc{vlSymsp->TOP.pc}
     , ist{vlSymsp->TOP.ist}
-    , rf0{vlSymsp->TOP.rf0}
-    , rf1{vlSymsp->TOP.rf1}
-    , rf2{vlSymsp->TOP.rf2}
-    , rf3{vlSymsp->TOP.rf3}
-    , rf4{vlSymsp->TOP.rf4}
-    , rf5{vlSymsp->TOP.rf5}
-    , rf6{vlSymsp->TOP.rf6}
-    , rf7{vlSymsp->TOP.rf7}
-    , rf8{vlSymsp->TOP.rf8}
-    , rf9{vlSymsp->TOP.rf9}
-    , rf10{vlSymsp->TOP.rf10}
-    , rf11{vlSymsp->TOP.rf11}
-    , rf12{vlSymsp->TOP.rf12}
-    , rf13{vlSymsp->TOP.rf13}
-    , rf14{vlSymsp->TOP.rf14}
-    , rf15{vlSymsp->TOP.rf15}
-    , rf16{vlSymsp->TOP.rf16}
-    , rf17{vlSymsp->TOP.rf17}
-    , rf18{vlSymsp->TOP.rf18}
-    , rf19{vlSymsp->TOP.rf19}
-    , rf20{vlSymsp->TOP.rf20}
-    , rf21{vlSymsp->TOP.rf21}
-    , rf22{vlSymsp->TOP.rf22}
-    , rf23{vlSymsp->TOP.rf23}
-    , rf24{vlSymsp->TOP.rf24}
-    , rf25{vlSymsp->TOP.rf25}
-    , rf26{vlSymsp->TOP.rf26}
-    , rf27{vlSymsp->TOP.rf27}
-    , rf28{vlSymsp->TOP.rf28}
-    , rf29{vlSymsp->TOP.rf29}
-    , rf30{vlSymsp->TOP.rf30}
-    , rf31{vlSymsp->TOP.rf31}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context
