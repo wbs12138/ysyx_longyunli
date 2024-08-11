@@ -21,6 +21,7 @@
 #include "npc_watchpoint.h"
 #include "cpu_exec.h"
 #include "npc_init.h"
+#include "npc_itrace.h"
 
 
 void init_regex();
@@ -75,6 +76,8 @@ static int cmd_info(char *args){
         isa_reg_display();
     else if(strcmp(args, "w") == 0)
         sdb_watchpoint_display();
+    else if(strcmp(args, "t") == 0)
+        display_inst();
     return 0;
 }
 
