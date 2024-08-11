@@ -3,6 +3,7 @@
 #include "npc_expr.h"
 #include "npc_init.h"
 #include "npc_itrace.h"
+#include "npc_ftrace.h"
 #include "npc_watchpoint.h"
 #include <string.h>
 

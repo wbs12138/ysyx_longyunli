@@ -4,5 +4,6 @@
 #include "npc_init.h"
 #include "npc_sdb.h"
 #include "npc_itrace.h"
+#include "npc_ftrace.h"
 
 #endif
