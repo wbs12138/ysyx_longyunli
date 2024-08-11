@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <elf.h>
-#include <npc_sources.h>
+#include "npc_sources.h"
 
 
 void trace_inst(uint32_t pc, uint32_t inst);
