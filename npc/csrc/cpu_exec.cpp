@@ -19,7 +19,7 @@ CPU_state npc_cpu_state;
 
 int dnpc=0;
 
-bool ftrace1=0,ftrace2=0,ftrace3=0,ftrace4=0;
+int ftrace1=0,ftrace2=0,ftrace3=0,ftrace4=0;
 
 uint32_t read_cpu_state_pc(){
     return npc_cpu_state.pc;
@@ -253,7 +253,7 @@ int check_watchpoint(){
         }
 		else return 0;}return 0;}
 
-void ftrace_update(int dnpc_v,bool trace1,bool trace2, bool trace3, bool trace4){
+void ftrace_update(int dnpc_v,int trace1,int trace2, int trace3, int trace4){
     ftrace1=trace1;
     ftrace2=trace2;
     ftrace3=trace3;

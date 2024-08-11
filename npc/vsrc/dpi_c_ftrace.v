@@ -1,5 +1,5 @@
 module dpi_c_ftrace(input [31:0] ist,input [31:0] pc_next);
-import "DPI-C" function void ftrace_update(input int dnpc_v,input bool trace1,input bool trace2,input bool trace3,input bool trace4);
+import "DPI-C" function void ftrace_update(input int dnpc_v,input int trace1,input int trace2,input int trace3,input int trace4);
 
 wire [4:0] rd;
 
