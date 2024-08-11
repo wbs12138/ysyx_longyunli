@@ -5,6 +5,7 @@
 #include "npc_itrace.h"
 #include "npc_ftrace.h"
 #include "npc_watchpoint.h"
+#include "npc_difftest.h"
 #include <string.h>
 
 int ebreak_dpi=0;
@@ -13,17 +14,22 @@ void ebreak(){
 	ebreak_dpi=1;
 	return;
 }
+
 int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
+void update_state();
 
 uint32_t previous_pc;
 uint32_t previous_ist;
+
+int error_happen;
 
 int curse ;
 vluint64_t sim_time=0;
 Vtop *dut = new Vtop;
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
+    error_happen=0;
     curse=0;
 	Verilated::traceEverOn(true);
 	
@@ -47,6 +53,7 @@ void init_cpu(){
     dut->ist = pmem_read(dut->pc,4);	
 	dut->eval();
     trace_inst(dut->pc,dut->ist);
+    update_state();
     previous_pc=dut->pc;
     previous_ist=dut->ist;
 	m_trace->dump(sim_time);
@@ -78,6 +85,12 @@ void exec_cpu(uint32_t exec_time){
 		if(check_watchpoint()==1)break;
 
         trace_inst(dut->pc,dut->ist);
+        update_state();
+        error_happen = difftest_step(npc_cpu_state->pc);
+        if(error_happen){
+            sim_time = MAX_SIM_TIME;
+            break;
+        }
 
         if(dut->ftrace1)
         trace_func_call(dut->pc, dut->dnpc, false);
@@ -99,11 +112,13 @@ void exec_cpu(uint32_t exec_time){
                     return ;}
     else if(sim_time>=MAX_SIM_TIME&&curse==0){
         end_cpu();curse+=1;display_inst();
-        printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because up to the max_sim_time\033[0m\n",__FILE__,__LINE__);
+        printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because of difftest or dead loop\033[0m\n",__FILE__,__LINE__);
         printf("\033[1;32m[%s,%d]HIT BAD TRAP!\033[0m\n",__FILE__,__LINE__);
 		return ;}
     return;
 }
+
+
 uint32_t read_reg(int index){
 
      if(index==0)return dut-> rf0;
@@ -142,6 +157,12 @@ else            return 0;
 
 }
 
+void update_state(){
+    for(int i=0;i<=31;i++){
+        npc_cpu_state.gpr[i]=read_reg(i);
+    }
+    npc_cpu_state.pc = dut->pc;
+}
 	
 void end_cpu(){
 

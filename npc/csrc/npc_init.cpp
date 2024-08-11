@@ -2,10 +2,7 @@
 #include "npc_init.h"
 
 
-uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
-uint8_t* guest_to_host(uint32_t paddr) { return pmem + paddr - CONFIG_MBASE; }
-uint32_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
 static inline uint32_t host_read(void *addr, int len) {
   switch (len) {
@@ -42,10 +39,10 @@ void init_mem() {
 
 
 //static long load_img() 
-void load_img(char *img_file){
+long load_img(char *img_file){
   if (img_file == NULL) {
     printf("\033[1;31m[%s:%d]No image is given. Use the default build-in image.\033[0m\n",__FILE__,__LINE__);
-    return ;
+    return 0;
   }
 
   FILE *fp = fopen(img_file, "rb");
@@ -61,5 +58,5 @@ void load_img(char *img_file){
   assert(ret == 1);
   fclose(fp);
   printf("\033[1;34moo      o      ooooo        oooo    \no o    o      o    o      o    o   \no  o   o      o    o     o         \no   o  o      ooooo      o         \no    o o      o          o     o   \no     oo      o           ooooo    \n\033[0m\r\n");
-  return ;
+  return size;
 }

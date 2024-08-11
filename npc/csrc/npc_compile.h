@@ -5,5 +5,6 @@
 #include "npc_sdb.h"
 #include "npc_itrace.h"
 #include "npc_ftrace.h"
+#include "npc_difftest.h"
 
 #endif

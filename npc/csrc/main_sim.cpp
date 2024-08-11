@@ -14,11 +14,18 @@ int main(int argc,char** argv,char** env){
 
 	char *elf_file=NULL;
 	elf_file=argv[2];
+
+	char *so_file=NULL;
+	elf_file=argv[4];
+
+	long img_size;
     
 	init_mem();
 	init_sdb();
-	load_img(img_file);
+	image_size=load_img(img_file);
 	parse_elf(elf_file);
+	init_difftest(so_file, img_size);
+	
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
 	else

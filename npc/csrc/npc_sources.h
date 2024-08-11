@@ -27,4 +27,11 @@
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 
 
+typedef struct {
+    uint32_t gpr[32];
+    uint32_t pc;
+    
+} CPU_state;
+
+
 #endif
