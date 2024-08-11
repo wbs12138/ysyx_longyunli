@@ -2,7 +2,8 @@
 #define NPC_SOURCES_H
 
 
-
+#include <stdarg.h>
+#include <string.h>
 #include <stdlib.h>
 #include <iostream>
 #include <stdio.h>

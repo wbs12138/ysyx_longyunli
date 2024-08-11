@@ -2,6 +2,7 @@
 #include "cpu_exec.h"
 #include "npc_expr.h"
 #include "npc_init.h"
+#include "npc_itrace.h"
 #include "npc_watchpoint.h"
 #include <string.h>
 
@@ -69,17 +70,19 @@ void exec_cpu(uint32_t exec_time){
 		sim_time++;
 		
 		if(check_watchpoint()==1)break;
+
+        trace_inst(dut->pc,dut->ist);
         
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
 		
     }
-    if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;
+    if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;display_inst();
                     printf("\033[1;34m[%s,%d]Success!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n",__FILE__,__LINE__);
 					printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m",__FILE__,__LINE__);
 					printf("at pc = %x\n",dut->pc);
                     return ;}
     else if(sim_time>=MAX_SIM_TIME&&curse==0){
-        end_cpu();curse+=1;
+        end_cpu();curse+=1;display_inst();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because up to the max_sim_time\033[0m\n",__FILE__,__LINE__);
         printf("\033[1;32m[%s,%d]HIT BAD TRAP!\033[0m\n",__FILE__,__LINE__);
 		return ;}
