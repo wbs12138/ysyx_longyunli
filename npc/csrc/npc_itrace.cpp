@@ -1,5 +1,6 @@
 #include "npc_itrace.h"
 #include "npc_disasm.h"
+#include <elf.h>
 
 #define MAX_IRINGBUF 16
 #define ANSI_FG_RED     "\33[1;31m"
