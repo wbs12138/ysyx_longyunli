@@ -56,6 +56,7 @@ void exec_cpu(uint32_t exec_time){
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
         for(int edge = 0; edge <= 1; edge++){
         dut->clk^=1;
+        dut->eval();
 		
 		if(previous_pc!=dut->pc)
 			dut->ist = pmem_read(dut->pc,4);
