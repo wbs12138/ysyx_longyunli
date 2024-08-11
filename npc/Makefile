@@ -25,6 +25,7 @@ VSRCS += $(shell find $(abspath ./vsrc) -name "*.sv")
 CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
 CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp
+SO_FILE = /home/wangbaosen/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
 
 # rules for NVBoard
 include $(NVBOARD_HOME)/scripts/nvboard.mk
@@ -52,7 +53,7 @@ clean:
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) -LDFLAGS '-lreadline $(shell llvm-config --libs)'
-	obj_dir/V$(TOPNAME) $(IMG) $(ELF) $(ARGS)
+	obj_dir/V$(TOPNAME) $(IMG) $(ELF) $(ARGS) $(SO_FILE)
 
 wave:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
