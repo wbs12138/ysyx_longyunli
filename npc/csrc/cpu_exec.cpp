@@ -15,6 +15,16 @@ void ebreak(){
 	return;
 }
 
+CPU_state npc_cpu_state;
+
+uint32_t read_cpu_state_pc(){
+    return npc_cpu_state.pc;
+}
+
+uint32_t read_cpu_state_gpr(int ind){
+    return npc_cpu_state.gpr[i];
+}
+
 int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
 void update_state();

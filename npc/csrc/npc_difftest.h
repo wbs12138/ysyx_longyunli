@@ -3,6 +3,7 @@
 
 #include "npc_sources.h"
 #include "npc_init.h"
+#include "cpu_exec.h"
 #include "npc_itrace.h"
 #include "cpu_exec.h"
 #include <dlfcn.h>

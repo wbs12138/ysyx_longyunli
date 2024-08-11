@@ -11,5 +11,8 @@ void isa_reg_display();
 
 uint32_t isa_reg_str2val(const char *s, bool *success);
 
+uint32_t read_cpu_state_pc();
+
+uint32_t read_cpu_state_gpr(int ind);
 
 #endif
