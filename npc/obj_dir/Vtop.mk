@@ -43,8 +43,8 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	cpu_exec \
-	difftest \
 	main_sim \
+	npc_difftest \
 	npc_expr \
 	npc_ftrace \
 	npc_init \
@@ -68,9 +68,9 @@ VPATH += $(VM_USER_DIR)
 
 cpu_exec.o: ./csrc/cpu_exec.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-difftest.o: ./csrc/difftest.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main_sim.o: ./csrc/main_sim.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+npc_difftest.o: ./csrc/npc_difftest.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc_expr.o: ./csrc/npc_expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
