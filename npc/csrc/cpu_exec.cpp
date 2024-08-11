@@ -90,7 +90,10 @@ void exec_cpu(uint32_t exec_time){
 
 		m_trace->dump(sim_time);
 
-		sim_time++;}
+		sim_time++;
+        
+        m_trace->dump(sim_time);
+        }
 		
 		if(check_watchpoint()==1)break;
 
