@@ -24,7 +24,7 @@ VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 VSRCS += $(shell find $(abspath ./vsrc) -name "*.sv")
 CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
-CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp
+CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp ./csrc/difftest.cpp
 SO_FILE = /home/wangbaosen/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
 
 # rules for NVBoard
