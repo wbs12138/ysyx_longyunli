@@ -91,8 +91,6 @@ void exec_cpu(uint32_t exec_time){
 		m_trace->dump(sim_time);
 
 		sim_time++;
-
-        dut->eval();
         
         m_trace->dump(sim_time);
 
