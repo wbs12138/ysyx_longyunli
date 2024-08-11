@@ -352,6 +352,7 @@ static void read_symbol_table(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[], int sy
 	// read
 	symbol_tbl_size = sym_count;
 	symbol_tbl = (SymEntry*)malloc(sizeof(SymEntry) * sym_count);
+	assert(symbol_tbl!=NULL);
   for (int i = 0; i < sym_count; i++) {
     symbol_tbl[i].addr = sym_tbl[i].st_value;
 		symbol_tbl[i].info = sym_tbl[i].st_info;
@@ -431,9 +432,7 @@ static void remove_tail_rec() {
 //int call_num=0;
 
 void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
-	
-	
-	if (symbol_tbl == NULL) return;printf("here");
+	if (symbol_tbl == NULL) return;
 
 	++call_depth;
 
