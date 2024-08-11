@@ -51,12 +51,12 @@ void init_cpu(){
 	sim_time++;
 	m_trace->dump(sim_time);
 	while(reset_clk_time-->0){
-		dut->clk = 0;dut->eval();
+		dut->clk = 0;dut->eval();sim_time++;
 		m_trace->dump(sim_time);
-		sim_time++;
-		dut->clk = 1;dut->eval();
+		
+		dut->clk = 1;dut->eval();sim_time++;
 		m_trace->dump(sim_time);
-		sim_time++;
+		
 	}
 	dut->reset=0;
     dut->eval();
@@ -65,9 +65,9 @@ void init_cpu(){
     trace_inst(dut->pc,dut->ist);
     update_state();
     previous_pc=dut->pc;
-    previous_ist=dut->ist;
+    previous_ist=dut->ist;sim_time++;
 	m_trace->dump(sim_time);
-	sim_time++;
+	
 }
     
 
@@ -86,13 +86,13 @@ void exec_cpu(uint32_t exec_time){
 		
 		dut->ist = pmem_read(dut->pc,4);
 		
-		dut->eval();
+		dut->eval();sim_time++;
 
 		m_trace->dump(sim_time);
 
-		sim_time++;
+		
         
-        m_trace->dump(sim_time);
+        //m_trace->dump(sim_time);
 
         }
 		
