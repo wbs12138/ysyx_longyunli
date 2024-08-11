@@ -431,9 +431,9 @@ static void remove_tail_rec() {
 //int call_num=0;
 
 void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
-	printf("here");
 	
-	if (symbol_tbl == NULL) return;
+	
+	if (symbol_tbl == NULL) return;printf("here");
 
 	++call_depth;
 
