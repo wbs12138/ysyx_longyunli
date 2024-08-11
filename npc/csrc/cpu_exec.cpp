@@ -41,7 +41,6 @@ void init_cpu(){
 	dut->reset=0;
 	m_trace->dump(sim_time);
 	sim_time++;
-	exec_cpu(1);
 }
     
 uint32_t previous_pc=0;
