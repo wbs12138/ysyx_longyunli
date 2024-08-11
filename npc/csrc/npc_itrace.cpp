@@ -1,4 +1,4 @@
-#include "itrace.h"
+#include "npc_itrace.h"
 #include "npc_disasm.h"
 
 #define MAX_IRINGBUF 16
