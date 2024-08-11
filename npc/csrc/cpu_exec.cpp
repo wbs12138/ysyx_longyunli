@@ -110,9 +110,9 @@ void exec_cpu(uint32_t exec_time){
             break;
         }
 
-        if(ftrace1)
-        trace_func_call(dut->pc, dnpc, false);
-        else if(ftrace2)
+        if(ftrace1){
+        trace_func_call(dut->pc, dnpc, false);printf("here\n");
+        }else if(ftrace2)
         trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
         else if(ftrace3)
         trace_func_call(dut->pc, dnpc, false);
