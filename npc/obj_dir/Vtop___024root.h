@@ -16,6 +16,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
+    VL_OUT8(ftrace1,0,0);
+    VL_OUT8(ftrace2,0,0);
+    VL_OUT8(ftrace3,0,0);
+    VL_OUT8(ftrace4,0,0);
     CData/*0:0*/ top__DOT__addi;
     CData/*0:0*/ top__DOT__jalr;
     CData/*0:0*/ top__DOT__inst_u;
@@ -57,9 +61,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     VL_OUT(rf29,31,0);
     VL_OUT(rf30,31,0);
     VL_OUT(rf31,31,0);
+    VL_OUT(dnpc,31,0);
     IData/*31:0*/ top__DOT__imm;
     IData/*31:0*/ top__DOT__rf_rdata;
-    IData/*31:0*/ top__DOT__pc_next;
     IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_3;
     IData/*31:0*/ __VactIterCount;
     VlUnpacked<IData/*31:0*/, 32> top__DOT__inst_RegisterFile__DOT__rf;

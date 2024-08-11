@@ -12,6 +12,10 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtop__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset{vlSymsp->TOP.reset}
+    , ftrace1{vlSymsp->TOP.ftrace1}
+    , ftrace2{vlSymsp->TOP.ftrace2}
+    , ftrace3{vlSymsp->TOP.ftrace3}
+    , ftrace4{vlSymsp->TOP.ftrace4}
     , pc{vlSymsp->TOP.pc}
     , ist{vlSymsp->TOP.ist}
     , rf0{vlSymsp->TOP.rf0}
@@ -46,6 +50,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , rf29{vlSymsp->TOP.rf29}
     , rf30{vlSymsp->TOP.rf30}
     , rf31{vlSymsp->TOP.rf31}
+    , dnpc{vlSymsp->TOP.dnpc}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

@@ -82,7 +82,7 @@ void exec_cpu(uint32_t exec_time){
         trace_func_call(dut->pc, dut->dnpc, false);
         else if(dut->ftrace2)
         trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
-        else if(dut->trace3)
+        else if(dut->ftrace3)
         trace_func_call(dut->pc, dut->dnpc, false);
         else if (dut->ftrace4)
         trace_func_call(dut->pc, dut->dnpc, true);
