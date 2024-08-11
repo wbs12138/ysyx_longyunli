@@ -33,6 +33,8 @@ typedef struct {
     
 } CPU_state;
 
+CPU_state npc_cpu_state;
+
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 
 
