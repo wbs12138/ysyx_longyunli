@@ -325,7 +325,6 @@ static void display_section_headers(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[]) 
 }
 
 static void read_symbol_table(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[], int sym_idx) {
-  assert(0);
   Elf32_Sym sym_tbl[sh_tbl[sym_idx].sh_size];
   read_section(fd, sh_tbl[sym_idx], sym_tbl);
   
@@ -353,6 +352,7 @@ static void read_symbol_table(int fd, Elf32_Ehdr eh, Elf32_Shdr sh_tbl[], int sy
 	// read
 	symbol_tbl_size = sym_count;
 	symbol_tbl = (SymEntry*)malloc(sizeof(SymEntry) * sym_count);
+	assert(0);
 	assert(symbol_tbl!=NULL);
   for (int i = 0; i < sym_count; i++) {
     symbol_tbl[i].addr = sym_tbl[i].st_value;
