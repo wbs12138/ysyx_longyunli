@@ -18,6 +18,8 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/dpi_c_ebreak.v:5:30
     extern void ebreak();
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/dpi_c_ftrace.v:2:30
+    extern void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);
 
 #ifdef __cplusplus
 }
