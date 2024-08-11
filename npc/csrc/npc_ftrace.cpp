@@ -435,7 +435,9 @@ static void remove_tail_rec() {
 void trace_func_call(uint32_t pc, uint32_t target, bool is_tail) {
 	
 	
-	if (symbol_tbl == NULL){ assert(symbol_tbl!=NULL);return;}
+	if (symbol_tbl == NULL) return;
+	
+	assert(symbol_tbl==NULL);
 
 	++call_depth;
 
