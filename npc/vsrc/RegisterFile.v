@@ -20,7 +20,7 @@ import "DPI-C" function void regfile_update(input int rf1,input int rf2,input in
 
   always@(*)
   begin
-    regfile_update(rf[1],rf[2],rf[3],rf[4],rf[5],rf[6],rf[7],rf[8],rf[9],rf[10],rf[11],rf[12],rf[13],rf[14],rf[15],rf[16],rf[17],rf[18],rf[19],rf[20],rf[21],rf[22],rf[23],rf[24],rf[25],rf[26],rf[27],rf[28],rf[29],rf[30] rf[31]);
+    regfile_update(rf[1],rf[2],rf[3],rf[4],rf[5],rf[6],rf[7],rf[8],rf[9],rf[10],rf[11],rf[12],rf[13],rf[14],rf[15],rf[16],rf[17],rf[18],rf[19],rf[20],rf[21],rf[22],rf[23],rf[24],rf[25],rf[26],rf[27],rf[28],rf[29],rf[30],rf[31]);
   end
 
 endmodule
