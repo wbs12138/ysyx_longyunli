@@ -86,21 +86,6 @@ void exec_cpu(uint32_t exec_time){
 
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
-        // for(int edge = 0; edge <= 1; edge++){
-        // dut->clk^=1;
-        // //dut->eval();
-		
-		// dut->ist = pmem_read(dut->pc,4);
-		
-		// dut->eval();
-
-        // sim_time++;
-		// m_trace->dump(sim_time);
-
-        // sim_time++;
-        // m_trace->dump(sim_time);
-
-        // }
         dut->ist = pmem_read(dut->pc,4);
 		dut->eval();
         sim_time+=4;
@@ -125,13 +110,13 @@ void exec_cpu(uint32_t exec_time){
         }
 
         if(ftrace1)
-        trace_func_call(pc_pre, dnpc, false);
+        trace_func_call(dut->pc, dnpc, false);
         else if(ftrace2)
-        trace_func_ret(pc_pre); // ret -> jalr x0, 0(x1)
+        trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
         else if(ftrace3)
-        trace_func_call(pc_pre, dnpc, false);
+        trace_func_call(dut->pc, dnpc, false);
         else if (ftrace4)
-        trace_func_call(pc_pre, dnpc, true);
+        trace_func_call(dut->pc, dnpc, true);
         
         pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
