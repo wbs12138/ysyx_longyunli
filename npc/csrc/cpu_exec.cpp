@@ -92,13 +92,13 @@ void exec_cpu(uint32_t exec_time){
 		
 		dut->ist = pmem_read(dut->pc,4);
 		
-		dut->eval();sim_time++;
+		dut->eval();
 
+        sim_time++;
 		m_trace->dump(sim_time);
 
         sim_time++;
-
-		m_trace->dump(sim_time);
+        m_trace->dump(sim_time);
 
         }
 		
@@ -228,5 +228,22 @@ void ftrace_update(int dnpc_v,int trace1,int trace2, int trace3, int trace4){
 
 void regfile_update(int rf1,int rf2,int rf3,int rf4,int rf5,int rf6,int rf7,int rf8,int rf9,int rf10,int rf11,int rf12,int rf13,int rf14,int rf15,int rf16,int rf17,int rf18,int rf19,int rf20,int rf21,int rf22,int rf23,int rf24,int rf25,int rf26,int rf27,int rf28,int rf29,int rf30 ,int rf31){
 read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf4;read_reg[5]= rf5;read_reg[6]= rf6;read_reg[7]= rf7;read_reg[8]= rf8;read_reg[9]= rf9;read_reg[10]= rf10;read_reg[11]= rf11;read_reg[12]= rf12;read_reg[13]= rf13;read_reg[14]= rf14;read_reg[15]= rf15;read_reg[16]= rf16;read_reg[17]= rf17;read_reg[18]= rf18;read_reg[19]= rf19;read_reg[20]= rf20;read_reg[21]= rf21;read_reg[22]= rf22;read_reg[23]= rf23;read_reg[24]= rf24;read_reg[25]= rf25;read_reg[26]= rf26;read_reg[27]= rf27;read_reg[28]= rf28;read_reg[29]= rf29;read_reg[30]= rf30 ;read_reg[31]= rf31;
+}
+
+int npc_pmem_read(int raddr) {
+  return pmem_read(raddr&~0x3u,4);
+}
+void npc_pmem_write(int waddr, int wdata, char wmask) {
+    if(wmask==0x1)
+    pmem_write(waddr,1,wdata);
+    else if(wmask==0x3)
+    pmem_write(waddr,2,wdata);
+    else if(wmask==0x15)
+    pmem_write(waddr,4,wdata);
+    else assert(0);
+
+  // 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`
+  // `wmask`中每比特表示`wdata`中1个字节的掩码,
+  // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
 }
 
