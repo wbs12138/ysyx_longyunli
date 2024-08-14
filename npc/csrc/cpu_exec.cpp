@@ -114,7 +114,7 @@ void exec_cpu(uint32_t exec_time){
         trace_memory_w=0;
         
         update_state();
-        //error_happen = difftest_step(npc_cpu_state.pc);
+        error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
             sim_time = MAX_SIM_TIME;
             break;
