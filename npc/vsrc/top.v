@@ -194,7 +194,7 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sw ? 4'b1111 :
                     4'b0;
 
-always @(*) begin
+always @(negedge clk) begin
   if (mem_valid)  // 有读写请求时
     rdata_mem = npc_pmem_read(mem_raddr);  
   else 
