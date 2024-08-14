@@ -131,7 +131,7 @@ assign rf_wdata = lui   ?   imm     :
                   andi  ?   rf_rdata1 & imm :
                   slli  ?   rf_rdata1 <<imm :
                   srli  ?   rf_rdata1 >>imm :
-                  srai  ?   rf_rdata1 >>>imm:
+                  srai  ?   rf_rdata1 >>>imm[4:0]:
                   add   ?   rf_rdata1 + rf_rdata2:
                   sub   ?   rf_rdata1 - rf_rdata2:
                   sll   ?   rf_rdata1 <<rf_rdata2:

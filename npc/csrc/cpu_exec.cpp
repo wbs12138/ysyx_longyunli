@@ -111,8 +111,6 @@ void exec_cpu(uint32_t exec_time){
         if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
         trace_memory_r=0;
         trace_memory_w=0;
-        printf("ist=%x\n",dut->ist);
-        printf("\n");
         //printf("0x80000328=%x\n",pmem_read(0x80000328,4));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
