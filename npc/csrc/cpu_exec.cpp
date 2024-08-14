@@ -102,6 +102,7 @@ void exec_cpu(uint32_t exec_time){
 
         trace_inst(pc_pre,dut->ist);
         
+        
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
