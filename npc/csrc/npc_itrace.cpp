@@ -13,11 +13,11 @@ typedef struct {
 } ItraceNode;
 
 typedef struct {
-  word_t pc;
+  uint32_t pc;
   uint32_t inst;
-  paddr_t addr;
+  uint32_t addr;
   int len;
-  word_t data; 
+  uint32_t data; 
   int wr;
 } MtraceNode;
 
