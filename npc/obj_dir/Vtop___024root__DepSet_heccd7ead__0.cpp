@@ -41,7 +41,7 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                  & vlSelf->ist)));
     vlSelf->top__DOT__andd = (IData)((0x7033U == (0xfe00707fU 
                                                   & vlSelf->ist)));
-    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_36 
+    vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35 
         = (IData)((0x1000U == (0xfe007000U & vlSelf->ist)));
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_13 
         = (IData)((0x5013U == (0x707fU & vlSelf->ist)));
@@ -120,9 +120,9 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     vlSelf->top__DOT__lhu = (IData)((0x5003U == (0x707fU 
                                                  & vlSelf->ist)));
     vlSelf->top__DOT__slli = ((0x13U == (0x7fU & vlSelf->ist)) 
-                              & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_36));
+                              & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35));
     vlSelf->top__DOT__sll = ((0x33U == (0x7fU & vlSelf->ist)) 
-                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_36));
+                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35));
     vlSelf->top__DOT__srli = ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_13) 
                               & (0U == (vlSelf->ist 
                                         >> 0x19U)));
