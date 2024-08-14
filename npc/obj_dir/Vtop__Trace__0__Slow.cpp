@@ -243,7 +243,10 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                                  | ((IData)(vlSelf->top__DOT__sltiu) 
                                                     | ((IData)(vlSelf->top__DOT__xori) 
                                                        | ((IData)(vlSelf->top__DOT__ori) 
-                                                          | (IData)(vlSelf->top__DOT__andi))))))))))))));
+                                                          | ((IData)(vlSelf->top__DOT__andi) 
+                                                             | ((IData)(vlSelf->top__DOT__srli) 
+                                                                | ((IData)(vlSelf->top__DOT__slli) 
+                                                                   | (IData)(vlSelf->top__DOT__srai)))))))))))))))));
     bufp->fullBit(oldp+36,(((IData)(vlSelf->top__DOT__beq) 
                             | ((IData)(vlSelf->top__DOT__bne) 
                                | ((IData)(vlSelf->top__DOT__blt) 
