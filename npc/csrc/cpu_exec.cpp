@@ -66,9 +66,9 @@ void init_cpu(){
 		
 	}
 	dut->reset=0;
-    dut->eval();
+    dut->eval();assert(0);
     dut->ist = pmem_read(dut->pc,4);	
-    assert(0);
+    
 	dut->eval();
     trace_inst(dut->pc,dut->ist);
     update_state();
