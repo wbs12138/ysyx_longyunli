@@ -141,7 +141,7 @@ void exec_cpu(uint32_t exec_time){
         end_cpu();curse+=1;//display_inst();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because of difftest or dead loop\033[0m\n",__FILE__,__LINE__);
         printf("\033[1;31m[%s,%d]HIT BAD TRAP!totalsteps=%d,sim_time=%ld\033[0m\n",__FILE__,__LINE__,total_steps,sim_time);
-		return ;}
+		return -1;}
     return;
 }
 
