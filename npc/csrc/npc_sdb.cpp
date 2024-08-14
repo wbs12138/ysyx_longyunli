@@ -76,8 +76,8 @@ static int cmd_info(char *args){
         isa_reg_display();
     else if(strcmp(args, "w") == 0)
         sdb_watchpoint_display();
-    else if(strcmp(args, "t") == 0)
-        display_inst();
+    else if(strcmp(args, "t") == 0){
+        display_inst();display_memory();}
     return 0;
 }
 
