@@ -173,6 +173,7 @@ static int cmd_help(char *args) {
 
 void sdb_main_loop(int is_batch_mode) {
   init_cpu();
+  assert(0);
   if (is_batch_mode) {  
     cmd_c(NULL);
     return;
