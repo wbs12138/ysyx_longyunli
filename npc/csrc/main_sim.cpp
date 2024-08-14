@@ -27,6 +27,7 @@ int main(int argc,char** argv,char** env){
 	
 
 	parse_elf(elf_file);
+	printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
 	init_difftest(so_file, img_size);
 
 	if(strcmp(argv[3],"is_batch_mode")==0)
