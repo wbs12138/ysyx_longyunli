@@ -30,8 +30,8 @@ int main(int argc,char** argv,char** env){
 
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
-	else{assert(0);
-		sdb_main_loop(0);
+	else{
+		sdb_main_loop(0);assert(0);
 	}
 
 	
