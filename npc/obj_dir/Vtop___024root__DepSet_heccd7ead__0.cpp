@@ -419,7 +419,7 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                      : 
                                                     ((IData)(vlSelf->top__DOT__lbu)
                                                       ? 
-                                                     VL_SHIFTR_III(32,32,32, vlSelf->top__DOT__rdata_mem, 0x19U)
+                                                     VL_SHIFTR_III(32,32,32, vlSelf->top__DOT__rdata_mem, 0x18U)
                                                       : 
                                                      ((IData)(vlSelf->top__DOT__lhu)
                                                        ? (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34)
@@ -910,7 +910,7 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                      : 
                                                     ((IData)(vlSelf->top__DOT__lbu)
                                                       ? 
-                                                     VL_SHIFTR_III(32,32,32, vlSelf->top__DOT__rdata_mem, 0x19U)
+                                                     VL_SHIFTR_III(32,32,32, vlSelf->top__DOT__rdata_mem, 0x18U)
                                                       : 
                                                      ((IData)(vlSelf->top__DOT__lhu)
                                                        ? (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34)

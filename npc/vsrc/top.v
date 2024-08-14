@@ -121,7 +121,7 @@ assign rf_wdata = lui   ?   imm     :
                   lb    ?   {{24{rdata_mem[7]}},rdata_mem[7:0]} :
                   lh    ?   {{16{rdata_mem[15]}},rdata_mem[15:0]} :
                   lw    ?   rdata_mem:
-                  lbu   ?   {24'b0,rdata_mem[31:24]} :
+                  lbu   ?   {24'b0,rdata_mem[7:0]} :
                   lhu   ?   {16'b0,rdata_mem[15:0]} :
                   addi  ?   rf_rdata1 + imm :
                   (slti&&(((rf_rdata1[31]==1)&&(imm[31]==0))||((rf_rdata1[31]==imm[31])&&(rf_rdata1[30:0]<imm[30:0]))))  ?   32'b1:
