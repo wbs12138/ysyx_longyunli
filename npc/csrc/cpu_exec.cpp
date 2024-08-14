@@ -104,7 +104,6 @@ void exec_cpu(uint32_t exec_time){
         dut->ist = pmem_read(dut->pc,4);
 		dut->eval();
         sim_time+=3;
-        dut->eval();
         m_trace->dump(sim_time);
         dut->clk=0;
         dut->eval();
