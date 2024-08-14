@@ -115,26 +115,21 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
     bufp->chgIData(oldp+69,(vlSelf->ist),32);
     bufp->chgBit(oldp+70,(vlSelf->mem_valid));
     bufp->chgIData(oldp+71,(vlSelf->mem_raddr),32);
-    bufp->chgCData(oldp+72,((0x7fU & vlSelf->ist)),7);
-    bufp->chgCData(oldp+73,((vlSelf->ist >> 0x19U)),7);
-    bufp->chgCData(oldp+74,((7U & (vlSelf->ist >> 0xcU))),3);
-    bufp->chgBit(oldp+75,((0x37U == (0x7fU & vlSelf->ist))));
-    bufp->chgBit(oldp+76,((0x17U == (0x7fU & vlSelf->ist))));
-    bufp->chgBit(oldp+77,((0x6fU == (0x7fU & vlSelf->ist))));
-    bufp->chgBit(oldp+78,((IData)((0x23U == (0x707fU 
+    bufp->chgBit(oldp+72,(vlSelf->mem_wen_dg));
+    bufp->chgCData(oldp+73,((0x7fU & vlSelf->ist)),7);
+    bufp->chgCData(oldp+74,((vlSelf->ist >> 0x19U)),7);
+    bufp->chgCData(oldp+75,((7U & (vlSelf->ist >> 0xcU))),3);
+    bufp->chgBit(oldp+76,((0x37U == (0x7fU & vlSelf->ist))));
+    bufp->chgBit(oldp+77,((0x17U == (0x7fU & vlSelf->ist))));
+    bufp->chgBit(oldp+78,((0x6fU == (0x7fU & vlSelf->ist))));
+    bufp->chgBit(oldp+79,((IData)((0x23U == (0x707fU 
                                              & vlSelf->ist)))));
-    bufp->chgBit(oldp+79,((IData)((0x1023U == (0x707fU 
+    bufp->chgBit(oldp+80,((IData)((0x1023U == (0x707fU 
                                                & vlSelf->ist)))));
-    bufp->chgBit(oldp+80,((IData)((0x2023U == (0x707fU 
+    bufp->chgBit(oldp+81,((IData)((0x2023U == (0x707fU 
                                                & vlSelf->ist)))));
-    bufp->chgBit(oldp+81,(((0x17U == (0x7fU & vlSelf->ist)) 
+    bufp->chgBit(oldp+82,(((0x17U == (0x7fU & vlSelf->ist)) 
                            | (0x37U == (0x7fU & vlSelf->ist)))));
-    bufp->chgBit(oldp+82,(((IData)((0x23U == (0x707fU 
-                                              & vlSelf->ist))) 
-                           | ((IData)((0x1023U == (0x707fU 
-                                                   & vlSelf->ist))) 
-                              | (IData)((0x2023U == 
-                                         (0x707fU & vlSelf->ist)))))));
     bufp->chgCData(oldp+83,((0x1fU & (vlSelf->ist >> 0xfU))),5);
     bufp->chgCData(oldp+84,((0x1fU & (vlSelf->ist >> 0x14U))),5);
     bufp->chgCData(oldp+85,((0x1fU & (vlSelf->ist >> 7U))),5);

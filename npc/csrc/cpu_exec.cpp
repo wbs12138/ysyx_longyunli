@@ -241,7 +241,7 @@ int npc_pmem_read(int raddr) {
     return 0;
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
-    printf("fucking write at pc=%x\n",dut->pc);
+    printf("fucking write at pc=%x,mem_wen_dg=%u\n",dut->pc,dut->mem_wen_dg);
     if(wmask==1)
     pmem_write(waddr,1,wdata);
     else if(wmask==3)

@@ -13,6 +13,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clk{vlSymsp->TOP.clk}
     , reset{vlSymsp->TOP.reset}
     , mem_valid{vlSymsp->TOP.mem_valid}
+    , mem_wen_dg{vlSymsp->TOP.mem_wen_dg}
     , pc{vlSymsp->TOP.pc}
     , ist{vlSymsp->TOP.ist}
     , mem_raddr{vlSymsp->TOP.mem_raddr}
