@@ -56,6 +56,7 @@ void init_cpu(){
 	dut->reset=1;
 	sim_time++;
 	m_trace->dump(sim_time);
+    assert(0);
 	while(reset_clk_time-->0){
 		dut->clk = 0;dut->eval();sim_time++;
 		m_trace->dump(sim_time);
@@ -73,7 +74,7 @@ void init_cpu(){
     previous_pc=dut->pc;
     previous_ist=dut->ist;sim_time++;
 	m_trace->dump(sim_time);
-    assert(0);
+    
 	
 }
     
