@@ -238,7 +238,7 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    if(dut->mem_valid){trace_memory_r=1;m_raddr=(uint32_t)raddr;printf("ist==%x,raddr=%x\n",dut->pc,m_raddr);
+    if(dut->mem_valid && dut->clk==0){trace_memory_r=1;m_raddr=(uint32_t)raddr;printf("ist==%x,raddr=%x\n",dut->pc,m_raddr);
   return pmem_read(m_raddr,4);
     }else
     return 0;
