@@ -58,7 +58,7 @@ void init_cpu(){
 	m_trace->dump(sim_time);
     
 	while(reset_clk_time-->0){
-		dut->clk = 0;dut->eval();sim_time++;
+		dut->clk = 0;dut->eval();assert(0);sim_time++;
 		m_trace->dump(sim_time);
 		
 		dut->clk = 1;dut->eval();sim_time++;
@@ -234,11 +234,9 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    assert(0);
   return pmem_read(raddr&~0x3u,4);
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
-    assert(0);
     if(wmask==0x1)
     pmem_write(waddr,1,wdata);
     else if(wmask==0x3)
