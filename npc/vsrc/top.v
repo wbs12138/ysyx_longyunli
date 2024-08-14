@@ -202,7 +202,7 @@ always @(*) begin
   
 end
 
-always@(*)begin
+always@(posedege clk)begin
   if(mem_wen)
     npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
 end
