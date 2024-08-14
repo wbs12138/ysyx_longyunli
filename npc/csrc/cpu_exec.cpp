@@ -121,13 +121,13 @@ void exec_cpu(uint32_t exec_time){
         }
 
         if(ftrace1){printf("pc=%x,npc=%x\n",dut->pc,dnpc);
-        trace_func_call(dut->pc, dnpc, false);}
+        trace_func_call(pc_pre, dut->pc, false);}
         else if(ftrace2)
-        trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
+        trace_func_ret(pc_pre); // ret -> jalr x0, 0(x1)
         else if(ftrace3)
-        trace_func_call(dut->pc, dnpc, false);
+        trace_func_call(pc_pre, dut->pc, false);
         else if (ftrace4)
-        trace_func_call(dut->pc, dnpc, true);
+        trace_func_call(pc_pre, dut->pc, true);
         
         pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
