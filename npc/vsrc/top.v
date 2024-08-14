@@ -1,7 +1,8 @@
 module top(
     input clk,reset,
     output reg [31:0] pc,
-    input [31:0] ist
+    input [31:0] ist,
+    output mem_valid
 
 
             );
@@ -160,7 +161,7 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
 Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 
-wire mem_valid;
+//wire mem_valid;
 
 wire mem_wen;
 
