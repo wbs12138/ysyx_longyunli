@@ -70,6 +70,7 @@ void init_cpu(){
 	dut->eval();
     pc_pre=dut->pc;
     update_state();
+    sim_time+=1;
 	m_trace->dump(sim_time);
     
 	
