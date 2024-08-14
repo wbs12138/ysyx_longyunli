@@ -112,6 +112,8 @@ void exec_cpu(uint32_t exec_time){
         trace_memory_r=0;
         trace_memory_w=0;
         printf("fucking=%x\n",pmem_read(0x80000328,4));
+        printf("fucking=%x\n",pmem_read(0x80000328,2));
+        printf("fucking=%x\n",pmem_read(0x80000328,1));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
