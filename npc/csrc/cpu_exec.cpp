@@ -234,6 +234,7 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
+    assert(0);
   return pmem_read(raddr&~0x3u,4);
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
