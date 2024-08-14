@@ -193,14 +193,16 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sh ? 4'b0011 :
                     sw ? 4'b1111 :
                     4'b0;
-
+wire rdata_mem1;
 always @(*) begin
   if (mem_valid)  // 有读写请求时
-    rdata_mem = npc_pmem_read(mem_raddr);  
+    rdata_mem1 = npc_pmem_read(mem_raddr);  
   else 
     rdata_mem = 0;
   
 end
+
+assign rdata_mem = {rdata_mem1[7:0],rdata_mem1[15:8],rdata_mem1[23:16],rdata_mem1[31:24]};
 
 always@(posedge clk)begin
   if(mem_wen)

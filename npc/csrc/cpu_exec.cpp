@@ -105,7 +105,6 @@ void exec_cpu(uint32_t exec_time){
         total_steps+=1;
 
 		if(check_watchpoint()==1)break;
-        printf("%x\n",pmem_read(0x800002ce,4));
         trace_inst(pc_pre,dut->ist);
 
         if(trace_memory_w)trace_memory(m_waddr,m_len,m_wdata,1);
