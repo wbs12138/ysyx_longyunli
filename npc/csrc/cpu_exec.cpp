@@ -103,7 +103,7 @@ void exec_cpu(uint32_t exec_time){
         // }
         dut->ist = pmem_read(dut->pc,4);
 		dut->eval();
-        sim_time+=3;
+        sim_time+=4;
         m_trace->dump(sim_time);
         dut->clk=0;
         dut->eval();
@@ -112,14 +112,11 @@ void exec_cpu(uint32_t exec_time){
         m_trace->dump(sim_time);
         dut->clk=1;
         dut->eval();
-        sim_time+=1;
-        dut->eval();
-        m_trace->dump(sim_time);
 
 		if(check_watchpoint()==1)break;
 
         trace_inst(pc_pre,dut->ist);
-        pc_pre=dut->pc;
+        
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
@@ -128,15 +125,15 @@ void exec_cpu(uint32_t exec_time){
         }
 
         if(ftrace1)
-        trace_func_call(dut->pc, dnpc, false);
+        trace_func_call(pc_pre, dnpc, false);
         else if(ftrace2)
-        trace_func_ret(dut->pc); // ret -> jalr x0, 0(x1)
+        trace_func_ret(pc_pre); // ret -> jalr x0, 0(x1)
         else if(ftrace3)
-        trace_func_call(dut->pc, dnpc, false);
+        trace_func_call(pc_pre, dnpc, false);
         else if (ftrace4)
-        trace_func_call(dut->pc, dnpc, true);
+        trace_func_call(pc_pre, dnpc, true);
         
-
+        pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
 		
     }
