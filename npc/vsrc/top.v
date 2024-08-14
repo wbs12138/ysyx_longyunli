@@ -2,7 +2,8 @@ module top(
     input clk,reset,
     output reg [31:0] pc,
     input [31:0] ist,
-    output mem_valid
+    output mem_valid,
+    output [31:0] mem_raddr
 
 
             );
@@ -165,7 +166,7 @@ Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
 
 wire mem_wen;
 
-wire [31:0] mem_raddr;
+//wire [31:0] mem_raddr;
 
 wire [31:0] mem_wdata,mem_waddr;
 
