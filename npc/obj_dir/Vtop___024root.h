@@ -87,6 +87,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_27;
         IData/*30:0*/ top__DOT____VdfgRegularize_h245778ca_0_30;
         IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_32;
+        IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_33;
         IData/*31:0*/ __Vfunc_top__DOT__npc_pmem_read__1__Vfuncout;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> top__DOT__inst_RegisterFile__DOT__rf;
