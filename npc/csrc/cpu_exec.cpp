@@ -105,7 +105,6 @@ void exec_cpu(uint32_t exec_time){
         total_steps+=1;
 
 		if(check_watchpoint()==1)break;
-        printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
 
         trace_inst(pc_pre,dut->ist);
 
