@@ -234,7 +234,7 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    if(dut->mem_valid){assert(0);
+    if(dut->mem_valid){printf("ist=%u\n,mem_valid=%u\n,mem_raddr=%u\n",dut->ist,dut->mem_valid,dut->mem_raddr);assert(0);
   return pmem_read(raddr&~0x3u,4);
     }else
     return 0;
