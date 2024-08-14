@@ -488,26 +488,22 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
                                                      : 
                                                     ((IData)(4U) 
                                                      + vlSelf->pc)))))))));
-    Vtop___024root____Vdpiimwrap_top__DOT__npc_pmem_read_TOP(
-                                                             ((IData)(vlSelf->top__DOT__lb)
-                                                               ? vlSelf->top__DOT__mem_waddr
-                                                               : 
-                                                              ((IData)(vlSelf->top__DOT__lbu)
-                                                                ? vlSelf->top__DOT__mem_waddr
-                                                                : 
-                                                               ((IData)(vlSelf->top__DOT__lh)
-                                                                 ? vlSelf->top__DOT__mem_waddr
-                                                                 : 
-                                                                ((IData)(vlSelf->top__DOT__lhu)
-                                                                  ? vlSelf->top__DOT__mem_waddr
-                                                                  : 
-                                                                 ((IData)(vlSelf->top__DOT__lw)
-                                                                   ? vlSelf->top__DOT__mem_waddr
-                                                                   : 0U))))), vlSelf->__Vfunc_top__DOT__npc_pmem_read__1__Vfuncout);
-    vlSelf->top__DOT____VdfgExtracted_h6d4e4f6e__0 
+    vlSelf->mem_raddr = ((IData)(vlSelf->top__DOT__lb)
+                          ? vlSelf->top__DOT__mem_waddr
+                          : ((IData)(vlSelf->top__DOT__lbu)
+                              ? vlSelf->top__DOT__mem_waddr
+                              : ((IData)(vlSelf->top__DOT__lh)
+                                  ? vlSelf->top__DOT__mem_waddr
+                                  : ((IData)(vlSelf->top__DOT__lhu)
+                                      ? vlSelf->top__DOT__mem_waddr
+                                      : ((IData)(vlSelf->top__DOT__lw)
+                                          ? vlSelf->top__DOT__mem_waddr
+                                          : 0U)))));
+    Vtop___024root____Vdpiimwrap_top__DOT__npc_pmem_read_TOP(vlSelf->mem_raddr, vlSelf->__Vfunc_top__DOT__npc_pmem_read__1__Vfuncout);
+    vlSelf->top__DOT____VdfgExtracted_h6de86b92__0 
         = vlSelf->__Vfunc_top__DOT__npc_pmem_read__1__Vfuncout;
     if (vlSelf->mem_valid) {
-        vlSelf->top__DOT__rdata_mem = vlSelf->top__DOT____VdfgExtracted_h6d4e4f6e__0;
+        vlSelf->top__DOT__rdata_mem = vlSelf->top__DOT____VdfgExtracted_h6de86b92__0;
         if (vlSelf->top__DOT__mem_wen) {
             Vtop___024root____Vdpiimwrap_top__DOT__npc_pmem_write_TOP(vlSelf->top__DOT__mem_waddr, vlSelf->top__DOT__rf_rdata2, 
                                                                       ((IData)(vlSelf->top__DOT__sb)
@@ -729,6 +725,7 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->pc = VL_RAND_RESET_I(32);
     vlSelf->ist = VL_RAND_RESET_I(32);
     vlSelf->mem_valid = VL_RAND_RESET_I(1);
+    vlSelf->mem_raddr = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__jalr = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__beq = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__bne = VL_RAND_RESET_I(1);
@@ -771,7 +768,7 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_next = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__mem_wen = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__mem_waddr = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT____VdfgExtracted_h6d4e4f6e__0 = 0;
+    vlSelf->top__DOT____VdfgExtracted_h6de86b92__0 = 0;
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_13 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_16 = VL_RAND_RESET_I(1);
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_17 = VL_RAND_RESET_I(1);

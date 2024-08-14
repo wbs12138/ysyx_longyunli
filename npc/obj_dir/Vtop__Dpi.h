@@ -20,9 +20,9 @@ extern "C" {
     extern void ebreak();
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/dpi_c_ftrace.v:2:30
     extern void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/top.v:10:29
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/top.v:11:29
     extern int npc_pmem_read(int raddr);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/top.v:11:30
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/top.v:12:30
     extern void npc_pmem_write(int waddr, int wdata, char wmask);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/RegisterFile.v:12:30
     extern void regfile_update(int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int rf7, int rf8, int rf9, int rf10, int rf11, int rf12, int rf13, int rf14, int rf15, int rf16, int rf17, int rf18, int rf19, int rf20, int rf21, int rf22, int rf23, int rf24, int rf25, int rf26, int rf27, int rf28, int rf29, int rf30, int rf31);

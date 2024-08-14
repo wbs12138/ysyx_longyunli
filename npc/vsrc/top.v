@@ -194,15 +194,15 @@ assign mem_wmask =  sb ? 4'b0001 :
                     4'b0;
 
 always @(*) begin
-  if (mem_valid) begin // 有读写请求时
+  if (mem_valid&&!mem_wen)  // 有读写请求时
     rdata_mem = npc_pmem_read(mem_raddr);
-    if (mem_wen) begin // 有写请求时
+    else if (mem_wen)  // 有写请求时
       npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
-    end
-  end
-  else begin
+    
+  
+  else 
     rdata_mem = 0;
-  end
+  
 end
 
 
