@@ -195,7 +195,7 @@ always @(*) begin
   if (mem_valid) begin // 有读写请求时
     rdata_mem = npc_pmem_read(mem_raddr);
     if (mem_wen) begin // 有写请求时
-      npc_pmem_write(mem_waddr, mem_wdata, mem_wmask);
+      npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
     end
   end
   else begin
