@@ -24,7 +24,7 @@ int main(int argc,char** argv,char** env){
 	init_sdb();
 
 	img_size=load_img(img_file);
-	//assert(0);
+	assert(0);
 
 	parse_elf(elf_file);
 	init_difftest(so_file, img_size);
