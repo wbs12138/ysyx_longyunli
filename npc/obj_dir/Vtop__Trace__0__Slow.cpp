@@ -352,17 +352,18 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                    : (((IData)(vlSelf->top__DOT__beq) 
                                        & (vlSelf->top__DOT__rf_rdata1 
                                           == vlSelf->top__DOT__rf_rdata2))
-                                       ? vlSelf->top__DOT__imm
+                                       ? VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                        : (((IData)(vlSelf->top__DOT__bne) 
                                            & (vlSelf->top__DOT__rf_rdata1 
                                               != vlSelf->top__DOT__rf_rdata2))
-                                           ? vlSelf->top__DOT__imm
+                                           ? VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                            : (((IData)(vlSelf->top__DOT__blt) 
                                                & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_31))
-                                               ? vlSelf->top__DOT__imm
+                                               ? VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                                : (((IData)(vlSelf->top__DOT__bltu) 
                                                    & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_25))
-                                                   ? vlSelf->top__DOT__imm
+                                                   ? 
+                                                  VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                                    : 
                                                   (((IData)(vlSelf->top__DOT__bge) 
                                                     & (((~ (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_22)) 
@@ -370,12 +371,14 @@ VL_ATTR_COLD void Vtop___024root__trace_full_0_sub_0(Vtop___024root* vlSelf, Ver
                                                        | ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_29) 
                                                           & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_24 
                                                              >= vlSelf->top__DOT____VdfgRegularize_h245778ca_0_30))))
-                                                    ? vlSelf->top__DOT__imm
+                                                    ? 
+                                                   VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                                     : 
                                                    (((IData)(vlSelf->top__DOT__bgeu) 
                                                      & (vlSelf->top__DOT__rf_rdata1 
                                                         >= vlSelf->top__DOT__rf_rdata2))
-                                                     ? vlSelf->top__DOT__imm
+                                                     ? 
+                                                    VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
                                                      : 
                                                     ((IData)(4U) 
                                                      + vlSelf->pc)))))))))),32);
