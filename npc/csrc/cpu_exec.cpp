@@ -58,8 +58,8 @@ void init_cpu(){
 	m_trace->dump(sim_time);
     
 	while(reset_clk_time-->0){
-		dut->clk = 0;dut->eval();sim_time++;
-		m_trace->dump(sim_time);assert(0);
+		dut->clk = 0;dut->eval();sim_time++;assert(0);
+		m_trace->dump(sim_time);
 		
 		dut->clk = 1;dut->eval();sim_time++;
 		m_trace->dump(sim_time);
