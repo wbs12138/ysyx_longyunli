@@ -193,7 +193,7 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sh ? 4'b0011 :
                     sw ? 4'b1111 :
                     4'b0;
-wire rdata_mem1;
+wire [31:0] rdata_mem1;
 always @(*) begin
   if (mem_valid)  // 有读写请求时
     rdata_mem1 = npc_pmem_read(mem_raddr);  
