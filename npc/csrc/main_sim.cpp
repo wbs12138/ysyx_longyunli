@@ -23,11 +23,11 @@ int main(int argc,char** argv,char** env){
 	init_mem();
 	init_sdb();
 
-	img_size=load_img(img_file);
+	
 	
 
 	parse_elf(elf_file);
-	init_difftest(so_file, img_size);
+	init_difftest(so_file, img_size);img_size=load_img(img_file);
 
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
