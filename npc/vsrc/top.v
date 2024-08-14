@@ -172,7 +172,7 @@ wire [31:0] mem_wdata,mem_waddr;
 
 wire [3:0] mem_wmask;
 
-assign mem_valid = lb | lbu |lh | lhu | lw | sb | sh | sw ;
+assign mem_valid = lb | lbu |lh | lhu | lw ;
 
 assign mem_wen = sb | sh | sw ;
 
@@ -194,17 +194,17 @@ assign mem_wmask =  sb ? 4'b0001 :
                     4'b0;
 
 always @(*) begin
-  if (mem_valid&!mem_wen)  // 有读写请求时
-    rdata_mem = npc_pmem_read(mem_raddr);
-    else if (mem_wen)  // 有写请求时
-      npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
-    
-  
+  if (mem_valid)  // 有读写请求时
+    rdata_mem = npc_pmem_read(mem_raddr);  
   else 
     rdata_mem = 0;
   
 end
 
+always@(*)begin
+  if(mem_wen)
+    npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
+end
 
 dpi_c_ebreak inst_dpi_c_ebreak(ist);
 
