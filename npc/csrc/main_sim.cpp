@@ -22,9 +22,9 @@ int main(int argc,char** argv,char** env){
     
 	init_mem();
 	init_sdb();
-printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
+
 	img_size=load_img(img_file);
-	
+	printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
 
 	parse_elf(elf_file);
 	
