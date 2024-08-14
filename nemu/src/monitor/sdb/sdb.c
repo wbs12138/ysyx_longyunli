@@ -20,6 +20,7 @@
 #include <memory/paddr.h>
 #include "sdb.h"
 #include "watchpoint.h"
+#include "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h"
 
 static int is_batch_mode = false;
 
@@ -109,6 +110,9 @@ static int cmd_info(char *args){
         isa_reg_display();
     else if(strcmp(args, "w") == 0)
         sdb_watchpoint_display();
+    else if(strcmp(args, "t") == 0){
+        display_inst();
+        display_memory();}
     return 0;
 }
 
