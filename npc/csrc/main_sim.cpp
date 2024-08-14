@@ -24,16 +24,16 @@ int main(int argc,char** argv,char** env){
 	init_sdb();
 
 	img_size=load_img(img_file);
-	assert(0);
+	//assert(0);
 
 	parse_elf(elf_file);
 	init_difftest(so_file, img_size);
 
-	if(strcmp(argv[3],"is_batch_mode")==0)
-		sdb_main_loop(1);		
-	else{
-		sdb_main_loop(0);
-	}
+	// if(strcmp(argv[3],"is_batch_mode")==0)
+	// 	sdb_main_loop(1);		
+	// else{
+	// 	sdb_main_loop(0);
+	// }
 
 	
 	return 0;
