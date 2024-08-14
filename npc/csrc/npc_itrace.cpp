@@ -95,10 +95,10 @@ void display_memory() {
       printf("     the memory inst saved is:\n");
       msg2_over=1;
     }
-    pm = buf_m;assert(0);
+    pm = buf_m;
     pm += sprintf(buf_m, "%s" "0x%08" "x" ": %08x ", (i_m+1)%MAX_MRINGBUF==end_m?" --> ":"     ", mringbuf[i_m].pc, mringbuf[i_m].inst);
     disassemble(pm, buf_m+sizeof(buf_m)-pm, mringbuf[i_m].pc, (uint8_t *)&mringbuf[i_m].inst, 4);
-    if(mringbuf[i_m].wr==0)
+    assert(0);if(mringbuf[i_m].wr==0)
     printf("     read from addr=%x,len=%d\n",mringbuf[i_m].addr,mringbuf[i_m].len);
     else
     printf("     write to  addr=%x,len=%d,data=%u\n",mringbuf[i_m].addr,mringbuf[i_m].len,mringbuf[i_m].data);
