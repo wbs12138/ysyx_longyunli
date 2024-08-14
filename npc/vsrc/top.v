@@ -3,7 +3,8 @@ module top(
     output reg [31:0] pc,
     input [31:0] ist,
     output mem_valid,
-    output [31:0] mem_raddr
+    output [31:0] mem_raddr,
+    output mem_wen_dg
 
 
             );
@@ -209,6 +210,8 @@ end
 dpi_c_ebreak inst_dpi_c_ebreak(ist);
 
 dpi_c_ftrace inst_dpi_c_ftrace (ist,pc_next);
+
+assign mem_wen_dg = mem_wen;
 
 
 endmodule
