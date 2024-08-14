@@ -241,11 +241,11 @@ int npc_pmem_read(int raddr) {
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
     printf("wmask=%d\n",wmask);\
-    if(wmask==0x1)
+    if(wmask==1)
     pmem_write(waddr,1,wdata);
-    else if(wmask==0x3)
+    else if(wmask==3)
     pmem_write(waddr,2,wdata);
-    else if(wmask==0x15)
+    else if(wmask==15)
     pmem_write(waddr,4,wdata);
     else assert(0);
 
