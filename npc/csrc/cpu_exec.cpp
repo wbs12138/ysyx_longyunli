@@ -108,6 +108,12 @@ void exec_cpu(uint32_t exec_time){
         printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
         printf("fuxking fuxking=%x\n",pmem_read(0x800002cd,4));
         printf("fuxking fuxking=%x\n",pmem_read(0x800002cc,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002cb,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002ca,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002c9,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002c8,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002c7,4));
+        printf("fuxking fuxking=%x\n",pmem_read(0x800002c6,4));
 
         trace_inst(pc_pre,dut->ist);
 
