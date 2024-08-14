@@ -97,7 +97,7 @@ void display_memory() {
     }
     pm = buf_m;
     pm += sprintf(buf_m, "%s" "0x%08" "x" ": %08x ", (i_m+1)%MAX_MRINGBUF==end_m?" --> ":"     ", mringbuf[i_m].pc, mringbuf[i_m].inst);
-    assert(0);disassemble(pm, buf_m+sizeof(buf_m)-pm, mringbuf[i_m].pc, (uint8_t *)&mringbuf[i_m].inst, 4);
+    disassemble(pm, buf_m+sizeof(buf_m)-pm, mringbuf[i_m].pc, (uint8_t *)&mringbuf[i_m].inst, 4);
     if(mringbuf[i_m].wr==0)
     printf("     read from addr=%x,len=%d\n",mringbuf[i_m].addr,mringbuf[i_m].len);
     else

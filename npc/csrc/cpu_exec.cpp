@@ -15,6 +15,9 @@ void ebreak(){
 	return;
 }
 
+uint32_t m_waddr,m_wdata,m_raddr;
+int m_len,trace_memory_w,trace_memory_r;
+
 CPU_state npc_cpu_state;
 
 int dnpc=0;
@@ -101,7 +104,11 @@ void exec_cpu(uint32_t exec_time){
 		if(check_watchpoint()==1)break;
 
         trace_inst(pc_pre,dut->ist);
-        
+
+        if(trace_memory_w)trace_memory(m_waddr,m_len,m_wdata,1);
+        if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
+        trace_memory_r=0;
+        trace_memory_w=0;
         
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
@@ -229,19 +236,19 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    
-    if(dut->mem_valid){trace_memory(raddr,4,0xFFFFFFFF,0);
+    if(dut->mem_valid){trace_memory_r=1;m_raddr=(uint32_t)raddr;
   return pmem_read(raddr&~0x3u,4);
     }else
     return 0;
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
-    trace_memory(waddr,1,wdata,1);
-    if(wmask==1){trace_memory(waddr,1,wdata,1);
+    trace_memory_w=1;
+    
+    if(wmask==1){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=1;
     pmem_write(waddr,1,wdata);}
-    else if(wmask==3){trace_memory(waddr,2,wdata,1);
+    else if(wmask==3){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=2;
     pmem_write(waddr,2,wdata);}
-    else if(wmask==15){trace_memory(waddr,4,wdata,1);
+    else if(wmask==15){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=4;
     pmem_write(waddr,4,wdata);}
     else assert(0);
 
