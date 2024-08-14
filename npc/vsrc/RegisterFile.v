@@ -17,10 +17,10 @@ import "DPI-C" function void regfile_update(input int rf1,input int rf2,input in
   end
 
   assign rdata1 = (raddr1=='b0) ?     'b0     :
-                                      rf[raddr];
+                                      rf[raddr1];
 
   assign rdata2 = (raddr2=='b0) ?     'b0     :
-                                      rf[raddr];
+                                      rf[raddr2];
   
 
   always@(*)
