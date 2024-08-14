@@ -83,7 +83,7 @@ wire [31:0] imm;
 
 wire [4:0] rs1,rs2,rd;
 
-reg [31:0] rdata_mem;
+wire [31:0] rdata_mem;
 
 assign imm =  inst_i ? {{20{ist[31]}},ist[31:20]}   : 
               inst_u ? {ist[31:12],12'b0}   :
@@ -193,7 +193,7 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sh ? 4'b0011 :
                     sw ? 4'b1111 :
                     4'b0;
-wire [31:0] rdata_mem1;
+reg [31:0] rdata_mem1;
 always @(*) begin
   if (mem_valid)  // 有读写请求时
     rdata_mem1 = npc_pmem_read(mem_raddr);  
