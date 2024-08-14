@@ -198,7 +198,7 @@ always @(*) begin
   if (mem_valid)  // 有读写请求时
     rdata_mem1 = npc_pmem_read(mem_raddr);  
   else 
-    rdata_mem = 0;
+    rdata_mem1 = 0;
   
 end
 
