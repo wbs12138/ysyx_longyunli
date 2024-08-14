@@ -37,7 +37,7 @@ void pmem_write(uint32_t addr, int len, uint32_t data) {
 
 void init_mem() {
   memset(pmem, 0, CONFIG_MSIZE);
-  //printf()
+  printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
   printf("\033[1;34m[%s:%d]physical memory area [\" %x \", \" %x \"]\033[0m\r\n", __FILE__,__LINE__,PMEM_LEFT, PMEM_RIGHT);
 }
 
