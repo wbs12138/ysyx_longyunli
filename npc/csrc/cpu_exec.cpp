@@ -35,13 +35,11 @@ int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
 void update_state();
 
-uint32_t previous_pc;
-uint32_t previous_ist;
-
 int error_happen;
 
 int curse ;
 vluint64_t sim_time=0;
+uint32_t pc_pre;
 Vtop *dut = new Vtop;
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
@@ -70,10 +68,8 @@ void init_cpu(){
     dut->ist = pmem_read(dut->pc,4);	
     
 	dut->eval();
-    trace_inst(dut->pc,dut->ist);
+    pc_pre=dut->pc;
     update_state();
-    previous_pc=dut->pc;
-    previous_ist=dut->ist;sim_time++;
 	m_trace->dump(sim_time);
     
 	
@@ -89,25 +85,38 @@ void exec_cpu(uint32_t exec_time){
 
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
-        for(int edge = 0; edge <= 1; edge++){
-        dut->clk^=1;
-        //dut->eval();
+        // for(int edge = 0; edge <= 1; edge++){
+        // dut->clk^=1;
+        // //dut->eval();
 		
-		dut->ist = pmem_read(dut->pc,4);
+		// dut->ist = pmem_read(dut->pc,4);
 		
+		// dut->eval();
+
+        // sim_time++;
+		// m_trace->dump(sim_time);
+
+        // sim_time++;
+        // m_trace->dump(sim_time);
+
+        // }
+        dut->ist = pmem_read(dut->pc,4);
 		dut->eval();
-
-        sim_time++;
-		m_trace->dump(sim_time);
-
-        sim_time++;
+        sim_time+=3;
+        m_trace->dump(sim_time);
+        dut->clk=0;
+        dut->eval();
+        sim_time+=4;
+        m_trace->dump(sim_time);
+        dut->clk=1;
+        dut->eval();
+        sim_time+=1;
         m_trace->dump(sim_time);
 
-        }
-		
 		if(check_watchpoint()==1)break;
 
-        trace_inst(dut->pc,dut->ist);
+        trace_inst(pc_pre,dut->ist);
+        pc_pre=dut->pc;
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
