@@ -147,7 +147,7 @@ RegisterFile #(5,32) inst_RegisterFile
 
 wire [31:0] pc_next ;
 
-assign pc_next  =   jalr ?  (rf_rdata + imm) & 32'hfffffffe :
+assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     jal  ?  pc+imm  :
                     (beq&&(rf_rdata1==rf_rdata2))  ?  imm :
                     (bne&&(rf_rdata1!=rf_rdata2))  ?  imm :
@@ -199,7 +199,7 @@ always @(*) begin
     end
   end
   else begin
-    rdata = 0;
+    rdata_mem = 0;
   end
 end
 
