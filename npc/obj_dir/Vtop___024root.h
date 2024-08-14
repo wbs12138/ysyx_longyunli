@@ -62,8 +62,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_28;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_29;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_31;
-        CData/*7:0*/ top__DOT____VdfgRegularize_h245778ca_0_35;
-        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_36;
+        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_35;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __VicoFirstIteration;
         CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
@@ -73,6 +72,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         VL_IN(ist,31,0);
         VL_OUT(mem_raddr,31,0);
         IData/*31:0*/ top__DOT__imm;
+        IData/*31:0*/ top__DOT__rdata_mem;
         IData/*31:0*/ top__DOT__rf_wdata;
         IData/*31:0*/ top__DOT__rf_rdata1;
         IData/*31:0*/ top__DOT__rf_rdata2;
