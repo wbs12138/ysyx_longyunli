@@ -56,7 +56,7 @@ void init_cpu(){
 	dut->reset=1;
 	sim_time++;
 	m_trace->dump(sim_time);
-    assert(0);
+    
 	while(reset_clk_time-->0){
 		dut->clk = 0;dut->eval();sim_time++;
 		m_trace->dump(sim_time);
@@ -68,6 +68,7 @@ void init_cpu(){
 	dut->reset=0;
     dut->eval();
     dut->ist = pmem_read(dut->pc,4);	
+    assert(0);
 	dut->eval();
     trace_inst(dut->pc,dut->ist);
     update_state();
