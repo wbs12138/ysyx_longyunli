@@ -67,7 +67,7 @@ assign andd     =   (opcode==7'b0110011) && (func3==3'b111) && (func7==7'b000000
 
 wire inst_i,inst_u,inst_j,inst_b,inst_s;//inst_r;
 
-assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi;
+assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi|srli|slli|srai;
 
 assign inst_u=auipc|lui;
 
