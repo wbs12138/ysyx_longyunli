@@ -12,6 +12,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtop__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset{vlSymsp->TOP.reset}
+    , mem_valid{vlSymsp->TOP.mem_valid}
     , pc{vlSymsp->TOP.pc}
     , ist{vlSymsp->TOP.ist}
     , rootp{&(vlSymsp->TOP)}
