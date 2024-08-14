@@ -73,6 +73,7 @@ void init_cpu(){
     previous_pc=dut->pc;
     previous_ist=dut->ist;sim_time++;
 	m_trace->dump(sim_time);
+    assert(0);
 	
 }
     
