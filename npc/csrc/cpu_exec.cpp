@@ -112,7 +112,6 @@ void exec_cpu(uint32_t exec_time){
         trace_memory_r=0;
         trace_memory_w=0;
         //printf("0x80000328=%x\n",pmem_read(0x80000328,4));
-        printf("0x800002ce=%x\n",pmem_read(0x800004c1,4));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
@@ -239,7 +238,7 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    if(dut->mem_valid){trace_memory_r=1;m_raddr=(uint32_t)raddr;
+    if(dut->mem_valid){trace_memory_r=1;m_raddr=(uint32_t)raddr;printf("ist==%x,raddr=%x",dut->pc,m_raddr);
   return pmem_read(m_raddr,4);
     }else
     return 0;
