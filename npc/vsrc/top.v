@@ -62,7 +62,7 @@ assign orr      =   (opcode==7'b0110011) && (func3==3'b110) && (func7==7'b000000
 assign andd     =   (opcode==7'b0110011) && (func3==3'b111) && (func7==7'b0000000);//R
 
 
-wire inst_i,inst_u,inst_j,inst_b,inst_s,inst_r;
+wire inst_i,inst_u,inst_j,inst_b,inst_s;//inst_r;
 
 assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi;
 
@@ -74,7 +74,7 @@ assign inst_b=beq|bne|blt|bge|bltu|bgeu;
 
 assign inst_s=sb|sh|sw;
 
-assign inst_r=slli|srli|srai|add|sub|sll|slt|sltu|xorr|srl|sra|orr|andd;
+//assign inst_r=slli|srli|srai|add|sub|sll|slt|sltu|xorr|srl|sra|orr|andd;
 
 wire [31:0] imm;
 
