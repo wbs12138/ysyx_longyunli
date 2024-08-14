@@ -84,9 +84,9 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
 int checkregs(CPU_state *ref, uint32_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
     
-    display_memory();
-
     display_inst();
+    
+    display_memory();
 
     ref_reg_display(ref);
 
