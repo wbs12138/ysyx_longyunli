@@ -106,7 +106,7 @@ void exec_cpu(uint32_t exec_time){
         trace_inst(pc_pre,dut->ist);
 
         if(trace_memory_w)trace_memory(m_waddr,m_len,m_wdata,1);
-        if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
+        //if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
         trace_memory_r=0;
         trace_memory_w=0;
         
