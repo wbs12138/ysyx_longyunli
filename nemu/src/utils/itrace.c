@@ -48,6 +48,7 @@ void trace_inst(word_t pc, uint32_t inst) {
 }
 
 void display_inst() {
+#ifdef CONFIG_ITRACE
   if (!full && !p_cur) return;
 
   int end = p_cur;
@@ -70,6 +71,9 @@ void display_inst() {
     puts(buf);
   } while ((i = (i+1)%MAX_IRINGBUF) != end);
   puts(ANSI_NONE);
+  #else
+  return ;
+  #endif
 }
 
 
@@ -87,6 +91,7 @@ void trace_memory(paddr_t addr, int len , word_t data , int wr) {
 
 
 void display_memory() {
+	#ifdef CONFIG_ITRACE
   if (!full_m && !pm_cur) return;
 
   int end_m = pm_cur;
@@ -112,6 +117,9 @@ void display_memory() {
     puts(buf_m);
   } while ((i_m = (i_m+1)%MAX_MRINGBUF) != end_m);
   puts(ANSI_NONE);
+  #else
+  return ;
+  #endif
 }
 
 
