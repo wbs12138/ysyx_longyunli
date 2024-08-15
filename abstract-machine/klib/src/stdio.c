@@ -77,7 +77,8 @@ int sprintf(char *out, const char *fmt, ...) {
 
 int printf(const char *fmt, ...) {
   
-  char *buffer=(char *)malloc(65535);
+  char info[65535];
+  char *buffer = info;
 
   va_list pArgs;
   va_start(pArgs, fmt);
@@ -101,7 +102,7 @@ int printf(const char *fmt, ...) {
       
     }
     
-  }putch('\n');
+  }
   *buffer = '\0';
   va_end(pArgs);
 
@@ -112,20 +113,6 @@ int printf(const char *fmt, ...) {
       start++;
     }while(*start!='\0');
 
-    const char *fmtt =
-    "Hello, AbstractMachine!\n"
-    "mainargs = '111'.\n";
-
-  for (const char *p = fmtt; *p; p++) {
-    putch(*p);
-  }
-
-    putch('\n');
-    putch('\n');
-    putch('\n');
-    putch('\n');
-    putch('\n');
-    putch('\n');
     free(buffer);
     return 0;
 }
