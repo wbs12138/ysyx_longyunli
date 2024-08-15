@@ -112,6 +112,14 @@ int printf(const char *fmt, ...) {
       start++;
     }while(*start!='\0');
 
+    const char *fmtt =
+    "Hello, AbstractMachine!\n"
+    "mainargs = '111'.\n";
+
+  for (const char *p = fmtt; *p; p++) {
+    putch(*p);
+  }
+
     putch('\n');
     putch('\n');
     putch('\n');
