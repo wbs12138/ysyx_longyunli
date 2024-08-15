@@ -59,10 +59,11 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_17;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_24;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_27;
-        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_29;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_30;
-        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_32;
-        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_35;
+        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_31;
+        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_33;
+        CData/*4:0*/ top__DOT____VdfgRegularize_h245778ca_0_34;
+        CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_36;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __VicoFirstIteration;
         CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
@@ -79,11 +80,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         IData/*31:0*/ top__DOT__mem_waddr;
         IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_20;
         IData/*30:0*/ top__DOT____VdfgRegularize_h245778ca_0_26;
-        IData/*30:0*/ top__DOT____VdfgRegularize_h245778ca_0_31;
     };
     struct {
-        IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_33;
-        IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_34;
+        IData/*30:0*/ top__DOT____VdfgRegularize_h245778ca_0_32;
+        IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_35;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> top__DOT__inst_RegisterFile__DOT__rf;
         VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
