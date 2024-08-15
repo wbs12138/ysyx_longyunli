@@ -76,7 +76,45 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+  
+  char *buffer=(char *)malloc(65535);
+
+  va_list pArgs;
+  va_start(pArgs, fmt);
+  char *start = buffer;
+
+  for (; *fmt != '\0'; ++fmt) {
+    
+    if (*fmt != '%') {
+      *buffer = *fmt;
+      ++buffer;
+    } else {
+      switch (*(++fmt)) {
+      case '%': *buffer = *fmt; ++buffer; break;
+      case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
+      case 's':
+        char *s = va_arg(pArgs, char*);
+        strcpy(buffer, s);
+        buffer += strlen(buffer);
+        break;
+      }
+      
+    }
+    
+  }
+  *buffer = '\0';
+  va_end(pArgs);
+
+    
+    // 逐个字符输出
+    do{
+      putch(*start);
+      start++;
+    }while(*start!='\0');
+
+    putch('\n');
+    free(buffer);
+    return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
