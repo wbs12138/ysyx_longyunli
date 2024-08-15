@@ -101,7 +101,7 @@ int printf(const char *fmt, ...) {
       
     }
     
-  }
+  }putch('\n');
   *buffer = '\0';
   va_end(pArgs);
 
