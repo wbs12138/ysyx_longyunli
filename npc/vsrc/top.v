@@ -154,7 +154,7 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     jal  ?  pc+imm  :
                     (beq&&(rf_rdata1==rf_rdata2))  ?  pc+(imm<<1) :
                     (bne&&(rf_rdata1!=rf_rdata2))  ?  pc+(imm<<1) :
-                    (blt&&(((rf_rdata1[31]==1)&&(rf_rdata2[31]==0))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]<rf_rdata2[30:0])))) ? (pc+imm<<1):
+                    (blt&&(((rf_rdata1[31]==1)&&(rf_rdata2[31]==0))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]<rf_rdata2[30:0])))) ? pc+(imm<<1):
                     (bltu&&(rf_rdata1<rf_rdata2))?pc+(imm<<1):
                     (bge&&(((rf_rdata1[31]==0)&&(rf_rdata2[31]==1))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]>=rf_rdata2[30:0])))) ? pc+(imm<<1):
                     (bgeu&&(rf_rdata1>=rf_rdata2))?pc+(imm<<1):
