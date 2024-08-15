@@ -125,7 +125,7 @@ assign rf_wdata = lui   ?   imm     :
                   lhu   ?   {16'b0,rdata_mem[15:0]} :
                   addi  ?   rf_rdata1 + imm :
                   (slti&&(((rf_rdata1[31]==1)&&(imm[31]==0))||((rf_rdata1[31]==imm[31])&&(rf_rdata1[30:0]<imm[30:0]))))  ?   32'b1:
-                  (sltiu&&(rf_rdata1<rf_rdata2)) ?  32'b1   :
+                  (sltiu&&(rf_rdata1<imm)) ?  32'b1   :
                   xori  ?   rf_rdata1 ^ imm :
                   ori   ?   rf_rdata1 | imm :
                   andi  ?   rf_rdata1 & imm :
