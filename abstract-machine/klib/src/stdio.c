@@ -83,6 +83,10 @@ int sprintf(char *out, const char *fmt, ...) {
 int printf(const char *fmt, ...) {
   
   char info[1024];
+  for(int i=0;i<1024;i++)
+  {
+    info[i]='\0';
+  }
   char *buffer = info;
 
   va_list pArgs;
