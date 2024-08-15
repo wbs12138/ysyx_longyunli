@@ -141,7 +141,7 @@ assign rf_wdata = lui   ?   imm     :
                   srl   ?   rf_rdata1 >> rf_rdata2 :
                   sra   ?   rf_rdata1>>> rf_rdata2 :
                   orr   ?   rf_rdata1 | rf_rdata2 :
-                  andd  ?   rf_rdata1 + rf_rdata2 :
+                  andd  ?   rf_rdata1 & rf_rdata2 :
                   32'b0;
 
 
