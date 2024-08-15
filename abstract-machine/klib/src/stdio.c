@@ -82,7 +82,7 @@ int sprintf(char *out, const char *fmt, ...) {
 
 int printf(const char *fmt, ...) {
   
-  char info[65535];
+  char info[1024];
   char *buffer = info;
 
   va_list pArgs;
