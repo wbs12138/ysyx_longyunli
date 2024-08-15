@@ -24,7 +24,7 @@ static void reverse(char *s, int len) {
 /* itoa convert int to string under base. return string length */
 static int itoa(int n, char *s, int base) {
   assert(base <= 16);
-
+  if(n!=-2147483648 && n!=0){
   int i = 0, sign = n, bit;
   if (sign < 0) n = -n;
   while (n > 0 ){
@@ -40,7 +40,12 @@ static int itoa(int n, char *s, int base) {
 
   reverse(s, i);
 
-  return i;
+  return i;}
+  else if(n==0)
+  {strcpy(s, "0");
+  return 1;}
+  else{strcpy(s, "-2147483648");
+  return 11;}
 }
 
 
@@ -113,7 +118,6 @@ int printf(const char *fmt, ...) {
       start++;
     }while(*start!='\0');
 
-    free(buffer);
     return 0;
 }
 
