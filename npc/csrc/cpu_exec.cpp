@@ -105,15 +105,13 @@ void exec_cpu(uint32_t exec_time){
         total_steps+=1;
 
 		if(check_watchpoint()==1)break;
-        printf("fuxking fuxking=%x\n",pmem_read(0x800002ce,4));
-
         trace_inst(pc_pre,dut->ist);
 
         if(trace_memory_w)trace_memory(m_waddr,m_len,m_wdata,1);
         if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
         trace_memory_r=0;
         trace_memory_w=0;
-        
+        //printf("0x80000328=%x\n",pmem_read(0x80000328,4));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
@@ -142,8 +140,8 @@ void exec_cpu(uint32_t exec_time){
     else if(sim_time>=MAX_SIM_TIME&&curse==0){
         end_cpu();curse+=1;//display_inst();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because of difftest or dead loop\033[0m\n",__FILE__,__LINE__);
-        printf("\033[1;31m[%s,%d]HIT BAD TRAP!totalsteps=%d\033[0m\n",__FILE__,__LINE__,total_steps);
-		return ;}
+        printf("\033[1;31m[%s,%d]HIT BAD TRAP!totalsteps=%d,sim_time=%ld\033[0m\n",__FILE__,__LINE__,total_steps,sim_time);
+		assert(0);return ;}
     return;
 }
 
@@ -240,8 +238,8 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    if(dut->mem_valid){trace_memory_r=1;m_raddr=(uint32_t)raddr;
-  return pmem_read(raddr&~0x3u,4);
+    if(dut->mem_valid ){trace_memory_r=1;m_raddr=(uint32_t)raddr;
+  return pmem_read(m_raddr,4);
     }else
     return 0;
 }

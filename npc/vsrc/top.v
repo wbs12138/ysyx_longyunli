@@ -67,7 +67,7 @@ assign andd     =   (opcode==7'b0110011) && (func3==3'b111) && (func7==7'b000000
 
 wire inst_i,inst_u,inst_j,inst_b,inst_s;//inst_r;
 
-assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi;
+assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi|srli|slli|srai;
 
 assign inst_u=auipc|lui;
 
@@ -125,13 +125,13 @@ assign rf_wdata = lui   ?   imm     :
                   lhu   ?   {16'b0,rdata_mem[15:0]} :
                   addi  ?   rf_rdata1 + imm :
                   (slti&&(((rf_rdata1[31]==1)&&(imm[31]==0))||((rf_rdata1[31]==imm[31])&&(rf_rdata1[30:0]<imm[30:0]))))  ?   32'b1:
-                  (sltiu&&(rf_rdata1<rf_rdata2)) ?  32'b1   :
+                  (sltiu&&(rf_rdata1<imm)) ?  32'b1   :
                   xori  ?   rf_rdata1 ^ imm :
                   ori   ?   rf_rdata1 | imm :
                   andi  ?   rf_rdata1 & imm :
                   slli  ?   rf_rdata1 <<imm :
                   srli  ?   rf_rdata1 >>imm :
-                  srai  ?   rf_rdata1 >>>imm:
+                  srai  ?   ({32{rf_rdata1[31]}}<<(6'd32-{1'b0,imm[4:0]}))|(rf_rdata1>>imm[4:0]):
                   add   ?   rf_rdata1 + rf_rdata2:
                   sub   ?   rf_rdata1 - rf_rdata2:
                   sll   ?   rf_rdata1 <<rf_rdata2:
@@ -139,9 +139,9 @@ assign rf_wdata = lui   ?   imm     :
                   (sltu&&(rf_rdata1<rf_rdata2))  ? 32'b1:
                   xorr  ?   rf_rdata1 ^ rf_rdata2 :
                   srl   ?   rf_rdata1 >> rf_rdata2 :
-                  sra   ?   rf_rdata1>>> rf_rdata2 :
+                  sra   ?   ({32{rf_rdata1[31]}}<<(6'd32-{1'b0,rf_rdata2[4:0]}))|(rf_rdata1>>rf_rdata2[4:0]):
                   orr   ?   rf_rdata1 | rf_rdata2 :
-                  andd  ?   rf_rdata1 + rf_rdata2 :
+                  andd  ?   rf_rdata1 & rf_rdata2 :
                   32'b0;
 
 
@@ -154,7 +154,7 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     jal  ?  pc+imm  :
                     (beq&&(rf_rdata1==rf_rdata2))  ?  pc+(imm<<1) :
                     (bne&&(rf_rdata1!=rf_rdata2))  ?  pc+(imm<<1) :
-                    (blt&&(((rf_rdata1[31]==1)&&(rf_rdata2[31]==0))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]<rf_rdata2[30:0])))) ? (pc+imm<<1):
+                    (blt&&(((rf_rdata1[31]==1)&&(rf_rdata2[31]==0))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]<rf_rdata2[30:0])))) ? pc+(imm<<1):
                     (bltu&&(rf_rdata1<rf_rdata2))?pc+(imm<<1):
                     (bge&&(((rf_rdata1[31]==0)&&(rf_rdata2[31]==1))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]>=rf_rdata2[30:0])))) ? pc+(imm<<1):
                     (bgeu&&(rf_rdata1>=rf_rdata2))?pc+(imm<<1):
@@ -194,11 +194,11 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sw ? 4'b1111 :
                     4'b0;
 
-always @(*) begin
+always @(negedge clk) begin
   if (mem_valid)  // 有读写请求时
-    rdata_mem = npc_pmem_read(mem_raddr);  
+    rdata_mem <= npc_pmem_read(mem_raddr);  
   else 
-    rdata_mem = 0;
+    rdata_mem <= 0;
   
 end
 
