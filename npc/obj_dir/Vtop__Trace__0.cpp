@@ -184,7 +184,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                           ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35
                                           : (((IData)(vlSelf->top__DOT__blt) 
                                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_33))
-                                              ? VL_SHIFTL_III(32,32,32, vlSelf->top__DOT____VdfgRegularize_h245778ca_0_20, 1U)
+                                              ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35
                                               : (((IData)(vlSelf->top__DOT__bltu) 
                                                   & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_27))
                                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35
