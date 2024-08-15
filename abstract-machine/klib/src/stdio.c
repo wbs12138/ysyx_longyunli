@@ -113,6 +113,11 @@ int printf(const char *fmt, ...) {
     }while(*start!='\0');
 
     putch('\n');
+    putch('\n');
+    putch('\n');
+    putch('\n');
+    putch('\n');
+    putch('\n');
     free(buffer);
     return 0;
 }
