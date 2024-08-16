@@ -93,7 +93,7 @@ int printf(const char *fmt, ...) {
   char *start = buffer;
 
   for (; *fmt != '\0'; ++fmt) {
-    if (*fmt == '\\'){putch('0');
+    if (strncmp(fmt,"\\033",4)==0){putch('0');
       putch('\033');
       
       fmt+=4;
