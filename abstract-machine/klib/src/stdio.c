@@ -86,7 +86,6 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  putch('\n');
   char info[1024];
   for(int i=0;i<1024;i++)
   {
