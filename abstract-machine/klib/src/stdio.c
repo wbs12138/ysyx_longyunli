@@ -96,6 +96,7 @@ int printf(const char *fmt, ...) {
   for (; *fmt != '\0'; ++fmt) {
     if (*fmt == '\\'){
       putch('\033');
+      putch('0');
       fmt+=4;
     }
     else if (*fmt != '%') {
