@@ -38,7 +38,7 @@ int atoi(const char* nptr) {
 // Area heap = RANGE(&_heap_start, PMEM_END);
 int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
-static void heap_reset() {
+__attribute__((unused)) static void heap_reset() {
   hbrk = (void *)ROUNDUP(heap.start, 8);
 }
 
