@@ -98,7 +98,7 @@ int printf(const char *fmt, ...) {
       putch('\033');
       fmt+=4;
     }
-    if (*fmt != '%') {
+    else if (*fmt != '%') {
       *buffer = *fmt;
       ++buffer;
     } else {
