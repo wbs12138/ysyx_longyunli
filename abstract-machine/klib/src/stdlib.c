@@ -38,7 +38,7 @@ int atoi(const char* nptr) {
 // Area heap = RANGE(&_heap_start, PMEM_END);
 int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
-static void bench_reset() {
+static void heap_reset() {
   hbrk = (void *)ROUNDUP(heap.start, 8);
 }
 
@@ -48,7 +48,7 @@ void *malloc(size_t size) {
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   if(!reset_yet){
-    bench_reset();
+    heap_reset();
     reset_yet=1;
   }
   size  = (size_t)ROUNDUP(size, 8);
