@@ -29,7 +29,7 @@ int atoi(const char* nptr) {
   return x;
 }
 
-static char *hbrk=(void *)(0x81000000);
+static char *hbrk=(void *)0x81000000;
 
 void *malloc(size_t size) {
   // On native, malloc() will be called during initializaion of C runtime.
