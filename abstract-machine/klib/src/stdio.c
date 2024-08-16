@@ -24,7 +24,7 @@ static void reverse(char *s, int len) {
 /* itoa convert int to string under base. return string length */
 static int itoa(int n, char *s, int base) {
   assert(base <= 16);
-
+  if(n!=-2147483648 && n!=0){
   int i = 0, sign = n, bit;
   if (sign < 0) n = -n;
   while (n > 0 ){
@@ -40,7 +40,12 @@ static int itoa(int n, char *s, int base) {
 
   reverse(s, i);
 
-  return i;
+  return i;}
+  else if(n==0)
+  {strcpy(s, "0");
+  return 1;}
+  else{strcpy(s, "-2147483648");
+  return 11;}
 }
 
 
@@ -63,6 +68,11 @@ int sprintf(char *out, const char *fmt, ...) {
         strcpy(out, s);
         out += strlen(out);
         break;
+      case 'c':
+        char yy=va_arg(pArgs, int);
+        *out = yy;
+        out += 1;
+        break;
       }
       
     }
@@ -76,7 +86,59 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+  char info[1024];
+  for(int i=0;i<1024;i++)
+  {
+    info[i]='\0';
+  }
+  char *buffer = info;
+
+  va_list pArgs;
+  va_start(pArgs, fmt);
+  char *start = buffer;
+
+  for (; *fmt != '\0'; ++fmt) {
+    if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')){
+      while(*start!='\0'){
+      putch(*start);
+      start++;
+      }
+      putch(*fmt);
+      start = buffer;
+    }
+    else if (*fmt != '%') {
+      *buffer = *fmt;
+      ++buffer;
+    } else {
+      switch (*(++fmt)) {
+      case '%': *buffer = *fmt; ++buffer; break;
+      case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
+      case 's':
+        char *s = va_arg(pArgs, char*);
+        strcpy(buffer, s);
+        buffer += strlen(buffer);
+        break;
+      case 'c':
+        char yy=va_arg(pArgs, int);
+        *buffer = yy;
+        buffer += 1;
+        break;
+      }
+      
+    }
+    
+  }
+  *buffer = '\0';
+  va_end(pArgs);
+
+    
+    // 逐个字符输出
+    while(*start!='\0'){
+      putch(*start);
+      start++;
+    }
+
+    return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {

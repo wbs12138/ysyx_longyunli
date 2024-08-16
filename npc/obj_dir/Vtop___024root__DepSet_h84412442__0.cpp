@@ -102,12 +102,14 @@ VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__inst_RegisterFile__DOT
     regfile_update(rf1__Vcvt, rf2__Vcvt, rf3__Vcvt, rf4__Vcvt, rf5__Vcvt, rf6__Vcvt, rf7__Vcvt, rf8__Vcvt, rf9__Vcvt, rf10__Vcvt, rf11__Vcvt, rf12__Vcvt, rf13__Vcvt, rf14__Vcvt, rf15__Vcvt, rf16__Vcvt, rf17__Vcvt, rf18__Vcvt, rf19__Vcvt, rf20__Vcvt, rf21__Vcvt, rf22__Vcvt, rf23__Vcvt, rf24__Vcvt, rf25__Vcvt, rf26__Vcvt, rf27__Vcvt, rf28__Vcvt, rf29__Vcvt, rf30__Vcvt, rf31__Vcvt);
 }
 
-extern "C" void ebreak();
+extern "C" void ebreak(int back_right);
 
-VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP() {
+VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP(IData/*31:0*/ back_right) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP\n"); );
     // Body
-    ebreak();
+    int back_right__Vcvt;
+    for (size_t back_right__Vidx = 0; back_right__Vidx < 1; ++back_right__Vidx) back_right__Vcvt = back_right;
+    ebreak(back_right__Vcvt);
 }
 
 extern "C" void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);

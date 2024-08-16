@@ -18,7 +18,7 @@ void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
     }
 }
 
-void Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP();
+void Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP(IData/*31:0*/ back_right);
 void Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ftrace__DOT__ftrace_update_TOP(IData/*31:0*/ dnpc_v, IData/*31:0*/ trace1, IData/*31:0*/ trace2, IData/*31:0*/ trace3, IData/*31:0*/ trace4);
 
 VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) {
@@ -27,7 +27,9 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ico_sequent__TOP__0\n"); );
     // Body
     if ((0x100073U == vlSelf->ist)) {
-        Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP();
+        Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP(
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xaU]);
     }
     vlSelf->top__DOT__slt = (IData)((0x2033U == (0xfe00707fU 
                                                  & vlSelf->ist)));
@@ -704,6 +706,11 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                                                 [0x1eU], 
                                                                                 vlSelf->top__DOT__inst_RegisterFile__DOT__rf
                                                                                 [0x1fU]);
+    if ((0x100073U == vlSelf->ist)) {
+        Vtop___024root____Vdpiimwrap_top__DOT__inst_dpi_c_ebreak__DOT__ebreak_TOP(
+                                                                                vlSelf->top__DOT__inst_RegisterFile__DOT__rf
+                                                                                [0xaU]);
+    }
     if ((0U == (0x1fU & (vlSelf->ist >> 0x14U)))) {
         vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34 = 0U;
         vlSelf->top__DOT____VdfgRegularize_h245778ca_0_31 = 0U;
