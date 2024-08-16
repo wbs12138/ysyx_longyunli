@@ -108,6 +108,11 @@ int printf(const char *fmt, ...) {
         strcpy(buffer, s);
         buffer += strlen(buffer);
         break;
+      case 'c':
+        char yy=va_arg(pArgs, int);
+        *buffer = yy;
+        buffer += 1;
+        break;
       }
       
     }
