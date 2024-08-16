@@ -93,7 +93,7 @@ int printf(const char *fmt, ...) {
   char *start = buffer;
 
   for (; *fmt != '\0'; ++fmt) {
-    if (*fmt == '\033'){
+    if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')){
       while(*start!='\0'){
       putch(*start);
       start++;
