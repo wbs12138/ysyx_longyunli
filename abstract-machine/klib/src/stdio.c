@@ -94,7 +94,12 @@ int printf(const char *fmt, ...) {
 
   for (; *fmt != '\0'; ++fmt) {
     if (*fmt == '\033'){
-      putch('\033');
+      while(*start!='\0'){
+      putch(*start);
+      start++;
+      }
+      putch(*fmt);
+      start = buffer;
     }
     else if (*fmt != '%') {
       *buffer = *fmt;
@@ -123,10 +128,10 @@ int printf(const char *fmt, ...) {
 
     
     // 逐个字符输出
-    do{
+    while(*start!='\0'){
       putch(*start);
       start++;
-    }while(*start!='\0');
+    }
 
     return 0;
 }
