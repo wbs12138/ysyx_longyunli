@@ -93,12 +93,12 @@ int printf(const char *fmt, ...) {
   char *start = buffer;
 
   for (; *fmt != '\0'; ++fmt) {
-    if (*fmt == '\\'){
+    if (*fmt == '\\'){putch('0');
       putch('\033');
       
       fmt+=4;
     }
-    else if (*fmt != '%') {putch('0');
+    else if (*fmt != '%') {
       *buffer = *fmt;
       ++buffer;
     } else {
