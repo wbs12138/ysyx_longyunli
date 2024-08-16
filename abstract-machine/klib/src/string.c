@@ -25,6 +25,7 @@ char *strcpy(char *dst, const char *src) {
     dst++;
     src++;
   } while(*src != '\0');  
+  *dst = *src;
   return res;
 
 }
