@@ -81,7 +81,6 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  putch('0');
   char info[1024];
   for(int i=0;i<1024;i++)
   {
@@ -99,7 +98,7 @@ int printf(const char *fmt, ...) {
       
       fmt+=4;
     }
-    else if (*fmt != '%') {
+    else if (*fmt != '%') {putch('0');
       *buffer = *fmt;
       ++buffer;
     } else {
