@@ -93,10 +93,10 @@ int printf(const char *fmt, ...) {
   char *start = buffer;
 
   for (; *fmt != '\0'; ++fmt) {
-    if (strncmp(fmt,"\\033",4)==0){putch('0');
+    if (strncmp(fmt,"\033",1)==0){
       putch('\033');
       
-      fmt+=4;
+      fmt+=1;
     }
     else if (*fmt != '%') {
       *buffer = *fmt;
