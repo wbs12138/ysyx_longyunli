@@ -95,8 +95,6 @@ int printf(const char *fmt, ...) {
   for (; *fmt != '\0'; ++fmt) {
     if (strncmp(fmt,"\033",1)==0){
       putch('\033');
-      
-      fmt+=1;
     }
     else if (*fmt != '%') {
       *buffer = *fmt;
