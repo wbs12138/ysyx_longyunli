@@ -68,6 +68,11 @@ int sprintf(char *out, const char *fmt, ...) {
         strcpy(out, s);
         out += strlen(out);
         break;
+      case 'c':
+        char yy=va_arg(pArgs, int);
+        *out = yy;
+        out += 1;
+        break;
       }
       
     }
