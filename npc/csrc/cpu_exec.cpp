@@ -10,9 +10,9 @@
 
 int ebreak_dpi=0;
 
-void ebreak(){
-	ebreak_dpi=1;
-	return;
+void ebreak(int back_right){
+	if(back_right!=0)assert(0);
+    else ebreak_dpi=1;
 }
 
 uint32_t m_waddr,m_wdata,m_raddr;

@@ -144,9 +144,9 @@ assign rf_wdata = lui   ?   imm     :
                   andd  ?   rf_rdata1 & rf_rdata2 :
                   32'b0;
 
-
+wire [31:0] a0;
 RegisterFile #(5,32) inst_RegisterFile 
-(clk,rf_wdata,rf_waddr,rf_wen,rf_rdata1,rf_rdata2,rf_raddr1,rf_raddr2);
+(clk,rf_wdata,rf_waddr,rf_wen,rf_rdata1,rf_rdata2,rf_raddr1,rf_raddr2,a0);
 
 wire [31:0] pc_next ;
 
@@ -207,7 +207,7 @@ always@(posedge clk)begin
     npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
 end
 
-dpi_c_ebreak inst_dpi_c_ebreak(ist);
+dpi_c_ebreak inst_dpi_c_ebreak(ist,a0);
 
 dpi_c_ftrace inst_dpi_c_ftrace (ist,pc_next);
 
