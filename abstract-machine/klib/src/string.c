@@ -25,7 +25,7 @@ char *strcpy(char *dst, const char *src) {
     dst++;
     src++;
   }  
-  *dst = *src;
+  *dst = '\0';
   return res;
 
 }
@@ -42,6 +42,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
     ++src;
     --n;
   }
+  *dst='\0';
   while (n != 0) {
     *dst = '\0';
     ++dst;
