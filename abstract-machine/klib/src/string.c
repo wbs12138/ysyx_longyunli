@@ -4,7 +4,7 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-size_t strlen(const char *s) {panic("used");
+size_t strlen(const char *s) {
   if (s == NULL) {
     return 0;
   }
@@ -15,7 +15,7 @@ size_t strlen(const char *s) {panic("used");
   return n;
 }
 
-char *strcpy(char *dst, const char *src) {
+char *strcpy(char *dst, const char *src) {panic("used");
   if (src == NULL || dst == NULL) {  
     return dst;
   }
