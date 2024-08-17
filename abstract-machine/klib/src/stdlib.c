@@ -53,7 +53,7 @@ void *malloc(size_t size) {
     reset_yet+=1;
   }
   times+=1;
-  if(times==8)
+  if(times==10)
   panic("fuck too many malloc\n");
   size  = (size_t)ROUNDUP(size, 8);
   char *old = hbrk;
