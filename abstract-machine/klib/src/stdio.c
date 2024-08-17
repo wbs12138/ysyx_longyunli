@@ -106,26 +106,26 @@ int printf(const char *fmt, ...) {
       case '%': *buffer = *fmt; ++buffer; break;
       case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
       case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
-      case '0': ++fmt; int num_0 = *fmt - '0'; ++fmt; 
-                if(*fmt!='x' && *fmt!='d'){
+      case '0': ++fmt; int num_0 = *fmt - '0'; ++fmt; int argsn = va_arg(pArgs, int);
+                if((*fmt!='x') && (*fmt!='d')){
                   putch('e');putch('\n');putch(*fmt);putch('\n');
                   panic("\nprintf 0x or 0d\n");
                 }
                 else if(*fmt=='x'){
-                  if(itoa(va_arg(pArgs, int), buffer, 16)<num_0){
-                    for(int i=0;i<num_0-itoa(va_arg(pArgs, int), buffer, 16);i++){
+                  if(itoa(argsn, buffer, 16)<num_0){
+                    for(int i=0;i<num_0-itoa(argsn, buffer, 16);i++){
                       *buffer = '0';buffer++;
                     }
                   }
-                  buffer += itoa(va_arg(pArgs, int), buffer, 16);
+                  buffer += itoa(argsn, buffer, 16);
                 }
                 else if(*fmt=='d'){
-                  if(itoa(va_arg(pArgs, int), buffer, 10)<num_0){
-                    for(int i=0;i<num_0-itoa(va_arg(pArgs, int), buffer, 10);i++){
+                  if(itoa(argsn, buffer, 10)<num_0){
+                    for(int i=0;i<num_0-itoa(argsn, buffer, 10);i++){
                       *buffer = '0';buffer++;
                     }
                   }
-                  buffer += itoa(va_arg(pArgs, int), buffer, 10);
+                  buffer += itoa(argsn, buffer, 10);
                 }
                 break;
       case 's':
@@ -140,26 +140,26 @@ int printf(const char *fmt, ...) {
         break;
       default:
         if((*fmt-'0')>=0 && (*fmt-'0')<=9){
-          int num_1 = *fmt - '0';fmt++;
-          if(*fmt!='x' && *fmt!='d'){
+          int num_1 = *fmt - '0';fmt++;int argsn = va_arg(pArgs, int);
+          if((*fmt!='x') && (*fmt!='d')){
             putch('e');putch('\n');putch(*fmt);putch('\n');
             panic("\nprintf 1x or 1d\n");
           }
           else if(*fmt=='x'){
-            if(itoa(va_arg(pArgs, int), buffer, 16)<num_1){
-              for(int i=0;i<num_1-itoa(va_arg(pArgs, int), buffer, 16);i++){
+            if(itoa(argsn, buffer, 16)<num_1){
+              for(int i=0;i<num_1-itoa(argsn, buffer, 16);i++){
                 *buffer = ' ';buffer++;
               }
             }
-            buffer += itoa(va_arg(pArgs, int), buffer, 16);
+            buffer += itoa(argsn, buffer, 16);
           }
           else if(*fmt=='d'){
-            if(itoa(va_arg(pArgs, int), buffer, 10)<num_1){
-              for(int i=0;i<num_1-itoa(va_arg(pArgs, int), buffer, 10);i++){
+            if(itoa(argsn, buffer, 10)<num_1){
+              for(int i=0;i<num_1-itoa(argsn, buffer, 10);i++){
                 *buffer = ' ';buffer++;
               }
             }
-            buffer += itoa(va_arg(pArgs, int), buffer, 10);
+            buffer += itoa(argsn, buffer, 10);
           }
         }
         else{
