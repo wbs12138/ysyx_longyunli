@@ -39,7 +39,7 @@ int atoi(const char* nptr) {
 int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
 __attribute__((unused)) static void heap_reset() {
-  hbrk = (void *)ROUNDUP(heap.start, 8);printf("hbrk=%d\n",&hbrk);
+  hbrk = (void *)ROUNDUP(heap.start, 8);printf("hbrk=%d\n,",&hbrk);
 }
 
 void *malloc(size_t size) {
@@ -55,6 +55,7 @@ void *malloc(size_t size) {
   char *old = hbrk;
   hbrk += size;
   assert((uintptr_t)heap.start <= (uintptr_t)hbrk && (uintptr_t)hbrk < (uintptr_t)heap.end);
+  assert((uintptr_t)heap.start <= ((uintptr_t)hbrk+size) && ((uintptr_t)hbrk+size) < (uintptr_t)heap.end);
   for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)hbrk; p ++) {
     *p = 0;
   }
