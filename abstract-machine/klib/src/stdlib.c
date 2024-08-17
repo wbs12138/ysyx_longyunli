@@ -37,6 +37,7 @@ int atoi(const char* nptr) {
 
 // Area heap = RANGE(&_heap_start, PMEM_END);
 int reset_yet=0;
+int times=0;
 __attribute__((unused)) static char *hbrk;
 __attribute__((unused)) static void heap_reset() {
   hbrk = (void *)ROUNDUP(heap.start, 8);
@@ -49,8 +50,11 @@ void *malloc(size_t size) {
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   if(!reset_yet){
     heap_reset();
-    reset_yet+=1;panic("here\n");
+    reset_yet+=1;
   }
+  times+=1;
+  if(times==10)
+  panic("fuck too many malloc\n");
   size  = (size_t)ROUNDUP(size, 8);
   char *old = hbrk;
   hbrk += size;
