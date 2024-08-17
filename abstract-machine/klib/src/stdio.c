@@ -97,7 +97,7 @@ int printf(const char *fmt, ...) {
   va_start(pArgs, fmt);
   char *start = buffer;
 
-   for (; *fmt != '\0'; ++fmt) {if(*fmt!='*')putch(*fmt);
+   for (; *fmt != '\0'; ++fmt) {if(*fmt!='*'&&*fmt!='\033')putch(*fmt);if(*fmt=='\033')putch('\n');
   //   if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')){
   //     while(*start!='\0'){
   //     putch(*start);
