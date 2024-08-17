@@ -101,14 +101,14 @@ void *memset(void *s, int c, size_t n) {
   unsigned char *src = s;  
   while (n != 0) {
     --n;
-    *src = '\0';
+    *src = c;
     ++src;
   }
   return s;
 
 }
 
-void *memmove(void *dst, const void *src, size_t n) {panic("fuck");
+void *memmove(void *dst, const void *src, size_t n) {
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
   }
