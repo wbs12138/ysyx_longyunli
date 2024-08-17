@@ -30,7 +30,8 @@ char *strcpy(char *dst, const char *src) {
 
 }
 
-char *strncpy(char *dst, const char *src, size_t n) {panic("used");
+//unused
+char *strncpy(char *dst, const char *src, size_t n) {
   if (src == NULL || dst == NULL) {
     return dst;
   }
@@ -50,6 +51,7 @@ char *strncpy(char *dst, const char *src, size_t n) {panic("used");
 
 }
 
+//unused
 char *strcat(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {
     return dst;
@@ -109,7 +111,7 @@ void *memset(void *s, int c, size_t n) {
 
 }
 
-void *memmove(void *dst, const void *src, size_t n) {
+void *memmove(void *dst, const void *src, size_t n) {panic("used");
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
   }
