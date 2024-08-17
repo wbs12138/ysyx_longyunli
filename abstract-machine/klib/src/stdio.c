@@ -98,15 +98,15 @@ int printf(const char *fmt, ...) {
   char *start = buffer;
 
    for (; *fmt != '\0'; ++fmt) {
-    if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')||(*fmt == '\e')){
-      while(*start!='\0'){
-      putch(*start);
-      start++;
-      }
-      putch(*fmt);
-      start = buffer;
-    }
-    else if (*fmt != '%') {
+    // if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')||(*fmt == '\e')){
+    //   while(*start!='\0'){
+    //   putch(*start);
+    //   start++;
+    //   }
+    //   putch(*fmt);
+    //   start = buffer;
+    // }
+    if (*fmt != '%') {
       *buffer = *fmt;
       ++buffer;
     } else {
