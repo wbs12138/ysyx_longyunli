@@ -15,9 +15,9 @@ size_t strlen(const char *s) {
   return n;
 }
 
-char *strcpy(char *dst, const char *src) {panic("used");
+char *strcpy(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {  
-    return dst;
+    return dst;panic("0");
   }
   char *res = dst;
   do {
