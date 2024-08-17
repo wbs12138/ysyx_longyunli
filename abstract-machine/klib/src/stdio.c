@@ -97,42 +97,36 @@ int printf(const char *fmt, ...) {
   va_start(pArgs, fmt);
   char *start = buffer;
 
-  for (; *fmt != '\0'; ++fmt) {
-    if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')){
-      while(*start!='\0'){
-      putch(*start);
-      start++;
-      }
-      putch(*fmt);
-      start = buffer;
-    }
-    else if (*fmt != '%') {
-      *buffer = *fmt;
-      ++buffer;
-    } else {
-      switch (*(++fmt)) {
-      case '%': *buffer = *fmt; ++buffer; break;
-      case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
-      case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
-      case 's':
-        char *s = va_arg(pArgs, char*);
-        strcpy(buffer, s);
-        buffer += strlen(buffer);
-        break;
-      case 'c':
-        char yy=va_arg(pArgs, int);
-        *buffer = yy;
-        buffer += 1;
-        break;
-      default:
-        if(strncmp(++fmt,"02d",3)==0){
-          buffer += itoa(va_arg(pArgs, int), buffer, 10); fmt+=2;break;}
-        if(strncmp(++fmt,"02x",3)==0){
-          buffer += itoa(va_arg(pArgs, int), buffer, 16); fmt+=2;break;}
-
-      }
+   for (; *fmt != '\0'; ++fmt) {if(*fmt!='*')putch(*fmt);
+  //   if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')){
+  //     while(*start!='\0'){
+  //     putch(*start);
+  //     start++;
+  //     }
+  //     putch(*fmt);
+  //     start = buffer;
+  //   }
+  //   else if (*fmt != '%') {
+  //     *buffer = *fmt;
+  //     ++buffer;
+  //   } else {
+  //     switch (*(++fmt)) {
+  //     case '%': *buffer = *fmt; ++buffer; break;
+  //     case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
+  //     case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
+  //     case 's':
+  //       char *s = va_arg(pArgs, char*);
+  //       strcpy(buffer, s);
+  //       buffer += strlen(buffer);
+  //       break;
+  //     case 'c':
+  //       char yy=va_arg(pArgs, int);
+  //       *buffer = yy;
+  //       buffer += 1;
+  //       break;
+  //     }
       
-    }
+  //   }
     
   }
   *buffer = '\0';
