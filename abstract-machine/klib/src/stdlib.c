@@ -39,7 +39,7 @@ int atoi(const char* nptr) {
 int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
 __attribute__((unused)) static void heap_reset() {
-  hbrk = (void *)ROUNDUP(heap.start, 8);
+  hbrk = (void *)ROUNDUP(heap.start, 8);printf("hbrk=%d\n",&hbrk);
 }
 
 void *malloc(size_t size) {
