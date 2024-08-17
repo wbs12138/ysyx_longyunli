@@ -108,7 +108,7 @@ int printf(const char *fmt, ...) {
       case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
       case '0': ++fmt; int num = *fmt - '0'; ++fmt; 
                 if(*fmt!='x' || *fmt!='d'){
-                  putch('e');putch('\n');putch(*fmt);
+                  putch('e');putch('\n');putch(*fmt);putch('\n');
                   panic("\nprintf failed\n");
                 }
                 else if(*fmt=='x'){
@@ -139,7 +139,7 @@ int printf(const char *fmt, ...) {
         buffer += 1;
         break;
       default:
-        putch('e');putch('\n');putch(*fmt);panic("\nprintf not all geshihua\n");
+        putch('e');putch('\n');putch(*fmt);putch('\n');panic("\nprintf not all geshihua\n");
       }
       
     }
