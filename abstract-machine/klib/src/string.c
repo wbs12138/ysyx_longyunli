@@ -41,7 +41,8 @@ char *strncpy(char *dst, const char *src, size_t n) {
     ++src;
     --n;
   }
-  
+  if(*src=='\0')
+    *dst='\0';
   while (n != 0) {
     *dst = '\0';
     ++dst;
