@@ -107,7 +107,7 @@ int printf(const char *fmt, ...) {
       case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
       case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
       case '0': ++fmt; int num_0 = *fmt - '0'; ++fmt; 
-                if(*fmt!='x' || *fmt!='d'){
+                if(*fmt!='x' && *fmt!='d'){
                   putch('e');putch('\n');putch(*fmt);putch('\n');
                   panic("\nprintf 0x or 0d\n");
                 }
@@ -141,7 +141,7 @@ int printf(const char *fmt, ...) {
       default:
         if((*fmt-'0')>=0 && (*fmt-'0')<=9){
           int num_1 = *fmt - '0';fmt++;
-          if(*fmt!='x' || *fmt!='d'){
+          if(*fmt!='x' && *fmt!='d'){
             putch('e');putch('\n');putch(*fmt);putch('\n');
             panic("\nprintf 1x or 1d\n");
           }
