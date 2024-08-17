@@ -49,9 +49,7 @@ void *malloc(size_t size) {
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   if(!reset_yet){
     heap_reset();
-    reset_yet+=1;printf("here\n");
-    if(reset_yet==2)
-    panic("fuck many reset!\n");
+    reset_yet+=1;panic("here\n");
   }
   size  = (size_t)ROUNDUP(size, 8);
   char *old = hbrk;
