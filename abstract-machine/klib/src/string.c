@@ -111,7 +111,8 @@ void *memset(void *s, int c, size_t n) {
 
 }
 
-void *memmove(void *dst, const void *src, size_t n) {panic("used");
+//unused
+void *memmove(void *dst, const void *src, size_t n) {
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
   }
@@ -138,7 +139,8 @@ void *memmove(void *dst, const void *src, size_t n) {panic("used");
 
 }
 
-void *memcpy(void *out, const void *in, size_t n) {
+
+void *memcpy(void *out, const void *in, size_t n) {panic("unused");
   if (out == NULL || in == NULL || n == 0 || out == in) {
     return out;
   }
