@@ -17,14 +17,14 @@ size_t strlen(const char *s) {
 
 char *strcpy(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {  
-    return dst;panic("0");
+    return dst;
   }
   char *res = dst;
-  do {
+  while(*src != '\0'){
     *dst = *src;
     dst++;
     src++;
-  } while(*src != '\0');  
+  }  
   *dst = *src;
   return res;
 
