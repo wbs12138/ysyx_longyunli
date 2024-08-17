@@ -101,7 +101,9 @@ void *memset(void *s, int c, size_t n) {
   unsigned char *src = s;  
   while (n != 0) {
     --n;
-    *src = c%256+(c%256)*256+(c%256)*256*256+(c%256)*256*256*256;
+    uint32_t cc=(uint32_t)c;
+    uint32_t x=cc%256+(cc%256)*256+(cc%256)*256*256+(cc%256)*256*256*256;
+    *src = x;
     ++src;
   }
   return s;
