@@ -39,7 +39,7 @@ int atoi(const char* nptr) {
 int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
 __attribute__((unused)) static void heap_reset() {
-  hbrk = (void *)ROUNDUP(heap.start, 8);printf("hbrk=%d\n,",&hbrk);
+  hbrk = (void *)ROUNDUP(heap.start, 8);
 }
 
 void *malloc(size_t size) {
@@ -49,7 +49,9 @@ void *malloc(size_t size) {
 #if !(defined(__ISA_NATIVE__) && defined(__NATIVE_USE_KLIB__))
   if(!reset_yet){
     heap_reset();
-    reset_yet=1;
+    reset_yet+=1;printf("here\n");
+    if(reset_yet==2)
+    panic("fuck many reset!\n");
   }
   size  = (size_t)ROUNDUP(size, 8);
   char *old = hbrk;
