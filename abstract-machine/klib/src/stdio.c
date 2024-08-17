@@ -106,6 +106,25 @@ int printf(const char *fmt, ...) {
       case '%': *buffer = *fmt; ++buffer; break;
       case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
       case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
+      case '0': ++fmt; int num = *fmt - '0'; ++fmt; 
+                if(*fmt!='x' || *fmt!='d')panic("printf failed\n");
+                else if(*fmt=='x'){
+                  if(itoa(va_arg(pArgs, int), buffer, 16)<=num){
+                    for(int i=0;i<num-itoa(va_arg(pArgs, int), buffer, 16);i++){
+                      *buffer = '0';buffer++;
+                    }
+                  }
+                  buffer += itoa(va_arg(pArgs, int), buffer, 16);
+                }
+                else if(*fmt=='d'){
+                  if(itoa(va_arg(pArgs, int), buffer, 10)<=num){
+                    for(int i=0;i<num-itoa(va_arg(pArgs, int), buffer, 10);i++){
+                      *buffer = '0';buffer++;
+                    }
+                  }
+                  buffer += itoa(va_arg(pArgs, int), buffer, 10);
+                }
+                break;
       case 's':
         char *s = va_arg(pArgs, char*);
         strcpy(buffer, s);
