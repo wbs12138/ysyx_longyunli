@@ -86,8 +86,8 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  char info[2048];
-  for(int i=0;i<2048;i++)
+  char info[4096];
+  for(int i=0;i<4096;i++)
   {
     info[i]='\0';
   }
