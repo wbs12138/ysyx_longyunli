@@ -30,7 +30,7 @@ char *strcpy(char *dst, const char *src) {
 
 }
 
-char *strncpy(char *dst, const char *src, size_t n) {
+char *strncpy(char *dst, const char *src, size_t n) {panic("used");
   if (src == NULL || dst == NULL) {
     return dst;
   }
