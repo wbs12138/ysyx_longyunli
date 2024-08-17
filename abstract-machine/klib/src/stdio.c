@@ -49,7 +49,7 @@ static int itoa(int n, char *s, int base) {
 }
 
 
-int sprintf(char *out, const char *fmt, ...) {panic("here inter");
+int sprintf(char *out, const char *fmt, ...) {
   va_list pArgs;
   va_start(pArgs, fmt);
   char *start = out;
@@ -86,7 +86,7 @@ int sprintf(char *out, const char *fmt, ...) {panic("here inter");
 
 
 int printf(const char *fmt, ...) {
-  char info[1024];
+  char info[65535];
   for(int i=0;i<1024;i++)
   {
     info[i]='\0';
