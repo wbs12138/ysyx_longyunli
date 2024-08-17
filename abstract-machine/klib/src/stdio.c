@@ -96,6 +96,7 @@ int printf(const char *fmt, ...) {
   va_list pArgs;
   va_start(pArgs, fmt);
   char *start = buffer;
+  char *start_count = start;
 
    for (; *fmt != '\0'; ++fmt) {
     if (*fmt != '%') {
@@ -179,7 +180,7 @@ int printf(const char *fmt, ...) {
       start++;
     }
 
-    return 0;
+    return buffer-start_count;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
