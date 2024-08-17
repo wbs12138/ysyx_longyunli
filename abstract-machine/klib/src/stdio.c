@@ -49,7 +49,7 @@ static int itoa(int n, char *s, int base) {
 }
 
 
-int sprintf(char *out, const char *fmt, ...) {
+int sprintf(char *out, const char *fmt, ...) {panic("fuck");
   va_list pArgs;
   va_start(pArgs, fmt);
   char *start = out;
