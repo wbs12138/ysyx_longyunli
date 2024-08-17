@@ -100,11 +100,10 @@ void *memset(void *s, int c, size_t n) {
     return s;
   }
   unsigned char *src = s;  
+  unsigned char value = (unsigned char)c;
   while (n != 0) {
     --n;
-    uint32_t cc=(uint32_t)c;
-    uint32_t x=cc%256+(cc%256)*256+(cc%256)*256*256+(cc%256)*256*256*256;
-    *src = x;
+    *src = value;
     ++src;
   }
   return s;
@@ -140,7 +139,7 @@ void *memmove(void *dst, const void *src, size_t n) {
 }
 
 
-void *memcpy(void *out, const void *in, size_t n) {panic("unused");
+void *memcpy(void *out, const void *in, size_t n) {
   if (out == NULL || in == NULL || n == 0 || out == in) {
     return out;
   }
