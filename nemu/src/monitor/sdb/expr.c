@@ -285,7 +285,7 @@ int pre_process()
 	    
 	    tokens[i].type = TK_NOTYPE;
 	    
-	    for(int j = 31 ; j >= 0 ; j --)
+	    for(int j = 31 ; j >= 1 ; j --)
         {
 		    tokens[i+1].str[j] = tokens[i+1].str[j-1];
 	    }
