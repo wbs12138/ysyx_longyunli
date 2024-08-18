@@ -21,7 +21,7 @@ word_t vaddr_ifetch(vaddr_t addr, int len) {
 }
 
 word_t vaddr_read(vaddr_t addr, int len) {
-  return paddr_read(addr, len);
+  return paddr_read((addr & ~0x3u), len);
 }
 
 void vaddr_write(vaddr_t addr, int len, word_t data) {
