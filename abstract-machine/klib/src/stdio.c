@@ -86,8 +86,8 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  char info[1024];
-  for(int i=0;i<1024;i++)
+  char info[4096];
+  for(int i=0;i<4096;i++)
   {
     info[i]='\0';
   }
@@ -96,23 +96,39 @@ int printf(const char *fmt, ...) {
   va_list pArgs;
   va_start(pArgs, fmt);
   char *start = buffer;
+  char *start_count = start;
 
-  for (; *fmt != '\0'; ++fmt) {
-    if ((*fmt == '\033')||(*fmt == '\t')||(*fmt == '\n')||(*fmt == '\r')){
-      while(*start!='\0'){
-      putch(*start);
-      start++;
-      }
-      putch(*fmt);
-      start = buffer;
-    }
-    else if (*fmt != '%') {
+   for (; *fmt != '\0'; ++fmt) {
+    if (*fmt != '%') {
       *buffer = *fmt;
       ++buffer;
     } else {
       switch (*(++fmt)) {
       case '%': *buffer = *fmt; ++buffer; break;
       case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
+      case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
+      case '0': ++fmt; int num_0 = *fmt - '0'; ++fmt; int argsn = va_arg(pArgs, int);
+                if((*fmt!='x') && (*fmt!='d')){
+                  putch('e');putch('\n');putch(*fmt);putch('\n');
+                  panic("\nprintf 0x or 0d\n");
+                }
+                else if(*fmt=='x'){
+                  if(itoa(argsn, buffer, 16)<num_0){
+                    for(int i=0;i<num_0-itoa(argsn, buffer, 16);i++){
+                      *buffer = '0';buffer++;
+                    }
+                  }
+                  buffer += itoa(argsn, buffer, 16);
+                }
+                else if(*fmt=='d'){
+                  if(itoa(argsn, buffer, 10)<num_0){
+                    for(int i=0;i<num_0-itoa(argsn, buffer, 10);i++){
+                      *buffer = '0';buffer++;
+                    }
+                  }
+                  buffer += itoa(argsn, buffer, 10);
+                }
+                break;
       case 's':
         char *s = va_arg(pArgs, char*);
         strcpy(buffer, s);
@@ -123,10 +139,36 @@ int printf(const char *fmt, ...) {
         *buffer = yy;
         buffer += 1;
         break;
+      default:
+        if((*fmt-'0')>=0 && (*fmt-'0')<=9){
+          int num_1 = *fmt - '0';fmt++;int argsn = va_arg(pArgs, int);
+          if((*fmt!='x') && (*fmt!='d')){
+            putch('e');putch('\n');putch(*fmt);putch('\n');
+            panic("\nprintf 1x or 1d\n");
+          }
+          else if(*fmt=='x'){
+            if(itoa(argsn, buffer, 16)<num_1){
+              for(int i=0;i<num_1-itoa(argsn, buffer, 16);i++){
+                *buffer = ' ';buffer++;
+              }
+            }
+            buffer += itoa(argsn, buffer, 16);
+          }
+          else if(*fmt=='d'){
+            if(itoa(argsn, buffer, 10)<num_1){
+              for(int i=0;i<num_1-itoa(argsn, buffer, 10);i++){
+                *buffer = ' ';buffer++;
+              }
+            }
+            buffer += itoa(argsn, buffer, 10);
+          }
+        }
+        else{
+          putch('e');putch('\n');putch(*fmt);putch('\n');
+          panic("\nprintf not all geshihua\n");
+        }
       }
-      
     }
-    
   }
   *buffer = '\0';
   va_end(pArgs);
@@ -138,7 +180,7 @@ int printf(const char *fmt, ...) {
       start++;
     }
 
-    return 0;
+    return buffer-start_count;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {

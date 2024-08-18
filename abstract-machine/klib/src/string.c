@@ -20,16 +20,17 @@ char *strcpy(char *dst, const char *src) {
     return dst;
   }
   char *res = dst;
-  do {
+  while(*src != '\0'){
     *dst = *src;
     dst++;
     src++;
-  } while(*src != '\0');  
-  *dst = *src;
+  }  
+  *dst = '\0';
   return res;
 
 }
 
+//unused
 char *strncpy(char *dst, const char *src, size_t n) {
   if (src == NULL || dst == NULL) {
     return dst;
@@ -41,7 +42,6 @@ char *strncpy(char *dst, const char *src, size_t n) {
     ++src;
     --n;
   }
-  
   while (n != 0) {
     *dst = '\0';
     ++dst;
@@ -51,6 +51,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
 
 }
 
+//unused
 char *strcat(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {
     return dst;
@@ -99,15 +100,17 @@ void *memset(void *s, int c, size_t n) {
     return s;
   }
   unsigned char *src = s;  
+  unsigned char value = (unsigned char)c;
   while (n != 0) {
     --n;
-    *src = c;
+    *src = value;
     ++src;
   }
   return s;
 
 }
 
+//unused
 void *memmove(void *dst, const void *src, size_t n) {
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
@@ -134,6 +137,7 @@ void *memmove(void *dst, const void *src, size_t n) {
   return dst;
 
 }
+
 
 void *memcpy(void *out, const void *in, size_t n) {
   if (out == NULL || in == NULL || n == 0 || out == in) {
