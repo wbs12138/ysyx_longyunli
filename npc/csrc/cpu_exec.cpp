@@ -248,27 +248,36 @@ void regfile_update(int rf1,int rf2,int rf3,int rf4,int rf5,int rf6,int rf7,int 
 read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf4;read_reg[5]= rf5;read_reg[6]= rf6;read_reg[7]= rf7;read_reg[8]= rf8;read_reg[9]= rf9;read_reg[10]= rf10;read_reg[11]= rf11;read_reg[12]= rf12;read_reg[13]= rf13;read_reg[14]= rf14;read_reg[15]= rf15;read_reg[16]= rf16;read_reg[17]= rf17;read_reg[18]= rf18;read_reg[19]= rf19;read_reg[20]= rf20;read_reg[21]= rf21;read_reg[22]= rf22;read_reg[23]= rf23;read_reg[24]= rf24;read_reg[25]= rf25;read_reg[26]= rf26;read_reg[27]= rf27;read_reg[28]= rf28;read_reg[29]= rf29;read_reg[30]= rf30 ;read_reg[31]= rf31;
 }
 
+static uint64_t boot_time = 0;
+
+static uint64_t get_time_internal() {
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    uint64_t us = now.tv_sec * 1000000 + now.tv_usec;
+    return us;
+};
+
+uint64_t get_time() {
+  if (boot_time == 0) boot_time = get_time_internal();
+  uint64_t now = get_time_internal();
+  return now - boot_time;
+}
+
+uint64_t us;
+static uint32_t *rtc_port_base = NULL;
+
+
 int npc_pmem_read(int raddr) {
     if(dut->mem_valid ){
 
         if(raddr==0xa0000048){
-            struct timeval currentTime;
-            int microseconds;
-
-            gettimeofday(&currentTime,NULL);
-            microseconds=currentTime.tv_usec & 0xFFFFFFFF;
-            return microseconds;
-            
+            return rtc_port_base[0];   
         }
         else if(raddr==0xa0000048+4){
-            struct timeval currentTime;
-            long long unsigned int useconds;
-
-            gettimeofday(&currentTime,NULL);
-            useconds=(currentTime.tv_sec * 1000000 + currentTime.tv_usec)>>32;
-            //printf("microseconds high = %u\n",(int)(microseconds>>32));
-            printf("high = %u\n",(uint32_t)useconds);
-            return (int)(useconds);
+            us = get_time();
+            rtc_port_base[0] = (uint32_t)us;
+            rtc_port_base[1] = us >> 32;
+            return rtc_port_base[1];
         }
 
         trace_memory_r=1;
