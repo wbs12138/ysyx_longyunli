@@ -282,6 +282,7 @@ int npc_pmem_read(int raddr) {
             return rtc_port_base[1];
         }
         else if(raddr==0xa0000100){
+            printf("pmem_read_vga\n");
             return read_vgactl();
         }
 
@@ -300,10 +301,12 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
         return ;
     }
     else if(waddr == 0xa0000104){
+        printf("pmem_write_vga");
         write_vgactl(wdata);
         return ;
     }
     else if(waddr >=0xa1000000 && waddr<=0xa1000000+120000-4){
+        printf("vmemvmemvmemvmemvmemvmemvmemvmemvmemvmemvmem\n");
         vmem_write(waddr,4,wdata);
         return ;
     }
