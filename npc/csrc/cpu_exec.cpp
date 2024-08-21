@@ -282,7 +282,7 @@ int npc_pmem_read(int raddr) {
             return rtc_port_base[1];
         }
         else if(raddr==0xa0000100){
-            return vgactl_port_base[0];
+            return read_vgactl();
         }
 
         trace_memory_r=1;
@@ -300,7 +300,7 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
         return ;
     }
     else if(waddr == 0xa0000104){
-        vgactl_port_base[1]=wdata;
+        write_vgactl(wdata);
         return ;
     }
     else if(waddr >=0xa1000000 && waddr<=0xa1000000+120000-4){

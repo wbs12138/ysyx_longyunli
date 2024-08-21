@@ -18,6 +18,8 @@ static uint32_t screen_size() {
 
 uint32_t vmem[400*300] PG_ALIGN = {};
 
+uint32_t *vgactl_port_base = NULL;
+
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 
@@ -83,4 +85,13 @@ void vmem_write(uint32_t addr, int len, uint32_t data){
 
 void free_vgactl_port_base(){
     free(vgactl_port_base);
+}
+
+int read_vgactl(){
+    return vgactl_port_base[0];
+};
+
+void write_vgactl(int wdata){
+    vgactl_port_base[1]=wdata;
+    return ;
 }
