@@ -256,8 +256,8 @@ int npc_pmem_read(int raddr) {
             int microseconds;
 
             gettimeofday(&currentTime,NULL);
-            microseconds=(int)currentTime.tv_usec;
-            printf("microseconds low = %u\n",microseconds);
+            microseconds=currentTime.tv_usec & 0xFFFFFFFF;
+            //printf("microseconds low = %u\n",microseconds);
             return microseconds;
             
         }
@@ -266,10 +266,8 @@ int npc_pmem_read(int raddr) {
             int microseconds;
 
             gettimeofday(&currentTime,NULL);
-            microseconds=(int)(currentTime.tv_usec>>32);
-            printf("microseconds high = %lu\n",currentTime.tv_usec);
-            usleep(1000);
-            return microseconds;
+            long long microseconds=currentTime.tv_sec * 1000000 + currentTime.tv_usec;
+            return (int)(microseconds>>32);
         }
 
         trace_memory_r=1;
