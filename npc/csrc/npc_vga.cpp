@@ -1,6 +1,5 @@
 
-#include <common.h>
-#include <device/map.h>
+#include "npc_vga.h"
 
 #define SCREEN_W 400
 #define SCREEN_H 300
@@ -17,16 +16,12 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-static void *vmem = NULL;
-static uint32_t *vgactl_port_base = NULL;
-
-
-#include <SDL2/SDL.h>
+uint32_t vmem[400*300] PG_ALIGN = {};
 
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 
-//
+//no doubt
 static void init_screen() {
   SDL_Window *window = NULL;
   char title[128];
@@ -41,7 +36,8 @@ static void init_screen() {
       SDL_TEXTUREACCESS_STATIC, SCREEN_W, SCREEN_H);
   SDL_RenderPresent(renderer);
 }
-//
+
+//update screen due to vmem
 static inline void update_screen() {
   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
@@ -49,7 +45,7 @@ static inline void update_screen() {
   SDL_RenderPresent(renderer);
 }
 
-//
+//if sync , do update
 void vga_update_screen() {
 
   uint32_t sync = vgactl_port_base[1];
@@ -60,13 +56,31 @@ void vga_update_screen() {
 }
 
 void init_vga() {
-  vgactl_port_base = (uint32_t *)new_space(8);
+
+  vgactl_port_base = (uint32_t *)malloc(2*sizeof(uint32_t));
+
   vgactl_port_base[0] = (screen_width() << 16) | screen_height();
 
-  add_mmio_map("vgactl", CONFIG_VGA_CTL_MMIO, vgactl_port_base, 8, NULL);
-
-  vmem = new_space(screen_size());
-  add_mmio_map("vmem", CONFIG_FB_ADDR, vmem, screen_size(), NULL);
   init_screen();
+
   memset(vmem, 0, screen_size());
+}
+
+uint32_t* v_guest_to_host(uint32_t addr) { return vmem + addr - 0xa1000000; }
+
+static inline void v_host_write(void *addr, int len, uint32_t data) {
+  switch (len) {
+    case 1: *(uint8_t  *)addr = data; return;
+    case 2: *(uint16_t *)addr = data; return;
+    case 4: *(uint32_t *)addr = data; return;
+    default:assert(0);
+  }
+}
+
+void vmem_write(uint32_t addr, int len, uint32_t data){
+    v_host_write(v_guest_to_host(addr), len, data);
+}
+
+void free_vgactl_port_base(){
+    free(vgactl_port_base);
 }

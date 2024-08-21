@@ -34,6 +34,10 @@ int main(int argc,char** argv,char** env){
 	init_difftest(so_file, img_size);
 	#endif
 
+	#ifdef CONFIG_VGA
+	init_vga();
+	#endif
+
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
 	else{

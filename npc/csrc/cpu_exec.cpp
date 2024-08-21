@@ -7,6 +7,7 @@
 #include "npc_ftrace.h"
 #include "npc_watchpoint.h"
 #include "npc_difftest.h"
+#include "npc_vga.h"
 #include <sys/time.h>
 #include <string.h>
 
@@ -280,6 +281,9 @@ int npc_pmem_read(int raddr) {
             rtc_port_base[1] = us >> 32;
             return rtc_port_base[1];
         }
+        else if(raddr==0xa0000100){
+            return vgactl_port_base[0];
+        }
 
         trace_memory_r=1;
         m_raddr=(uint32_t)raddr;
@@ -293,6 +297,14 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
     if(waddr == 0xa00003f8){
         char char_uart=(char)(wdata & 0xff);
         putchar(char_uart);
+        return ;
+    }
+    else if(waddr == 0xa0000104){
+        vgactl_port_base[1]=wdata;
+        return ;
+    }
+    else if(waddr >=0xa1000000 && waddr<=0xa1000000+120000-4){
+        vmem_write(waddr,4,wdata);
         return ;
     }
     trace_memory_w=1;
