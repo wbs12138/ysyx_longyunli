@@ -1,8 +1,8 @@
 
 #include "npc_vga.h"
 
-#define SCREEN_W 400
-#define SCREEN_H 300
+#define SCREEN_W    100       //400 
+#define SCREEN_H    75       //300
 
 static uint32_t screen_width() {
   return SCREEN_W;
@@ -30,8 +30,8 @@ static void init_screen() {
   sprintf(title, "%s-NPC", "wangbaosen");
   SDL_Init(SDL_INIT_VIDEO);
   SDL_CreateWindowAndRenderer(
-      SCREEN_W * 2,
-      SCREEN_H * 2,
+      SCREEN_W * 4,//2
+      SCREEN_H * 4,//2
       0, &window, &renderer);
   SDL_SetWindowTitle(window, title);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
