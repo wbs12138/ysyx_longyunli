@@ -16,7 +16,7 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-uint32_t vmem[SCREEN_W*SCREEN_H*4] PG_ALIGN = {};
+uint32_t vmem[SCREEN_W*SCREEN_H*2] PG_ALIGN = {};
 
 uint32_t *vgactl_port_base = NULL;
 
@@ -88,8 +88,8 @@ void free_vgactl_port_base(){
 }
 
 int read_vgactl(){
-  int size = (screen_size() + ((1ul<<12) - 1)) & ~((1ul<<12)-1);
-  printf("size=%d\n",size);
+  //int size = (screen_size() + ((1ul<<12) - 1)) & ~((1ul<<12)-1);
+  //printf("size=%d\n",size);483328
     return vgactl_port_base[0];
 };
 
