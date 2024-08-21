@@ -65,7 +65,7 @@ void init_vga() {
 
   init_screen();
 
-  memset(vmem, 0, screen_size());
+  memset(vmem, 0, sizeof(vmem));
 }
 
 uint32_t* v_guest_to_host(uint32_t addr) { return vmem + addr - 0xa1000000; }
