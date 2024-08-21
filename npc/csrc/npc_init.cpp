@@ -35,7 +35,7 @@ void pmem_write(uint32_t addr, int len, uint32_t data) {
   host_write(guest_to_host(addr), len, data);
 }
 
-void init_mem() {
+void init_mem() {assert(0);
   memset(pmem, 0, CONFIG_MSIZE);
   printf("\033[1;34m[%s:%d]physical memory area [\" %x \", \" %x \"]\033[0m\r\n", __FILE__,__LINE__,PMEM_LEFT, PMEM_RIGHT);
 }
