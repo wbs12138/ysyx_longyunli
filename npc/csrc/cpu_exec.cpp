@@ -253,22 +253,21 @@ int npc_pmem_read(int raddr) {
 
         if(raddr==0xa0000048){
             struct timeval currentTime;
-            long long int microseconds;
+            int microseconds;
 
             gettimeofday(&currentTime,NULL);
-            microseconds=currentTime.tv_usec ;
-            printf("microseconds low = %llu\n",microseconds);
+            microseconds=currentTime.tv_usec & 0xFFFFFFFF;
             return microseconds;
             
         }
         else if(raddr==0xa0000048+4){
             struct timeval currentTime;
-            long long microseconds;
+            long long unsigned int useconds;
 
             gettimeofday(&currentTime,NULL);
-            microseconds=currentTime.tv_sec * 1000000 + currentTime.tv_usec;
-            printf("microseconds high = %u\n",(int)(microseconds>>32));
-            return (int)(microseconds>>32);
+            useconds=(currentTime.tv_sec * 1000000 + currentTime.tv_usec)/4294967296;
+            //printf("microseconds high = %u\n",(int)(microseconds>>32));
+            return (int)(useconds);
         }
 
         trace_memory_r=1;
