@@ -16,7 +16,7 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-uint32_t vmem[SCREEN_W*SCREEN_H*3] PG_ALIGN = {};
+uint8_t vmem[SCREEN_W*SCREEN_H*3] PG_ALIGN = {};
 
 uint32_t *vgactl_port_base = NULL;
 
@@ -30,8 +30,8 @@ static void init_screen() {
   sprintf(title, "%s-NPC", "wangbaosen");
   SDL_Init(SDL_INIT_VIDEO);
   SDL_CreateWindowAndRenderer(
-      SCREEN_W * 4,//2
-      SCREEN_H * 4,//2
+      SCREEN_W * 2,
+      SCREEN_H * 2,
       0, &window, &renderer);
   SDL_SetWindowTitle(window, title);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
@@ -68,7 +68,7 @@ void init_vga() {
   memset(vmem, 0, sizeof(vmem));
 }
 
-uint32_t* v_guest_to_host(uint32_t addr) { return vmem + addr - 0xa1000000; }
+uint8_t* v_guest_to_host(uint32_t addr) { return vmem + addr - 0xa1000000; }
 
 static inline void v_host_write(void *addr, int len, uint32_t data) {
   switch (len) {
