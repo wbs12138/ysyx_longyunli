@@ -169,6 +169,8 @@ void end_cpu(){
     m_trace->close();
 
 	delete dut;
+
+    free(rtc_port_base);
 	
 	return ;
 }
