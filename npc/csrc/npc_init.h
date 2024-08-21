@@ -2,7 +2,7 @@
 #define NPC_INIT_H
 #include "npc_sources.h"
 
-uint8_t* guest_to_host_extern(uint32_t paddr);
+uint8_t* guest_to_host_extern(uint32_t addr);
 
 long load_img(char *img_file);
 
