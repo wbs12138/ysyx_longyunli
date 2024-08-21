@@ -249,9 +249,9 @@ read_reg[0]=0;read_reg[1]= rf1;read_reg[2]= rf2;read_reg[3]= rf3;read_reg[4]= rf
 }
 
 int npc_pmem_read(int raddr) {
-    if(dut->mem_valid ){trace_memory_r=1;m_raddr=(uint32_t)raddr;
-  return pmem_read(m_raddr,4);
-    }else
+//     if(dut->mem_valid ){trace_memory_r=1;m_raddr=(uint32_t)raddr;
+//   return pmem_read(m_raddr,4);
+//     }else
     return 0;
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
@@ -259,15 +259,15 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
     printf("pc=%x,waddr=%x\n",dut->pc,waddr);
     return ;
     }
-    //trace_memory_w=1;
+    trace_memory_w=1;
     
-    // if(wmask==1){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=1;
-    // pmem_write(waddr,1,wdata);}
-    // else if(wmask==3){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=2;
-    // pmem_write(waddr,2,wdata);}
-    // else if(wmask==15){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=4;
-    // pmem_write(waddr,4,wdata);}
-    //else assert(0);
+    if(wmask==1){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=1;
+    pmem_write(waddr,1,wdata);}
+    else if(wmask==3){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=2;
+    pmem_write(waddr,2,wdata);}
+    else if(wmask==15){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=4;
+    pmem_write(waddr,4,wdata);}
+    else assert(0);
 
   // 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`
   // `wmask`中每比特表示`wdata`中1个字节的掩码,
