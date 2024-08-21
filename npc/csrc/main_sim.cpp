@@ -44,9 +44,9 @@ int main(int argc,char** argv,char** env){
 		sdb_main_loop(0);
 	}
 	#ifdef CONFIG_VGA
-	atexit(SDL_Quit);
+		free_vgactl_port_base();
 	#endif
-	
+
 	return 0;
 }
 
