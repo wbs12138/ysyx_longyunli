@@ -263,10 +263,10 @@ int npc_pmem_read(int raddr) {
         }
         else if(raddr==0xa0000048+4){
             struct timeval currentTime;
-            int microseconds;
+            long long microseconds;
 
             gettimeofday(&currentTime,NULL);
-            long long microseconds=currentTime.tv_sec * 1000000 + currentTime.tv_usec;
+            microseconds=currentTime.tv_sec * 1000000 + currentTime.tv_usec;
             return (int)(microseconds>>32);
         }
 
