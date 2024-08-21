@@ -43,7 +43,9 @@ int main(int argc,char** argv,char** env){
 	else{
 		sdb_main_loop(0);
 	}
-
+	#ifdef CONFIG_VGA
+	atexit(SDL_Quit);
+	#endif
 	
 	return 0;
 }

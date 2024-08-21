@@ -4,6 +4,8 @@
 #define SCREEN_W    400 
 #define SCREEN_H    300
 
+
+
 static uint32_t screen_width() {
   return SCREEN_W;
 }
