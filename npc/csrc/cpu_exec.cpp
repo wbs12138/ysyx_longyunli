@@ -299,7 +299,6 @@ int npc_pmem_read(int raddr) {
 }
 
 void npc_pmem_write(int waddr, int wdata, char wmask) {
-    printf("waddr=%x\n",waddr);
     if(waddr == 0xa00003f8){
         char char_uart=(char)(wdata & 0xff);
         putchar(char_uart);
