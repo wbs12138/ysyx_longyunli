@@ -16,7 +16,7 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-uint32_t vmem[400*300] PG_ALIGN = {};
+uint32_t vmem[SCREEN_W*SCREEN_H*4] PG_ALIGN = {};
 
 uint32_t *vgactl_port_base = NULL;
 
