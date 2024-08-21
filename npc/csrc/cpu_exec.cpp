@@ -163,7 +163,7 @@ void update_state(){
     }
     npc_cpu_state.pc = dut->pc;
 }
-	
+static uint32_t *rtc_port_base =(uint32_t *)malloc(2*sizeof(uint32_t));
 void end_cpu(){
 
     m_trace->close();
