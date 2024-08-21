@@ -310,7 +310,7 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
         write_vgactl(wdata);
         return ;
     }
-    else if(waddr >=0xa1000000 && waddr<=0xa1000000+120000-4){
+    else if(waddr >=0xa1000000 && waddr<=0xa2000000){
         printf("vmemvmemvmemvmemvmemvmemvmemvmemvmemvmemvmem\n");
         vmem_write(waddr,4,wdata);
         return ;
