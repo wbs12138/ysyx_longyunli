@@ -119,7 +119,6 @@ void exec_cpu(uint32_t exec_time){
         #endif
 
         #ifdef CONFIG_DIFFTEST
-        //printf("0x80000328=%x\n",pmem_read(0x80000328,4));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
         if(error_happen){
@@ -254,9 +253,12 @@ int npc_pmem_read(int raddr) {
     }else
     return 0;
 }
+
 void npc_pmem_write(int waddr, int wdata, char wmask) {
     if(waddr == 0xa00003f8){
-    printf("pc=%x,waddr=%x\n",dut->pc,waddr);
+    //printf("pc=%x,waddr=%x\n",dut->pc,waddr);
+    char char_uart=(char)(wdata & 0xff);
+    putchar(char_uart);
     return ;
     }
     trace_memory_w=1;
