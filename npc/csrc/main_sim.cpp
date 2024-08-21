@@ -1,4 +1,4 @@
-//#include "npc_sources.h"
+#include "npc_sources.h"
 #include "npc_compile.h"
 #include "/home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_init.h"
 
