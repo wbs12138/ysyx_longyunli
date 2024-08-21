@@ -256,7 +256,7 @@ int npc_pmem_read(int raddr) {
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
     if(waddr == 0xa00003f8){
-    printf("pc=%x\n",dut->pc);
+    printf("pc=%x\n",dut->pc);return ;
     }
     trace_memory_w=1;
     
