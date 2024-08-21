@@ -253,11 +253,11 @@ int npc_pmem_read(int raddr) {
 
         if(raddr==0xa0000048){
             struct timeval currentTime;
-            int microseconds;
+            long long int microseconds;
 
             gettimeofday(&currentTime,NULL);
-            microseconds=currentTime.tv_usec & 0xFFFFFFFF;
-            printf("microseconds low = %u\n",microseconds);
+            microseconds=currentTime.tv_usec ;
+            printf("microseconds low = %lu\n",microseconds);
             return microseconds;
             
         }
