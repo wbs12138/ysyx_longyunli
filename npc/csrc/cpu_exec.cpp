@@ -275,6 +275,7 @@ uint64_t us;
 
 int npc_pmem_read(int raddr) {
     if(dut->mem_valid ){
+        printf("addr=%x\n",raddr);
 
         if(raddr==0xa0000048){
             return rtc_port_base[0];   
