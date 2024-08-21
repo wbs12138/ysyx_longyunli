@@ -88,10 +88,12 @@ void free_vgactl_port_base(){
 }
 
 int read_vgactl(){
+  printf("read the hight and width\n");
     return vgactl_port_base[0];
 };
 
 void write_vgactl(int wdata){
+  printf("update\n");
     vgactl_port_base[1]=wdata;
     return ;
 }
