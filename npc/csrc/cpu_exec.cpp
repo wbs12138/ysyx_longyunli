@@ -148,7 +148,7 @@ void exec_cpu(uint32_t exec_time){
 					printf("at pc = %x,total steps=%d\n",dut->pc,total_steps);
                     return ;}
     else if(sim_time>=MAX_SIM_TIME&&curse==0){
-        end_cpu();curse+=1;//display_inst();
+        end_cpu();curse+=1;display_inst();display_memory();
         printf("\033[1;31m[%s:%d]Fail!\nNPC running over,because of difftest or dead loop\033[0m\n",__FILE__,__LINE__);
         printf("\033[1;31m[%s,%d]HIT BAD TRAP!totalsteps=%d,sim_time=%ld\033[0m\n",__FILE__,__LINE__,total_steps,sim_time);
 		assert(0);return ;}
