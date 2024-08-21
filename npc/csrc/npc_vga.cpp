@@ -88,6 +88,8 @@ void free_vgactl_port_base(){
 }
 
 int read_vgactl(){
+  int size = (screen_size() + ((1ul<<12) - 1)) & ~((1ul<<12)-1);
+  printf("size=%d\n",size);
     return vgactl_port_base[0];
 };
 

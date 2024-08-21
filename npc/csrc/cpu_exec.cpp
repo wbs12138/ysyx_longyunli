@@ -308,7 +308,6 @@ void npc_pmem_write(int waddr, int wdata, char wmask) {
     }
     else if(waddr >=0xa1000000 && waddr<=0xa2000000){
         vmem_write(waddr,4,wdata);
-        printf("wmask=%d\n",wmask);
         return ;
     }
     trace_memory_w=1;
