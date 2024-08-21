@@ -257,7 +257,7 @@ int npc_pmem_read(int raddr) {
 
             gettimeofday(&currentTime,NULL);
             microseconds=currentTime.tv_usec ;
-            printf("microseconds low = %lu\n",microseconds);
+            printf("microseconds low = %llu\n",microseconds);
             return microseconds;
             
         }
