@@ -1,6 +1,5 @@
 #include <am.h>
 #include <klib-macros.h>
-#include <nemu.h>
 
 void __am_timer_init();
 void __am_gpu_init();
@@ -47,7 +46,6 @@ void ioe_read (int reg, void *buf) { ((handler_t)lut[reg])(buf); }
 void ioe_write(int reg, void *buf) { ((handler_t)lut[reg])(buf); }
 
 
-#define SYNC_ADDR (VGACTL_ADDR + 4)
 
 #define FB_ADDR 0xa1000000
 
