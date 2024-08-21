@@ -106,12 +106,19 @@ void exec_cpu(uint32_t exec_time){
         total_steps+=1;
 
 		if(check_watchpoint()==1)break;
-        trace_inst(pc_pre,dut->ist);
 
+        #ifdef CONFIG_ITRACE
+        trace_inst(pc_pre,dut->ist);
+        #endif
+
+        #ifdef CONFIG_MTRACE
         if(trace_memory_w)trace_memory(m_waddr,m_len,m_wdata,1);
         if(trace_memory_r)trace_memory(m_raddr,4,0xFFFFFFFF,0);
         trace_memory_r=0;
         trace_memory_w=0;
+        #endif
+
+        #ifdef CONFIG_DIFFTEST
         //printf("0x80000328=%x\n",pmem_read(0x80000328,4));
         update_state();
         error_happen = difftest_step(npc_cpu_state.pc);
@@ -119,7 +126,9 @@ void exec_cpu(uint32_t exec_time){
             sim_time = MAX_SIM_TIME;
             break;
         }
+        #endif
 
+        #ifdef CONFIG_FTRACE
         if(ftrace1)
         trace_func_call(pc_pre, dut->pc, false);
         else if(ftrace2)
@@ -128,6 +137,7 @@ void exec_cpu(uint32_t exec_time){
         trace_func_call(pc_pre, dut->pc, false);
         else if (ftrace4)
         trace_func_call(pc_pre, dut->pc, true);
+        #endif
         
         pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
@@ -245,6 +255,9 @@ int npc_pmem_read(int raddr) {
     return 0;
 }
 void npc_pmem_write(int waddr, int wdata, char wmask) {
+    if(waddr == 0xa00003f8){
+    printf("pc=%x\n",dut->pc);
+    }
     trace_memory_w=1;
     
     if(wmask==1){m_waddr=(uint32_t)waddr;m_wdata=(uint32_t)wdata;m_len=1;
