@@ -26,9 +26,13 @@ int main(int argc,char** argv,char** env){
 
 	img_size=load_img(img_file);
 
+	#ifdef CONFIG_FTRACE
 	parse_elf(elf_file);
-	
+	#endif
+
+	#ifdef CONFIG_DIFFTEST
 	init_difftest(so_file, img_size);
+	#endif
 
 	if(strcmp(argv[3],"is_batch_mode")==0)
 		sdb_main_loop(1);		
