@@ -139,6 +139,10 @@ void exec_cpu(uint32_t exec_time){
         else if (ftrace4)
         trace_func_call(pc_pre, dut->pc, true);
         #endif
+
+        #ifdef CONFIG_VGA
+        vga_update_screen();
+        #endif
         
         pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
