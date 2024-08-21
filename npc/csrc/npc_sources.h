@@ -25,10 +25,10 @@
 #define PG_ALIGN __attribute((aligned(4096)))
 #define uint32_t unsigned int
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
-// #define CONFIG_ITRACE 0
-// #define CONFIG_MTRACE 0
-// #define CONFIG_FTRACE 0
-// #define CONFIG_DIFFTEST 0
+#define CONFIG_ITRACE 1
+#define CONFIG_MTRACE 1
+#define CONFIG_FTRACE 1
+// #define CONFIG_DIFFTEST 1
 
 
 
