@@ -266,7 +266,6 @@ uint64_t get_time() {
 }
 
 uint64_t us;
-static uint32_t *rtc_port_base =(uint32_t *)malloc(2*sizeof(uint32_t));
 
 
 int npc_pmem_read(int raddr) {
