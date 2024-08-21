@@ -53,6 +53,7 @@ void vga_update_screen() {
   uint32_t sync = vgactl_port_base[1];
   if (sync) {
     update_screen();
+    printf("updata!!!!\n");
     vgactl_port_base[1] = 0;
   }
 }
