@@ -50,6 +50,7 @@ VM_USER_CLASSES = \
 	npc_init \
 	npc_itrace \
 	npc_sdb \
+	npc_vga \
 	npc_watchpoint \
 
 # User .cpp directories (from .cpp's on Verilator command line)
@@ -81,6 +82,8 @@ npc_init.o: ./csrc/npc_init.cpp
 npc_itrace.o: ./csrc/npc_itrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc_sdb.o: ./csrc/npc_sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+npc_vga.o: ./csrc/npc_vga.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc_watchpoint.o: ./csrc/npc_watchpoint.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

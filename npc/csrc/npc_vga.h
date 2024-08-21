@@ -2,6 +2,7 @@
 #define NPC_VGA_H
 
 #include "npc_sources.h"
+
 #include <SDL2/SDL.h>
 
 uint32_t *vgactl_port_base = NULL;
