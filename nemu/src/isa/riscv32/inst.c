@@ -34,7 +34,7 @@ static vaddr_t *csr_register(word_t imm) {
   }
 }
 
-#define ECALL(dnpc) { bool success; dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
+#define ECALL(dnpc) { printf("s->pc is %x\n",s->pc);bool success; dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
 #define CSR(i) *csr_register(i)
 
 enum {
@@ -155,7 +155,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, R(rd) = CSR(imm); CSR(imm) = src1);
   INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, R(rd) = CSR(imm); CSR(imm) = src1 | CSR(imm));
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, ECALL(s->dnpc));
-  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc);
+  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc,printf("dnpc is %x\n",s->dnpc););
 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc)); // 对所有模式都无法匹配的指令，判定为非法指令
   INSTPAT_END();
