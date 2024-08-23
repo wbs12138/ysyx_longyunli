@@ -27,7 +27,7 @@ static vaddr_t *csr_register(word_t imm) {
   switch (imm)
   {
   case 0x341: return &(cpu.csr.mepc);
-  case 0x342: return &(cpu.csr.mcause);
+  case 0x342: printf("yes!!!\n");return &(cpu.csr.mcause);
   case 0x300: return &(cpu.csr.mstatus);
   case 0x305: return &(cpu.csr.mtvec);
   default: panic("Unknown csr");
