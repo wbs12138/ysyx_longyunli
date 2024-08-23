@@ -103,7 +103,8 @@ const char *ref_regs[] = {
 
 void ref_reg_display(CPU_state *ref_r) {
   int reg_num = ARRLEN(cpu.gpr);
-  printf("ref_isa as follows to compare and check\n");
+  printf("\n\n\n");
+  printf("ref_reg as follows to compare and check\n");
 for(int i=0;i<reg_num;i++){
   printf("%d:%s\t%x\n",i,ref_regs[i],ref_r->gpr[i]);
 }

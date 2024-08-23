@@ -29,6 +29,7 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+printf("dut_reg as follows to compare and check\n");
 for(int i=0;i<32;i++){
 	printf("%d:%s\t%x\n",i,reg_name(i),gpr(i));
 }
