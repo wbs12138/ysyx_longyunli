@@ -163,7 +163,7 @@ int printf(const char *fmt, ...) {
             buffer += itoa(argsn, buffer, 10);
           }
         }
-        else if(*fmt=='l'){
+        else if(*fmt=='l' && *fmt+1 == 'd'){
           buffer += itoa(va_arg(pArgs,long int), buffer, 10);
         }
         else{
