@@ -91,13 +91,27 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
+
+const char *ref_regs[] = {
+  "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
+  "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
+  "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
+  "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
+
+
 void ref_reg_display(CPU_state *ref_r) {
   int reg_num = ARRLEN(cpu.gpr);
   printf("ref_isa as follows to compare and check\n");
 for(int i=0;i<reg_num;i++){
-	printf("%d:\t%x\n",i,ref_r->gpr[i]);
+  printf("%d:%s\t%x\n",i,ref_regs[i],ref_r->gpr[i]);
 }
-printf("%d:\t%x\n",33,ref_r->pc);
+printf("%d:%s\t%x\n",33,"pc",ref_r->pc);
+printf("   %s\t%x\n","mcause ",ref_r->csr.mcause);
+printf("   %s\t%x\n","mepc   ",ref_r->csr.mepc);
+printf("   %s\t%x\n","mstatus",ref_r->csr.mstatus);
+printf("   %s\t%x\n","mtvec  ",ref_r->csr.mtvec);
 
 printf("\n\n\n");
 

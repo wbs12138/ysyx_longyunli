@@ -17,17 +17,31 @@
 #include <cpu/difftest.h>
 #include "../local-include/reg.h"
 
+#define CHECKDIFFPC(p) if (ref_r->p != cpu.p) { \
+  printf("difftest fail at " #p ", expect %#x got %#x\n", ref_r->p, cpu.p); \
+  return false; \
+}
+#define CHECKDIFF(p) if (ref_r->csr.p != cpu.csr.p) { \
+  printf("difftest fail at " #p ", expect %#x got %#x\n", ref_r->csr.p, cpu.csr.p); \
+  return false; \
+}
+#define CHECKDIFF_FMT(p, fmt, ...) if (ref_r->p != cpu.p) { \
+  printf("difftest fail at " fmt ", expect %#x got %#x\n", ## __VA_ARGS__, ref_r->p, cpu.p); \
+  return false; \
+}
+
+
+
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   int reg_num = ARRLEN(cpu.gpr);
   for (int i = 0; i < reg_num; i++) {
-    if (ref_r->gpr[i] != cpu.gpr[i]) {
-      printf("difftest matters\n");
-      return false;
-    }
+    CHECKDIFF_FMT(gpr[i], "gpr[%d]", i);
   }
-  if (ref_r->pc != cpu.pc) {
-    return false;
-  }
+  CHECKDIFFPC(pc);
+  CHECKDIFF(mstatus);
+	CHECKDIFF(mcause);
+  CHECKDIFF(mepc);
+  CHECKDIFF(mtvec);
   return true;
 }
 
