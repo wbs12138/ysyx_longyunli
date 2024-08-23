@@ -167,9 +167,8 @@ int printf(const char *fmt, ...) {
           buffer += itoa(va_arg(pArgs,long int), buffer, 10);
         }
         else{
-          // putch('e');putch('\n');putch(*fmt);putch('\n');
-          // panic("\nprintf not all geshihua\n");
-          ;
+          putch('e');putch('\n');putch(*fmt);putch('\n');
+          panic("\nprintf not all geshihua\n");
         }
       }
     }
