@@ -14,6 +14,8 @@
 
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/ftrace.txt"
 #define DOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/dtrace.txt"
+#define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/etrace.txt"
+
 
 typedef struct {
   word_t pc;
@@ -145,6 +147,24 @@ void trace_dread(paddr_t addr, int len, IOMap *map) {
 void trace_dwrite(paddr_t addr, int len, word_t data, IOMap *map) {
 	dtrace_write("dtrace: write %10s at " FMT_PADDR ",%d with " FMT_WORD "\n",
 		map->name, addr, len, data);
+}
+
+void etrace_write(const char *format, ...) {
+    FILE *fp = fopen(EOUTPUT_FILE, "a"); 
+    if (fp != NULL) {
+        va_list args;
+        va_start(args, format);
+        vfprintf(fp, format, args); 
+        va_end(args);
+        fclose(fp); 
+    } else {
+        printf("Error opening file %s\n", EOUTPUT_FILE);
+    }
+}
+
+void trace_e(word_t mcause,vaddr_t mepc) {
+	etrace_write("etrace: mcause= %x , mepc= %x\n",
+		mcause, mepc);
 }
 
 
@@ -526,6 +546,7 @@ void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   remove(FOUTPUT_FILE);
   remove(DOUTPUT_FILE);
+  remove(EOUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);

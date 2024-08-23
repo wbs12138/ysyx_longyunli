@@ -23,6 +23,8 @@ void trace_dread(paddr_t addr, int len, IOMap *map);
 
 void trace_dwrite(paddr_t addr, int len, word_t data, IOMap *map);
 
+void trace_e(word_t mcause,vaddr_t mepc);
+
 void parse_elf(const char *elf_file);
 
 void trace_func_call(paddr_t pc, paddr_t target, bool is_tail);
