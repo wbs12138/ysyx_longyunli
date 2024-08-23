@@ -163,6 +163,9 @@ int printf(const char *fmt, ...) {
             buffer += itoa(argsn, buffer, 10);
           }
         }
+        else if(*fmt=='l'){
+          buffer += itoa(va_arg(pArgs,long int), buffer, 10);
+        }
         else{
           putch('e');putch('\n');putch(*fmt);putch('\n');
           panic("\nprintf not all geshihua\n");
