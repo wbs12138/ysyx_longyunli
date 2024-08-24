@@ -160,7 +160,13 @@ static int decode_exec(Decode *s) {
   trace_e(isa_reg_str2val("a7", &success), s->pc); 
   #endif
   );
-  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc,cpu.csr.mstatus = 0x80);
+  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc;
+  if((cpu.csr.mstatus & 0x80) != 0 )
+    cpu.csr.mstatus |= 0x8;
+  else 
+    cpu.csr.mstatus &= 0xFFFFFFF7;
+  cpu.csr.mstatus |= 0x80;
+  );
 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc)); // 对所有模式都无法匹配的指令，判定为非法指令
   INSTPAT_END();
