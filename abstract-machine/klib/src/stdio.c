@@ -107,6 +107,12 @@ int printf(const char *fmt, ...) {
       case '%': *buffer = *fmt; ++buffer; break;
       case 'd': buffer += itoa(va_arg(pArgs, int), buffer, 10); break;
       case 'x': buffer += itoa(va_arg(pArgs, int), buffer, 16); break;
+      case 'l': switch(*(++fmt)){
+        case 'x':buffer += itoa(va_arg(pArgs,unsigned long int), buffer, 16); break;
+        case 'd':buffer += itoa(va_arg(pArgs,unsigned long int), buffer, 10); break;
+        default : putch('e');putch('\n');putch(*fmt);putch('\n');
+                  panic("\nprintf not all long\n");
+      }break;
       case '0': ++fmt; int num_0 = *fmt - '0'; ++fmt; int argsn = va_arg(pArgs, int);
                 if((*fmt!='x') && (*fmt!='d')){
                   putch('e');putch('\n');putch(*fmt);putch('\n');
@@ -162,9 +168,6 @@ int printf(const char *fmt, ...) {
             }
             buffer += itoa(argsn, buffer, 10);
           }
-        }
-        else if(*fmt=='l' && *fmt+1 == 'd'){
-          buffer += itoa(va_arg(pArgs,long int), buffer, 10);
         }
         else{
           putch('e');putch('\n');putch(*fmt);putch('\n');
