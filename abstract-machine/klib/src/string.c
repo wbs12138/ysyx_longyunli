@@ -15,7 +15,7 @@ size_t strlen(const char *s) {
   return n;
 }
 
-char *strcpy(char *dst, const char *src) {assert(0);
+char *strcpy(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {  
     return dst;
   }
@@ -31,7 +31,7 @@ char *strcpy(char *dst, const char *src) {assert(0);
 }
 
 //unused
-char *strncpy(char *dst, const char *src, size_t n) {assert(0);
+char *strncpy(char *dst, const char *src, size_t n) {
   if (src == NULL || dst == NULL) {
     return dst;
   }
@@ -52,7 +52,7 @@ char *strncpy(char *dst, const char *src, size_t n) {assert(0);
 }
 
 //unused
-char *strcat(char *dst, const char *src) {assert(0);
+char *strcat(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {
     return dst;
   }
@@ -95,7 +95,7 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 
 }
 
-void *memset(void *s, int c, size_t n) {assert(0);
+void *memset(void *s, int c, size_t n) {
   if (s == NULL) {
     return s;
   }
@@ -111,7 +111,7 @@ void *memset(void *s, int c, size_t n) {assert(0);
 }
 
 //unused
-void *memmove(void *dst, const void *src, size_t n) {assert(0);
+void *memmove(void *dst, const void *src, size_t n) {
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
   }
@@ -141,10 +141,10 @@ void *memmove(void *dst, const void *src, size_t n) {assert(0);
 
 void *memcpy(void *out, const void *in, size_t n) {
   if (out == NULL || in == NULL || n == 0 || out == in) {
-    assert(0);return out;
+    return out;
   }
   unsigned char *dest = out;
-  const unsigned char *src = in;
+  unsigned char *src  = (unsigned char *)in;
   while (n != 0) {
     *dest = *src;
     --n;
