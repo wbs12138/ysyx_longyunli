@@ -24,9 +24,6 @@ word_t vaddr_read(vaddr_t addr, int len) {
   return paddr_read(addr, len);
 }
 
-void vaddr_write(vaddr_t addr, int len, word_t data) {
-  //if(addr-0x8001360c>=-16 || addr-0x8001360c<=16)
-  printf("fffffffffffffffffffffffffffffffffffffffffffffffff,pc=%x\n",cpu.pc);
-  
+void vaddr_write(vaddr_t addr, int len, word_t data) {  
   paddr_write(addr, len, data);
 }
