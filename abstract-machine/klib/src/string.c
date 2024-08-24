@@ -144,7 +144,7 @@ void *memcpy(void *out, const void *in, size_t n) {
     return out;
   }
   unsigned char *dest = out;
-  unsigned char *src  = (unsigned char *)in;
+  const unsigned char *src = in;
   while (n != 0) {
     *dest = *src;
     --n;
