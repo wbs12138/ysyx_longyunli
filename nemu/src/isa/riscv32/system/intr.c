@@ -21,6 +21,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   cpu.csr.mcause = 0x0b;
   cpu.csr.mepc = epc;
+  cpu.csr.mstatus = 0x1800;
 
   return cpu.csr.mtvec;
 }
