@@ -52,7 +52,7 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 //unused
-char *strcat(char *dst, const char *src) {assert(0);
+char *strcat(char *dst, const char *src) {
   if (src == NULL || dst == NULL) {
     return dst;
   }
