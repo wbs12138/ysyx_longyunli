@@ -156,6 +156,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, R(rd) = CSR(imm); CSR(imm) = src1 | CSR(imm));
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, ECALL(s->dnpc);
   #ifdef CONFIG_ITRACE 
+  bool success;
   trace_e(isa_reg_str2val("a7", &success), s->pc); 
   #endif
   );
