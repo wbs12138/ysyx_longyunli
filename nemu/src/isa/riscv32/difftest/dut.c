@@ -19,18 +19,19 @@
 
 #define CHECKDIFFPC(p) if (ref_r->p != cpu.p) { \
   printf("difftest fail at " #p ", expect %#x got %#x\n", ref_r->p, cpu.p); \
-  return false; \
+  error = 1; \
 }
 #define CHECKDIFF(p) if (ref_r->csr.p != cpu.csr.p) { \
   printf("\033[1;31m difftest fail at " #p ", expect %#x got %#x\033[0m\n", ref_r->csr.p, cpu.csr.p); \
-  return false; \
+  error = 1; \
 }
 #define CHECKDIFF_FMT(p, fmt, ...) if (ref_r->p != cpu.p) { \
   printf("difftest fail at " fmt ", expect %#x got %#x\n", ## __VA_ARGS__, ref_r->p, cpu.p); \
-  return false; \
+  error = 1; \
 }
 
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
+  int error = 0;
   int reg_num = ARRLEN(cpu.gpr);
   for (int i = 0; i < reg_num; i++) {
     CHECKDIFF_FMT(gpr[i], "gpr[%d]", i);
@@ -40,6 +41,9 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   CHECKDIFF(mcause);
   CHECKDIFF(mepc);
   CHECKDIFF(mtvec);
+  if(error == 1)
+  return false;
+  else
   return true;
 }
 
