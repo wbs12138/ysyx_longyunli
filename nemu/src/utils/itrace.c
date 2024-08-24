@@ -162,9 +162,14 @@ void etrace_write(const char *format, ...) {
     }
 }
 
-void trace_e(word_t mcause,vaddr_t mepc) {
+void trace_e_in(word_t mcause,vaddr_t mepc) {
 	etrace_write("etrace: mcause= %x , mepc= %x\n",
 		mcause, mepc);
+}
+
+void trace_e_out(word_t dpc,vaddr_t mstatus){
+	etrace_write("mret: dnpc= %x , mstatus= %x\n",
+		dpc, mstatus);
 }
 
 

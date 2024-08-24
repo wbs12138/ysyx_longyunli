@@ -157,7 +157,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, ECALL(s->dnpc);
   #ifdef CONFIG_ITRACE 
   bool success;
-  trace_e(isa_reg_str2val("a7", &success), s->pc); 
+  trace_e_in(isa_reg_str2val("a7", &success), s->pc); 
   #endif
   );
   INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc;
@@ -167,6 +167,9 @@ static int decode_exec(Decode *s) {
     cpu.csr.mstatus &= 0xFFFFFFF7;
   cpu.csr.mstatus |= 0x80;
   cpu.csr.mstatus &= 0xffffe7ff;
+  #ifdef CONFIG_ITRACE 
+  trace_e_out(s->dnpc, cpu.csr.mstatus); 
+  #endif
   );
 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc)); // 对所有模式都无法匹配的指令，判定为非法指令
