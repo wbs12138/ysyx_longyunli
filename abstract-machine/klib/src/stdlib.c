@@ -42,7 +42,7 @@ __attribute__((unused)) static void heap_reset() {
   hbrk = (void *)ROUNDUP(heap.start, 8);
 }
 
-void *malloc(size_t size) {
+void *malloc(size_t size) {assert(0);
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
