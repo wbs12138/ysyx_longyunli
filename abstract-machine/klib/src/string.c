@@ -111,7 +111,7 @@ void *memset(void *s, int c, size_t n) {assert(0);
 }
 
 //unused
-void *memmove(void *dst, const void *src, size_t n) {
+void *memmove(void *dst, const void *src, size_t n) {assert(0);
   if (dst == NULL || src == NULL || n == 0 || dst == src) {
     return dst;
   }
@@ -139,7 +139,7 @@ void *memmove(void *dst, const void *src, size_t n) {
 }
 
 
-void *memcpy(void *out, const void *in, size_t n) {
+void *memcpy(void *out, const void *in, size_t n) {assert(0);
   if (out == NULL || in == NULL || n == 0 || out == in) {
     return out;
   }
@@ -155,7 +155,7 @@ void *memcpy(void *out, const void *in, size_t n) {
 
 }
 
-int memcmp(const void *s1, const void *s2, size_t n) {
+int memcmp(const void *s1, const void *s2, size_t n) {assert(0);
   if (s1 == NULL || s2 == NULL) {
     return 0;
   }
