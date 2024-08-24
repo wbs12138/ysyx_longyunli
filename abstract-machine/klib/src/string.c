@@ -155,7 +155,7 @@ void *memcpy(void *out, const void *in, size_t n) {assert(0);
 
 }
 
-int memcmp(const void *s1, const void *s2, size_t n) {assert(0);
+int memcmp(const void *s1, const void *s2, size_t n) {
   if (s1 == NULL || s2 == NULL) {
     return 0;
   }
