@@ -31,7 +31,7 @@ char *strcpy(char *dst, const char *src) {
 }
 
 //unused
-char *strncpy(char *dst, const char *src, size_t n) {
+char *strncpy(char *dst, const char *src, size_t n) {assert(0);
   if (src == NULL || dst == NULL) {
     return dst;
   }
