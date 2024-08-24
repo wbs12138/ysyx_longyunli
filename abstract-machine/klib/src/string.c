@@ -141,7 +141,7 @@ void *memmove(void *dst, const void *src, size_t n) {assert(0);
 
 void *memcpy(void *out, const void *in, size_t n) {
   if (out == NULL || in == NULL || n == 0 || out == in) {
-    return out;
+    assert(0);return out;
   }
   unsigned char *dest = out;
   const unsigned char *src = in;
