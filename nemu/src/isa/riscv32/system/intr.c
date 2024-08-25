@@ -24,7 +24,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   cpu.csr.mstatus &= ~(1<<3);
   cpu.csr.mstatus |= ((1<<11)+(1<<12));
   cpu.csr.mcause = NO;
-  cpu.csr.mepc = epc ;
+  cpu.csr.mepc = epc + 4;
 
   return cpu.csr.mtvec;
 }
