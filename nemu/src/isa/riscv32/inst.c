@@ -161,12 +161,12 @@ static int decode_exec(Decode *s) {
   #endif
   );
   INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , N, s->dnpc=cpu.csr.mepc;
-  // if((cpu.csr.mstatus & 0x80) != 0 )
-  //   cpu.csr.mstatus |= 0x8;
-  // else 
-  //   cpu.csr.mstatus &= 0xFFFFFFF7;
-  // cpu.csr.mstatus |= 0x80;
-  //cpu.csr.mstatus &= 0xffffe7ff;
+  if((cpu.csr.mstatus & 0x80) != 0 )
+    cpu.csr.mstatus |= 0x8;
+  else 
+    cpu.csr.mstatus &= 0xFFFFFFF7;
+  cpu.csr.mstatus |= 0x80;
+  cpu.csr.mstatus &= 0xffffe7ff;
   #ifdef CONFIG_ITRACE 
   trace_e_out(s->dnpc, cpu.csr.mstatus); 
   #endif
