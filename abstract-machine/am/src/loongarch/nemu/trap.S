@@ -24,7 +24,6 @@ f(30) f(31)
 .align 6
 .globl __am_asm_trap
 __am_asm_trap:
-
   addi.w $sp, $sp, -CONTEXT_SIZE
 
   MAP(REGS, PUSH)
@@ -39,6 +38,7 @@ __am_asm_trap:
 
   move $a0, $sp
   bl __am_irq_handle
+  move $sp, $a0
 
   ld.w $t1, $sp, OFFSET_PRMD
   ld.w $t2, $sp, OFFSET_ERA
