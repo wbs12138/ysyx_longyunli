@@ -63,27 +63,12 @@ void sim_t::diff_get_regs(void* diff_context) {
   for (int i = 0; i < NR_GPR; i++) {
     ctx->gpr[i] = state->XPR[i];
   }
-  ctx->pc       = state->pc;
-  if (state->mcause) {
-    ctx->mcause = static_cast<uint32_t>(state->mcause->read());
-  } else {
-    assert(0);
-  }
-  if (state->mepc) {
-    ctx->mepc = static_cast<uint32_t>(state->mepc->read());
-  } else {
-    assert(0);
-  }
-  if (state->mstatus) {
-    ctx->mstatus = static_cast<uint32_t>(state->mstatus->read());
-  } else {
-    assert(0);
-  }
-  if (state->mtvec) {
-    ctx->mtvec = static_cast<uint32_t>(state->mtvec->read());
-  } else {
-    assert(0);
-  }
+  ctx->pc = state->pc;
+  // CSR
+  ctx->mtvec = state->mtvec->read();
+  ctx->mepc = state->mepc->read();
+  ctx->mstatus = state->mstatus->read();
+  ctx->mcause = state->mcause->read();
 }
 
 void sim_t::diff_set_regs(void* diff_context) {
@@ -92,10 +77,11 @@ void sim_t::diff_set_regs(void* diff_context) {
     state->XPR.write(i, (sword_t)ctx->gpr[i]);
   }
   state->pc = ctx->pc;
-  state->mcause->write(static_cast<reg_t>(ctx->mcause));
-  state->mepc->write(static_cast<reg_t>(ctx->mepc));
-  state->mstatus->write(static_cast<reg_t>(ctx->mstatus));
-  state->mtvec->write(static_cast<reg_t>(ctx->mtvec));
+  // CSR
+  state->mtvec->write(ctx->mtvec);
+  state->mepc->write(ctx->mepc);
+  state->mstatus->write(ctx->mstatus);
+  state->mcause->write(ctx->mcause);
 }
 
 void sim_t::diff_memcpy(reg_t dest, void* src, size_t n) {
