@@ -166,7 +166,7 @@ static int decode_exec(Decode *s) {
   else 
     cpu.csr.mstatus &= 0xFFFFFFF7;
   cpu.csr.mstatus |= 0x80;
-  cpu.csr.mstatus &= 0xffffe7ff;
+  //cpu.csr.mstatus &= 0xffffe7ff;
   #ifdef CONFIG_ITRACE 
   trace_e_out(s->dnpc, cpu.csr.mstatus); 
   #endif
