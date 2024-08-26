@@ -24,7 +24,7 @@ assign func3  = ist[14:12];
 wire    lui,auipc,jal,jalr,beq,bne,blt,bge,bltu,bgeu,lb,lh,lw,
         lbu,lhu,sb,sh,sw,addi,slti,sltiu,xori,ori,andi,slli,srli,
         srai,add,sub,sll,slt,sltu,xorr,srl,
-        sra,orr,andd;
+        sra,orr,andd,ecall,mret,csrrw,csrrs;
 
 assign lui      =   (opcode==7'b0110111);//U
 assign auipc    =   (opcode==7'b0010111);//U
