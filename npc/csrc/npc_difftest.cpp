@@ -84,28 +84,28 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
   for (int i = 0; i < reg_num; i++) {
     if (ref_r->gpr[i] != read_cpu_state_gpr(i)) {
       printf("difftest matters\n");
-      printf("\033[1;31mdifftest fail at %s[%d], expect %#x got %#x\033[0m\n", "gpr" , i , ref_r->gpr[i], read_cpu_state_gpr(i)); 
+      printf("\033[1;31m difftest fail at %s[%d], expect %#x got %#x\033[0m\n", "gpr" , i , ref_r->gpr[i], read_cpu_state_gpr(i)); 
       error=1;
     }
   }
   if (ref_r->pc != read_cpu_state_pc()) {
-    printf("\033[1;31mdifftest fail at %s, expect %#x got %#x\033[0m\n", "pc" , ref_r->pc, read_cpu_state_pc()); 
+    printf("\033[1;31m difftest fail at %s, expect %#x got %#x\033[0m\n", "pc" , ref_r->pc, read_cpu_state_pc()); 
     error=1;
   }
   if (ref_r->csr.mtvec != read_cpu_state_mtvec()) {
-    printf("\033[1;31mdifftest fail at %s, expect %#x got %#x\033[0m\n", "mtvec" , ref_r->csr.mtvec, read_cpu_state_mtvec()); 
+    printf("\033[1;31m difftest fail at %s, expect %#x got %#x\033[0m\n", "mtvec" , ref_r->csr.mtvec, read_cpu_state_mtvec()); 
     error=1;
   }
   if (ref_r->csr.mepc != read_cpu_state_mepc()) {
-    printf("\033[1;31mdifftest fail at %s, expect %#x got %#x\033[0m\n", "mepc" , ref_r->csr.mepc, read_cpu_state_mepc()); 
+    printf("\033[1;31m difftest fail at %s, expect %#x got %#x\033[0m\n", "mepc" , ref_r->csr.mepc, read_cpu_state_mepc()); 
     error=1;
   }
   if (ref_r->csr.mcause != read_cpu_state_mcause()) {
-    printf("\033[1;31mdifftest fail at %s, expect %#x got %#x\033[0m\n", "mcause" , ref_r->csr.mcause, read_cpu_state_mcause()); 
+    printf("\033[1;31m difftest fail at %s, expect %#x got %#x\033[0m\n", "mcause" , ref_r->csr.mcause, read_cpu_state_mcause()); 
     error=1;
   }
   if (ref_r->csr.mstatus != read_cpu_state_mstatus()) {
-    printf("\033[1;31mdifftest fail at %s, expect %#x got %#x\033[0m\n", "mstatus" , ref_r->csr.mstatus, read_cpu_state_mstatus()); 
+    printf("\033[1;31m difftest fail at %s, expect %#x got %#x\033[0m\n", "mstatus" , ref_r->csr.mstatus, read_cpu_state_mstatus()); 
     error=1;
   }
   if(error==1)
