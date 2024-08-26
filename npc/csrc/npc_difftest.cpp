@@ -158,12 +158,12 @@ int difftest_step(uint32_t pc) {
   if (is_skip_ref) {
     CPU_state cpu;
     for (int i = 0; i < 32; i++)
-    cpu->gpr[i]       =   read_cpu_state_gpr(i);
-    cpu->pc           =   read_cpu_state_pc();  
-    cpu->csr.mtvec    =   read_cpu_state_mtvec();
-    cpu->csr.mepc     =   read_cpu_state_mepc();
-    cpu->csr.mcause   =   read_cpu_state_mcause();
-    cpu->csr.mstatus  =   read_cpu_state_mstatus();
+    cpu.gpr[i]       =   read_cpu_state_gpr(i);
+    cpu.pc           =   read_cpu_state_pc();  
+    cpu.csr.mtvec    =   read_cpu_state_mtvec();
+    cpu.csr.mepc     =   read_cpu_state_mepc();
+    cpu.csr.mcause   =   read_cpu_state_mcause();
+    cpu.csr.mstatus  =   read_cpu_state_mstatus();
     difftest_regcpy(&cpu, DIFFTEST_TO_REF);
     is_skip_ref = false;
     return;
