@@ -301,15 +301,18 @@ int npc_pmem_read(int raddr) {
     if(dut->mem_valid ){
 
         if(raddr==0xa0000048){
+            difftest_skip_ref();
             return rtc_port_base[0];   
         }
         else if(raddr==0xa0000048+4){
+            difftest_skip_ref();
             us = get_time();
             rtc_port_base[0] = (uint32_t)us;
             rtc_port_base[1] = us >> 32;
             return rtc_port_base[1];
         }
         else if(raddr==0xa0000100){
+            difftest_skip_ref();
             return read_vgactl();
         }
 
@@ -322,15 +325,18 @@ int npc_pmem_read(int raddr) {
 
 void npc_pmem_write(int waddr, int wdata, char wmask) {
     if(waddr == 0xa00003f8){
+        difftest_skip_ref();
         char char_uart=(char)(wdata & 0xff);
         putchar(char_uart);
         return ;
     }
     else if(waddr == 0xa0000104){
+        difftest_skip_ref();
         write_vgactl(wdata);
         return ;
     }
     else if(waddr >=0xa1000000 && waddr<=0xa2000000){
+        difftest_skip_ref();
         vmem_write(waddr,4,wdata);
         return ;
     }

@@ -10,5 +10,5 @@
 
 void init_difftest(char *ref_so_file, long img_size);
 int difftest_step(uint32_t pc);
-
+void difftest_skip_ref();
 #endif
