@@ -196,7 +196,7 @@ assign mstatus_en   = ((imm==32'h300)&(csrrw|csrrs)) | mret | ecall ;
 Reg #(32,32'h0) inst_mepc   (clk,reset,mepc_next,mepc,mepc_en);
 Reg #(32,32'h0) inst_mtvec  (clk,reset,mtvec_next,mtvec,mtvec_en);
 Reg #(32,32'h0) inst_mcause (clk,reset,mcause_next,mcause,mcause_en);
-Reg #(32,32'h0) inst_mstatus(clk,reset,mstatus_next,mstatus,mstatus_en);
+Reg #(32,32'h1800) inst_mstatus(clk,reset,mstatus_next,mstatus,mstatus_en);
 
 wire [31:0] a0;
 RegisterFile #(5,32) inst_RegisterFile 
