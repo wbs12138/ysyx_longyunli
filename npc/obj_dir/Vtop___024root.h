@@ -54,9 +54,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         CData/*0:0*/ top__DOT__sra;
         CData/*0:0*/ top__DOT__orr;
         CData/*0:0*/ top__DOT__andd;
-        CData/*4:0*/ top__DOT__rf_raddr1;
         CData/*0:0*/ top__DOT__csrrw;
         CData/*0:0*/ top__DOT__csrrs;
+        CData/*4:0*/ top__DOT__rf_raddr1;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_13;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_16;
         CData/*0:0*/ top__DOT____VdfgRegularize_h245778ca_0_17;

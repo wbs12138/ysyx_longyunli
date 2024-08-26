@@ -27,10 +27,10 @@
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 
 
-//#define CONFIG_ITRACE 1
-//#define CONFIG_MTRACE 1
-//#define CONFIG_FTRACE 1
-//#define CONFIG_DIFFTEST 1
+#define CONFIG_ITRACE 1
+#define CONFIG_MTRACE 1
+#define CONFIG_FTRACE 1
+#define CONFIG_DIFFTEST 1
 
 #define CONFIG_VGA 1
 
@@ -39,6 +39,10 @@
 typedef struct {
     uint32_t gpr[32];
     uint32_t pc;
+    uint32_t mepc;
+    uint32_t mstatus;
+    uint32_t mcause;
+    uint32_t mtvec;
     
 } CPU_state;
 

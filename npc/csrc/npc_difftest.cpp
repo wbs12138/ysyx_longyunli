@@ -62,6 +62,10 @@ for(int i=0;i<reg_num;i++){
 	printf("%d:\t%x\n",i,ref_r->gpr[i]);
 }
 printf("%d:\t%x\n",33,ref_r->pc);
+printf("   %s\t%x\n","mcause ",ref_r->csr.mcause);
+printf("   %s\t%x\n","mepc   ",ref_r->csr.mepc);
+printf("   %s\t%x\n","mstatus",ref_r->csr.mstatus);
+printf("   %s\t%x\n","mtvec  ",ref_r->csr.mtvec);
 
 printf("\n\n\n");
 
@@ -78,8 +82,51 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
   if (ref_r->pc != read_cpu_state_pc()) {
     return false;
   }
+  if (ref_r->csr.mtvec != read_cpu_state_mtvec()) {
+    return false;
+  }
+  if (ref_r->csr.mepc != read_cpu_state_mepc()) {
+    return false;
+  }
+  if (ref_r->csr.mcause != read_cpu_state_mcause()) {
+    return false;
+  }
+  if (ref_r->csr.mstatus != read_cpu_state_mstatus()) {
+    return false;
+  }
   return true;
 }
+
+// #define CHECKDIFFPC(p) if (ref_r->p != cpu.p) { 
+//   printf("difftest fail at " #p ", expect %#x got %#x\n", ref_r->p, cpu.p); 
+//   error = 1; 
+// }
+// #define CHECKDIFF(p) if (ref_r->csr.p != cpu.csr.p) { 
+//   printf("\033[1;31m difftest fail at " #p ", expect %#x got %#x\033[0m\n", ref_r->csr.p, cpu.csr.p); 
+//   error = 1; 
+// }
+// #define CHECKDIFF_FMT(p, fmt, ...) if (ref_r->p != cpu.p) { 
+//   printf("difftest fail at " fmt ", expect %#x got %#x\n", ## __VA_ARGS__, ref_r->p, cpu.p); 
+//   error = 1; 
+// }
+
+// bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
+//   int error = 0;
+//   int reg_num = ARRLEN(cpu.gpr);
+//   for (int i = 0; i < reg_num; i++) {
+//     CHECKDIFF_FMT(gpr[i], "gpr[%d]", i);
+//   }
+//   CHECKDIFFPC(pc);
+//   CHECKDIFF(mstatus);
+//   CHECKDIFF(mcause);
+//   CHECKDIFF(mepc);
+//   CHECKDIFF(mtvec);
+//   if(error == 1)
+//   return false;
+//   else
+//   return true;
+// }
+
 
 int checkregs(CPU_state *ref, uint32_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {

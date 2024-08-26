@@ -4,7 +4,8 @@ module top(
     input [31:0] ist,
     output mem_valid,
     output [31:0] mem_raddr,
-    output mem_wen_dg
+    output mem_wen_dg,
+    output [31:0] mepc,mtvec,mcause,mstatus
 
 
             );
@@ -155,7 +156,7 @@ assign rf_wdata = lui   ?   imm     :
                   csrrw ?   csr_sel :
                   32'b0;
 
-wire [31:0] mepc,mtvec,mcause,mstatus;
+//wire [31:0] mepc,mtvec,mcause,mstatus;
 
 wire [31:0] mepc_next,mtvec_next,mcause_next,mstatus_next;
 
