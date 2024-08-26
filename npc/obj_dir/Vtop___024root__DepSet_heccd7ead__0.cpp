@@ -734,7 +734,7 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
     }
     if (vlSelf->reset) {
         vlSelf->pc = 0x80000000U;
-        vlSelf->mstatus = 0x1800U;
+        vlSelf->mstatus = 0U;
         vlSelf->mcause = 0U;
         vlSelf->mtvec = 0U;
         vlSelf->mepc = 0U;
