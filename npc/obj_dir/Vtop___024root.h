@@ -75,18 +75,18 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         VL_OUT(pc,31,0);
         VL_IN(ist,31,0);
         VL_OUT(mem_raddr,31,0);
+        VL_OUT(mepc,31,0);
+        VL_OUT(mtvec,31,0);
+        VL_OUT(mcause,31,0);
+        VL_OUT(mstatus,31,0);
         IData/*31:0*/ top__DOT__imm;
+    };
+    struct {
         IData/*31:0*/ top__DOT__rdata_mem;
         IData/*31:0*/ top__DOT__rf_wdata;
         IData/*31:0*/ top__DOT__rf_rdata1;
         IData/*31:0*/ top__DOT__rf_rdata2;
-    };
-    struct {
         IData/*31:0*/ top__DOT__csr_sel;
-        IData/*31:0*/ top__DOT__mepc;
-        IData/*31:0*/ top__DOT__mtvec;
-        IData/*31:0*/ top__DOT__mcause;
-        IData/*31:0*/ top__DOT__mstatus;
         IData/*31:0*/ top__DOT__mepc_next;
         IData/*31:0*/ top__DOT__mtvec_next;
         IData/*31:0*/ top__DOT__mcause_next;

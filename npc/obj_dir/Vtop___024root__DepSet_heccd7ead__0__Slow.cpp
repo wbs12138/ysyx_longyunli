@@ -378,13 +378,13 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__mstatus_next = vlSelf->top__DOT__rf_rdata1;
         vlSelf->top__DOT__mepc_next = vlSelf->top__DOT__rf_rdata1;
     } else if (vlSelf->top__DOT__csrrs) {
-        vlSelf->top__DOT__mtvec_next = (vlSelf->top__DOT__mtvec 
+        vlSelf->top__DOT__mtvec_next = (vlSelf->mtvec 
                                         | vlSelf->top__DOT__rf_rdata1);
-        vlSelf->top__DOT__mcause_next = (vlSelf->top__DOT__mcause 
+        vlSelf->top__DOT__mcause_next = (vlSelf->mcause 
                                          | vlSelf->top__DOT__rf_rdata1);
-        vlSelf->top__DOT__mstatus_next = (vlSelf->top__DOT__mstatus 
+        vlSelf->top__DOT__mstatus_next = (vlSelf->mstatus 
                                           | vlSelf->top__DOT__rf_rdata1);
-        vlSelf->top__DOT__mepc_next = (vlSelf->top__DOT__mepc 
+        vlSelf->top__DOT__mepc_next = (vlSelf->mepc 
                                        | vlSelf->top__DOT__rf_rdata1);
     } else {
         vlSelf->top__DOT__mtvec_next = 0U;
@@ -399,28 +399,28 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
                                            == vlSelf->ist)
                                            ? (0x80U 
                                               | ((0xffffe000U 
-                                                  & vlSelf->top__DOT__mstatus) 
+                                                  & vlSelf->mstatus) 
                                                  | ((0x700U 
-                                                     & vlSelf->top__DOT__mstatus) 
+                                                     & vlSelf->mstatus) 
                                                     | ((0x70U 
-                                                        & vlSelf->top__DOT__mstatus) 
+                                                        & vlSelf->mstatus) 
                                                        | ((8U 
-                                                           & (vlSelf->top__DOT__mstatus 
+                                                           & (vlSelf->mstatus 
                                                               >> 4U)) 
                                                           | (7U 
-                                                             & vlSelf->top__DOT__mstatus))))))
+                                                             & vlSelf->mstatus))))))
                                            : ((0x73U 
                                                == vlSelf->ist)
                                                ? (0x1800U 
                                                   | ((0xffffe000U 
-                                                      & vlSelf->top__DOT__mstatus) 
+                                                      & vlSelf->mstatus) 
                                                      | ((0x700U 
-                                                         & vlSelf->top__DOT__mstatus) 
+                                                         & vlSelf->mstatus) 
                                                         | ((0x80U 
-                                                            & (vlSelf->top__DOT__mstatus 
+                                                            & (vlSelf->mstatus 
                                                                << 4U)) 
                                                            | (0x77U 
-                                                              & vlSelf->top__DOT__mstatus)))))
+                                                              & vlSelf->mstatus)))))
                                                : 0U));
     }
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34 
@@ -429,15 +429,14 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
         = ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_25) 
            == (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_30));
     vlSelf->top__DOT__csr_sel = ((0x341U == vlSelf->top__DOT__imm)
-                                  ? vlSelf->top__DOT__mepc
-                                  : ((0x342U == vlSelf->top__DOT__imm)
-                                      ? vlSelf->top__DOT__mcause
-                                      : ((0x300U == vlSelf->top__DOT__imm)
-                                          ? vlSelf->top__DOT__mstatus
-                                          : ((0x305U 
-                                              == vlSelf->top__DOT__imm)
-                                              ? vlSelf->top__DOT__mtvec
-                                              : 0U))));
+                                  ? vlSelf->mepc : 
+                                 ((0x342U == vlSelf->top__DOT__imm)
+                                   ? vlSelf->mcause
+                                   : ((0x300U == vlSelf->top__DOT__imm)
+                                       ? vlSelf->mstatus
+                                       : ((0x305U == vlSelf->top__DOT__imm)
+                                           ? vlSelf->mtvec
+                                           : 0U))));
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45 
         = (vlSelf->pc + VL_SHIFTL_III(32,32,32, vlSelf->top__DOT__imm, 1U));
     vlSelf->top__DOT____VdfgRegularize_h245778ca_0_21 
@@ -506,11 +505,11 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
                                                                                  : 
                                                                                 ((0x30200073U 
                                                                                 == vlSelf->ist)
-                                                                                 ? vlSelf->top__DOT__mepc
+                                                                                 ? vlSelf->mepc
                                                                                  : 
                                                                                 ((0x73U 
                                                                                 == vlSelf->ist)
-                                                                                 ? vlSelf->top__DOT__mtvec
+                                                                                 ? vlSelf->mtvec
                                                                                  : 
                                                                                 ((IData)(4U) 
                                                                                 + vlSelf->pc))))))))))), 
@@ -581,11 +580,11 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
                                                      : 
                                                     ((0x30200073U 
                                                       == vlSelf->ist)
-                                                      ? vlSelf->top__DOT__mepc
+                                                      ? vlSelf->mepc
                                                       : 
                                                      ((0x73U 
                                                        == vlSelf->ist)
-                                                       ? vlSelf->top__DOT__mtvec
+                                                       ? vlSelf->mtvec
                                                        : 
                                                       ((IData)(4U) 
                                                        + vlSelf->pc)))))))))));
@@ -834,6 +833,10 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->mem_valid = VL_RAND_RESET_I(1);
     vlSelf->mem_raddr = VL_RAND_RESET_I(32);
     vlSelf->mem_wen_dg = VL_RAND_RESET_I(1);
+    vlSelf->mepc = VL_RAND_RESET_I(32);
+    vlSelf->mtvec = VL_RAND_RESET_I(32);
+    vlSelf->mcause = VL_RAND_RESET_I(32);
+    vlSelf->mstatus = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__jalr = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__beq = VL_RAND_RESET_I(1);
     vlSelf->top__DOT__bne = VL_RAND_RESET_I(1);
@@ -877,10 +880,6 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__rf_rdata2 = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__rf_raddr1 = VL_RAND_RESET_I(5);
     vlSelf->top__DOT__csr_sel = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__mepc = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__mtvec = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__mcause = VL_RAND_RESET_I(32);
-    vlSelf->top__DOT__mstatus = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__mepc_next = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__mtvec_next = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__mcause_next = VL_RAND_RESET_I(32);

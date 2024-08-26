@@ -35,19 +35,19 @@ uint32_t read_cpu_state_pc(){
 }
 
 uint32_t read_cpu_state_mepc(){
-    return npc_cpu_state.mepc;
+    return npc_cpu_state.csr.mepc;
 }
 
 uint32_t read_cpu_state_mstatus(){
-    return npc_cpu_state.mstatus;
+    return npc_cpu_state.csr.mstatus;
 }
 
 uint32_t read_cpu_state_mtvec(){
-    return npc_cpu_state.mtvec;
+    return npc_cpu_state.csr.mtvec;
 }
 
 uint32_t read_cpu_state_mcause(){
-    return npc_cpu_state.mcause;
+    return npc_cpu_state.csr.mcause;
 }
 
 uint32_t read_cpu_state_gpr(int ind){
@@ -183,10 +183,10 @@ void update_state(){
         npc_cpu_state.gpr[i]=read_reg[i];
     }
     npc_cpu_state.pc = dut->pc;
-    npc_cpu_state.mepc = dut->mepc;
-    npc_cpu_state.mstatus = dut->mstatus;
-    npc_cpu_state.mtvec = dut->mtvec;
-    npc_cpu_state.mcause = dut->mcause;
+    npc_cpu_state.csr.mepc = dut->mepc;
+    npc_cpu_state.csr.mstatus = dut->mstatus;
+    npc_cpu_state.csr.mtvec = dut->mtvec;
+    npc_cpu_state.csr.mcause = dut->mcause;
 }
 static uint32_t *rtc_port_base =(uint32_t *)malloc(2*sizeof(uint32_t));
 void end_cpu(){

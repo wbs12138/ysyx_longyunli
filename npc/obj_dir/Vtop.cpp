@@ -17,6 +17,10 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , pc{vlSymsp->TOP.pc}
     , ist{vlSymsp->TOP.ist}
     , mem_raddr{vlSymsp->TOP.mem_raddr}
+    , mepc{vlSymsp->TOP.mepc}
+    , mtvec{vlSymsp->TOP.mtvec}
+    , mcause{vlSymsp->TOP.mcause}
+    , mstatus{vlSymsp->TOP.mstatus}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

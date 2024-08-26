@@ -34,15 +34,17 @@
 
 #define CONFIG_VGA 1
 
-
+typedef struct {
+  word_t mcause;
+  vaddr_t mepc;
+  word_t mstatus;
+  word_t mtvec;
+} riscv32_CSRs;
 
 typedef struct {
     uint32_t gpr[32];
     uint32_t pc;
-    uint32_t mepc;
-    uint32_t mstatus;
-    uint32_t mcause;
-    uint32_t mtvec;
+    riscv32_CSRs csr;
     
 } CPU_state;
 
