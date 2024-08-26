@@ -166,7 +166,7 @@ int difftest_step(uint32_t pc) {
     cpu.csr.mstatus  =   read_cpu_state_mstatus();
     difftest_regcpy(&cpu, DIFFTEST_TO_REF);
     is_skip_ref = false;
-    return;
+    return 0;
   }
   difftest_exec(1);
   difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
