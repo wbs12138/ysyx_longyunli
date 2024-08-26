@@ -83,7 +83,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
   for (int i = 0; i < reg_num; i++) {
     if (ref_r->gpr[i] != read_cpu_state_gpr(i)) {
       printf("difftest matters\n");
-      printf("difftest fail at %s[%d], expect %#x got %#x\n", gpr , i , ref_r->gpr[i], read_cpu_state_gpr(i)); 
+      printf("difftest fail at %s[%d], expect %#x got %#x\n", "gpr" , i , ref_r->gpr[i], read_cpu_state_gpr(i)); 
       return false;
     }
   }
