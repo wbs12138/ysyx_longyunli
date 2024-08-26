@@ -67,8 +67,8 @@ assign andd     =   (opcode==7'b0110011) && (func3==3'b111) && (func7==7'b000000
 assign csrrw    =   (opcode==7'b1110011) && (func3==3'b001);//I
 assign csrrs    =   (opcode==7'b1110011) && (func3==3'b010);//I
 
-assign ecall    =   32'b00000000000000000000000001110011;
-assign mret     =   32'b00110000001000000000000001110011;
+assign ecall    =   (ist==32'b00000000000000000000000001110011);
+assign mret     =   (ist==32'b00110000001000000000000001110011);
 
 
 wire inst_i,inst_u,inst_j,inst_b,inst_s;//inst_r;

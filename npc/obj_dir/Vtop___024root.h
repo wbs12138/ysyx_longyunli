@@ -82,7 +82,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
         IData/*31:0*/ top__DOT__mtvec;
     };
     struct {
-        IData/*31:0*/ top__DOT__pc_next;
+        IData/*31:0*/ top__DOT__mcause;
+        IData/*31:0*/ top__DOT__mstatus;
+        IData/*31:0*/ top__DOT__mepc_next;
+        IData/*31:0*/ top__DOT__mtvec_next;
+        IData/*31:0*/ top__DOT__mcause_next;
+        IData/*31:0*/ top__DOT__mstatus_next;
         IData/*31:0*/ top__DOT__mem_waddr;
         IData/*31:0*/ top__DOT____VdfgRegularize_h245778ca_0_21;
         IData/*30:0*/ top__DOT____VdfgRegularize_h245778ca_0_32;
