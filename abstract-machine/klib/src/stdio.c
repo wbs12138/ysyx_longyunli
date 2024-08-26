@@ -86,8 +86,8 @@ int sprintf(char *out, const char *fmt, ...) {
 
 
 int printf(const char *fmt, ...) {
-  char info[65535];
-  for(int i=0;i<65535;i++)
+  char info[256];
+  for(int i=0;i<256;i++)
   {
     info[i]='\0';
   }
