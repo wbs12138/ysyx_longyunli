@@ -33,11 +33,10 @@ static vaddr_t *csr_register(word_t imm) {
   default: panic("Unknown csr");
   }
 }
-#ifdef CONFIG_RVE
-#define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
-#else
+
+//#define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
+
 #define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a5", &success), s->pc));}
-#endif
 
 #define CSR(i) *csr_register(i)
 
