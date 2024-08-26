@@ -64,10 +64,16 @@ assign sra      =   (opcode==7'b0110011) && (func3==3'b101) && (func7==7'b010000
 assign orr      =   (opcode==7'b0110011) && (func3==3'b110) && (func7==7'b0000000);//R
 assign andd     =   (opcode==7'b0110011) && (func3==3'b111) && (func7==7'b0000000);//R
 
+assign csrrw    =   (opcode==7'b1110011) && (func3==3'b001);//I
+assign csrrs    =   (opcode==7'b1110011) && (func3==3'b010);//I
+
+assign ecall    =   32'b00000000000000000000000001110011;
+assign mret     =   32'b00110000001000000000000001110011;
+
 
 wire inst_i,inst_u,inst_j,inst_b,inst_s;//inst_r;
 
-assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi|srli|slli|srai;
+assign inst_i=jalr|lb|lh|lw|lbu|lhu|addi|slti|sltiu|xori|ori|andi|srli|slli|srai|csrrw|csrrs;
 
 assign inst_u=auipc|lui;
 
@@ -103,16 +109,19 @@ wire [4:0] rf_waddr,rf_raddr1,rf_raddr2;
 
 wire rf_wen;
 
+wire [31:0] csr_sel;
+
 assign rf_waddr = rd ;
 
-assign rf_raddr1 = rs1 ;
+assign rf_raddr1 =  !ecall ? rs1 :
+                    5'd15 ;
 
 assign rf_raddr2 = rs2 ;
 
 assign rf_wen=  lui|auipc|jal|jalr|lb|lh|lw|
                 lbu|lhu|addi|slti|sltiu|xori|ori|andi|slli|srli|
                 srai|add|sub|sll|slt|sltu|xorr|srl|
-                sra|orr|andd ;
+                sra|orr|andd|csrrs|csrrw ;
 
 assign rf_wdata = lui   ?   imm     :
                   auipc ?   pc+imm  :
@@ -142,7 +151,51 @@ assign rf_wdata = lui   ?   imm     :
                   sra   ?   ({32{rf_rdata1[31]}}<<(6'd32-{1'b0,rf_rdata2[4:0]}))|(rf_rdata1>>rf_rdata2[4:0]):
                   orr   ?   rf_rdata1 | rf_rdata2 :
                   andd  ?   rf_rdata1 & rf_rdata2 :
+                  csrrs ?   csr_sel :
+                  csrrw ?   csr_sel :
                   32'b0;
+
+wire [31:0] mepc,mtvec,mcause,mstatus;
+
+wire [31:0] mepc_next,mtvec_next,mcause_next,mstatus_next;
+
+wire mepc_en,mtvec_en,mcause_en,mstatus_en;
+
+assign csr_sel  = (imm==32'h341)  ? mepc:
+                  (imm==32'h342)  ? mcause:
+                  (imm==32'h300)  ? mstatus:
+                  (imm==32'h305)  ? mtvec:
+                  32'b0;
+
+assign mepc_next    = csrrw ? rf_rdata1   :
+                      csrrs ? rf_rdata1|mepc  :
+                      ecall ? pc :
+                      32'b0;
+
+assign mtvec_next   = csrrw ? rf_rdata1   :
+                      csrrs ? rf_rdata1|mtvec  :
+                      32'b0;
+
+assign mcause_next  = csrrw ? rf_rdata1   :
+                      csrrs ? rf_rdata1|mcause  :
+                      ecall ? rf_rdata1   :
+                      32'b0;
+
+assign mstatus_next = csrrw ? rf_rdata1   :
+                      csrrs ? rf_rdata1|mstatus  :
+                      mret  ? {mstatus[31:13],2'b0,mstatus[10:8],1'b1,mstatus[6:4],mstatus[7],mstatus[2:0]}:
+                      ecall ? {mstatus[31:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,mstatus[2:0]}:
+                      32'b0;
+
+assign mepc_en      = ((imm==32'h341)&&(csrrw||csrrs)) | ecall ;
+assign mtvec_en     = (imm==32'h305)&&(csrrw||csrrs);
+assign mcause_en    = ((imm==32'h342)&&(csrrw||csrrs)) | ecall ;
+assign mstatus_en   = ((imm==32'h300)&(csrrw|csrrs)) | mret | ecall ;
+
+Reg #(32,32'h0) mepc   (clk,reset,pc_next,mepc,mepc_en);
+Reg #(32,32'h0) mtvec  (clk,reset,pc_next,mtvec,mtvec_en);
+Reg #(32,32'h0) mcause (clk,reset,pc_next,mcause,mcause_en);
+Reg #(32,32'h0) mstatus(clk,reset,pc_next,mstatus,mstatus_en);
 
 wire [31:0] a0;
 RegisterFile #(5,32) inst_RegisterFile 
@@ -158,6 +211,8 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     (bltu&&(rf_rdata1<rf_rdata2))?pc+(imm<<1):
                     (bge&&(((rf_rdata1[31]==0)&&(rf_rdata2[31]==1))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]>=rf_rdata2[30:0])))) ? pc+(imm<<1):
                     (bgeu&&(rf_rdata1>=rf_rdata2))?pc+(imm<<1):
+                    mret  ?   mepc  :
+                    ecall ?   mtvec :
                     pc + 4          ;
 
 Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
