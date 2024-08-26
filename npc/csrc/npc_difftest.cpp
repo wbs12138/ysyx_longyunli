@@ -80,28 +80,37 @@ printf("\n\n\n");
 
 bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
   int reg_num = 32;
+  int error=0;
   for (int i = 0; i < reg_num; i++) {
     if (ref_r->gpr[i] != read_cpu_state_gpr(i)) {
       printf("difftest matters\n");
       printf("difftest fail at %s[%d], expect %#x got %#x\n", "gpr" , i , ref_r->gpr[i], read_cpu_state_gpr(i)); 
-      return false;
+      error=1;
     }
   }
   if (ref_r->pc != read_cpu_state_pc()) {
-    return false;
+    printf("difftest fail at %s, expect %#x got %#x\n", "pc" , ref_r->pc, read_cpu_state_pc()); 
+    error=1;
   }
   if (ref_r->csr.mtvec != read_cpu_state_mtvec()) {
-    return false;
+    printf("difftest fail at %s, expect %#x got %#x\n", "mtvec" , ref_r->csr.mtvec, read_cpu_state_mtvec()); 
+    error=1;
   }
   if (ref_r->csr.mepc != read_cpu_state_mepc()) {
-    return false;
+    printf("difftest fail at %s, expect %#x got %#x\n", "mepc" , ref_r->csr.mepc, read_cpu_state_mepc()); 
+    error=1;
   }
   if (ref_r->csr.mcause != read_cpu_state_mcause()) {
-    return false;
+    printf("difftest fail at %s, expect %#x got %#x\n", "mcause" , ref_r->csr.mcause, read_cpu_state_mcause()); 
+    error=1;
   }
   if (ref_r->csr.mstatus != read_cpu_state_mstatus()) {
-    return false;
+    printf("difftest fail at %s, expect %#x got %#x\n", "mstatus" , ref_r->csr.mstatus, read_cpu_state_mstatus()); 
+    error=1;
   }
+  if(error==1)
+  return false;
+  else
   return true;
 }
 
