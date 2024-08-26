@@ -77,7 +77,7 @@ printf("   %s\t%x\n","mtvec  ",ref_r->csr.mtvec);
 printf("\n\n\n");
 
 }
-\033[1;31m[%s,%d]HIT BAD TRAP!totalsteps=%d,sim_time=%ld\033[0m\n
+
 bool isa_difftest_checkregs(CPU_state *ref_r, uint32_t pc) {
   int reg_num = 32;
   int error=0;
