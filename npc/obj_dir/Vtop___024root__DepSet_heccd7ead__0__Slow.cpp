@@ -720,7 +720,7 @@ VL_ATTR_COLD void Vtop___024root___stl_sequent__TOP__0(Vtop___024root* vlSelf) {
                                                                       : 
                                                                      ((IData)(vlSelf->top__DOT__srl)
                                                                        ? 
-                                                                      VL_SHIFTR_III(32,32,32, vlSelf->top__DOT__rf_rdata1, vlSelf->top__DOT__rf_rdata2)
+                                                                      VL_SHIFTL_III(32,32,32, vlSelf->top__DOT__rf_rdata1, vlSelf->top__DOT__rf_rdata2)
                                                                        : 
                                                                       ((IData)(vlSelf->top__DOT__sra)
                                                                         ? 
