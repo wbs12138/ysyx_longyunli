@@ -34,9 +34,8 @@ static vaddr_t *csr_register(word_t imm) {
   }
 }
 
-//#define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
+#define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));}
 
-#define ECALL(dnpc) { bool success;dnpc = (isa_raise_intr(isa_reg_str2val("a5", &success), s->pc));}
 
 #define CSR(i) *csr_register(i)
 
@@ -55,12 +54,11 @@ enum {
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
 #define immU() do { *imm = SEXT(BITS(i, 31, 12), 20) << 12; } while(0)
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); } while(0)
-#define immJ() do { *imm = (SEXT(BITS(i, 31, 31), 1) << 20) | BITS(i, 30, 21) << 1 \
-                          | BITS(i, 20, 20) << 11 | BITS(i, 19, 12) << 12 ; } while(0)
+#define immJ() do { *imm = (SEXT(BITS(i, 31, 31), 1) << 20) | BITS(i, 30, 21) << 1 | BITS(i, 20, 20) << 11 | BITS(i, 19, 12) << 12 ; } while(0)
 #define immB() do { *imm = SEXT(BITS(i, 31, 31), 1) << 11 | ((SEXT(BITS(i, 7, 7), 1)\
                            << 63) >> 63) << 10 | ((SEXT(BITS(i, 30, 25), 6) << 58) >> 58) \
                            << 4 | ((SEXT(BITS(i, 11, 8), 4) << 60) >> 60); *imm = *imm << 1; } while (0)
- 
+
 
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
@@ -72,7 +70,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
     case TYPE_I: src1R();          immI(); break; 
     case TYPE_U:                   immU(); break;
     case TYPE_S: src1R(); src2R(); immS(); break;
-    case TYPE_J:                    immJ(); break;
+    case TYPE_J:                   immJ(); break;
     case TYPE_B: src1R(); src2R(); immB(); break;
 	  case TYPE_R: src1R(); src2R();         break;
  
@@ -92,10 +90,10 @@ static int decode_exec(Decode *s) {
 }
 
   INSTPAT_START();
-  INSTPAT("??????? ????? ????? 000 ????? 00100 11", li     , I, R(rd) = src1 + imm); // 此处的dest是函数 decode_exec中定义的int 类型 dest
-  INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(rd) = imm); // 此处的dest是函数 decode_exec中定义的int 类型 dest
+  INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm); 
+  INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(rd) = imm); 
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(rd) = s -> pc + imm); 
-  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(rd) = Mr(src1 + imm, 4)); // 从内存相应位置读出并写入到寄存器中
+  INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(rd) = Mr(src1 + imm, 4)); 
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
   INSTPAT("??????? ????? ????? 000 ????? 00000 11", lb     , I, R(rd) = SEXT(Mr(src1 + imm, 1), 8));
   INSTPAT("??????? ????? ????? 001 ????? 00000 11", lh     , I, R(rd) = SEXT(Mr(src1 + imm, 2), 16));
@@ -108,30 +106,24 @@ static int decode_exec(Decode *s) {
   if (rd == 1) { // x1: return address for jumps
     trace_func_call(s->pc, s->dnpc, false);
   }
-  }); R(rd) = s->pc + 4); // jal指令
+  }); R(rd) = s->pc + 4); 
   INSTPAT("??????? ????? ????? 100 ????? 00100 11", xori   , I, R(rd) = src1 ^ imm);
   INSTPAT("??????? ????? ????? 110 ????? 00100 11", ori    , I, R(rd) = src1 | imm);
-  INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm); // addi指令
-  // mv 指令是addi指令的一个语法糖，无需单独实现
-  // 手册中未发现li指令的描述，但查阅资料时对li指令的描述表示这也是addi指令的语法糖，R[rd] = R[rs1] + imm(符号扩展12位到32位) 其特殊之处是rs1总是0号寄存器，riscv体系中0号寄存器总是0,因此作用是加载立即数。
   INSTPAT("0100000 ????? ????? 101 ????? 00100 11", srai   , I, imm = BITS(imm, 4, 0); R(rd) = (SEXT(BITS(src1, 31, 31), 1) << (32 - imm)) | (src1 >> imm));
   INSTPAT("0000000 ????? ????? 101 ????? 00100 11", srli   , I, R(rd)= src1 >> imm);
   INSTPAT("0000000 ????? ????? 001 ????? 00100 11", elli   , I, R(rd)= src1 << imm);
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, s->dnpc = (src1 + imm) & ~(word_t)1; IFDEF(CONFIG_ITRACE, {
   if (s->isa.inst.val == 0x00008067) {
-    trace_func_ret(s->pc); // ret -> jalr x0, 0(x1)
+    trace_func_ret(s->pc); 
   } else if (rd == 1) {
     trace_func_call(s->pc, s->dnpc, false);
   } else if (rd == 0 && imm == 0) {
-    trace_func_call(s->pc, s->dnpc, true); // jr rs1 -> jalr x0, 0(rs1), which may be other control flow e.g. 'goto','for'
+    trace_func_call(s->pc, s->dnpc, true); 
   }
-  }); R(rd) = s->pc + 4); // jalr(ret)指令
+  }); R(rd) = s->pc + 4); 
   INSTPAT("??????? ????? ????? 100 ????? 11000 11", blt    , B, s -> dnpc += (int)src1 < (int)src2 ? imm - 4: 0);
   INSTPAT("??????? ????? ????? 110 ????? 11000 11", bltu   , B, s -> dnpc += (uint32_t)src1 < (uint32_t)src2 ? imm - 4: 0);
   INSTPAT("??????? ????? ????? 101 ????? 11000 11", bge    , B, s -> dnpc += (int)src1 >= (int)src2 ? imm - 4: 0);
-  /*
-   * 使用bge指令代替blez,ble指令仅仅将bge指令的操作数顺序改变，而blez只是将其中的一个操作数选择为0号寄存器（始终为0）
-   */
   INSTPAT("??????? ????? ????? 111 ????? 11000 11", bgeu   , B, s -> dnpc += src1 >= src2 ? imm - 4: 0;);
   INSTPAT("??????? ????? ????? 000 ????? 11000 11", beq    , B, s -> dnpc += src1 == src2 ? imm - 4: 0;); 
   INSTPAT("??????? ????? ????? 001 ????? 11000 11", bne    , B, s -> dnpc += src1 != src2 ? imm - 4: 0;);
@@ -154,11 +146,11 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 010 ????? 01100 11", slt    , R, R(rd) = (int)src1 < (int)src2 ? 1: 0);
   INSTPAT("0000000 ????? ????? 100 ????? 01100 11", xor    , R, R(rd) = src1 ^ src2);
   INSTPAT("0000000 ????? ????? 110 ????? 01100 11", or     , R, R(rd) = src1 | src2);
-  INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
+  INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); //a0
   INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, R(rd) = CSR(imm); CSR(imm) = src1);
   INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, R(rd) = CSR(imm); CSR(imm) = src1 | CSR(imm));
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, ECALL(s->dnpc);
-  #ifdef CONFIG_ITRACE 
+  #ifdef CONFIG_ITRACE
   bool success;
   trace_e_in(isa_reg_str2val("a7", &success), s->pc); 
   #endif
@@ -174,12 +166,9 @@ static int decode_exec(Decode *s) {
   trace_e_out(s->dnpc, cpu.csr.mstatus); 
   #endif
   );
-
-  INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc)); // 对所有模式都无法匹配的指令，判定为非法指令
+  INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
   INSTPAT_END();
-
   R(0) = 0; // reset $zero to 0
-
   return 0;
 }
 

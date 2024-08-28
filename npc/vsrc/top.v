@@ -114,8 +114,7 @@ wire [31:0] csr_sel;
 
 assign rf_waddr = rd ;
 
-assign rf_raddr1 =  !ecall ? rs1 :
-                    5'd15 ;
+assign rf_raddr1 = rs1 ;
 
 assign rf_raddr2 = rs2 ;
 
@@ -179,7 +178,7 @@ assign mtvec_next   = csrrw ? rf_rdata1   :
 
 assign mcause_next  = csrrw ? rf_rdata1   :
                       csrrs ? rf_rdata1|mcause  :
-                      ecall ? rf_rdata1   :
+                      ecall ? 32'hb   :
                       32'b0;
 
 assign mstatus_next = csrrw ? rf_rdata1   :
