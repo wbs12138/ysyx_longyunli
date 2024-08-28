@@ -143,7 +143,7 @@ assign rf_wdata = lui   ?   imm     :
                   srai  ?   ({32{rf_rdata1[31]}}<<(6'd32-{1'b0,imm[4:0]}))|(rf_rdata1>>imm[4:0]):
                   add   ?   rf_rdata1 + rf_rdata2:
                   sub   ?   rf_rdata1 - rf_rdata2:
-                  sll   ?   rf_rdata1 <<rf_rdata2:
+                  sll   ?   rf_rdata1 <<rf_rdata2[4:0]:
                   (slt&&(((rf_rdata1[31]==1)&&(rf_rdata2[31]==0))||((rf_rdata1[31]==rf_rdata2[31])&&(rf_rdata1[30:0]<rf_rdata2[30:0]))))   ?  32'b1: 
                   (sltu&&(rf_rdata1<rf_rdata2))  ? 32'b1:
                   xorr  ?   rf_rdata1 ^ rf_rdata2 :
