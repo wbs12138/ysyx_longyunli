@@ -75,7 +75,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                                                 | ((IData)(vlSelf->top__DOT__srli) 
                                                                    | ((IData)(vlSelf->top__DOT__slli) 
                                                                       | ((IData)(vlSelf->top__DOT__srai) 
-                                                                         | (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_44))))))))))))))))));
+                                                                         | (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45))))))))))))))))));
         bufp->chgBit(oldp+37,(((IData)(vlSelf->top__DOT__beq) 
                                | ((IData)(vlSelf->top__DOT__bne) 
                                   | ((IData)(vlSelf->top__DOT__blt) 
@@ -84,7 +84,7 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                            | (IData)(vlSelf->top__DOT__bgeu))))))));
         bufp->chgIData(oldp+38,(vlSelf->top__DOT__imm),32);
         bufp->chgBit(oldp+39,(((0x305U == vlSelf->top__DOT__imm) 
-                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_44))));
+                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45))));
         bufp->chgCData(oldp+40,(((IData)(vlSelf->top__DOT__sb)
                                   ? 1U : ((IData)(vlSelf->top__DOT__sh)
                                            ? 3U : ((IData)(vlSelf->top__DOT__sw)
@@ -240,13 +240,13 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                                           & vlSelf->mstatus)))))
                                            : 0U))))),32);
     bufp->chgBit(oldp+107,((((0x341U == vlSelf->top__DOT__imm) 
-                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_44)) 
+                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45)) 
                             | (0x73U == vlSelf->ist))));
     bufp->chgBit(oldp+108,((((0x342U == vlSelf->top__DOT__imm) 
-                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_44)) 
+                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45)) 
                             | (0x73U == vlSelf->ist))));
     bufp->chgBit(oldp+109,((((0x300U == vlSelf->top__DOT__imm) 
-                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_44)) 
+                             & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45)) 
                             | ((0x30200073U == vlSelf->ist) 
                                | (0x73U == vlSelf->ist)))));
     bufp->chgIData(oldp+110,(((IData)(vlSelf->top__DOT__jalr)
@@ -257,30 +257,30 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                    : (((IData)(vlSelf->top__DOT__beq) 
                                        & (vlSelf->top__DOT__rf_rdata1 
                                           == vlSelf->top__DOT__rf_rdata2))
-                                       ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                       ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                        : (((IData)(vlSelf->top__DOT__bne) 
                                            & (vlSelf->top__DOT__rf_rdata1 
                                               != vlSelf->top__DOT__rf_rdata2))
-                                           ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                           ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                            : (((IData)(vlSelf->top__DOT__blt) 
-                                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34))
-                                               ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35))
+                                               ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                : (((IData)(vlSelf->top__DOT__bltu) 
-                                                   & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35))
-                                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                                   & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_36))
+                                                   ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                    : 
                                                   (((IData)(vlSelf->top__DOT__bge) 
                                                     & (((~ (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_25)) 
-                                                        & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_31)) 
-                                                       | ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_32) 
+                                                        & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_32)) 
+                                                       | ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_33) 
                                                           & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_27 
-                                                             >= vlSelf->top__DOT____VdfgRegularize_h245778ca_0_33))))
-                                                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                                             >= vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34))))
+                                                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                     : 
                                                    (((IData)(vlSelf->top__DOT__bgeu) 
                                                      & (vlSelf->top__DOT__rf_rdata1 
                                                         >= vlSelf->top__DOT__rf_rdata2))
-                                                     ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_45
+                                                     ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                      : 
                                                     ((0x30200073U 
                                                       == vlSelf->ist)
