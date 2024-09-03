@@ -263,18 +263,18 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buf
                                               != vlSelf->top__DOT__rf_rdata2))
                                            ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                            : (((IData)(vlSelf->top__DOT__blt) 
-                                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35))
+                                               & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34))
                                                ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                : (((IData)(vlSelf->top__DOT__bltu) 
-                                                   & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_36))
+                                                   & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_35))
                                                    ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                    : 
                                                   (((IData)(vlSelf->top__DOT__bge) 
                                                     & (((~ (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_25)) 
-                                                        & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_32)) 
-                                                       | ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_33) 
+                                                        & (IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_31)) 
+                                                       | ((IData)(vlSelf->top__DOT____VdfgRegularize_h245778ca_0_32) 
                                                           & (vlSelf->top__DOT____VdfgRegularize_h245778ca_0_27 
-                                                             >= vlSelf->top__DOT____VdfgRegularize_h245778ca_0_34))))
+                                                             >= vlSelf->top__DOT____VdfgRegularize_h245778ca_0_33))))
                                                     ? vlSelf->top__DOT____VdfgRegularize_h245778ca_0_46
                                                     : 
                                                    (((IData)(vlSelf->top__DOT__bgeu) 
