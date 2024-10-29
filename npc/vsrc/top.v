@@ -1,18 +1,38 @@
 module top(
-    input clk,reset,
-    output reg [31:0] pc,
-    input [31:0] ist,
-    output mem_valid,
-    output [31:0] mem_raddr,
-    output mem_wen_dg,
-    output [31:0] mepc,mtvec,mcause,mstatus
+    input clock,reset,
+    input io_interrupt,
 
+    input           io_master_awready ,
+    output          io_master_awvalid ,
+    output  [31:0]  io_master_awaddr  ,
+    output  [3:0]   io_master_awid    ,
+    output  [7:0]   io_master_awlen   ,
+    output  [2:0]   io_master_awsize  ,
+    output  [1:0]   io_master_awburst ,
+    input           io_master_wready  ,
+    output          io_master_wvalid  ,
+    output  [31:0]  io_master_wdata   ,
+    output  [3:0]   io_master_wstrb   ,
+    output          io_master_wlast   ,
+    output          io_master_bready  ,
+    input           io_master_bvalid  ,
+    input   [1:0]   io_master_bresp   ,
+    input   [3:0]   io_master_bid     ,
+    input           io_master_arready ,
+    output          io_master_arvalid ,
+    output  [31:0]  io_master_araddr  ,
+    output  [3:0]   io_master_arid    ,
+    output  [7:0]   io_master_arlen   ,
+    output  [2:0]   io_master_arsize  ,
+    output  [1:0]   io_master_arburst ,
+    output          io_master_rready  ,
+    input           io_master_rvalid  ,
+    input   [1:0]   io_master_rresp   ,
+    input   [31:0]  io_master_rdata   ,
+    input           io_master_rlast   ,
+    input   [3:0]   io_master_rid     
 
-            );
-
-import "DPI-C" function int npc_pmem_read(input int raddr);
-import "DPI-C" function void npc_pmem_write(
-  input int waddr, input int wdata, input byte wmask);
+  );
 
 
 wire [6:0] opcode,func7;
@@ -84,8 +104,6 @@ assign inst_b=beq|bne|blt|bge|bltu|bgeu;
 
 assign inst_s=sb|sh|sw;
 
-//assign inst_r=slli|srli|srai|add|sub|sll|slt|sltu|xorr|srl|sra|orr|andd;
-
 wire [31:0] imm;
 
 wire [4:0] rs1,rs2,rd;
@@ -155,7 +173,7 @@ assign rf_wdata = lui   ?   imm     :
                   csrrw ?   csr_sel :
                   32'b0;
 
-//wire [31:0] mepc,mtvec,mcause,mstatus;
+wire [31:0] mepc,mtvec,mcause,mstatus;
 
 wire [31:0] mepc_next,mtvec_next,mcause_next,mstatus_next;
 
@@ -192,14 +210,15 @@ assign mtvec_en     = (imm==32'h305)&&(csrrw||csrrs);
 assign mcause_en    = ((imm==32'h342)&&(csrrw||csrrs)) | ecall ;
 assign mstatus_en   = ((imm==32'h300)&(csrrw|csrrs)) | mret | ecall ;
 
-Reg #(32,32'h0) inst_mepc   (clk,reset,mepc_next,mepc,mepc_en);
-Reg #(32,32'h0) inst_mtvec  (clk,reset,mtvec_next,mtvec,mtvec_en);
-Reg #(32,32'h0) inst_mcause (clk,reset,mcause_next,mcause,mcause_en);
-Reg #(32,32'h1800) inst_mstatus(clk,reset,mstatus_next,mstatus,mstatus_en);
+Reg #(32,32'h0) inst_mepc   (clock,reset,mepc_next,mepc,mepc_en & mem_rdone);
+Reg #(32,32'h0) inst_mtvec  (clock,reset,mtvec_next,mtvec,mtvec_en & mem_rdone);
+Reg #(32,32'h0) inst_mcause (clock,reset,mcause_next,mcause,mcause_en & mem_rdone);
+Reg #(32,32'h1800) inst_mstatus(clock,reset,mstatus_next,mstatus,mstatus_en & mem_rdone);
 
 wire [31:0] a0;
+wire mem_rdone;
 RegisterFile #(5,32) inst_RegisterFile 
-(clk,rf_wdata,rf_waddr,rf_wen,rf_rdata1,rf_rdata2,rf_raddr1,rf_raddr2,a0);
+(clock,rf_wdata,rf_waddr,rf_wen & mem_rdone,rf_rdata1,rf_rdata2,rf_raddr1,rf_raddr2,a0);
 
 wire [31:0] pc_next ;
 
@@ -215,20 +234,22 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     ecall ?   mtvec :
                     pc + 4          ;
 
-Reg #(32,32'h80000000) inst_pc (clk,reset,pc_next,pc,1'b1);
+Reg #(32,32'h80000000) inst_pc (clock,reset,pc_next,pc,mem_rdone);
 
 
-//wire mem_valid;
+wire mem_ren;
 
 wire mem_wen;
 
-//wire [31:0] mem_raddr;
+wire [31:0] mem_raddr;
 
 wire [31:0] mem_wdata,mem_waddr;
 
 wire [3:0] mem_wmask;
 
-assign mem_valid = lb | lbu |lh | lhu | lw ;
+wire [3:0] mem_rmask;
+
+assign mem_ren = lb | lbu |lh | lhu | lw ;
 
 assign mem_wen = sb | sh | sw ;
 
@@ -249,24 +270,59 @@ assign mem_wmask =  sb ? 4'b0001 :
                     sw ? 4'b1111 :
                     4'b0;
 
-always @(negedge clk) begin
-  if (mem_valid)  // 有读写请求时
-    rdata_mem <= npc_pmem_read(mem_raddr);  
-  else 
-    rdata_mem <= 0;
-  
-end
-
-always@(posedge clk)begin
-  if(mem_wen)
-    npc_pmem_write(mem_waddr, mem_wdata, {4'b0,mem_wmask});
-end
+assign mem_rmask = lb | lbu ? 4'b0001 :
+                   lh | lhu ? 4'b0011 :
+                   lw       ? 4'b1111 :
+                   'b0;
 
 dpi_c_ebreak inst_dpi_c_ebreak(ist,a0);
 
 dpi_c_ftrace inst_dpi_c_ftrace (ist,pc_next);
 
-assign mem_wen_dg = mem_wen;
+axi_interface u_axi_interface(
+  .clock(clock),
+  .reset(reset),
+  .io_master_awready(io_master_awready) ,
+  .io_master_awvalid(io_master_awvalid) ,
+  .io_master_awaddr (io_master_awaddr) ,
+  .io_master_awid   (io_master_awid) ,
+  .io_master_awlen  (io_master_awlen) ,
+  .io_master_awsize (io_master_awsize) ,
+  .io_master_awburst(io_master_awburst) ,
+  .io_master_wready (io_master_wready) ,
+  .io_master_wvalid (io_master_wvalid) ,
+  .io_master_wdata  (io_master_wdata) ,
+  .io_master_wstrb  (io_master_wstrb) ,
+  .io_master_wlast  (io_master_wlast) ,
+  .io_master_bready (io_master_bready) ,
+  .io_master_bvalid (io_master_bvalid) ,
+  .io_master_bresp  (io_master_bresp) ,
+  .io_master_bid    (io_master_bid) ,
+  .io_master_arready(io_master_arready) ,
+  .io_master_arvalid(io_master_arvalid) ,
+  .io_master_araddr (io_master_araddr) ,
+  .io_master_arid   (io_master_arid) ,
+  .io_master_arlen  (io_master_arlen) ,
+  .io_master_arsize (io_master_arsize) ,
+  .io_master_arburst(io_master_arburst) ,
+  .io_master_rready (io_master_rready) ,
+  .io_master_rvalid (io_master_rvalid) ,
+  .io_master_rresp  (io_master_rresp) ,
+  .io_master_rdata  (io_master_rdata) ,
+  .io_master_rlast  (io_master_rlast) ,
+  .io_master_rid    (io_master_rid)   ,
+  .pc               (pc)              ,
+  .ist              (ist)             ,
+  .mem_wen          (mem_wen)         ,
+  .mem_waddr        (mem_waddr)       ,
+  .mem_wdata        (mem_wdata)       ,
+  .mem_wmask        (mem_wmask)       ,
+  .mem_ren          (mem_ren)         ,
+  .rdata_mem        (rdata_mem)       ,
+  .mem_raddr        (mem_raddr)       ,
+  .mem_rdone        (mem_rdone)       ,
+  .mem_rmask        (mem_rmask)
 
+);
 
 endmodule

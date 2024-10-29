@@ -11,6 +11,10 @@
 #include <sys/time.h>
 #include <string.h>
 
+extern "C" void flash_read (int32_t addr, int32_t *data) { assert(0); }
+extern "C" void mrom_read  (int32_t addr, int32_t *data) { assert(0); }
+
+
 int ebreak_dpi=0;
 
 void ebreak(int back_right){
@@ -68,6 +72,7 @@ VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
     error_happen=0;
     curse=0;
+    Verilated::commandArgs(argc,argv);
 	Verilated::traceEverOn(true);
 	
 	dut->trace(m_trace,5);
@@ -79,7 +84,9 @@ void init_cpu(){
 	m_trace->dump(sim_time);
     
 	while(reset_clk_time-->0){
-		dut->clk = 0;dut->ist=0;dut->eval();sim_time++;
+		dut->clk = 0;
+        //dut->ist=0;
+        dut->eval();sim_time++;
 		m_trace->dump(sim_time);
 		
 		dut->clk = 1;dut->eval();sim_time++;
@@ -88,7 +95,7 @@ void init_cpu(){
 	}
 	dut->reset=0;
     dut->eval();
-    dut->ist = pmem_read(dut->pc,4);	
+    //dut->ist = pmem_read(dut->pc,4);	
     
 	dut->eval();
     pc_pre=dut->pc;
@@ -109,7 +116,7 @@ void exec_cpu(uint32_t exec_time){
 
     int exec_time_done ;
     for(exec_time_done=0;exec_time_done<exec_time;exec_time_done++){
-        dut->ist = pmem_read(dut->pc,4);
+        //dut->ist = pmem_read(dut->pc,4);
 		dut->eval();
         sim_time+=4;
         m_trace->dump(sim_time);
@@ -297,71 +304,71 @@ uint64_t get_time() {
 uint64_t us;
 
 
-int npc_pmem_read(int raddr) {
-    if(dut->mem_valid ){
+// int npc_pmem_read(int raddr) {
+//     if(dut->mem_valid ){
 
-        if(raddr==0xa0000048){
-            difftest_skip_ref();
-            return rtc_port_base[0];   
-        }
-        else if(raddr==0xa0000048+4){
-            difftest_skip_ref();
-            us = get_time();
-            rtc_port_base[0] = (uint32_t)us;
-            rtc_port_base[1] = us >> 32;
-            return rtc_port_base[1];
-        }
-        else if(raddr==0xa0000100){
-            difftest_skip_ref();
-            return read_vgactl();
-        }
+//         if(raddr==0xa0000048){
+//             difftest_skip_ref();
+//             return rtc_port_base[0];   
+//         }
+//         else if(raddr==0xa0000048+4){
+//             difftest_skip_ref();
+//             us = get_time();
+//             rtc_port_base[0] = (uint32_t)us;
+//             rtc_port_base[1] = us >> 32;
+//             return rtc_port_base[1];
+//         }
+//         else if(raddr==0xa0000100){
+//             difftest_skip_ref();
+//             return read_vgactl();
+//         }
 
-        trace_memory_r=1;
-        m_raddr=(uint32_t)raddr;
-        return pmem_read(m_raddr,4);
-    }
-    else return 0;
-}
+//         trace_memory_r=1;
+//         m_raddr=(uint32_t)raddr;
+//         return pmem_read(m_raddr,4);
+//     }
+//     else return 0;
+// }
 
-void npc_pmem_write(int waddr, int wdata, char wmask) {
-    if(waddr == 0xa00003f8){
-        difftest_skip_ref();
-        char char_uart=(char)(wdata & 0xff);
-        putchar(char_uart);
-        return ;
-    }
-    else if(waddr == 0xa0000104){
-        difftest_skip_ref();
-        write_vgactl(wdata);
-        return ;
-    }
-    else if(waddr >=0xa1000000 && waddr<=0xa2000000){
-        difftest_skip_ref();
-        vmem_write(waddr,4,wdata);
-        return ;
-    }
-    trace_memory_w=1;
+// void npc_pmem_write(int waddr, int wdata, char wmask) {
+//     if(waddr == 0xa00003f8){
+//         difftest_skip_ref();
+//         char char_uart=(char)(wdata & 0xff);
+//         putchar(char_uart);
+//         return ;
+//     }
+//     else if(waddr == 0xa0000104){
+//         difftest_skip_ref();
+//         write_vgactl(wdata);
+//         return ;
+//     }
+//     else if(waddr >=0xa1000000 && waddr<=0xa2000000){
+//         difftest_skip_ref();
+//         vmem_write(waddr,4,wdata);
+//         return ;
+//     }
+//     trace_memory_w=1;
     
-    if(wmask==1){
-        m_waddr=(uint32_t)waddr;
-        m_wdata=(uint32_t)wdata;m_len=1;
-        pmem_write(waddr,1,wdata);
-    }
-    else if(wmask==3){
-        m_waddr=(uint32_t)waddr;
-        m_wdata=(uint32_t)wdata;m_len=2;
-        pmem_write(waddr,2,wdata);
-    }
-    else if(wmask==15){
-        m_waddr=(uint32_t)waddr;
-        m_wdata=(uint32_t)wdata;
-        m_len=4;
-        pmem_write(waddr,4,wdata);
-    }
-    else assert(0);
+//     if(wmask==1){
+//         m_waddr=(uint32_t)waddr;
+//         m_wdata=(uint32_t)wdata;m_len=1;
+//         pmem_write(waddr,1,wdata);
+//     }
+//     else if(wmask==3){
+//         m_waddr=(uint32_t)waddr;
+//         m_wdata=(uint32_t)wdata;m_len=2;
+//         pmem_write(waddr,2,wdata);
+//     }
+//     else if(wmask==15){
+//         m_waddr=(uint32_t)waddr;
+//         m_wdata=(uint32_t)wdata;
+//         m_len=4;
+//         pmem_write(waddr,4,wdata);
+//     }
+//     else assert(0);
 
-  // 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`
-  // `wmask`中每比特表示`wdata`中1个字节的掩码,
-  // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
-}
+//   // 总是往地址为`waddr & ~0x3u`的4字节按写掩码`wmask`写入`wdata`
+//   // `wmask`中每比特表示`wdata`中1个字节的掩码,
+//   // 如`wmask = 0x3`代表只写入最低2个字节, 内存中的其它字节保持不变
+// }
 

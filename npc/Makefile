@@ -1,4 +1,4 @@
-TOPNAME = top
+TOPNAME = ysyxSoCFull
 NXDC_FILES = constr/top.nxdc
 INC_PATH ?=
 
@@ -22,6 +22,7 @@ $(SRC_AUTO_BIND): $(NXDC_FILES)
 # project source
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 VSRCS += $(shell find $(abspath ./vsrc) -name "*.sv")
+VSRCS += $(shell find $(abspath ../ysyxSoC/perip) -name "*.v")
 CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
 CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp ./csrc/npc_difftest.cpp ./csrc/npc_vga.cpp
@@ -52,7 +53,7 @@ clean:
 
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)'
+	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)'
 	obj_dir/V$(TOPNAME) $(IMG) $(ELF) $(ARGS) $(SO_FILE)
 
 wave:
