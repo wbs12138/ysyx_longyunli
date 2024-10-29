@@ -85,6 +85,7 @@ wire [6:0] opcode,func7;
 wire [2:0] func3;
 
 wire [31:0] ist;
+wire [31:0] pc;
 
 assign opcode = ist[6:0];
 assign func7  = ist[31:25];
