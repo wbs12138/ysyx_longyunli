@@ -1,4 +1,4 @@
-module ysyx24080008(
+module ysyx_24080008(
     input clock,reset,
     input io_interrupt,
 
