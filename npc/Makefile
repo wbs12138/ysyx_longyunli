@@ -27,7 +27,8 @@ CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
 CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp ./csrc/npc_difftest.cpp ./csrc/npc_vga.cpp
 SO_FILE = /home/wangbaosen/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
-INCLUDE_DIR = ../ysyxSoC/perip/uart16550/rtl ../ysyxSoC/perip/spi/rtl
+UART_INCLUDE_DIR = ../ysyxSoC/perip/uart16550/rtl
+SPI_INCLUDE_DIR = ../ysyxSoC/perip/spi/rtl
 
 # rules for NVBoard
 include $(NVBOARD_HOME)/scripts/nvboard.mk
@@ -54,7 +55,7 @@ clean:
 
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)'
+	verilator -Wall $(VSRCS) $(CSRCS_SIM) --cc --exe --build -j --trace --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(UART_INCLUDE_DIR) +incdir+$(SPI_INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)'
 	obj_dir/V$(TOPNAME) $(IMG) $(ELF) $(ARGS) $(SO_FILE)
 
 wave:
