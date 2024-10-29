@@ -72,7 +72,6 @@ VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
     error_happen=0;
     curse=0;
-    Verilated::commandArgs(argc,argv);
 	Verilated::traceEverOn(true);
 	
 	dut->trace(m_trace,5);

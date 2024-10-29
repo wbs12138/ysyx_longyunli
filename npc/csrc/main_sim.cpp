@@ -3,7 +3,7 @@
 #include "/home/wangbaosen/ysyx/ysyx-workbench/npc/csrc/npc_init.h"
 
 int main(int argc,char** argv,char** env){
-	
+	Verilated::commandArgs(argc,argv);
 	int i=1;
     do{
 		printf("argv[%d]=%s\n",i-1,argv[i-1]);
