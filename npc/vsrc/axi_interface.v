@@ -150,13 +150,13 @@ module axi_interface (
 
     assign io_master_awvalid = ( state == LSU_AW );
 
-    assign io_master_wvalid = ( state == LSU_W );
+    assign io_master_wvalid = 'b0;//( state == LSU_W );
 
-    assign io_master_arvalid = ( state == IFU_AR || state == LSU_AR );
+    assign io_master_arvalid = 'b0;//( state == IFU_AR || state == LSU_AR );
 
-    assign io_master_rready = ( state == IFU_R || state == LSU_R ); 
+    assign io_master_rready = 'b0;//( state == IFU_R || state == LSU_R ); 
 
-    assign io_master_awaddr = mem_waddr ;
+    assign io_master_awaddr = 'b0;//mem_waddr ;
 
     assign io_master_awid = 'b0;
 
@@ -166,32 +166,32 @@ module axi_interface (
 
     assign io_master_awburst = 2'b01;
 
-    assign io_master_wdata = mem_wdata;
+    assign io_master_wdata = 'b0;//mem_wdata;
 
-    assign io_master_wstrb = mem_wmask;
+    assign io_master_wstrb = 'b0;//mem_wmask;
 
-    assign io_master_wlast = ( state == LSU_W );
+    assign io_master_wlast = 'b0;//( state == LSU_W );
 
     assign io_master_bready = 1'b1;
 
-    assign io_master_araddr = ( state == IFU_AR ) ? pc : mem_raddr;
+    assign io_master_araddr = 'b0;//( state == IFU_AR ) ? pc : mem_raddr;
 
     assign io_master_arid = 'b0;
 
     assign io_master_arlen = 'b0;
 
-    assign io_master_arsize = ( state == IFU_AR )   ?   3'd3 : 
-                                mem_rmask == 4'b1   ?   3'd0 :
-                                mem_rmask == 4'b11  ?   3'd1 :
-                                3'd3;
+    assign io_master_arsize = 'b0;//( state == IFU_AR )   ?   3'd3 : 
+                                //mem_rmask == 4'b1   ?   3'd0 :
+                                //mem_rmask == 4'b11  ?   3'd1 :
+                                //3'd3;
 
     assign io_master_arburst = 2'b01;
 
-    assign ist = io_master_rdata ;
+    assign ist = 'b0;//io_master_rdata ;
 
-    assign rdata_mem = io_master_rdata ;
+    assign rdata_mem = 'b0;//io_master_rdata ;
 
-    assign mem_rdone = mem_ren ? ( state == LSU_R & ( io_master_rvalid & io_master_rready ) ) :
-                                 ( state == IFU_R & ( io_master_rvalid & io_master_rready ) ) ;
+    assign mem_rdone = 'b0;//mem_ren ? ( state == LSU_R & ( io_master_rvalid & io_master_rready ) ) :
+                         //        ( state == IFU_R & ( io_master_rvalid & io_master_rready ) ) ;
 
 endmodule
