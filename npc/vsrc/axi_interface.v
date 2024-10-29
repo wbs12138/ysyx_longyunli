@@ -152,9 +152,9 @@ module axi_interface (
 
     assign io_master_wvalid = ( state == LSU_W );
 
-    assign io_master_arvalid = 'b0;//( state == IFU_AR || state == LSU_AR );
+    assign io_master_arvalid = ( state == IFU_AR || state == LSU_AR );
 
-    assign io_master_rready = 'b0;//( state == IFU_R || state == LSU_R ); 
+    assign io_master_rready = ( state == IFU_R || state == LSU_R ); 
 
     assign io_master_awaddr = 'b0;//mem_waddr ;
 
