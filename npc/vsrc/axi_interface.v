@@ -150,7 +150,7 @@ module axi_interface (
 
     assign io_master_awvalid = ( state == LSU_AW );
 
-    assign io_master_wvalid = 'b0;//( state == LSU_W );
+    assign io_master_wvalid = ( state == LSU_W );
 
     assign io_master_arvalid = 'b0;//( state == IFU_AR || state == LSU_AR );
 
