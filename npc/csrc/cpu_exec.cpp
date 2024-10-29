@@ -60,7 +60,7 @@ uint32_t read_cpu_state_gpr(int ind){
 
 int check_watchpoint();
 void exec_cpu(uint32_t exec_time);
-void update_state();
+//void update_state();
 
 int error_happen;
 
@@ -98,7 +98,7 @@ void init_cpu(){
     
 	dut->eval();
     //pc_pre=dut->pc;
-    update_state();
+    //update_state();
     sim_time+=1;
 	m_trace->dump(sim_time);
     
