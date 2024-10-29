@@ -84,6 +84,8 @@ module ysyx_24080008(
 wire [6:0] opcode,func7;
 wire [2:0] func3;
 
+wire [31:0] ist;
+
 assign opcode = ist[6:0];
 assign func7  = ist[31:25];
 assign func3  = ist[14:12];
