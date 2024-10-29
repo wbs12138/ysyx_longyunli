@@ -187,11 +187,11 @@ module axi_interface (
 
     assign io_master_arburst = 2'b01;
 
-    assign ist = io_master_rdata ;
+    assign ist = 'b0;//io_master_rdata ;
 
-    assign rdata_mem = 'b0;//io_master_rdata ;
+    assign rdata_mem = io_master_rdata ;
 
-    assign mem_rdone = 'b0;//mem_ren ? ( state == LSU_R & ( io_master_rvalid & io_master_rready ) ) :
-                         //        ( state == IFU_R & ( io_master_rvalid & io_master_rready ) ) ;
+    assign mem_rdone = mem_ren ? ( state == LSU_R & ( io_master_rvalid & io_master_rready ) ) :
+                                 ( state == IFU_R & ( io_master_rvalid & io_master_rready ) ) ;
 
 endmodule
