@@ -53,7 +53,7 @@ module axi_interface (
     reg [2:0] state,next_state;
 
     always@(posedge clock) begin
-        if(!reset) begin
+        if(reset) begin
             state <= IDLE;
         end
 
