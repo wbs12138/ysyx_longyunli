@@ -27,8 +27,7 @@ CSRCS = $(shell find $(abspath ./csrc/fpga) -name "*.cpp")
 CSRCS += $(SRC_AUTO_BIND)
 CSRCS_SIM = ./csrc/cpu_exec.cpp ./csrc/npc_expr.cpp ./csrc/npc_init.cpp ./csrc/npc_sdb.cpp ./csrc/npc_watchpoint.cpp ./csrc/main_sim.cpp ./csrc/npc_itrace.cpp ./csrc/npc_ftrace.cpp ./csrc/npc_difftest.cpp ./csrc/npc_vga.cpp
 SO_FILE = /home/wangbaosen/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
-INCLUDE_DIR = ../ysyxSoC/perip/uart16550/rtl
-INCLUDE_DIR += ../ysyxSoC/perip/spi/rtl
+INCLUDE_DIR = ../ysyxSoC/perip/uart16550/rtl ../ysyxSoC/perip/spi/rtl
 
 # rules for NVBoard
 include $(NVBOARD_HOME)/scripts/nvboard.mk
