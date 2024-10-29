@@ -97,7 +97,7 @@ void init_cpu(){
     //dut->ist = pmem_read(dut->pc,4);	
     
 	dut->eval();
-    pc_pre=dut->pc;
+    //pc_pre=dut->pc;
     update_state();
     sim_time+=1;
 	m_trace->dump(sim_time);
