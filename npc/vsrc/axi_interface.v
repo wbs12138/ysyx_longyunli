@@ -140,6 +140,9 @@ module axi_interface (
                 end
             end
 
+            default:
+                next_state = IDLE;
+
         
         endcase
     end
