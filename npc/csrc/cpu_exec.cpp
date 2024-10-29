@@ -236,7 +236,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
         }
         else if(strcmp("pc",s)==0){
             
-            return dut->pc;
+            return 0;//dut->pc;
         }
     }
     printf("not find the register.\n");
