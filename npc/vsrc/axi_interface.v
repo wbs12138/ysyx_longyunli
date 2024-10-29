@@ -166,7 +166,7 @@ module axi_interface (
 
     assign io_master_awburst = 2'b01;
 
-    assign io_master_wdata = 'b0;//mem_wdata;
+    assign io_master_wdata = mem_wdata;
 
     assign io_master_wstrb = 'b0;//mem_wmask;
 
