@@ -166,14 +166,14 @@ void exec_cpu(uint32_t exec_time){
         vga_update_screen();
         #endif
         
-        pc_pre=dut->pc;
+        //pc_pre=dut->pc;
         if(ebreak_dpi||sim_time>=MAX_SIM_TIME)break;
 		
     }
     if(ebreak_dpi&&curse==0){ end_cpu();curse+=1;//display_inst();
                     printf("\033[1;34m[%s,%d]Success!\nNPC running over,because the dpi-c ebreak matters\033[0m\r\n",__FILE__,__LINE__);
 					printf("\033[1;32m[%s,%d]HIT GOOD TRAP!\033[0m",__FILE__,__LINE__);
-					printf("at pc = %x,total steps=%d\n",dut->pc,total_steps);
+					//printf("at pc = %x,total steps=%d\n",dut->pc,total_steps);
                     return ;}
     else if(sim_time>=MAX_SIM_TIME&&curse==0){
         end_cpu();curse+=1;
@@ -184,16 +184,16 @@ void exec_cpu(uint32_t exec_time){
 }
 
 
-void update_state(){
-    for(int i=0;i<=31;i++){
-        npc_cpu_state.gpr[i]=read_reg[i];
-    }
-    npc_cpu_state.pc = dut->pc;
-    npc_cpu_state.csr.mepc = dut->mepc;
-    npc_cpu_state.csr.mstatus = dut->mstatus;
-    npc_cpu_state.csr.mtvec = dut->mtvec;
-    npc_cpu_state.csr.mcause = dut->mcause;
-}
+// void update_state(){
+//     for(int i=0;i<=31;i++){
+//         npc_cpu_state.gpr[i]=read_reg[i];
+//     }
+//     npc_cpu_state.pc = dut->pc;
+//     npc_cpu_state.csr.mepc = dut->mepc;
+//     npc_cpu_state.csr.mstatus = dut->mstatus;
+//     npc_cpu_state.csr.mtvec = dut->mtvec;
+//     npc_cpu_state.csr.mcause = dut->mcause;
+// }
 static uint32_t *rtc_port_base =(uint32_t *)malloc(2*sizeof(uint32_t));
 void end_cpu(){
 
@@ -218,11 +218,11 @@ void isa_reg_display() {
 for(int i=0;i<32;i++){
 	printf("%d:%s\t%x\n",i,regs[i],read_reg[i]);
 }
-printf("%d:%s\t%x\n",33,"pc",dut->pc);
-printf("   %s\t%x\n","mcause ",dut->mcause);
-printf("   %s\t%x\n","mepc   ",dut->mepc);
-printf("   %s\t%x\n","mstatus",dut->mstatus);
-printf("   %s\t%x\n","mtvec  ",dut->mtvec);
+// printf("%d:%s\t%x\n",33,"pc",dut->pc);
+// printf("   %s\t%x\n","mcause ",dut->mcause);
+// printf("   %s\t%x\n","mepc   ",dut->mepc);
+// printf("   %s\t%x\n","mstatus",dut->mstatus);
+// printf("   %s\t%x\n","mtvec  ",dut->mtvec);
 
 }
 
