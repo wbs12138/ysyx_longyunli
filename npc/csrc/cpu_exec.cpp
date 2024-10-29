@@ -67,7 +67,7 @@ int error_happen;
 int curse ;
 vluint64_t sim_time=0;
 uint32_t pc_pre;
-Vtop *dut = new Vtop;
+VysyxSoCFull *dut = new VysyxSoCFull;
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 void init_cpu(){
     error_happen=0;

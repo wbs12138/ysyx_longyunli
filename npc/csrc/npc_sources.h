@@ -10,9 +10,9 @@
 #include <assert.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vtop.h"
+#include "VysyxSoCFull.h"
 #include "svdpi.h"
-#include "Vtop__Dpi.h"
+#include "VysyxSoCFull__Dpi.h"
 
 #define MAX_SIM_TIME 20000000000
 #define CONFIG_MBASE 0x80000000
