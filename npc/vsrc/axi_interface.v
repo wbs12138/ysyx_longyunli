@@ -187,7 +187,7 @@ module axi_interface (
 
     assign io_master_arburst = 2'b01;
 
-    assign ist = 'b0;//io_master_rdata ;
+    assign ist = io_master_rdata ;
 
     assign rdata_mem = 'b0;//io_master_rdata ;
 
