@@ -180,10 +180,10 @@ module axi_interface (
 
     assign io_master_arlen = 'b0;
 
-    assign io_master_arsize = 'b0;//( state == IFU_AR )   ?   3'd3 : 
-                                //mem_rmask == 4'b1   ?   3'd0 :
-                                //mem_rmask == 4'b11  ?   3'd1 :
-                                //3'd3;
+    assign io_master_arsize = ( state == IFU_AR )   ?   3'd3 : 
+                                mem_rmask == 4'b1   ?   3'd0 :
+                                mem_rmask == 4'b11  ?   3'd1 :
+                                3'd3;
 
     assign io_master_arburst = 2'b01;
 
