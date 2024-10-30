@@ -100,7 +100,7 @@ module axi_interface (
                 end
 
                 else begin
-                    next_state = EXEU;
+                    next_state = IFU_AR;
                 end
             end
 
