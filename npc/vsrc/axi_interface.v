@@ -164,7 +164,7 @@ module axi_interface (
 
     assign io_master_awid = 'b0;
 
-    assign io_master_awlen = 'b0;
+    assign io_master_awlen = 3'b0;
 
     assign io_master_awsize = 3'b010;
 
@@ -184,10 +184,10 @@ module axi_interface (
 
     assign io_master_arlen = 'b0;
 
-    assign io_master_arsize = ( state == IFU_AR )   ?   3'd3 : 
-                                mem_rmask == 4'b1   ?   3'd0 :
-                                mem_rmask == 4'b11  ?   3'd1 :
-                                3'd3;
+    assign io_master_arsize = ( state == IFU_AR )   ?   3'b010 : 
+                                mem_rmask == 4'b1   ?   3'b000 :
+                                mem_rmask == 4'b11  ?   3'b001 :
+                                3'b010;
 
     assign io_master_arburst = 2'b01;
 
