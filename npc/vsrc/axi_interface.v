@@ -172,7 +172,7 @@ module axi_interface (
 
     assign io_master_wdata = mem_wdata;
 
-    assign io_master_wstrb = mem_wmask;
+    assign io_master_wstrb = 4'hf;
 
     assign io_master_wlast = ( state == LSU_W );
 
