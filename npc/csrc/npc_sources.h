@@ -14,7 +14,7 @@
 #include "svdpi.h"
 #include "VysyxSoCFull__Dpi.h"
 
-#define MAX_SIM_TIME 3000000//20000000000
+#define MAX_SIM_TIME 20000000000
 #define CONFIG_MBASE 0x20000000
 #define CONFIG_MSIZE 0x8000000
 #define CONFIG_PC_RESET_OFFSET 0x0
