@@ -204,7 +204,8 @@ module axi_interface (
 
     assign rdata_mem = io_master_rdata ;
 
-    assign mem_rdone = mem_ren ? ( state == LSU_R & ( io_master_rvalid & io_master_rready ) ) :
-                                 ( state == IFU_R & ( io_master_rvalid & io_master_rready ) ) ;
+    assign mem_rdone = state == EXEU ? !mem_ren :
+                                LSU_R? io_master_rvalid & io_master_rready :
+                                'b0;
 
 endmodule
