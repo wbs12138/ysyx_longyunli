@@ -6,7 +6,7 @@ SECTIONS {
   _stack_pointer = .;
   end = .;
   _end = .;
-  _heap_start = ALIGN(0xf000000);
+  _heap_start = ALIGN(. - 0x1fff);
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
   .text : {
