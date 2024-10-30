@@ -12,7 +12,7 @@
 #include <string.h>
 
 extern "C" void flash_read (int32_t addr, int32_t *data) { assert(0); }
-extern "C" void mrom_read  (int32_t addr, int32_t *data) { printf("\n");*data = pmem_read(addr,4); }
+extern "C" void mrom_read  (int32_t addr, int32_t *data) { *data = pmem_read(addr,4); }
 
 
 int ebreak_dpi=0;
