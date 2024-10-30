@@ -166,7 +166,7 @@ module axi_interface (
 
     assign io_master_awlen = 'b0;
 
-    assign io_master_awsize = 3'd1;
+    assign io_master_awsize = 3'b010;
 
     assign io_master_awburst = 2'b01;
 
