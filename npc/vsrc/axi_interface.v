@@ -31,7 +31,7 @@ module axi_interface (
     input           io_master_rlast   ,
     input   [3:0]   io_master_rid     ,
     input   [31:0]  pc                ,
-    output  [31:0]  ist               ,
+    output  reg [31:0]  ist               ,
     input           mem_wen           ,
     input   [31:0]  mem_waddr         ,
     input   [31:0]  mem_wdata         ,
@@ -187,7 +187,17 @@ module axi_interface (
 
     assign io_master_arburst = 2'b01;
 
-    assign ist = 'b0;//io_master_rdata ;
+    always@(posedge clock) begin
+        if(reset) begin
+            ist <= 'b0;
+        end
+        else begin
+            if(state == IFU_R & io_master_rvalid & io_master_rready) begin
+                ist <= io_master_rdata;
+            end
+        end
+    end
+    //assign ist = 'b0;//io_master_rdata ;
 
     assign rdata_mem = io_master_rdata ;
 
