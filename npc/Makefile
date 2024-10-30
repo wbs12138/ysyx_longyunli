@@ -10,10 +10,6 @@ BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 
-IMG = ../soc_test/char-test.bin
-ELF = ../soc_test/char-test.elf
-ARGS = is_batch_mode
-
 default: $(BIN)
 
 $(shell mkdir -p $(BUILD_DIR))
