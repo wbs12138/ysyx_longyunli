@@ -4,7 +4,7 @@ PHDRS { text PT_LOAD; data PT_LOAD; }
 SECTIONS {
   _heap_start = ALIGN(0xf000000);
   _stack_top = _heap_start;
-  . = _stack_top + 0xffffff;
+  . = _stack_top + 0xfffffff;
   _stack_pointer = .;
   end = .;
   _end = .;
