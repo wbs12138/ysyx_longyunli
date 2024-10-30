@@ -45,10 +45,11 @@ module axi_interface (
     localparam IDLE   = 3'd0;
     localparam IFU_AR = 3'd1;
     localparam IFU_R  = 3'd2;
-    localparam LSU_AW = 3'd3;
-    localparam LSU_W  = 3'd4;
-    localparam LSU_AR = 3'd5;
-    localparam LSU_R  = 3'd6;
+    localparam EXEU   = 3'd3;
+    localparam LSU_AW = 3'd4;
+    localparam LSU_W  = 3'd5;
+    localparam LSU_AR = 3'd6;
+    localparam LSU_R  = 3'd7;
 
     reg [2:0] state,next_state;
 
@@ -81,22 +82,25 @@ module axi_interface (
             end
 
             IFU_R: begin
-                if(io_master_rvalid & io_master_rready) begin
-                    if( mem_wen ) begin
-                        next_state = LSU_AW;
-                    end
+                if(io_master_rready & io_master_rvalid) begin
+                    next_state = EXEU;
+                end
+                else begin
+                    next_state = IFU_R;
+                end
+            end
 
-                    else if(mem_ren) begin
-                        next_state = LSU_AR;
-                    end
+            EXEU: begin
+                if( mem_wen ) begin
+                    next_state = LSU_AW;
+                end
 
-                    else begin
-                        next_state = IFU_AR;
-                    end
+                else if(mem_ren) begin
+                    next_state = LSU_AR;
                 end
 
                 else begin
-                    next_state = IFU_R;
+                    next_state = IFU_AR;
                 end
             end
 
@@ -197,7 +201,6 @@ module axi_interface (
             end
         end
     end
-    //assign ist = 'b0;//io_master_rdata ;
 
     assign rdata_mem = io_master_rdata ;
 
