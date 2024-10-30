@@ -24,12 +24,10 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
   }
-  . = ALIGN(0x0f000000);
-  _stack_top = .;
+  _stack_top = . - 0x11000000;
   . = _stack_top + 0xffffff;
-  _stack_pointer = .;
+  _stack_pointer = ALIGN(.);
   end = .;
   _end = .;
-  . = ALIGN(0x0f000000);
-  _heap_start = .;
+  _heap_start = _stack_top;
 }
