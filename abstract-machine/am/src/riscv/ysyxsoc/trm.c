@@ -7,7 +7,7 @@ extern char _heap_start;
 int main(const char *args);
 
 extern char _pmem_start;
-#define PMEM_END  ((uintptr_t)0x0fffffff)
+#define PMEM_END  ((uintptr_t)&_heap_start + 0x0ffffff)
 
 Area heap = RANGE(&_heap_start, PMEM_END);
 #ifndef MAINARGS
