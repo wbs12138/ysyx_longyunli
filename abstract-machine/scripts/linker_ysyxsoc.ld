@@ -26,7 +26,7 @@ SECTIONS {
   }
   _stack_top = . - 0x11000000;
   . = _stack_top + 0xffffff;
-  _stack_pointer = ALIGN(.);
+  _stack_pointer = .;
   end = .;
   _end = .;
   _heap_start = _stack_top;
