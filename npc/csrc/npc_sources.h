@@ -32,7 +32,7 @@
 // #define CONFIG_FTRACE 1
 // #define CONFIG_DIFFTEST 1
 
-#define CONFIG_VGA 1
+//#define CONFIG_VGA 1
 
 typedef struct {
   uint32_t mcause;
