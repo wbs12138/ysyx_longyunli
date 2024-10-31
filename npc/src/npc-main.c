@@ -19,7 +19,7 @@
 
 
 void init_monitor(int, char *[]);
-void engine_start();
+void sdb_mainloop();
 int is_exit_status_bad();
 
 vluint64_t sim_time=0;
