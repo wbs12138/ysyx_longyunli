@@ -67,7 +67,7 @@ module axi_interface (
 
     wire state_exeu,state_ifuar,state_ifur;
     
-    wire state_exeu_t,state_ifuar_t,state_ifur_t;
+    wire [31:0] state_exeu_t,state_ifuar_t,state_ifur_t;
 
     assign state_exeu = state == EXEU;
     assign state_ifuar = state == IFU_AR;
