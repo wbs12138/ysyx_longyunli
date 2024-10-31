@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
-#include <cpu/difftest.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 #include "../local-include/reg.h"
 
 #define CHECKDIFFPC(p) if (ref_r->p != cpu.p) { \
