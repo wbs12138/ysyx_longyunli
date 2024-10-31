@@ -78,6 +78,8 @@ int main(int argc, char *argv[]) {
 
   init_monitor(argc, argv);
 
+  printf("hello here\n");
+
   init_verilator(argc, argv);
 
   /* Start engine. */
