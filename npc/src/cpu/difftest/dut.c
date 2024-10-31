@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include <dlfcn.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
+#include <isa.h>
 #include <cpu/cpu.h>
 #include <memory/paddr.h>
 #include <utils.h>
