@@ -21,6 +21,9 @@
 
 #define R(i) gpr(i)
 
+extern "C" void flash_read(int32_t addr, int32_t *data) {assert(0);}
+extern "C" void mrom_read(int32_t addr,int32_t *data) {assert(0);}
+
 
 int state_exeu,state_ifuar,state_ifur,insn,npc_pc;
 
@@ -177,7 +180,7 @@ void state_is_ifur(int npc_state) {
   state_ifur = npc_state;
 };
 
-void get_insn(int inst) {
+void get_inst(int inst) {
   insn = inst;
 };
 

@@ -22,8 +22,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/monitor/sdb/sdb.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 
-extern "C" void flash_read(int32_t addr, int32_t *data) {assert(0);}
-extern "C" void mrom_read(int32_t addr,int32_t *data) {assert(0);}
+
 
 
 /* The assembly code of instructions executed is only output to the screen
