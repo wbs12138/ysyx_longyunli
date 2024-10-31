@@ -17,7 +17,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/difftest-def.h>
-#include <memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 
 
 
