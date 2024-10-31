@@ -51,7 +51,35 @@ module axi_interface (
     localparam LSU_AR = 3'd6;
     localparam LSU_R  = 3'd7;
 
+
     reg [2:0] state,next_state;
+
+
+    import "DPI-C" function void state_is_exeu(input int npc_state);
+
+    import "DPI-C" function void state_is_ifuar(input int npc_state);
+
+    import "DPI-C" function void state_is_ifur(input int npc_state);
+
+    import "DPI-C" function void get_inst(input int inst);
+
+    import "DPI-C" function void get_pc(input int dnpc);
+
+    wire state_exeu,state_ifuar,state_ifur;
+    
+    assign state_exeu = state == EXEU;
+    assign state_ifuar = state == IFU_AR;
+    assign state_ifur = state == IFU_R;
+
+    always@(*)
+    begin
+        state_is_exeu(state_exeu);
+        state_is_ifuar(state_ifuar);
+        state_is_ifur(state_ifur);
+        get_inst(ist);
+        get_pc(pc);
+    end
+
 
     always@(posedge clock) begin
         if(reset) begin

@@ -264,6 +264,13 @@ Reg #(32,32'h0) inst_mtvec  (clock,reset,mtvec_next,mtvec,mtvec_en & mem_rdone);
 Reg #(32,32'h0) inst_mcause (clock,reset,mcause_next,mcause,mcause_en & mem_rdone);
 Reg #(32,32'h1800) inst_mstatus(clock,reset,mstatus_next,mstatus,mstatus_en & mem_rdone);
 
+import "DPI-C" function void get_csr(input int mepc,input int mcause,input int mtvec,input int mstatus);
+
+always@(*) begin
+  get_csr(mepc,mcause,mtvec,mstatus);
+end
+
+
 wire [31:0] a0;
 wire mem_rdone;
 RegisterFile #(5,32) inst_RegisterFile 
@@ -325,6 +332,8 @@ assign mem_rmask = lb | lbu ? 4'b0001 :
                    'b0;
 
 dpi_c_ebreak inst_dpi_c_ebreak(ist,a0);
+
+dpi_c_ecall  inst_dpi_c_ecall(ist);
 
 dpi_c_ftrace inst_dpi_c_ftrace (ist,pc_next);
 
