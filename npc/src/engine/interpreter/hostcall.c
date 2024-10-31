@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <utils.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
 #include <cpu/ifetch.h>
 #include <isa.h>
 #include <cpu/difftest.h>
