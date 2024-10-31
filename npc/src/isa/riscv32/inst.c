@@ -15,8 +15,8 @@
 
 #include "local-include/reg.h"
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu/ifetch.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu/decode.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/ifetch.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 
 #define R(i) gpr(i)
