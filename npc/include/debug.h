@@ -18,7 +18,7 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <stdio.h>
-#include <utils.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
 
 #define Log(format, ...) \
     _Log(ANSI_FMT("[%s:%d %s] " format, ANSI_FG_BLUE) "\n", \
