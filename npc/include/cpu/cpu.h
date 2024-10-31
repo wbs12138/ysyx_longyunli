@@ -24,6 +24,12 @@
 #include "svdpi.h"
 #include "VysyxSoCFull__Dpi.h"
 
+extern vluint64_t sim_time;
+
+extern VysyxSoCFull *dut ;
+
+extern VerilatedVcdC *m_trace ;
+
 void cpu_exec(uint64_t n);
 
 void set_nemu_state(int state, vaddr_t pc, int halt_ret);
