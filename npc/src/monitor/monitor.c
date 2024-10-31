@@ -13,8 +13,8 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <isa.h>
-#include <memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 
 void init_rand();
 void init_log(const char *log_file);
