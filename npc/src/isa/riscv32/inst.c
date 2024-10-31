@@ -32,6 +32,8 @@ int ftrace1,ftrace2,ftrace3,ftrace4;
 
 int npc_ecall,npc_mret;
 
+int npc_ebreak;
+
 int isa_exec_once(Decode *s) {
 
 
@@ -125,6 +127,10 @@ int isa_exec_once(Decode *s) {
   R(30) = x30 ;
   R(31) = x31 ;
 
+  if(npc_ebreak) {
+    NEMU_TRAP(s->pc, R(10));
+  }
+
   cpu.csr.mepc = npc_mepc ;
   cpu.csr.mcause = npc_mcause ;
   cpu.csr.mstatus = npc_mstatus ;
@@ -140,7 +146,7 @@ int isa_exec_once(Decode *s) {
   #ifdef CONFIG_ITRACE 
     trace_e_out(s->dnpc, cpu.csr.mstatus); 
   #endif
-  
+
   return 0;
 }
 
@@ -223,5 +229,5 @@ void regfile_update( int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int r
 };
 
 void ebreak(int back_right) {
-  NEMUTRAP(s->pc, back_right);
+  npc_ebreak = back_right;
 };
