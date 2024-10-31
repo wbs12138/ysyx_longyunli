@@ -17,7 +17,7 @@
 #define __ISA_H__
 
 // Located at src/isa/$(GUEST_ISA)/include/isa-def.h
-#include <./src/isa/riscv32/include/isa-def.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/isa/riscv32/include/isa-def.h>
 
 // The macro `__GUEST_ISA__` is defined in $(CFLAGS).
 // It will be expanded as "x86" or "mips32" ...
