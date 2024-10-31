@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
-#include <cpu/ifetch.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/ifetch.h>
 #include <isa.h>
 #include <cpu/difftest.h>
 
