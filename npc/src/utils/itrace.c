@@ -13,7 +13,7 @@
 #define MAX_MRINGBUF 32
 
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/ftrace.txt"
-#define DOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/dtrace.txt"
+
 #define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/etrace.txt"
 
 
@@ -126,28 +126,7 @@ void display_memory() {
   #endif
 }
 
-void dtrace_write(const char *format, ...) {
-    FILE *fp = fopen(DOUTPUT_FILE, "a"); 
-    if (fp != NULL) {
-        va_list args;
-        va_start(args, format);
-        vfprintf(fp, format, args); 
-        va_end(args);
-        fclose(fp); 
-    } else {
-        printf("Error opening file %s\n", DOUTPUT_FILE);
-    }
-}
 
-void trace_dread(paddr_t addr, int len, IOMap *map) {
-	dtrace_write("dtrace: read %10s at " FMT_PADDR ",%d\n",
-		map->name, addr, len);
-}
-
-void trace_dwrite(paddr_t addr, int len, word_t data, IOMap *map) {
-	dtrace_write("dtrace: write %10s at " FMT_PADDR ",%d with " FMT_WORD "\n",
-		map->name, addr, len, data);
-}
 
 void etrace_write(const char *format, ...) {
     FILE *fp = fopen(EOUTPUT_FILE, "a"); 
@@ -550,7 +529,6 @@ static void init_tail_rec_list() {
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   remove(FOUTPUT_FILE);
-  remove(DOUTPUT_FILE);
   remove(EOUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);

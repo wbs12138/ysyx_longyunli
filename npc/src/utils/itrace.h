@@ -7,7 +7,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <elf.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/device/map.h>
 
 
 
@@ -18,10 +17,6 @@ void display_inst();
 void trace_memory(paddr_t addr, int len , word_t data, int wr );
 
 void display_memory();
-
-void trace_dread(paddr_t addr, int len, IOMap *map);
-
-void trace_dwrite(paddr_t addr, int len, word_t data, IOMap *map);
 
 void trace_e_in(word_t mcause,vaddr_t mepc);
 
