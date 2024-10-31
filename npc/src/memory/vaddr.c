@@ -13,8 +13,8 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <isa.h>
-#include <memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
 
 word_t vaddr_ifetch(vaddr_t addr, int len) {
   return paddr_read(addr, len);
