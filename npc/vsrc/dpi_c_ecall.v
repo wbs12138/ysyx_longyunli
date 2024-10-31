@@ -2,7 +2,7 @@ module dpi_c_ecall(
     input [31:0] ist
 );
 
-import "DPI-C" function void npc_ecall(input int ecall, input int mret);
+import "DPI-C" function void cpu_ecall(input int ecall, input int mret);
 
 wire ecall,mret;
 
@@ -17,7 +17,7 @@ assign mret_t = {31'b0,mret};
 
 always@(*)
 begin
-    npc_ecall(ecall_t,mret_t);
+    cpu_ecall(ecall_t,mret_t);
 end
 
 endmodule

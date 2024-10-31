@@ -144,7 +144,7 @@ int isa_exec_once(Decode *s) {
 }
 
 
-void npc_ecall( int ecall,  int mret) {
+void cpu_ecall( int ecall,  int mret) {
   npc_ecall = ecall;
   npc_mret = mret;
 };
