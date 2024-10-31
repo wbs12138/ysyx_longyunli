@@ -132,7 +132,7 @@ int isa_exec_once(Decode *s) {
   R(31) = x31 ;
 
   if(npc_ebreak) {
-    printf("end\n");
+
     NEMUTRAP(s->pc, R(10));
   }
 
@@ -234,5 +234,6 @@ void regfile_update( int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int r
 };
 
 void ebreak(int back_right) {
+      printf("end\n");
   npc_ebreak = back_right;
 };
