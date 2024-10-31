@@ -1,4 +1,4 @@
-#include <common.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <elf.h>
@@ -6,15 +6,15 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 
 
 #define MAX_IRINGBUF 16
 #define MAX_MRINGBUF 32
 
-#define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/ftrace.txt"
+#define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/ftrace.txt"
 
-#define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/etrace.txt"
+#define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/etrace.txt"
 
 
 typedef struct {
