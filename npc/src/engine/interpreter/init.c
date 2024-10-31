@@ -24,8 +24,6 @@ void engine_start() {
 void init_verilator(int argc, char *argv[]) {
 
   Verilated::commandArgs(argc,argv);  
-  VysyxSoCFull *dut = new VysyxSoCFull;
-  VerilatedVcdC *m_trace = new VerilatedVcdC;
 
   Verilated::traceEverOn(true);
 	

@@ -26,9 +26,9 @@
 
 vluint64_t sim_time=0;
 
-  Verilated::commandArgs(argc,argv);  
-  VysyxSoCFull *dut = new VysyxSoCFull;
-  VerilatedVcdC *m_trace = new VerilatedVcdC;
+
+VysyxSoCFull *dut = new VysyxSoCFull;
+VerilatedVcdC *m_trace = new VerilatedVcdC;
 
 void cpu_exec(uint64_t n);
 
