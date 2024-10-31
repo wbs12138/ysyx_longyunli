@@ -23,11 +23,18 @@ void am_init_monitor();
 void engine_start();
 int is_exit_status_bad();
 
+vluint64_t sim_time=0;
+
+VysyxSoCFull *dut = new VysyxSoCFull;
+
+VerilatedVcdC *m_trace = new VerilatedVcdC;
+
 void init_verilator(int argc, char *argv[]) {
 
   Verilated::commandArgs(argc,argv);  
 
   Verilated::traceEverOn(true);
+  
 	
 	dut->trace(m_trace,5);
 	m_trace->open("waveform.vcd");
