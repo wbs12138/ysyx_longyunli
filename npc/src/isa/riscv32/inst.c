@@ -98,6 +98,12 @@ int isa_exec_once(Decode *s) {
     dut->eval();
   }while(state_ifuar);
 
+  sim_time += 1;
+  
+  dut -> eval();
+
+  m_trace->dump(sim_time);
+
   R(0 ) = x0  ;
   R(1 ) = x1  ;
   R(2 ) = x2  ;
@@ -234,6 +240,5 @@ void regfile_update( int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int r
 };
 
 void ebreak(int back_right) {
-      printf("end\n");
   npc_ebreak = back_right;
 };
