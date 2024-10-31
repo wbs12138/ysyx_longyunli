@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
   init_verilator(argc, argv);
 
   /* Start engine. */
-  engine_start();
+  sdb_mainloop();
 
   return is_exit_status_bad();
 }
