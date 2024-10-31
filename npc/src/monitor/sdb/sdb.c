@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
-#include <cpu/cpu.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <memory/paddr.h>
