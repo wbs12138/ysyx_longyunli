@@ -32,6 +32,8 @@ extern VerilatedVcdC *m_trace ;
 
 void cpu_exec(uint64_t n);
 
+void engine_start();
+
 void set_nemu_state(int state, vaddr_t pc, int halt_ret);
 void invalid_inst(vaddr_t thispc);
 
