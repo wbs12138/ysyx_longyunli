@@ -82,7 +82,6 @@ int main(int argc, char *argv[]) {
 
   init_verilator(argc, argv);
 
-    printf("hello here\n");
 
   /* Start engine. */
   sdb_mainloop();

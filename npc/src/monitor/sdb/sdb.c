@@ -212,7 +212,9 @@ void sdb_set_batch_mode() {
 
 void sdb_mainloop() {
   if (is_batch_mode) {
+        printf("hello here\n");
     cmd_c(NULL);
+        printf("hello here2\n");
     return;
   }
 
