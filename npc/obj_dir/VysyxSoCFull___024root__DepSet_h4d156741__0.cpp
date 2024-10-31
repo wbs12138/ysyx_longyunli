@@ -102,16 +102,16 @@ VL_INLINE_OPT void VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__
     ebreak(back_right__Vcvt);
 }
 
-extern "C" void npc_ecall(int ecall, int mret);
+extern "C" void cpu_ecall(int ecall, int mret);
 
-VL_INLINE_OPT void VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__npc_ecall_TOP(IData/*31:0*/ ecall, IData/*31:0*/ mret) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__npc_ecall_TOP\n"); );
+VL_INLINE_OPT void VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__cpu_ecall_TOP(IData/*31:0*/ ecall, IData/*31:0*/ mret) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__cpu_ecall_TOP\n"); );
     // Body
     int ecall__Vcvt;
     for (size_t ecall__Vidx = 0; ecall__Vidx < 1; ++ecall__Vidx) ecall__Vcvt = ecall;
     int mret__Vcvt;
     for (size_t mret__Vidx = 0; mret__Vidx < 1; ++mret__Vidx) mret__Vcvt = mret;
-    npc_ecall(ecall__Vcvt, mret__Vcvt);
+    cpu_ecall(ecall__Vcvt, mret__Vcvt);
 }
 
 extern "C" void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);
@@ -3621,7 +3621,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__2(VysyxSoCFull___0
         = ((IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4frag__DOT__busy)
             ? (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4frag__DOT__r_len)
             : (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4frag__DOT___deq_q_io_deq_bits_len));
-    VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__npc_ecall_TOP(
+    VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__inst_dpi_c_ecall__DOT__cpu_ecall_TOP(
                                                                                 (0x73U 
                                                                                 == vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist), 
                                                                                 (0x30200073U 
