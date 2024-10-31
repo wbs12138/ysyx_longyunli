@@ -17,7 +17,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 #include "sdb.h"
 #include "watchpoint.h"
 #include "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h"
