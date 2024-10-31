@@ -15,7 +15,7 @@
 
 #include <../include/cpu/cpu.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
-#include <cpu/difftest.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 #include <locale.h>
 #include <assert.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/watchpoint.h>
