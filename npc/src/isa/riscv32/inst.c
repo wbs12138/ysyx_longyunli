@@ -22,7 +22,7 @@
 #define R(i) gpr(i)
 
 extern "C" void flash_read(int32_t addr, int32_t *data) {assert(0);}
-extern "C" void mrom_read(int32_t addr,int32_t *data) {assert(0);}
+extern "C" void mrom_read(int32_t addr,int32_t *data) {*data = pmem_read(addr,4);}}
 
 
 int state_exeu,state_ifuar,state_ifur,insn,npc_pc;
