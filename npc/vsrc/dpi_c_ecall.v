@@ -6,14 +6,14 @@ import "DPI-C" function void npc_ecall(input int ecall, input int mret);
 
 wire ecall,mret;
 
-wire ecall_t,mret_t;
+wire [31:0]ecall_t,mret_t;
 
 assign ecall = (ist == 32'b00000000000000000000000001110011);
 assign mret  = (ist == 32'b00110000001000000000000001110011);
 
-assign ecall_t = {30'b0,ecall};
+assign ecall_t = {31'b0,ecall};
 
-assign mret_t = {30'b0,mret};
+assign mret_t = {31'b0,mret};
 
 always@(*)
 begin
