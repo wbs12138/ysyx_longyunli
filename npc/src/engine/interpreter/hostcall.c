@@ -15,7 +15,7 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/ifetch.h>
-#include <isa.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
 #include <cpu/difftest.h>
 
 void set_nemu_state(int state, vaddr_t pc, int halt_ret) {
