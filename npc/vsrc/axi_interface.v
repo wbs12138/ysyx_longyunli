@@ -65,7 +65,7 @@ module axi_interface (
 
     import "DPI-C" function void get_pc(input int dnpc);
 
-    wire state_exeu,state_ifuar,state_ifur;
+    wire [31:0] state_exeu,state_ifuar,state_ifur;
     
     assign state_exeu = state == EXEU;
     assign state_ifuar = state == IFU_AR;
