@@ -128,7 +128,7 @@ int isa_exec_once(Decode *s) {
   R(31) = x31 ;
 
   if(npc_ebreak) {
-    NEMU_TRAP(s->pc, R(10));
+    NEMUTRAP(s->pc, R(10));
   }
 
   cpu.csr.mepc = npc_mepc ;
