@@ -16,7 +16,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#include <common.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 
 // ----------- state -----------
 
