@@ -17,7 +17,7 @@
 #define __CPU_DIFFTEST_H__
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
-#include <difftest-def.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/difftest-def.h.h>
 
 #ifdef CONFIG_DIFFTEST
 void difftest_skip_ref();
