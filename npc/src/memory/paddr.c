@@ -13,12 +13,11 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <memory/host.h>
-#include <memory/paddr.h>
-#include <device/mmio.h>
-#include <isa.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/include/cpu/decode.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/host.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 
 
 #if   defined(CONFIG_PMEM_MALLOC)

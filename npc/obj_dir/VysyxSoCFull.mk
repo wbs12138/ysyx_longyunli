@@ -52,8 +52,6 @@ VM_USER_CLASSES = \
 	inst \
 	logo \
 	reg \
-	intr \
-	mmu \
 	paddr \
 	vaddr \
 	monitor \
@@ -74,7 +72,6 @@ VM_USER_DIR = \
 	src/engine/interpreter \
 	src/isa/riscv32 \
 	src/isa/riscv32/difftest \
-	src/isa/riscv32/system \
 	src/memory \
 	src/monitor \
 	src/monitor/sdb \
@@ -109,10 +106,6 @@ inst.o: src/isa/riscv32/inst.c
 logo.o: src/isa/riscv32/logo.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 reg.o: src/isa/riscv32/reg.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-intr.o: src/isa/riscv32/system/intr.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mmu.o: src/isa/riscv32/system/mmu.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 paddr.o: src/memory/paddr.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
