@@ -21,7 +21,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include <generated/autoconf.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/generated/autoconf.h>
 #include <macro.h>
 
 #ifdef CONFIG_TARGET_AM
