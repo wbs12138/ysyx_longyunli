@@ -132,6 +132,7 @@ int isa_exec_once(Decode *s) {
   R(31) = x31 ;
 
   if(npc_ebreak) {
+    printf("end\n");
     NEMUTRAP(s->pc, R(10));
   }
 
