@@ -2,7 +2,7 @@ module dpi_c_ecall(
     input [31:0] ist
 );
 
-import "DPI-C" function void npc_ecall(input int ecall, input int mret);
+import "DPI-C" function void npc_ecall(input bool ecall, input bool mret);
 
 wire ecall,mret;
 

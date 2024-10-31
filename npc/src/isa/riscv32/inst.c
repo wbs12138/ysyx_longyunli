@@ -30,7 +30,7 @@ int npc_mcause,npc_mtvec,npc_mepc,npc_mstatus;
 
 int ftrace1,ftrace2,ftrace3,ftrace4;
 
-int npc_ecall,npc_mret;
+bool npc_ecall,npc_mret;
 
 int isa_exec_once(Decode *s) {
 
@@ -144,7 +144,7 @@ int isa_exec_once(Decode *s) {
 }
 
 
-void npc_ecall( int ecall,  int mret) {
+void npc_ecall( bool ecall,  bool mret) {
   npc_ecall = ecall;
   npc_mret = mret;
 };
