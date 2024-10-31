@@ -18,6 +18,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/ifetch.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 
 #define R(i) gpr(i)
 
