@@ -73,9 +73,9 @@ module axi_interface (
     assign state_ifuar = state == IFU_AR;
     assign state_ifur = state == IFU_R;
 
-    assign state_exeu_t = {30'b0,state_exeu};
-    assign state_ifuar_t = {30'b0,state_ifuar};
-    assign state_ifur_t = {30'b0,state_ifur};
+    assign state_exeu_t = {31'b0,state_exeu};
+    assign state_ifuar_t = {31'b0,state_ifuar};
+    assign state_ifur_t = {31'b0,state_ifur};
 
     always@(*)
     begin
