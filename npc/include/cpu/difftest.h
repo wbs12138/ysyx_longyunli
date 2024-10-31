@@ -16,7 +16,7 @@
 #ifndef __CPU_DIFFTEST_H__
 #define __CPU_DIFFTEST_H__
 
-#include <common.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <difftest-def.h>
 
 #ifdef CONFIG_DIFFTEST
