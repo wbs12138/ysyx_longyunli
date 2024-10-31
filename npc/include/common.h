@@ -22,7 +22,7 @@
 #include <string.h>
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/generated/autoconf.h>
-#include <macro.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/macro.h>
 
 #ifdef CONFIG_TARGET_AM
 #include <klib.h>
