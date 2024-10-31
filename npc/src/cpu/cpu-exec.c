@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <cpu/cpu.h>
+#include <../include/cpu/cpu.h>
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
