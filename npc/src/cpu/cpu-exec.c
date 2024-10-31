@@ -18,9 +18,9 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 #include <locale.h>
 #include <assert.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/watchpoint.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/monitor/sdb/sdb.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/monitor/sdb/watchpoint.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/monitor/sdb/sdb.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 
 
 /* The assembly code of instructions executed is only output to the screen
