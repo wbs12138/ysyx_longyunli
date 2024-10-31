@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <cpu/cpu.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 
 void sdb_mainloop();
 

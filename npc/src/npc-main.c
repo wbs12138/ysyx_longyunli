@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   init_monitor(argc, argv);
 
-  init_verilator(argc, argv);
+  //init_verilator(argc, argv);
 
   /* Start engine. */
   engine_start();
