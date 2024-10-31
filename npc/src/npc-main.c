@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include <common.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
