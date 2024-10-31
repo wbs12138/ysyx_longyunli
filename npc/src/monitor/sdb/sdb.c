@@ -20,7 +20,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 #include "sdb.h"
 #include "watchpoint.h"
-#include "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h"
+#include "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h"
 
 static int is_batch_mode = false;
 
