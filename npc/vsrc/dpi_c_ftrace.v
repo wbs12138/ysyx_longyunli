@@ -21,9 +21,9 @@ assign ftrace1 = jal&&(rd==5'b1);
 
 assign ftrace2 = jalr&&(ist==32'h00008067) ;
 
-assign ftrace3 = jalr&&(rd==5'b1);
+assign ftrace3 = !ftrace2 & jalr&&(rd==5'b1);
 
-assign ftrace4 = jalr&&(rd==5'b0)&&(imm=='b0);
+assign ftrace4 = !ftrace2 & !ftrace3 & jalr&&(rd==5'b0)&&(imm=='b0);
 
 always@(*)
 begin

@@ -4083,8 +4083,13 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__2(VysyxSoCFull___0
                                                                                 (0x1fU 
                                                                                 & (vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist 
                                                                                 >> 7U)))), 
-                                                                                (0x8067U 
-                                                                                == vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist), 
+                                                                                ((IData)(
+                                                                                (0x67U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist))) 
+                                                                                & (0x8067U 
+                                                                                == vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist)), 
                                                                                 ((IData)(
                                                                                 (0x67U 
                                                                                 == 
