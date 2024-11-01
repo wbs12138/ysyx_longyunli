@@ -12,8 +12,25 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
 
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
+#include "llvm/MC/MCAsmInfo.h"
+#include "llvm/MC/MCContext.h"
+#include "llvm/MC/MCDisassembler/MCDisassembler.h"
+#include "llvm/MC/MCInstPrinter.h"
+#if LLVM_VERSION_MAJOR >= 14
+#include "llvm/MC/TargetRegistry.h"
+#if LLVM_VERSION_MAJOR >= 15
+#include "llvm/MC/MCSubtargetInfo.h"
+#endif
+#else
+#include "llvm/Support/TargetRegistry.h"
+#endif
+#include "llvm/Support/TargetSelect.h"
 
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
@@ -29,7 +46,7 @@ static llvm::MCDisassembler *gDisassembler = nullptr;
 static llvm::MCSubtargetInfo *gSTI = nullptr;
 static llvm::MCInstPrinter *gIP = nullptr;
 
-void init_disasm(const char *triple) {
+extern "C" void init_disasm(const char *triple) {
   llvm::InitializeAllTargetInfos();
   llvm::InitializeAllTargetMCs();
   llvm::InitializeAllAsmParsers();
@@ -75,7 +92,7 @@ void init_disasm(const char *triple) {
     gIP->applyTargetSpecificCLOption("no-aliases");
 }
 
-void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte) {
+extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte) {
   MCInst inst;
   llvm::ArrayRef<uint8_t> arr(code, nbyte);
   uint64_t dummy_size = 0;
