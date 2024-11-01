@@ -2,7 +2,7 @@ ENTRY(_start)
 PHDRS { text PT_LOAD; data PT_LOAD; }
 
 SECTIONS {
-  . =  0xf001fff;
+  . =  0xf001ff0;
   _stack_pointer = .;
   end = .;
   _end = .;
