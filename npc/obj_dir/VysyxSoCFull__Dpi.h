@@ -26,19 +26,19 @@ extern "C" {
     extern void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/ysyx_24080008.v:267:30
     extern void get_csr(int mepc, int mcause, int mtvec, int mstatus);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:64:34
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:65:34
     extern void get_inst(int inst);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:66:34
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:67:34
     extern void get_pc(int dnpc);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:4716:30
     extern void mrom_read(int raddr, int* rdata);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/RegisterFile.v:13:30
     extern void regfile_update(int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int rf7, int rf8, int rf9, int rf10, int rf11, int rf12, int rf13, int rf14, int rf15, int rf16, int rf17, int rf18, int rf19, int rf20, int rf21, int rf22, int rf23, int rf24, int rf25, int rf26, int rf27, int rf28, int rf29, int rf30, int rf31);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:58:34
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:59:34
     extern void state_is_exeu(int npc_state);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:60:34
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:61:34
     extern void state_is_ifuar(int npc_state);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:62:34
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:63:34
     extern void state_is_ifur(int npc_state);
 
 #ifdef __cplusplus

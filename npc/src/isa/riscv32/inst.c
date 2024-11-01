@@ -54,19 +54,17 @@ int isa_exec_once(Decode *s) {
     dut->eval();
   }while(state_exeu);
 
-  s->isa.inst.val = insn;
-
 
 
   #ifdef CONFIG_ITRACE
     trace_inst(s->pc, s->isa.inst.val);
   #endif
 
+  s->isa.inst.val = insn;
+
   s->dnpc = s->snpc;
 
   s->dnpc = npc_pc;
-
-  printf("dnpc is %x\n",s->dnpc);
 
   #ifdef CONFIG_ITRACE
   if(ftrace1) {
