@@ -2,6 +2,11 @@
 #ifndef __ITRACE_H__
 #define __ITRACE_H__
 
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+#ifdef concat
+#undef concat
+#endif
+
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
