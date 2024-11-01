@@ -101,10 +101,10 @@ void display_memory() {
   if (!full_m && !pm_cur) return;
 
   if(full_m) {
-	printf("\n\nthat's all as below:\n\n");
+	printf("\n\n	that's all as below:\n\n");
   }
   else {
-	printf("\n\nbuffer too small to display all\n\n");
+	printf("\n\n	buffer too small to display all\n\n");
   }
 
   int end_m = pm_cur;
