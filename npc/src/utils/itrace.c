@@ -1,3 +1,9 @@
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+#ifdef concat
+#undef concat
+#endif
+
+
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -7,7 +13,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+
 
 
 #define MAX_IRINGBUF 16
