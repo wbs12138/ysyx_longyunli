@@ -19,7 +19,7 @@ assign jalr = ((ist[14:12]==3'b000)&&(ist[6:0]==7'b1100111));
 
 assign ftrace1 = jal&&(rd==5'b1);
 
-assign ftrace2 = (ist==32'h00008067) ;
+assign ftrace2 = jalr&&(ist==32'h00008067) ;
 
 assign ftrace3 = jalr&&(rd==5'b1);
 

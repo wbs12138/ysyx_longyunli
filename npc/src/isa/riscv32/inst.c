@@ -69,22 +69,18 @@ int isa_exec_once(Decode *s) {
   #ifdef CONFIG_ITRACE
   if(ftrace1) {
     trace_func_call(s->pc, s->dnpc, false);
-    printf("1,pc is %x\n",s->pc);
   }
 
   if(ftrace2) {
     trace_func_ret(s->pc); 
-    printf("2,pc is %x\n",s->pc);
   }
 
   if(ftrace3) {
     trace_func_call(s->pc, s->dnpc, false);
-    printf("3,pc is %x\n",s->pc);
   }
 
   if(ftrace4) {
     trace_func_call(s->pc, s->dnpc, true);
-    printf("4,pc is %x\n",s->pc);
   }
   #endif
 
