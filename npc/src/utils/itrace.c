@@ -2,7 +2,6 @@
 #ifdef concat
 #undef concat
 #endif
-void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
