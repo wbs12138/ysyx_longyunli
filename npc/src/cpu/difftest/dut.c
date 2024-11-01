@@ -20,6 +20,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/isa/riscv32/local-include/reg.h>
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
@@ -117,6 +118,42 @@ printf("   %s\t%x\n","mtvec  ",ref_r->csr.mtvec);
 printf("\n\n\n");
 
 }
+
+#define CHECKDIFFPC(p) if (ref_r->p != cpu.p) { \
+  printf("difftest fail at " #p ", expect %#x got %#x\n", ref_r->p, cpu.p); \
+  error = 1; \
+}
+#define CHECKDIFF(p) if (ref_r->csr.p != cpu.csr.p) { \
+  printf("\033[1;31m difftest fail at " #p ", expect %#x got %#x\033[0m\n", ref_r->csr.p, cpu.csr.p); \
+  error = 1; \
+}
+#define CHECKDIFF_FMT(p, fmt, ...) if (ref_r->p != cpu.p) { \
+  printf("difftest fail at " fmt ", expect %#x got %#x\n", ## __VA_ARGS__, ref_r->p, cpu.p); \
+  error = 1; \
+}
+
+bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
+  int error = 0;
+  int reg_num = ARRLEN(cpu.gpr);
+  for (int i = 0; i < reg_num; i++) {
+    CHECKDIFF_FMT(gpr[i], "gpr[%d]", i);
+  }
+  CHECKDIFFPC(pc);
+  CHECKDIFF(mstatus);
+  CHECKDIFF(mcause);
+  CHECKDIFF(mepc);
+  CHECKDIFF(mtvec);
+  if(error == 1)
+  return false;
+  else
+  return true;
+}
+
+
+
+void isa_difftest_attach() {
+}
+
 
 static void checkregs(CPU_state *ref, vaddr_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
