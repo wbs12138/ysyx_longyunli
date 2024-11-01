@@ -15,10 +15,10 @@
 
 #include <dlfcn.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/difftest-def.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
