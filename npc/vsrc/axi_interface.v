@@ -31,7 +31,8 @@ module axi_interface (
     input           io_master_rlast   ,
     input   [3:0]   io_master_rid     ,
     input   [31:0]  pc                ,
-    output  reg [31:0]  ist               ,
+    input   [31:0]  npc               ,
+    output  reg [31:0]  ist           ,
     input           mem_wen           ,
     input   [31:0]  mem_waddr         ,
     input   [31:0]  mem_wdata         ,
@@ -83,7 +84,7 @@ module axi_interface (
         state_is_ifuar(state_ifuar_t);
         state_is_ifur(state_ifur_t);
         get_inst(ist);
-        get_pc(pc);
+        get_pc(npc);
     end
 
 

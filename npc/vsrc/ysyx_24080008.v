@@ -370,6 +370,7 @@ axi_interface u_axi_interface(
   .io_master_rlast  (io_master_rlast) ,
   .io_master_rid    (io_master_rid)   ,
   .pc               (pc)              ,
+  .npc              (pc_next)         ,
   .ist              (ist)             ,
   .mem_wen          (mem_wen)         ,
   .mem_waddr        (mem_waddr)       ,
