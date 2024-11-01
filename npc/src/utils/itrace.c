@@ -1,10 +1,3 @@
-
-// #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
-// #ifdef concat
-// #undef concat
-// #endif
-
-
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -23,7 +16,6 @@
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/ftrace.txt"
 
 #define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/etrace.txt"
-
 
 void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
