@@ -23,10 +23,14 @@
 #define R(i) gpr(i)
 
 extern "C" void flash_read(int32_t addr, int32_t *data) {assert(0);}
-extern "C" void mrom_read(int32_t addr,int32_t *data) {*data = paddr_read(addr,4);}
+extern "C" void mrom_read(int32_t addr,int32_t *data) {
+  *data = paddr_read(addr,4);
+}
 
 
 int state_exeu,state_ifuar,state_ifur,insn,npc_pc;
+
+int state_lsuar,state_lsuaw;
 
 int x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,x28,x29,x30,x31;
 
@@ -35,6 +39,10 @@ int npc_mcause,npc_mtvec,npc_mepc,npc_mstatus;
 int ftrace1,ftrace2,ftrace3,ftrace4;
 
 int npc_ecall,npc_mret;
+
+int aw_addr,aw_len,aw_data;
+
+int ar_addr,ar_len;
 
 int npc_ebreak;
 
@@ -84,6 +92,21 @@ int isa_exec_once(Decode *s) {
 
 
   while(state_ifuar==0){
+
+    if(state_lsuaw==1) {
+
+      #ifdef CONFIG_MTRACE
+        trace_memory(aw_addr,aw_len,aw_data,1);
+      #endif
+    }
+
+    if(state_lsuar==1) {
+      
+      #ifdef CONFIG_MTRACE
+        trace_memory(ar_addr,ar_len,0x0,0);
+      #endif
+    }
+
   	dut->eval();
     sim_time+=4;
     m_trace->dump(sim_time);
@@ -196,6 +219,20 @@ void get_csr(int mepc,int mcause,int mtvec,int mstatus) {
   npc_mstatus = mstatus;
   npc_mtvec = mtvec;
 };
+
+
+
+int ar_addr,ar_len;
+
+void memory_access(int npc_state_lsuaw, int npc_state_lsuar,int npc_aw_addr,int npc_aw_len,int npc_aw_data,int npc_ar_addr,int npc_ar_len) {
+  state_lsuaw = npc_state_lsuaw;
+  state_lsuar = npc_state_lsuar;
+  aw_addr = npc_aw_addr;
+  aw_len = npc_aw_len;
+  aw_data = npc_aw_data;
+  ar_addr = npc_ar_addr;
+  ar_len = npc_ar_len;
+}
 
 void regfile_update( int rf1, int rf2, int rf3, int rf4, int rf5, int rf6, int rf7, int rf8, int rf9, int rf10, int rf11, int rf12, int rf13, int rf14, int rf15, int rf16, int rf17, int rf18, int rf19, int rf20, int rf21, int rf22, int rf23, int rf24, int rf25, int rf26, int rf27, int rf28, int rf29, int rf30 , int rf31) {
   x0 = 0    ;

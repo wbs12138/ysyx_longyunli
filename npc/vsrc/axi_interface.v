@@ -65,18 +65,43 @@ module axi_interface (
     import "DPI-C" function void get_inst(input int inst);
 
     import "DPI-C" function void get_pc(input int dnpc);
+    
+    import "DPI-C" function void memory_access(input int npc_state_lsuaw, input int npc_state_lsuar,input int npc_aw_addr,input int npc_aw_len,input int npc_aw_data,input int npc_ar_addr,input int npc_ar_len);
 
     wire state_exeu,state_ifuar,state_ifur;
-    
+
+    wire state_lsuaw,state_lsuar;
+
+    wire [31:0] state_lsuaw_t,state_lsuar_t;
+
     wire [31:0] state_exeu_t,state_ifuar_t,state_ifur_t;
+
+    wire [31:0] wlen,rlen;
+
+    assign wlen =   mem_wmask == 4'b0001 ? 32'b1 :
+                    mem_wmask == 4'b0011 ? 32'd2 :
+                    mem_wmask == 4'b1111 ? 32'd4 :
+                    'b0;
+
+    assign rlen =   mem_rmask == 4'b0001 ? 32'b1 :
+                    mem_rmask == 4'b0011 ? 32'd2 :
+                    mem_rmask == 4'b1111 ? 32'd4 :
+                    'b0;
 
     assign state_exeu = state == EXEU;
     assign state_ifuar = state == IFU_AR;
     assign state_ifur = state == IFU_R;
 
+    assign state_lsuaw = state == LSU_AW;
+    assign state_lsuar = state == LSU_AR;
+
     assign state_exeu_t = {31'b0,state_exeu};
     assign state_ifuar_t = {31'b0,state_ifuar};
     assign state_ifur_t = {31'b0,state_ifur};
+
+    assign state_lsuar_t = {31'b0,state_lsuar};
+    assign state_lsuaw_t = {31'b0,state_lsuaw};
+
 
     always@(*)
     begin
@@ -85,6 +110,7 @@ module axi_interface (
         state_is_ifur(state_ifur_t);
         get_inst(ist);
         get_pc(npc);
+        memory_access(state_lsuaw_t,state_lsuar_t,mem_waddr,wlen,mem_wdata,mem_raddr,rlen);
     end
 
 
