@@ -221,9 +221,6 @@ void get_csr(int mepc,int mcause,int mtvec,int mstatus) {
 };
 
 
-
-int ar_addr,ar_len;
-
 void memory_access(int npc_state_lsuaw, int npc_state_lsuar,int npc_aw_addr,int npc_aw_len,int npc_aw_data,int npc_ar_addr,int npc_ar_len) {
   state_lsuaw = npc_state_lsuaw;
   state_lsuar = npc_state_lsuar;

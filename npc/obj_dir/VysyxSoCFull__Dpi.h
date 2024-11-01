@@ -30,6 +30,8 @@ extern "C" {
     extern void get_inst(int inst);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:67:34
     extern void get_pc(int dnpc);
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:69:34
+    extern void memory_access(int npc_state_lsuaw, int npc_state_lsuar, int npc_aw_addr, int npc_aw_len, int npc_aw_data, int npc_ar_addr, int npc_ar_len);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:4716:30
     extern void mrom_read(int raddr, int* rdata);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/RegisterFile.v:13:30
