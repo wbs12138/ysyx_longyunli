@@ -140,7 +140,7 @@ void init_monitor(int argc, char *argv[]) {
     MUXDEF(CONFIG_ISA_mips32,  "mipsel",
     MUXDEF(CONFIG_ISA_riscv,
       MUXDEF(CONFIG_RV64,      "riscv64",
-                               "riscv32"),
+                               "mipsel"),
                                "bad"))) "-pc-linux-gnu"
   ));
 #endif
