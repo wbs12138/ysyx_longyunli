@@ -41,7 +41,7 @@ int npc_ebreak;
 int isa_exec_once(Decode *s) {
 
   printf("1 state_exeu is %d\n",state_exeu);
-  do{
+  while(state_exeu==0){
   	dut->eval();
     sim_time+=4;
     m_trace->dump(sim_time);
@@ -52,7 +52,7 @@ int isa_exec_once(Decode *s) {
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
-  }while(state_exeu==1);
+  }
 
   printf("2 state_exeu is %d\n",state_exeu);
 
@@ -85,7 +85,7 @@ int isa_exec_once(Decode *s) {
   #endif
 
 
-  do{
+  while(state_ifuar==0){
   	dut->eval();
     sim_time+=4;
     m_trace->dump(sim_time);
@@ -96,7 +96,7 @@ int isa_exec_once(Decode *s) {
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
-  }while(state_ifuar==1);
+  }
 
   R(0 ) = x0  ;
   R(1 ) = x1  ;
