@@ -86,7 +86,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  display_inst();
+  assert_fail_msg();
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
@@ -138,7 +138,7 @@ void assert_fail_msg() {
   display_inst();
   #endif
   isa_reg_display();
-  statistic();
+  //statistic();
 }
 
 /* Simulate how the CPU works. */
