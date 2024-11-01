@@ -52,7 +52,7 @@ int isa_exec_once(Decode *s) {
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
-  }while(state_exeu);
+  }while(state_exeu==1);
 
   s->isa.inst.val = insn;
 
@@ -94,7 +94,7 @@ int isa_exec_once(Decode *s) {
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
-  }while(state_ifuar);
+  }while(state_ifuar==1);
 
   R(0 ) = x0  ;
   R(1 ) = x1  ;
