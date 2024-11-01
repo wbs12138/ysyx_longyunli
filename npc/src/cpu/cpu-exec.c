@@ -12,12 +12,6 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
-#ifdef concat
-#undef concat
-#endif
-
-
 #include <../include/cpu/cpu.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
