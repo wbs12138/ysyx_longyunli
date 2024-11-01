@@ -43,18 +43,24 @@ int isa_exec_once(Decode *s) {
 
   do{
   	dut->eval();
-    sim_time+=4;
+    sim_time+=3;
     m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
-    sim_time+=4;
+    sim_time+=3;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }while(state_exeu);
 
-    s->isa.inst.val = insn;
+  sim_time += 1;
+
+  dut->eval();
+
+  m_trace->dump(sim_time);
+
+  s->isa.inst.val = insn;
 
   #ifdef CONFIG_ITRACE
     trace_inst(s->pc, s->isa.inst.val);
@@ -85,16 +91,22 @@ int isa_exec_once(Decode *s) {
 
   do{
   	dut->eval();
-    sim_time+=4;
+    sim_time+=3;
     m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
-    sim_time+=4;
+    sim_time+=3;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }while(state_ifuar);
+
+  sim_time += 1;
+
+  dut->eval();
+
+  m_trace->dump(sim_time);
 
   R(0 ) = x0  ;
   R(1 ) = x1  ;
