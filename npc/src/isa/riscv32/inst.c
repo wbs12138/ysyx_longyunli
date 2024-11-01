@@ -40,7 +40,6 @@ int npc_ebreak;
 
 int isa_exec_once(Decode *s) {
 
-  printf("1 state_exeu is %d\n",state_exeu);
   while(state_exeu==0){
   	dut->eval();
     sim_time+=4;
@@ -54,7 +53,6 @@ int isa_exec_once(Decode *s) {
     dut->eval();
   }
 
-  printf("2 state_exeu is %d\n",state_exeu);
 
   s->isa.inst.val = insn;
 
