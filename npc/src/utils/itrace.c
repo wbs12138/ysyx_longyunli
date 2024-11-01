@@ -75,7 +75,7 @@ void display_inst() {
     }
     p = buf;
     p += sprintf(buf, "%s" FMT_WORD ": %08x ", (i+1)%MAX_IRINGBUF==end?" --> ":"     ", iringbuf[i].pc, iringbuf[i].inst);
-    disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
+    //disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
 
     if ((i+1)%MAX_IRINGBUF==end) printf(ANSI_FG_RED);
     puts(buf);
@@ -117,7 +117,7 @@ void display_memory() {
     }
     pm = buf_m;
     pm += sprintf(buf_m, "%s" FMT_WORD ": %08x ", (i_m+1)%MAX_MRINGBUF==end_m?" --> ":"     ", mringbuf[i_m].pc, mringbuf[i_m].inst);
-    disassemble(pm, buf_m+sizeof(buf_m)-pm, mringbuf[i_m].pc, (uint8_t *)&mringbuf[i_m].inst, 4);
+    //disassemble(pm, buf_m+sizeof(buf_m)-pm, mringbuf[i_m].pc, (uint8_t *)&mringbuf[i_m].inst, 4);
     if(mringbuf[i_m].wr==0)
     printf("     read from addr=%x,len=%d\n",mringbuf[i_m].addr,mringbuf[i_m].len);
     else
