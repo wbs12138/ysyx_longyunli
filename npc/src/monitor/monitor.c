@@ -15,7 +15,7 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+//#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
 
 void init_rand();
 void init_log(const char *log_file);
