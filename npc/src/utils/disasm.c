@@ -13,24 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
-#endif
 
-#include "llvm/MC/MCAsmInfo.h"
-#include "llvm/MC/MCContext.h"
-#include "llvm/MC/MCDisassembler/MCDisassembler.h"
-#include "llvm/MC/MCInstPrinter.h"
-#if LLVM_VERSION_MAJOR >= 14
-#include "llvm/MC/TargetRegistry.h"
-#if LLVM_VERSION_MAJOR >= 15
-#include "llvm/MC/MCSubtargetInfo.h"
-#endif
-#else
-#include "llvm/Support/TargetRegistry.h"
-#endif
-#include "llvm/Support/TargetSelect.h"
 
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
