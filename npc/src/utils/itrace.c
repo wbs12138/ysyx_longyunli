@@ -100,6 +100,13 @@ void display_memory() {
 	#ifdef CONFIG_ITRACE
   if (!full_m && !pm_cur) return;
 
+  if(full_m) {
+	printf("\n\nthat's all as below:\n\n");
+  }
+  else {
+	printf("\n\nbuffer too small to display all\n\n");
+  }
+
   int end_m = pm_cur;
   int i_m = full_m?pm_cur:0;
 
