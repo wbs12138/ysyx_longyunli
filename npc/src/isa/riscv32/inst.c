@@ -54,6 +54,11 @@ int isa_exec_once(Decode *s) {
     dut->eval();
   }while(state_exeu);
 
+  sim_time+=4;
+  m_trace->dump(sim_time);
+  dut->clock=0;
+  dut->eval();
+
   s->isa.inst.val = insn;
 
   #ifdef CONFIG_ITRACE
@@ -95,6 +100,11 @@ int isa_exec_once(Decode *s) {
     dut->clock=1;
     dut->eval();
   }while(state_ifuar);
+
+  sim_time+=4;
+  m_trace->dump(sim_time);
+  dut->clock=0;
+  dut->eval();
 
   R(0 ) = x0  ;
   R(1 ) = x1  ;
