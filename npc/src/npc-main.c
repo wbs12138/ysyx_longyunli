@@ -54,13 +54,8 @@ void init_verilator(int argc, char *argv[]) {
 		
 	}
 	dut->reset=0;
-    dut->eval();
-    //dut->ist = pmem_read(dut->pc,4);	
-    
-	dut->eval();
-    //pc_pre=dut->pc;
-    //update_state();
-    sim_time+=1;
+  dut->eval();
+  sim_time+=1;
 	m_trace->dump(sim_time);
 
 
