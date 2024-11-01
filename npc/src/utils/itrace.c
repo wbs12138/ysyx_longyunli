@@ -11,11 +11,13 @@
 
 
 #define MAX_IRINGBUF 16
-#define MAX_MRINGBUF 128
+#define MAX_MRINGBUF 16
 
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/ftrace.txt"
 
 #define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/etrace.txt"
+
+#define MOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/mtrace.txt"
 
 void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
@@ -93,19 +95,24 @@ void trace_memory(paddr_t addr, int len , word_t data , int wr) {
   mringbuf[pm_cur].wr   = wr;
   pm_cur = (pm_cur + 1) % MAX_MRINGBUF;
   full_m = full_m || pm_cur == 0;
+  FILE *fp = fopen(MOUTPUT_FILE, "a"); 
+    if (fp != NULL) {
+		if(wr){
+        	fprintf(fp,"write to %x , data is %x , len is %d\n",addr,data,len);
+		}
+		else {
+			fprintf(fp,"read from %x , len is %d\n",addr,len);
+		}
+		fclose(fp); 
+    } else {
+        printf("Error opening file %s\n", MOUTPUT_FILE);
+    }
 }
 
 
 void display_memory() {
 	#ifdef CONFIG_ITRACE
   if (!full_m && !pm_cur) return;
-
-  if(full_m) {
-	printf("\n\n	that's all as below:\n\n");
-  }
-  else {
-	printf("\n\n	buffer too small to display all\n\n");
-  }
 
   int end_m = pm_cur;
   int i_m = full_m?pm_cur:0;
@@ -537,6 +544,7 @@ static void init_tail_rec_list() {
 void parse_elf(const char *elf_file) {
   if (elf_file == NULL) return;
   remove(FOUTPUT_FILE);
+  remove(MOUTPUT_FILE);
   remove(EOUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
