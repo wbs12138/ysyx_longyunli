@@ -63,7 +63,6 @@ void display_inst() {
   char buf[128]; // 128 should be enough!
   char *p;
   int msg1_over=0;
-  init_disasm("riscv32");
   do {
     if(msg1_over==0){
       printf("     the instruction saved is:\n");

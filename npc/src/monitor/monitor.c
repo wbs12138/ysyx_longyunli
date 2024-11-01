@@ -15,6 +15,7 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
 
 void init_rand();
 void init_log(const char *log_file);
@@ -133,16 +134,16 @@ void init_monitor(int argc, char *argv[]) {
   /* Initial the elf file to ftrace*/
   parse_elf(elf_file);
 
-// #ifndef CONFIG_ISA_loongarch32r
-//   IFDEF(CONFIG_ITRACE, init_disasm(
-//     MUXDEF(CONFIG_ISA_x86,     "i686",
-//     MUXDEF(CONFIG_ISA_mips32,  "mipsel",
-//     MUXDEF(CONFIG_ISA_riscv,
-//       MUXDEF(CONFIG_RV64,      "riscv64",
-//                                "riscv32"),
-//                                "bad"))) "-pc-linux-gnu"
-//   ));
-// #endif
+#ifndef CONFIG_ISA_loongarch32r
+  IFDEF(CONFIG_ITRACE, init_disasm(
+    MUXDEF(CONFIG_ISA_x86,     "i686",
+    MUXDEF(CONFIG_ISA_mips32,  "mipsel",
+    MUXDEF(CONFIG_ISA_riscv,
+      MUXDEF(CONFIG_RV64,      "riscv64",
+                               "riscv32"),
+                               "bad"))) "-pc-linux-gnu"
+  ));
+#endif
 
   /* Display welcome message. */
   welcome();
