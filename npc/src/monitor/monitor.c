@@ -12,10 +12,15 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+#ifdef concat
+#undef concat
+#endif
+
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/disasm.h>
+
 
 void init_rand();
 void init_log(const char *log_file);
@@ -140,7 +145,7 @@ void init_monitor(int argc, char *argv[]) {
     MUXDEF(CONFIG_ISA_mips32,  "mipsel",
     MUXDEF(CONFIG_ISA_riscv,
       MUXDEF(CONFIG_RV64,      "riscv64",
-                               "mipsel"),
+                               "riscv32"),
                                "bad"))) "-pc-linux-gnu"
   ));
 #endif
