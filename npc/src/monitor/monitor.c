@@ -135,7 +135,9 @@ void init_monitor(int argc, char *argv[]) {
   parse_elf(elf_file);
 
  #ifdef CONFIG_ITRACE
-  init_disasm("riscv32");
+  init_disasm(
+    "riscv32" "-pc-linux-gnu"
+  )
  #endif
 
   /* Display welcome message. */
