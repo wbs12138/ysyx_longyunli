@@ -2,7 +2,7 @@
 #ifdef concat
 #undef concat
 #endif
-
+void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/common.h>
 #include <fcntl.h>
@@ -65,7 +65,7 @@ void display_inst() {
   int end = p_cur;
   int i = full?p_cur:0;
 
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  
   char buf[128]; // 128 should be enough!
   char *p;
   int msg1_over=0;
@@ -108,7 +108,6 @@ void display_memory() {
   int end_m = pm_cur;
   int i_m = full_m?pm_cur:0;
 
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   char buf_m[128]; // 128 should be enough!
   char *pm;
   int msg2_over=0;
