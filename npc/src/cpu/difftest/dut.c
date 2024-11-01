@@ -14,12 +14,12 @@
 ***************************************************************************************/
 
 #include <dlfcn.h>
-#include <isa.h>
-#include <cpu/cpu.h>
-#include <memory/paddr.h>
-#include <utils.h>
-#include <difftest-def.h>
-#include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/isa.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/utils.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
