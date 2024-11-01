@@ -59,7 +59,6 @@ VM_USER_CLASSES = \
 	sdb \
 	watchpoint \
 	npc-main \
-	disasm \
 	itrace \
 	log \
 	state \
@@ -121,8 +120,6 @@ sdb.o: src/monitor/sdb/sdb.c
 watchpoint.o: src/monitor/sdb/watchpoint.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 npc-main.o: src/npc-main.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-disasm.o: src/utils/disasm.cc
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 itrace.o: src/utils/itrace.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
