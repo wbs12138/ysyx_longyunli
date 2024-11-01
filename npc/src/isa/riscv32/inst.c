@@ -66,6 +66,8 @@ int isa_exec_once(Decode *s) {
 
   s->dnpc = npc_pc;
 
+  printf("dnpc is %x\n",s->dnpc);
+
   #ifdef CONFIG_ITRACE
   if(ftrace1) {
     trace_func_call(s->pc, s->dnpc, false);
