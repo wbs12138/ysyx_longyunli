@@ -26,7 +26,7 @@ IMG ?=
 
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	verilator $(VSRCS) $(SRCS) --cc --exe --build -j --trace --autoflush --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(UART_INCLUDE_DIR) +incdir+$(SPI_INCLUDE_DIR) +incdir+$(CSRC_INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --cxxflags)' -fPIE
+	verilator $(VSRCS) $(SRCS) --cc --exe --build -j --trace --autoflush --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(UART_INCLUDE_DIR) +incdir+$(SPI_INCLUDE_DIR) +incdir+$(CSRC_INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)'
 	obj_dir/V$(TOPNAME) $(ARGS) $(IMG)
 
 clean-tools = $(dir $(shell find ./tools -maxdepth 2 -mindepth 2 -name "Makefile"))
