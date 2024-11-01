@@ -43,22 +43,16 @@ int isa_exec_once(Decode *s) {
 
   do{
   	dut->eval();
-    sim_time+=3;
+    sim_time+=4;
     m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
-    sim_time+=3;
+    sim_time+=4;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }while(state_exeu);
-
-  sim_time += 1;
-
-  dut->eval();
-
-  m_trace->dump(sim_time);
 
   s->isa.inst.val = insn;
 
@@ -91,22 +85,16 @@ int isa_exec_once(Decode *s) {
 
   do{
   	dut->eval();
-    sim_time+=3;
+    sim_time+=4;
     m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
-    sim_time+=3;
+    sim_time+=4;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }while(state_ifuar);
-
-  sim_time += 1;
-
-  dut->eval();
-
-  m_trace->dump(sim_time);
 
   R(0 ) = x0  ;
   R(1 ) = x1  ;
