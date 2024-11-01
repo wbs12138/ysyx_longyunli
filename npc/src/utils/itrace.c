@@ -25,6 +25,8 @@
 #define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/etrace.txt"
 
 
+void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+
 typedef struct {
   word_t pc;
   uint32_t inst;
