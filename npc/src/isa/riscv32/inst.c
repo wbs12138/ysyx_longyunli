@@ -149,7 +149,9 @@ int isa_exec_once(Decode *s) {
   #endif
 
   #ifdef CONFIG_ITRACE 
-    trace_e_out(s->dnpc, cpu.csr.mstatus); 
+    if(npc_mret) {
+      trace_e_out(s->dnpc, cpu.csr.mstatus); 
+    }
   #endif
 
   return 0;

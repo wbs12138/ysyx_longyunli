@@ -38,8 +38,6 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-void assert_fail_msg();
-
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
@@ -88,7 +86,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  assert_fail_msg();
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
@@ -140,7 +137,7 @@ void assert_fail_msg() {
   display_inst();
   #endif
   isa_reg_display();
-  //statistic();
+  statistic();
 }
 
 /* Simulate how the CPU works. */
