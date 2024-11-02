@@ -245,7 +245,7 @@ module axi_interface (
 
     assign io_master_bready = 1'b1;
 
-    assign io_master_araddr = ( state == IFU_AR ) ? pc : mem_raddr;
+    assign io_master_araddr = ( state == IFU_AR ) ? pc : {mem_raddr[31:2],2'b0};
 
     assign io_master_arid = 'b0;
 
