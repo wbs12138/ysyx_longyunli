@@ -26,7 +26,7 @@ SECTIONS {
     data_start = .;
     *(.data)
     . = ALIGN(4);
-  } > RAM AT>RAM :data
+  } > ROM AT>ROM :data
 
   data_size = SIZEOF(.data);
 
