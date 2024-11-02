@@ -231,9 +231,15 @@ module axi_interface (
 
     assign io_master_awburst = 2'b01;
 
-    assign io_master_wdata = mem_wdata;
+    assign io_master_wdata = mem_waddr[1:0]==2'd0 ? mem_wdata :
+                            mem_waddr[1:0]==2'd1 ? {mem_wdata[23:0],8'b0} :
+                            mem_waddr[1:0]==2'd2 ? {mem_wdata[15:0],16'b0} :
+                            mem_waddr[1:0]==2'd3 ? {mem_wdata[7:0],24'b0} : 'b0;
 
-    assign io_master_wstrb = mem_wmask;
+    assign io_master_wstrb = mem_waddr[1:0]==2'd0 ? mem_wmask :
+                            mem_waddr[1:0]==2'd1 ? mem_wmask<<1'b1 :
+                            mem_waddr[1:0]==2'd2 ? mem_wmask<<2'd2 :
+                            mem_waddr[1:0]==2'd3 ? mem_wmask<<2'd3 : 'b0;
 
     assign io_master_wlast = ( state == LSU_W );
 
@@ -249,6 +255,12 @@ module axi_interface (
                                 mem_rmask == 4'b1   ?   3'b000 :
                                 mem_rmask == 4'b11  ?   3'b001 :
                                 3'b010;
+
+    always@(*) begin
+        if(state == LSU_AW) begin
+            assert( (mem_waddr[1:0]==2'd0) || (mem_waddr[1:0]==2'd1 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd2 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd3 & mem_wmask==4'b1));
+        end
+    end
 
     assign io_master_arburst = 2'b01;
 
