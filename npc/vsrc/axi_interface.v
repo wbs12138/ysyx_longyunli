@@ -55,6 +55,11 @@ module axi_interface (
 
     reg [2:0] state,next_state;
 
+    wire read_mem ,write_mem;
+
+    assign read_mem = (mem_raddr>=32'hf000000 & mem_raddr<=32'hfffffff) || (mem_raddr>=32'h20000000 & mem_raddr<=32'h20000fff);
+
+    assign write_mem = (mem_waddr>=32'hf000000 & mem_waddr<=32'hfffffff);
 
     import "DPI-C" function void state_is_exeu(input int npc_state);
 
@@ -221,7 +226,7 @@ module axi_interface (
 
     assign io_master_rready = ( state == IFU_R || state == LSU_R ); 
 
-    assign io_master_awaddr = {mem_waddr[31:2],2'b0} ;
+    assign io_master_awaddr = write_mem ? {mem_waddr[31:2],2'b0} : mem_waddr ;
 
     assign io_master_awid = 'b0;
 
@@ -231,12 +236,14 @@ module axi_interface (
 
     assign io_master_awburst = 2'b01;
 
-    assign io_master_wdata = mem_waddr[1:0]==2'd0 ? mem_wdata :
+    assign io_master_wdata =!write_mem ? mem_wdata : 
+                            mem_waddr[1:0]==2'd0 ? mem_wdata :
                             mem_waddr[1:0]==2'd1 ? {mem_wdata[23:0],8'b0} :
                             mem_waddr[1:0]==2'd2 ? {mem_wdata[15:0],16'b0} :
                             mem_waddr[1:0]==2'd3 ? {mem_wdata[7:0],24'b0} : 'b0;
 
-    assign io_master_wstrb = mem_waddr[1:0]==2'd0 ? mem_wmask :
+    assign io_master_wstrb =!write_mem ? mem_wmask :
+                            mem_waddr[1:0]==2'd0 ? mem_wmask :
                             mem_waddr[1:0]==2'd1 ? mem_wmask<<1'b1 :
                             mem_waddr[1:0]==2'd2 ? mem_wmask<<2'd2 :
                             mem_waddr[1:0]==2'd3 ? mem_wmask<<2'd3 : 'b0;
@@ -245,7 +252,9 @@ module axi_interface (
 
     assign io_master_bready = 1'b1;
 
-    assign io_master_araddr = ( state == IFU_AR ) ? pc : {mem_raddr[31:2],2'b0};
+    assign io_master_araddr = ( state == IFU_AR ) ? pc : 
+                                read_mem ? {mem_raddr[31:2],2'b0} :
+                                mem_raddr ;
 
     assign io_master_arid = 'b0;
 
@@ -276,6 +285,7 @@ module axi_interface (
     end
 
     assign rdata_mem = ( state == IFU_AR ) ? io_master_rdata :
+                        !read_mem            ? io_master_rdata :
                         mem_raddr[1:0]==2'd0 ? io_master_rdata :
                         mem_raddr[1:0]==2'd1 ? {8'b0,io_master_rdata[31:8]} :
                         mem_raddr[1:0]==2'd2 ? {16'b0,io_master_rdata[31:16]} :
