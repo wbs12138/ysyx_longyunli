@@ -27,17 +27,17 @@ static const char mainargs[] = MAINARGS;
 #define SERIAL_PORT     (DEVICE_BASE + 0x0)
 
 void putch(char ch) {
-  char status=0;
-  while( (status & 0x20) ==0 ) {
-    status = *(volatile char *)(SERIAL_PORT + 5);
-    *(volatile char *)(SERIAL_PORT) = status ;
-  }
+  // char status=0;
+  // while( (status & 0x20) ==0 ) {
+  //   status = *(volatile char *)(SERIAL_PORT + 5);
+  //   *(volatile char *)(SERIAL_PORT) = status ;
+  // }
   *(volatile char *)(SERIAL_PORT) = ch ;
 }
 
 void init_uart() {
   *(volatile char *)(SERIAL_PORT + 3) = 0x83 ;
-  *(volatile char *)(SERIAL_PORT + 1) = 0x0  ;
+  *(volatile char *)(SERIAL_PORT + 1) = 0x83 ;
   *(volatile char *)(SERIAL_PORT + 0) = 0x83 ;
   *(volatile char *)(SERIAL_PORT + 3) = 0x3  ;
 
