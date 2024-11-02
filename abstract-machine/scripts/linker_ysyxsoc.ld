@@ -14,17 +14,18 @@ SECTIONS {
   .text : {
     *(entry)
     *(.text*)
-  } :text
+  } > ROM AT>ROM :text
   etext = .;
   _etext = .;
   .rodata : {
     *(.rodata*)
-  }
+    rodata_end = .;
+  } >ROM AT>ROM
 
-  .data : {
+  .data :  AT(rodata_end){
     data_start = .;
     *(.data)
-  } :data
+  } > RAM :data
 
   data_size = SIZEOF(.data);
 
