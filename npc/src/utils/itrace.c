@@ -10,7 +10,7 @@
 
 
 
-#define MAX_IRINGBUF 16
+#define MAX_IRINGBUF 32
 #define MAX_MRINGBUF 16
 
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/ftrace.txt"
