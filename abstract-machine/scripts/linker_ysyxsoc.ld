@@ -21,15 +21,11 @@ SECTIONS {
   } >ROM
 
   .data : {
-    . = . +4;
-    . = ALIGN(4);
     data_start = .;
     *(.data)
     *(.data*)
     *(.sdata)
     *(.sdata*)
-    . = . +4;
-    . = ALIGN(4);
   } > RAM AT>ROM :data
 
   data_size = . - data_start ;
