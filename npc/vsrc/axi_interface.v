@@ -221,7 +221,7 @@ module axi_interface (
 
     assign io_master_rready = ( state == IFU_R || state == LSU_R ); 
 
-    assign io_master_awaddr = mem_waddr ;
+    assign io_master_awaddr = {mem_waddr[31:2],2'b0} ;
 
     assign io_master_awid = 'b0;
 
