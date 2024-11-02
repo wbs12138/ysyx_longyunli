@@ -14,12 +14,12 @@ SECTIONS {
   .text : {
     *(entry)
     *(.text*)
-  } > ROM AT>ROM :text
+  } > ROM :text
   etext = .;
   _etext = .;
   .rodata : {
     *(.rodata*)
-  } >ROM AT>ROM
+  } >ROM
 
   .data : {
     . = ALIGN(4);
