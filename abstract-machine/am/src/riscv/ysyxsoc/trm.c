@@ -40,8 +40,6 @@ void halt(int code) {
 }
 
 void _set_memory() {
-
-  printf("data_size is %x\n",(size_t)data_size);
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t) data_size);
   }
