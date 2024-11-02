@@ -5,7 +5,4 @@
 _start:
   mv s0, zero
   la sp, _stack_pointer
-  jal _load_memory
-  mv s0, zero
-  la sp, _stack_pointer
   jal _trm_init
