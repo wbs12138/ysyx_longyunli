@@ -28,7 +28,7 @@ static const char mainargs[] = MAINARGS;
 
 void putch(char ch) {
   char status=0;
-  while( (status & 0x40) ==0 ) {
+  while( (status & 0x20) ==0 ) {
     status = *(volatile char *)(SERIAL_PORT + 5);
   }
   *(volatile char *)(SERIAL_PORT) = ch ;
