@@ -39,7 +39,7 @@ void putch(char ch) {
 void init_uart() {
   *(volatile char *)(SERIAL_PORT + 3) = 0x83 ;
   *(volatile char *)(SERIAL_PORT + 1) = 0x0 ;
-  *(volatile char *)(SERIAL_PORT + 0) = 0x3 ;
+  *(volatile char *)(SERIAL_PORT + 0) = 0x83 ;
   *(volatile char *)(SERIAL_PORT + 3) = 0x3  ;
 }
 
