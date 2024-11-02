@@ -20,22 +20,21 @@ SECTIONS {
     *(.rodata*)
   } >ROM
 
+  .data : {
+    . = ALIGN(4);
+    data_start = .;
+    *(.data)
+    . = ALIGN(4);
+  } > ROM AT>ROM :data
+
+  data_size = SIZEOF(.data);
+
+  data_load_start = LOADADDR(.data);
+
   .bss : {
 	_bss_start = .;
     *(.bss*)
     *(.sbss*)
     *(.scommon)
   } > RAM
-
-  .data : {
-    . = ALIGN(4);
-    data_start = .;
-    *(.data)
-    . = ALIGN(4);
-  } > RAM AT>ROM :data
-
-  data_size = SIZEOF(.data);
-
-  data_load_start = LOADADDR(.data);
-
 }
