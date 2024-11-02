@@ -1,5 +1,12 @@
 #include <am.h>
 #include <klib-macros.h>
+#include <klib.h>
+
+extern char data_start [];
+
+extern char data_size [];
+
+extern char data_load_start [];
 
 # define npc_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
 
@@ -33,6 +40,10 @@ void halt(int code) {
 }
 
 void _trm_init() {
+
+  if (data_start != data_load_start){
+    memcpy(data_start, data_load_start, (size_t) data_size);
+  }
   int ret = main(mainargs);
   halt(ret);
 }
