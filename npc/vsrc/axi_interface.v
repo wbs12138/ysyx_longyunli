@@ -272,7 +272,7 @@ module axi_interface (
 
     always@(*) begin
         if(state == LSU_AR) begin
-            `assert( (mem_raddr[1:0]==2'd0) || (mem_raddr[1:0]==2'd1 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd2 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd3 & mem_rmask==4'b1));
+            assert( (mem_raddr[1:0]==2'd0) || (mem_raddr[1:0]==2'd1 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd2 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd3 & mem_rmask==4'b1));
         end
     end
 
