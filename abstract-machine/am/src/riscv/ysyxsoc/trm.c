@@ -30,6 +30,14 @@ void putch(char ch) {
   *(volatile char *)(SERIAL_PORT) = ch ;
 }
 
+void init_uart() {
+  *(volatile char *)(SERIAL_PORT + 3) = 131 ;
+  *(volatile char *)(SERIAL_PORT + 1) = 0   ;
+  *(volatile char *)(SERIAL_PORT + 0) = 100 ;
+  *(volatile char *)(SERIAL_PORT + 3) = 3   ;
+
+}
+
 void halt(int code) {
   npc_trap(code);
 
@@ -43,6 +51,8 @@ void _trm_init() {
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t)data_size );
   }
+
+  init_uart();
 
   int ret = main(mainargs);
   halt(ret);
