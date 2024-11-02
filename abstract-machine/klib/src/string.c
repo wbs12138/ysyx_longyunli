@@ -140,9 +140,9 @@ void *memmove(void *dst, const void *src, size_t n) {
 
 
 void *memcpy(void *out, const void *in, size_t n) {
-  if (out == NULL || in == NULL || n == 0 || out == in) {
-    return out;
-  }
+  // if (out == NULL || in == NULL || n == 0 || out == in) {
+  //   return out;
+  // }
   unsigned char *dest = out;
   const unsigned char *src = in;
   while (n != 0) {
