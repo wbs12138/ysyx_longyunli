@@ -14,6 +14,7 @@ SECTIONS {
   .text : {
     *(entry)
     *(.text*)
+    . = ALIGN(4);
   } > ROM :text
 
   .rodata : {
