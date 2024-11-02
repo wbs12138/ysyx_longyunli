@@ -24,6 +24,8 @@ SECTIONS {
     data_start = .;
     *(.data)
     *(.data*)
+    *(.RamFunc)
+    *(.RamFunc*)
   } > RAM AT>ROM :data
 
   data_size = . - data_start ;
