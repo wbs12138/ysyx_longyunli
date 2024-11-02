@@ -43,7 +43,7 @@ void halt(int code) {
 
 void _trm_init() {
   if (data_start != data_load_start){
-    memcpy(data_start, data_load_start, (size_t) data_size);
+    memcpy(data_start, data_load_start, (size_t)data_size + 1);
   }
 
   int ret = main(mainargs);
