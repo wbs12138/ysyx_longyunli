@@ -30,7 +30,7 @@ void putch(char ch) {
 
   *(volatile char *)(SERIAL_PORT) = ch ;
   char status=0;
-  while( (status & 0x20) ==0 ) {
+  while( status ==0 ) {
     status = *(volatile char *)(SERIAL_PORT + 5);
   }
   
