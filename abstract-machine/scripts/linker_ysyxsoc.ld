@@ -37,5 +37,5 @@ SECTIONS {
     *(.bss*)
     *(.sbss*)
     *(.scommon)
-  } > RAM
+  } 
 }
