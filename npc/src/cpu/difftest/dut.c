@@ -60,6 +60,13 @@ void difftest_skip_dut(int nr_ref, int nr_dut) {
   }
 }
 
+static uint8_t value = 0;
+static uint8_t *psram = &value;
+
+uint8_t* guest_to_host_psram() { return psram; }
+
+
+
 void init_difftest(char *ref_so_file, long img_size, int port) {
   assert(ref_so_file != NULL);
 
@@ -89,7 +96,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
   ref_difftest_init(port);
   ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
-  ref_difftest_memcpy(0xf000000,0,0x2000,DIFFTEST_TO_REF);
+  ref_difftest_memcpy(0xf000000,guest_to_host_psram(),0x2000,DIFFTEST_TO_REF);
   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
