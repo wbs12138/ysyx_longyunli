@@ -26,11 +26,13 @@ SECTIONS {
     *(.data*)
     *(.sdata)
     *(.sdata*)
+    . = ALIGN(4);
+    data_end = .;
   } > RAM AT>ROM :data
 
-  data_size = . - data_start ;
+  data_size = data_end - data_start ;
 
-  data_load_start = LOADADDR(.data*);
+  data_load_start = LOADADDR(.data);
 
   .bss : {
 	_bss_start = .;
