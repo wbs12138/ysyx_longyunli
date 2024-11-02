@@ -19,6 +19,7 @@ SECTIONS {
 
   .rodata : {
     *(.rodata*)
+    . = ALIGN(4);
   } >ROM
 
   .data : {
