@@ -24,7 +24,7 @@ SECTIONS {
   .data : {
     data_start = .;
     *(.data)
-  } > RAM AT>ROM :data
+  } > RAM AT>RAM :data
 
   data_size = SIZEOF(.data);
 
