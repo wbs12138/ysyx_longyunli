@@ -27,7 +27,7 @@ SECTIONS {
     . = ALIGN(4);
   } > RAM AT>ROM :data
 
-  data_size = .- data_start;
+  data_size = . - data_start ;
 
   data_load_start = LOADADDR(.data);
 
