@@ -23,6 +23,7 @@ SECTIONS {
   .data : {
     data_start = .;
     *(.data)
+    *(.data*)
   } > RAM AT>ROM :data
 
   data_size = . - data_start ;
