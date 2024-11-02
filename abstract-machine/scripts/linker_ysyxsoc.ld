@@ -30,7 +30,7 @@ SECTIONS {
 
   data_size = . - data_start ;
 
-  data_load_start = LOADADDR(.data);
+  data_load_start = LOADADDR(.data*);
 
   .bss : {
 	_bss_start = .;
