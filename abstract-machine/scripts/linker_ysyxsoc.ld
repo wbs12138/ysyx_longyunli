@@ -7,7 +7,7 @@ MEMORY {
 }
 
 SECTIONS {
-  . =  0xf001ff0 ;
+  . =  0xf001ffc ;
   _stack_pointer = . ;
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
