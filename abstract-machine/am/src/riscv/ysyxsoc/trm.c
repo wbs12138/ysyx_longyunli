@@ -39,11 +39,14 @@ void halt(int code) {
   while (1);
 }
 
-void _trm_init() {
-
+void _set_memory() {
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t) data_size);
   }
+}
+
+void _trm_init() {
+
   int ret = main(mainargs);
   halt(ret);
 }
