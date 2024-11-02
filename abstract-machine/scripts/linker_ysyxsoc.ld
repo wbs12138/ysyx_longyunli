@@ -6,14 +6,6 @@ MEMORY {
   RAM : ORIGIN = 0x0f000000 , LENGTH = 8K
 }
 
-REGION_ALIAS("REGION_TEXT",ROM);
-
-REGION_ALIAS("REGION_RODATA",ROM);
-
-REGION_ALIAS("REGION_DATA",RAM);
-
-REGION_ALIAS("REGION_BSS",RAM);
-
 SECTIONS {
   . =  0xf001ffc;
   _stack_pointer = .;
@@ -22,20 +14,22 @@ SECTIONS {
   .text : {
     *(entry)
     *(.text*)
-  } > REGION_TEXT :text
+  } > ROM AT>ROM :text
   etext = .;
   _etext = .;
   .rodata : {
     *(.rodata*)
-    rodata_end = .;
-  } > REGION_RODATA
-  .data : AT (rodata_end){
+  } >ROM AT>ROM
+
+  .data : {
     data_start = .;
     *(.data)
-  } > REGION_DATA :data
+  } > RAM AT>ROM :data
+
   data_size = SIZEOF(.data);
 
   data_load_start = LOADADDR(.data);
+
   edata = .;
   _data = .;
   .bss : {
@@ -43,5 +37,5 @@ SECTIONS {
     *(.bss*)
     *(.sbss*)
     *(.scommon)
-  } > REGION_BSS
+  }
 }
