@@ -221,7 +221,7 @@ module axi_interface (
 
     assign io_master_rready = ( state == IFU_R || state == LSU_R ); 
 
-    assign io_master_awaddr = mem_waddr;
+    assign io_master_awaddr = {mem_waddr[31:2],2'b0} ;
 
     assign io_master_awid = 'b0;
 
@@ -231,15 +231,21 @@ module axi_interface (
 
     assign io_master_awburst = 2'b01;
 
-    assign io_master_wdata = mem_wdata;
+    assign io_master_wdata = mem_waddr[1:0]==2'd0 ? mem_wdata :
+                            mem_waddr[1:0]==2'd1 ? {mem_wdata[23:0],8'b0} :
+                            mem_waddr[1:0]==2'd2 ? {mem_wdata[15:0],16'b0} :
+                            mem_waddr[1:0]==2'd3 ? {mem_wdata[7:0],24'b0} : 'b0;
 
-    assign io_master_wstrb =  mem_wmask ;
+    assign io_master_wstrb = mem_waddr[1:0]==2'd0 ? mem_wmask :
+                            mem_waddr[1:0]==2'd1 ? mem_wmask<<1'b1 :
+                            mem_waddr[1:0]==2'd2 ? mem_wmask<<2'd2 :
+                            mem_waddr[1:0]==2'd3 ? mem_wmask<<2'd3 : 'b0;
 
     assign io_master_wlast = ( state == LSU_W );
 
     assign io_master_bready = 1'b1;
 
-    assign io_master_araddr = ( state == IFU_AR ) ? pc : mem_raddr;
+    assign io_master_araddr = ( state == IFU_AR ) ? pc : {mem_raddr[31:2],2'b0};
 
     assign io_master_arid = 'b0;
 
@@ -250,11 +256,11 @@ module axi_interface (
                                 mem_rmask == 4'b11  ?   3'b001 :
                                 3'b010;
 
-    // always@(*) begin
-    //     if(state == LSU_AW) begin
-    //         assert( (mem_waddr[1:0]==2'd0) || (mem_waddr[1:0]==2'd1 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd2 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd3 & mem_wmask==4'b1));
-    //     end
-    // end
+    always@(*) begin
+        if(state == LSU_AW) begin
+            assert( (mem_waddr[1:0]==2'd0) || (mem_waddr[1:0]==2'd1 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd2 & mem_wmask!=4'b1111) || (mem_waddr[1:0]==2'd3 & mem_wmask==4'b1));
+        end
+    end
 
     assign io_master_arburst = 2'b01;
 
@@ -270,13 +276,17 @@ module axi_interface (
     end
 
     assign rdata_mem = ( state == IFU_AR ) ? io_master_rdata :
-                        io_master_rdata ;
+                        mem_raddr[1:0]==2'd0 ? io_master_rdata :
+                        mem_raddr[1:0]==2'd1 ? {8'b0,io_master_rdata[31:8]} :
+                        mem_raddr[1:0]==2'd2 ? {16'b0,io_master_rdata[31:16]} :
+                        mem_raddr[1:0]==2'd3 ? {24'b0,io_master_rdata[31:24]} :
+                        'b0;
 
-    // always@(*) begin
-    //     if(state == LSU_AR) begin
-    //         assert( (mem_raddr[1:0]==2'd0) || (mem_raddr[1:0]==2'd1 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd2 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd3 & mem_rmask==4'b1));
-    //     end
-    // end
+    always@(*) begin
+        if(state == LSU_AR) begin
+            assert( (mem_raddr[1:0]==2'd0) || (mem_raddr[1:0]==2'd1 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd2 & mem_rmask!=4'b1111) || (mem_raddr[1:0]==2'd3 & mem_rmask==4'b1));
+        end
+    end
 
     assign mem_rdone = state == EXEU ? !mem_ren :
                        state == LSU_R? io_master_rvalid & io_master_rready :
