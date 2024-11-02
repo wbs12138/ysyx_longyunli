@@ -26,10 +26,8 @@ static const char mainargs[] = MAINARGS;
 #define DEVICE_BASE     0x10000000
 #define SERIAL_PORT     (DEVICE_BASE + 0x0)
 
-static inline void outb(uintptr_t addr, uint8_t  data) { *(volatile uint8_t  *)addr = data; }
-
 void putch(char ch) {
-  outb(SERIAL_PORT, ch);
+  *(volatile char *)(SERIAL_PORT) = ch ;
 }
 
 void halt(int code) {
