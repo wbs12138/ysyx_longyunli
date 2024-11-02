@@ -15,11 +15,17 @@ SECTIONS {
     *(entry)
     *(.text*)
   } > ROM :text
-  etext = .;
-  _etext = .;
+
   .rodata : {
     *(.rodata*)
   } >ROM
+
+  .bss : {
+	_bss_start = .;
+    *(.bss*)
+    *(.sbss*)
+    *(.scommon)
+  } > RAM
 
   .data : {
     . = ALIGN(4);
@@ -32,12 +38,4 @@ SECTIONS {
 
   data_load_start = LOADADDR(.data);
 
-  edata = .;
-  _data = .;
-  .bss : {
-	_bss_start = .;
-    *(.bss*)
-    *(.sbss*)
-    *(.scommon)
-  } > RAM
 }
