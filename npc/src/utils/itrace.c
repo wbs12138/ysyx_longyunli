@@ -131,7 +131,7 @@ void display_memory() {
     if(mringbuf[i_m].wr==0)
     printf("     read from addr=%x,len=%d\n",mringbuf[i_m].addr,mringbuf[i_m].len);
     else
-    printf("     write to  addr=%x,len=%d,data=%u\n",mringbuf[i_m].addr,mringbuf[i_m].len,mringbuf[i_m].data);
+    printf("     write to  addr=%x,len=%d,data=%x\n",mringbuf[i_m].addr,mringbuf[i_m].len,mringbuf[i_m].data);
     if ((i_m+1)%MAX_MRINGBUF==end_m) printf(ANSI_FG_RED);
     puts(buf_m);
   } while ((i_m = (i_m+1)%MAX_MRINGBUF) != end_m);
