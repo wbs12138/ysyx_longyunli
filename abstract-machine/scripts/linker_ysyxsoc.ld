@@ -41,5 +41,6 @@ SECTIONS {
     *(.bss*)
     *(.sbss*)
     *(.scommon)
+    . = ALIGN(4);
   } > RAM
 }
