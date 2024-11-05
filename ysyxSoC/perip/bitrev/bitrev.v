@@ -13,7 +13,7 @@ module bitrev (
   localparam RX = 1'b0;
   localparam TX = 1'b1;
 
-  always@(posedge clk or posedge ss) begin
+  always@(posedge sck or posedge ss) begin
     if(ss) begin
       state<=RX;
     end
