@@ -57,9 +57,9 @@ module axi_interface (
 
     wire read_mem ,write_mem;
 
-    assign read_mem = (mem_raddr>=32'hf000000 & mem_raddr<=32'hfffffff) || (mem_raddr>=32'h20000000 & mem_raddr<=32'h20000fff) || (mem_raddr>=32'h10000000 & mem_raddr<=32'h10000fff);
+    assign read_mem = (mem_raddr>=32'hf000000 & mem_raddr<=32'hfffffff) || (mem_raddr>=32'h20000000 & mem_raddr<=32'h20000fff);
 
-    assign write_mem = (mem_waddr>=32'hf000000 & mem_waddr<=32'hfffffff) || (mem_waddr>=32'h10000000 & mem_waddr<=32'h10000fff);
+    assign write_mem = (mem_waddr>=32'hf000000 & mem_waddr<=32'hfffffff);
 
     import "DPI-C" function void state_is_exeu(input int npc_state);
 
