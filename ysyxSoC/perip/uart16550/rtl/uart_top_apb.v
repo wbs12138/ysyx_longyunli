@@ -36,11 +36,11 @@ module uart_top_apb (
    assign in_pslverr = 1'b0;
    assign reg_we  = ~reset & in_psel & ~in_penable &  in_pwrite;
    assign reg_re  = ~reset & in_psel & ~in_penable & ~in_pwrite;
-   assign reg_adr = in_pstrb[0] ? in_paddr[2:0]       :
-                    in_pstrb[1] ? in_paddr[2:0] +1'b1 :
-                    in_pstrb[2] ? in_paddr[2:0] +2'd2 :
-                    in_pstrb[3] ? in_paddr[2:0] +2'd3 :
-                    'b0;; //assign adr_o   = in_paddr[2:0];
+   assign reg_adr = in_pwrite & in_pstrb[0] ? in_paddr[2:0]       :
+                    in_pwrite & in_pstrb[1] ? in_paddr[2:0] +1'b1 :
+                    in_pwrite & in_pstrb[2] ? in_paddr[2:0] +2'd2 :
+                    in_pwrite & in_pstrb[3] ? in_paddr[2:0] +2'd3 :
+                    3'd5; //assign adr_o   = in_paddr[2:0];
    assign in_prdata  = (in_psel) ? {4{reg_dat8_r}} : 'h0;
    always @ (*) begin
              case (reg_adr[1:0])
