@@ -53,7 +53,7 @@ module uart_top_apb (
              2'b00: reg_dat8_w = #1 in_pwdata[7:0];
              2'b01: reg_dat8_w = #1 in_pwdata[15:8];
              2'b10: reg_dat8_w = #1 in_pwdata[23:16];
-             2'b11: reg_dat8_w = #1 in_pwdata[31:24];
+             2'b11: reg_dat8_w =  in_pwdata[31:24];
              `endif
              endcase
    end
