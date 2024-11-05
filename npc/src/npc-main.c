@@ -58,7 +58,7 @@ void init_verilator(int argc, char *argv[]) {
 	}
 	dut->reset=0;
   dut->eval();
-  sim_time+=200;
+  sim_time+=4;
   dut->eval();
 	m_trace->dump(sim_time);
 
