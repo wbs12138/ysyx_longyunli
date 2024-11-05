@@ -42,7 +42,7 @@ module uart_top_apb (
                     in_pstrb[3] ? in_paddr[2:0] +2'd3 :
                     'b0;; //assign adr_o   = in_paddr[2:0];
    assign in_prdata  = (in_psel) ? {4{reg_dat8_r}} : 'h0;
-   always @ (in_paddr[1:0] or in_pwdata) begin
+   always @ (*) begin
              case (in_paddr[1:0])
              `ifdef ENDIAN_BIG
              2'b00: reg_dat8_w = #1 in_pwdata[31:24];
