@@ -27,7 +27,26 @@ module spi_top_apb #(
   output                  spi_irq_out
 );
 
+`ifdef FAST_FLASH
 
+wire [31:0] data;
+parameter invalid_cmd = 8'h0;
+flash_cmd flash_cmd_i(
+  .clock(clock),
+  .valid(in_psel && !in_penable),
+  .cmd(in_pwrite ? invalid_cmd : 8'h03),
+  .addr({8'b0, in_paddr[23:2], 2'b0}),
+  .data(data)
+);
+assign spi_sck    = 1'b0;
+assign spi_ss     = 8'b0;
+assign spi_mosi   = 1'b1;
+assign spi_irq_out= 1'b0;
+assign in_pslverr = 1'b0;
+assign in_pready  = in_penable && in_psel && !in_pwrite;
+assign in_prdata  = data[31:0];
+
+`else
 
 spi_top u0_spi_top (
   .wb_clk_i(clock),
@@ -49,6 +68,6 @@ spi_top u0_spi_top (
   .miso_pad_i(spi_miso)
 );
 
-
+`endif // FAST_FLASH
 
 endmodule
