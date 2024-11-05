@@ -46,16 +46,19 @@ void init_verilator(int argc, char *argv[]) {
 	while(reset_clk_time-->0){
 		dut->clock = 0;
         //dut->ist=0;
-        dut->eval();sim_time++;
+    dut->eval();
+    sim_time+=4;
 		m_trace->dump(sim_time);
 		
-		dut->clock = 1;dut->eval();sim_time++;
+		dut->clock = 1;
+    dut->eval();
+    sim_time+=4;
 		m_trace->dump(sim_time);
 		
 	}
 	dut->reset=0;
   dut->eval();
-  sim_time+=10;
+  sim_time+=4;
   dut->eval();
 	m_trace->dump(sim_time);
 
