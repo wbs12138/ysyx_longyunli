@@ -22,15 +22,23 @@
 
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
+static uint8_t *flash = NULL;
 #else // CONFIG_PMEM_GARRAY
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
+static uint8_t flash[0xfffffff] PG_ALIGN = {};
 #endif
 
 uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
+uint8_t* guest_to_flash(paddr_t paddr) { return flash + paddr - 0x30000000; }
 paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
 static word_t pmem_read(paddr_t addr, int len) {
   word_t ret = host_read(guest_to_host(addr), len);
+  return ret;
+}
+
+static word_t npc_flash_read(paddr_t addr, int len) {
+  word_t ret = host_read(guest_to_flash(addr), len);
   return ret;
 }
 
