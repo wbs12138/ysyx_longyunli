@@ -37,11 +37,6 @@ static word_t pmem_read(paddr_t addr, int len) {
   return ret;
 }
 
-static word_t npc_flash_read(paddr_t addr, int len) {
-  word_t ret = host_read(guest_to_flash(addr), len);
-  return ret;
-}
-
 static void pmem_write(paddr_t addr, int len, word_t data) {
   host_write(guest_to_host(addr), len, data);
 }
@@ -65,6 +60,11 @@ word_t paddr_read(paddr_t addr, int len) {
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);
   return 0;
+}
+
+word_t npc_flash_read(paddr_t addr, int len) {
+  word_t ret = host_read(guest_to_flash(addr), len);
+  return ret;
 }
 
 void paddr_write(paddr_t addr, int len, word_t data) {
