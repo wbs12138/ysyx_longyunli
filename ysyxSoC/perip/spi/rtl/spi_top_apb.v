@@ -53,6 +53,9 @@ localparam FLASH_CONFIG_SS_N = 4'd11;
 localparam FLASH_READ_DATA = 4'd12;
 localparam FLASH_WB = 4'd13;
 
+wire debug;
+assign debug = state==REG_CONFIG || state==REG_CONFIG_READ;
+
 assign in_pready = (state==REG_CONFIG_WB) || (state==FLASH_WB) || (state==REG_CONFIG && next_state==IDLE);
 
 always@(posedge clock or posedge reset) begin
