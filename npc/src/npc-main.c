@@ -39,7 +39,6 @@ void init_verilator(int argc, char *argv[]) {
 	m_trace->open("waveform.vcd");
 
 	int reset_clk_time=5;
-	dut->reset=1;
 	sim_time++;
 	m_trace->dump(sim_time);
     
@@ -56,7 +55,6 @@ void init_verilator(int argc, char *argv[]) {
 		m_trace->dump(sim_time);
 		
 	}
-	dut->reset=0;
   dut->eval();
   sim_time+=4;
   dut->eval();
