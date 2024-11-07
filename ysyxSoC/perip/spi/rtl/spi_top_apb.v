@@ -250,7 +250,7 @@ always@(posedge clock or posedge reset) begin
       FLASH_CONFIG_FREQ: begin
         if(next_state == FLASH_CONFIG_CTRL) begin
           in_paddr_r<=32'h30000010;
-          in_pwdata_r<=32'h00000c40;
+          in_pwdata_r<=32'h00000440;
           in_prdata<='b0;
           in_pstrb_r<=4'b1111;
           in_pwrite_r<=1'b1;
@@ -298,7 +298,7 @@ always@(posedge clock or posedge reset) begin
       FLASH_CONFIG_SS: begin
         if(next_state == FLASH_CONFIG_START) begin
           in_paddr_r<=32'h30000010;
-          in_pwdata_r<=32'h00000d40;
+          in_pwdata_r<=32'h00000540;
           in_prdata<='b0;
           in_pstrb_r<=4'b1111;
           in_pwrite_r<=1'b1;
