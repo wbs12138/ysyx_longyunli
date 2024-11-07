@@ -290,7 +290,7 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     ecall ?   mtvec :
                     pc + 4          ;
 
-Reg #(32,32'h20000000) inst_pc (clock,reset,pc_next,pc,mem_rdone);
+Reg #(32,32'h30000000) inst_pc (clock,reset,pc_next,pc,mem_rdone);
 
 
 wire mem_ren;
