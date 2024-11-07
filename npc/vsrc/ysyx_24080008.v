@@ -234,8 +234,8 @@ assign csr_sel  = (imm==32'h341)  ? mepc:
                   (imm==32'h342)  ? mcause:
                   (imm==32'h300)  ? mstatus:
                   (imm==32'h305)  ? mtvec:
-                  (imm==32'hf11)  ? 32'h79737978 :
-                  (imm==32'hf12)  ? 32'h016f6e88 :
+                  (imm==32'hffffff11)  ? 32'h79737978 :
+                  (imm==32'hffffff12)  ? 32'h016f6e88 :
                   32'b0;
 
 assign mepc_next    = csrrw ? rf_rdata1   :
