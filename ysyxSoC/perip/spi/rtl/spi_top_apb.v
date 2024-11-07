@@ -347,7 +347,7 @@ always@(posedge clock or posedge reset) begin
         if(next_state == FLASH_WB) begin
           in_paddr_r<='b0;
           in_pwdata_r<='b0;
-          in_prdata<=in_prdata_r;
+          in_prdata<={in_prdata_r[7:0],in_prdata_r[15:8],in_prdata_r[23:16],in_prdata_r[31:24]};
           in_pstrb_r<='b0;
           in_pwrite_r<='b0;
           in_psel_r<='b0;
