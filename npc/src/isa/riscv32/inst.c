@@ -51,19 +51,15 @@ int npc_ebreak;
 int isa_exec_once(Decode *s) {
 
   while(state_exeu==0){
-    dut->reset=0;
   	dut->eval();
     sim_time+=4;
     m_trace->dump(sim_time);
     dut->clock=0;
-    dut->reset=0;
     dut->eval();
     sim_time+=4;
-    dut->reset=0;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
-    dut->reset=0;
     dut->eval();
   }
 
@@ -112,19 +108,16 @@ int isa_exec_once(Decode *s) {
         trace_memory(ar_addr,ar_len,0x0,0);
       #endif
     }
-    dut->reset=0;
+
   	dut->eval();
     sim_time+=4;
     m_trace->dump(sim_time);
     dut->clock=0;
-    dut->reset=0;
     dut->eval();
     sim_time+=4;
-    dut->reset=0;
     dut->eval();
     m_trace->dump(sim_time);
     dut->clock=1;
-    dut->reset=0;
     dut->eval();
   }
 
