@@ -245,7 +245,7 @@ always@(posedge clock or posedge reset) begin
       end
 
       FLASH_CONFIG_FREQ: begin
-        if(next_state = FLASH_CONFIG_CTRL) begin
+        if(next_state == FLASH_CONFIG_CTRL) begin
           in_paddr_r<=32'h30000010;
           in_pwdata_r<=32'h00000440;
           in_prdata<='b0;
