@@ -165,6 +165,9 @@ always@(*) begin
     FLASH_WB: begin
       next_state = IDLE;
     end    
+
+    default:
+      next_state = IDLE;
   endcase
 end
 
