@@ -1,4 +1,6 @@
-module ysyx_24080008(
+module ysyx_24080008 #(
+  parameter RESET_VECTOR = 32'h30000000
+)(
     input clock,reset,
     input io_interrupt,
 
@@ -290,7 +292,7 @@ assign pc_next  =   jalr ?  (rf_rdata1 + imm) & 32'hfffffffe :
                     ecall ?   mtvec :
                     pc + 4          ;
 
-Reg #(32,32'h30000000) inst_pc (clock,reset,pc_next,pc,mem_rdone);
+Reg #(32,RESET_VECTOR) inst_pc (clock,reset,pc_next,pc,mem_rdone);
 
 
 wire mem_ren;
