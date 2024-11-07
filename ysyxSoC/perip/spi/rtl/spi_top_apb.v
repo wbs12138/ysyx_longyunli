@@ -365,6 +365,16 @@ always@(posedge clock or posedge reset) begin
           in_penable_r<='b0;
         end
       end    
+
+      default: begin
+        in_paddr_r<='b0;
+        in_pwdata_r<='b0;
+        in_prdata<='b0;
+        in_pstrb_r<='b0;
+        in_pwrite_r<='b0;
+        in_psel_r<='b0;
+        in_penable_r<='b0;
+      end
     endcase
   end
 end
