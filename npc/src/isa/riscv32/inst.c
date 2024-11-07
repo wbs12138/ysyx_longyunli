@@ -23,7 +23,7 @@
 #define R(i) gpr(i)
 
 extern "C" void flash_read(int32_t addr, int32_t *data) {
-  *data = paddr_read(addr,4);
+  *data = paddr_read(addr+0x30000000,4);
 }
 extern "C" void mrom_read(int32_t addr,int32_t *data) {
   *data = paddr_read(addr,4);
