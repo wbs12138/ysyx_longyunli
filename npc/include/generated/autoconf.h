@@ -8,7 +8,7 @@
 #define CONFIG_ENGINE "interpreter"
 #define CONFIG_PC_RESET_OFFSET 0x0
 #define CONFIG_TARGET_NATIVE_ELF 1
-#define CONFIG_MSIZE 0xfff
+#define CONFIG_MSIZE 0xfffffff
 #define CONFIG_CC_O2 1
 #define CONFIG_MODE_SYSTEM 1
 #define CONFIG_MEM_RANDOM 1
