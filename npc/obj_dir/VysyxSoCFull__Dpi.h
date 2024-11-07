@@ -24,7 +24,7 @@ extern "C" {
     extern void flash_read(int addr, int* data);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/dpi_c_ftrace.v:2:30
     extern void ftrace_update(int dnpc_v, int trace1, int trace2, int trace3, int trace4);
-    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/ysyx_24080008.v:267:30
+    // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/ysyx_24080008.v:269:30
     extern void get_csr(int mepc, int mcause, int mtvec, int mstatus);
     // DPI import at /home/wangbaosen/ysyx/ysyx-workbench/npc/vsrc/axi_interface.v:70:34
     extern void get_inst(int inst);

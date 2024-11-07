@@ -53,11 +53,11 @@ void halt(int code) {
 
 
 void _trm_init() {
-  // if (data_start != data_load_start){
-  //   memcpy(data_start, data_load_start, (size_t)data_size );
-  // }
+  if (data_start != data_load_start){
+    memcpy(data_start, data_load_start, (size_t)data_size );
+  }
 
-  // init_uart();
+  init_uart();
 
   int ret = main(mainargs);
   halt(ret);
