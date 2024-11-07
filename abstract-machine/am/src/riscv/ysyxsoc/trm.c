@@ -62,7 +62,7 @@ void _trm_init() {
   unsigned int ysyx;
   unsigned int ysyx_number;
 
-  asm volatile("csrr %0, mvendorid" : "=r" (ysyx));
+  asm volatile("csrr %[dest], mvendorid" : [dest]"=r" (ysyx));
   asm volatile("csrr %0, marchid" : "=r" (ysyx_number));
 
   printf("ysyx, whose ascii is %x,welcome!\n",ysyx);
