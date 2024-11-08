@@ -9,7 +9,7 @@ module psram(
 
   assign dio_in = dio;
 
-  reg [7:0] data [536870911:0];
+  reg [7:0] data [4194303:0];
 
   genvar i;
 
