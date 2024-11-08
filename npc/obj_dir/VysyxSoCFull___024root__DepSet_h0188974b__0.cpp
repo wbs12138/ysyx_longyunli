@@ -1873,7 +1873,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__3(VysyxSoCFull___0
                 ? 0U : (((1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state)) 
                          & (5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))
                          ? 0U : (((4U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state)) 
-                                  & (5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))
+                                  & (6U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))
                                   ? 0U : (((2U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state)) 
                                            & (1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))
                                            ? 0U : (
@@ -3455,7 +3455,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__10(VysyxSoCFull___
         = ((4U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
             ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                 ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                         ? 0U : ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                         ? 0U : ((6U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
                                   ? 3U : 4U))) : ((2U 
                                                    & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                                    ? 

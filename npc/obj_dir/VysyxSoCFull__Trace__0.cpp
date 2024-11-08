@@ -1828,7 +1828,7 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                 ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                     ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                              ? 0U : 
-                                            ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                            ((6U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
                                               ? 3U : 4U)))
                                 : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                     ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))

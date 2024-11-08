@@ -4499,7 +4499,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                  ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                      ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                               ? 0U : 
-                                             ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                             ((6U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
                                                ? 3U
                                                : 4U)))
                                  : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))

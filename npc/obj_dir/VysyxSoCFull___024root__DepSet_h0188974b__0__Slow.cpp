@@ -318,7 +318,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root___stl_sequent__TOP__0(VysyxSoCFull___02
         = ((4U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
             ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                 ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                         ? 0U : ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                         ? 0U : ((6U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
                                   ? 3U : 4U))) : ((2U 
                                                    & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                                    ? 
