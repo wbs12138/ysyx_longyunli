@@ -19,6 +19,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/decode.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/src/utils/itrace.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 
 #define R(i) gpr(i)
 
@@ -96,6 +97,12 @@ int isa_exec_once(Decode *s) {
   while(state_ifuar==0){
 
     if(state_lsuaw==1) {
+
+      #ifdef CONFIG_DIFFTEST
+        if(aw_addr>=0x10000000 & aw_addr<=0x10000fff) {
+          difftest_skip_ref();
+        }
+      #endif
 
       #ifdef CONFIG_MTRACE
         trace_memory(aw_addr,aw_len,aw_data,1);
