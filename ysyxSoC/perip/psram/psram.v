@@ -61,7 +61,7 @@ module psram(
     end
     else begin
       if(state==CMD) begin
-        cmd[cmd_index] <= dio_in[0];
+        cmd[7-cmd_index] <= dio_in[0];
       end
     end
   end
