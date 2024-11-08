@@ -2,8 +2,9 @@ ENTRY(_start)
 PHDRS { text PT_LOAD; data PT_LOAD; }
 
 MEMORY {
-  ROM : ORIGIN = 0x30000000 , LENGTH = 260000K
-  RAM : ORIGIN = 0x0f000000 , LENGTH = 8K
+  FLASH : ORIGIN = 0x30000000 , LENGTH = 268435K
+  RAM :   ORIGIN = 0x0f000000 , LENGTH = 8K
+  PSRAM : ORIGIN = 0x80000000 , LENGTH = 536870K
 }
 
 SECTIONS {
@@ -15,12 +16,12 @@ SECTIONS {
     *(entry)
     *(.text*)
     . = ALIGN(4);
-  } > ROM :text
+  } > FLASH :text
 
   .rodata : {
     *(.rodata*)
     . = ALIGN(4);
-  } >ROM
+  } >FLASH
 
   .data : {
     data_start = .;
@@ -30,7 +31,7 @@ SECTIONS {
     *(.sdata*)
     . = ALIGN(4);
     data_end = .;
-  } > RAM AT>ROM :data
+  } > PSRAM AT>FLASH :data
 
   data_size = data_end - data_start ;
 
@@ -42,5 +43,5 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } > RAM
+  } > PSRAM
 }

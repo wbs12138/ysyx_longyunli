@@ -14,7 +14,7 @@ extern char _heap_start;
 int main(const char *args);
 
 extern char _pmem_start;
-#define PMEM_SIZE (0x1fff)
+#define PMEM_SIZE (0x1fffffff)
 #define PMEM_END  ((uintptr_t)&_heap_start + PMEM_SIZE)
 
 Area heap = RANGE(&_heap_start, PMEM_END);
