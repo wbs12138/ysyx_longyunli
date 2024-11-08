@@ -1880,64 +1880,88 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__3(VysyxSoCFull___0
                                                    & ((IData)(1U) 
                                                       + (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))))));
         if ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))) {
-            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1726e210__0 
+            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13b6b14d__0 
                 = (1U & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__dio_in) 
                          >> 3U));
             if ((0x17U >= (0x1fU & ((IData)(0x17U) 
-                                    - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) {
+                                    - VL_SHIFTL_III(5,32,32, 
+                                                    (7U 
+                                                     & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) {
                 vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr 
                     = (((~ ((IData)(1U) << (0x1fU & 
                                             ((IData)(0x17U) 
-                                             - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) 
+                                             - VL_SHIFTL_III(5,32,32, 
+                                                             (7U 
+                                                              & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) 
                         & vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr) 
-                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1726e210__0) 
+                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13b6b14d__0) 
                                        << (0x1fU & 
                                            ((IData)(0x17U) 
-                                            - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))));
+                                            - VL_SHIFTL_III(5,32,32, 
+                                                            (7U 
+                                                             & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))));
             }
-            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1713fe51__0 
+            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13a43d2a__0 
                 = (1U & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__dio_in) 
                          >> 2U));
             if ((0x17U >= (0x1fU & ((IData)(0x16U) 
-                                    - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) {
+                                    - VL_SHIFTL_III(5,32,32, 
+                                                    (7U 
+                                                     & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) {
                 vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr 
                     = (((~ ((IData)(1U) << (0x1fU & 
                                             ((IData)(0x16U) 
-                                             - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) 
+                                             - VL_SHIFTL_III(5,32,32, 
+                                                             (7U 
+                                                              & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) 
                         & vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr) 
-                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1713fe51__0) 
+                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13a43d2a__0) 
                                        << (0x1fU & 
                                            ((IData)(0x16U) 
-                                            - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))));
+                                            - VL_SHIFTL_III(5,32,32, 
+                                                            (7U 
+                                                             & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))));
             }
-            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfe5f8038__0 
+            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h140bacd3__0 
                 = (1U & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__dio_in) 
                          >> 1U));
             if ((0x17U >= (0x1fU & ((IData)(0x15U) 
-                                    - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) {
+                                    - VL_SHIFTL_III(5,32,32, 
+                                                    (7U 
+                                                     & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) {
                 vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr 
                     = (((~ ((IData)(1U) << (0x1fU & 
                                             ((IData)(0x15U) 
-                                             - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) 
+                                             - VL_SHIFTL_III(5,32,32, 
+                                                             (7U 
+                                                              & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) 
                         & vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr) 
-                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfe5f8038__0) 
+                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h140bacd3__0) 
                                        << (0x1fU & 
                                            ((IData)(0x15U) 
-                                            - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))));
+                                            - VL_SHIFTL_III(5,32,32, 
+                                                            (7U 
+                                                             & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))));
             }
-            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfec425fb__0 
+            vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h19632ed5__0 
                 = (1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__dio_in));
             if ((0x17U >= (0x1fU & ((IData)(0x14U) 
-                                    - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) {
+                                    - VL_SHIFTL_III(5,32,32, 
+                                                    (7U 
+                                                     & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) {
                 vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr 
                     = (((~ ((IData)(1U) << (0x1fU & 
                                             ((IData)(0x14U) 
-                                             - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))) 
+                                             - VL_SHIFTL_III(5,32,32, 
+                                                             (7U 
+                                                              & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))) 
                         & vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr) 
-                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfec425fb__0) 
+                       | (0xffffffU & ((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vlvbound_h19632ed5__0) 
                                        << (0x1fU & 
                                            ((IData)(0x14U) 
-                                            - VL_SHIFTL_III(5,32,32, (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt), 2U))))));
+                                            - VL_SHIFTL_III(5,32,32, 
+                                                            (7U 
+                                                             & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)), 2U))))));
             }
         } else if ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))) {
             if ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))) {

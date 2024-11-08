@@ -661,10 +661,10 @@ class alignas(VL_CACHE_LINE_BYTES) VysyxSoCFull___024root final : public Verilat
         CData/*3:0*/ ysyxSoCFull__DOT__psram__DOT__dio__out__strong__out1;
         CData/*3:0*/ ysyxSoCFull__DOT__psram__DOT__dio__out__strong__out2;
         CData/*3:0*/ ysyxSoCFull__DOT__psram__DOT__dio__out__strong__out3;
-        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1726e210__0;
-        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h1713fe51__0;
-        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfe5f8038__0;
-        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_hfec425fb__0;
+        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13b6b14d__0;
+        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h13a43d2a__0;
+        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h140bacd3__0;
+        CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____Vlvbound_h19632ed5__0;
         CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_1;
         CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_2;
         CData/*0:0*/ ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_3;

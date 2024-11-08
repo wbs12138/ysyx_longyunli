@@ -141,27 +141,30 @@ module psram(
     endcase
   end
 
+  wire [21:0] data_index;
+  assign data_index = addr[21:0];
+
   always@(posedge sck) begin
     if(state==WRITE) begin
       if(cnt == 7'd0) begin
-        data[addr][7] <= dio_in[3];
-        data[addr][6] <= dio_in[2];
-        data[addr][5] <= dio_in[1];
-        data[addr][4] <= dio_in[0];
+        data[data_index][7] <= dio_in[3];
+        data[data_index][6] <= dio_in[2];
+        data[data_index][5] <= dio_in[1];
+        data[data_index][4] <= dio_in[0];
       end
       else begin
-        data[addr][3] <= dio_in[3];
-        data[addr][2] <= dio_in[2];
-        data[addr][1] <= dio_in[1];
-        data[addr][0] <= dio_in[0];
+        data[data_index][3] <= dio_in[3];
+        data[data_index][2] <= dio_in[2];
+        data[data_index][1] <= dio_in[1];
+        data[data_index][0] <= dio_in[0];
       end
     end
   end
 
-  assign dio_out[3] = (cnt==7'd0) ? data[addr][7] : data[addr][3] ;
-  assign dio_out[2] = (cnt==7'd0) ? data[addr][6] : data[addr][2] ;
-  assign dio_out[1] = (cnt==7'd0) ? data[addr][5] : data[addr][1] ;
-  assign dio_out[0] = (cnt==7'd0) ? data[addr][4] : data[addr][0] ;
+  assign dio_out[3] = (cnt==7'd0) ? data[data_index][7] : data[data_index][3] ;
+  assign dio_out[2] = (cnt==7'd0) ? data[data_index][6] : data[data_index][2] ;
+  assign dio_out[1] = (cnt==7'd0) ? data[data_index][5] : data[data_index][1] ;
+  assign dio_out[0] = (cnt==7'd0) ? data[data_index][4] : data[data_index][0] ;
 
   assign dio_en = (state==READ) ? 4'b1111 : 4'b0 ;
 
