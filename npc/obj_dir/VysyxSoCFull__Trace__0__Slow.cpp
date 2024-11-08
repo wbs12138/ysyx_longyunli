@@ -2592,6 +2592,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_init_sub__TOP__0(VysyxSoCFull___
     tracep->declBus(c+1026,0,"ADDR",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1039,0,"WRITE",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1049,0,"READ",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1050,0,"DUMMY",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+969,0,"cnt",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 6,0);
     tracep->declBus(c+1025,0,"cmd",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 7,0);
     tracep->declBus(c+970,0,"cmd_index",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
@@ -4495,25 +4496,27 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                                << 1U) 
                                               | (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_4))))),4);
     bufp->fullCData(oldp+1024,(((4U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                 ? 0U : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                          ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                              ? 3U : 2U)
-                                          : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                              ? ((5U 
-                                                  == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                                  ? 
-                                                 ((0x38U 
-                                                   == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
-                                                   ? 2U
-                                                   : 
-                                                  ((0xebU 
-                                                    == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
-                                                    ? 3U
-                                                    : 0U))
-                                                  : 1U)
-                                              : ((7U 
-                                                  == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                                  ? 1U
-                                                  : 0U))))),3);
+                                 ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                     ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                              ? 0U : 
+                                             ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                               ? 3U
+                                               : 4U)))
+                                 : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                     ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                         ? 3U : 2U)
+                                     : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                         ? ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                             ? ((0x38U 
+                                                 == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                                 ? 2U
+                                                 : 
+                                                ((0xebU 
+                                                  == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                                  ? 4U
+                                                  : 0U))
+                                             : 1U) : 
+                                        ((7U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                          ? 1U : 0U))))),3);
     bufp->fullCData(oldp+1025,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
 }

@@ -39,7 +39,7 @@ module psram(
       else if(state==ADDR & cnt==7'd5) begin
         cnt<='b0;
       end
-      else if(state==DUMMY & cnt==7'd5) begin
+      else if(state==DUMMY & cnt==7'd6) begin
         cnt<='b0;
       end
       else if(state==WRITE & cnt==7'd1) begin
@@ -136,7 +136,7 @@ module psram(
       end
 
       DUMMY: begin
-        if(cnt==7'd5) begin
+        if(cnt==7'd6) begin
           next_state = READ;
         end
         else begin

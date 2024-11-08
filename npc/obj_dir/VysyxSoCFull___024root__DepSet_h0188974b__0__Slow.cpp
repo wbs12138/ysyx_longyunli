@@ -316,21 +316,37 @@ VL_ATTR_COLD void VysyxSoCFull___024root___stl_sequent__TOP__0(VysyxSoCFull___02
         [vlSelf->ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__fifo_tx__DOT__bottom];
     vlSelf->ysyxSoCFull__DOT__psram__DOT__next_state 
         = ((4U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-            ? 0U : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                     ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                         ? 3U : 2U) : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                        ? ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                            ? ((0x38U 
-                                                == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
-                                                ? 2U
-                                                : (
-                                                   (0xebU 
-                                                    == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+            ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                         ? 0U : ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                  ? 3U : 4U))) : ((2U 
+                                                   & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                                   ? 
+                                                  ((1U 
+                                                    & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
                                                     ? 3U
-                                                    : 0U))
-                                            : 1U) : 
-                                       ((7U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                         ? 1U : 0U))));
+                                                    : 2U)
+                                                   : 
+                                                  ((1U 
+                                                    & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                                    ? 
+                                                   ((5U 
+                                                     == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                                     ? 
+                                                    ((0x38U 
+                                                      == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                                      ? 2U
+                                                      : 
+                                                     ((0xebU 
+                                                       == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                                       ? 4U
+                                                       : 0U))
+                                                     : 1U)
+                                                    : 
+                                                   ((7U 
+                                                     == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                                     ? 1U
+                                                     : 0U))));
     vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4ram__DOT___mem_ext_R0_data 
         = ((IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4ram__DOT__mem_ext__DOT___R0_en_d0)
             ? vlSelf->ysyxSoCFull__DOT__asic__DOT__axi4ram__DOT__mem_ext__DOT__Memory

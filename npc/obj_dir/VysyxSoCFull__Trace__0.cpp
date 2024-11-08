@@ -1825,26 +1825,26 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                             << 1U) 
                                            | (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_4))))),4);
     bufp->chgCData(oldp+1023,(((4U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                ? 0U : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                         ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                             ? 3U : 2U)
-                                         : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
-                                             ? ((5U 
-                                                 == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                                 ? 
-                                                ((0x38U 
-                                                  == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
-                                                  ? 2U
-                                                  : 
-                                                 ((0xebU 
-                                                   == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
-                                                   ? 3U
-                                                   : 0U))
-                                                 : 1U)
-                                             : ((7U 
-                                                 == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
-                                                 ? 1U
-                                                 : 0U))))),3);
+                                ? ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                    ? 0U : ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                             ? 0U : 
+                                            ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                              ? 3U : 4U)))
+                                : ((2U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                    ? ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                        ? 3U : 2U) : 
+                                   ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))
+                                     ? ((5U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                         ? ((0x38U 
+                                             == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                             ? 2U : 
+                                            ((0xebU 
+                                              == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))
+                                              ? 4U : 0U))
+                                         : 1U) : ((7U 
+                                                   == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))
+                                                   ? 1U
+                                                   : 0U))))),3);
     bufp->chgCData(oldp+1024,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
 }
 
