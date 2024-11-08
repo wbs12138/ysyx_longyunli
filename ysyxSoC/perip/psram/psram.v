@@ -52,18 +52,23 @@ module psram(
 
   reg [7:0] cmd;
 
+  wire [2:0] cmd_index;
+  assign cmd_index = cnt[2:0];
+
   always@(posedge sck or posedge ce_n) begin
     if(ce_n) begin
       cmd<='b0;
     end
     else begin
       if(state==CMD) begin
-        cmd[cnt] <= dio_in[0];
+        cmd[cmd_index] <= dio_in[0];
       end
     end
   end
 
   reg [23:0] addr;
+  wire [2:0]addr_index;
+  assign addr_index = cnt[2:0];
 
   always@(posedge sck or posedge ce_n) begin
     if(ce_n) begin
@@ -71,10 +76,10 @@ module psram(
     end
     else begin
       if(state==ADDR) begin
-        addr[23-4*cnt]<=dio_in[3];
-        addr[22-4*cnt]<=dio_in[2];
-        addr[21-4*cnt]<=dio_in[1];
-        addr[20-4*cnt]<=dio_in[0];
+        addr[23-4*addr_index]<=dio_in[3];
+        addr[22-4*addr_index]<=dio_in[2];
+        addr[21-4*addr_index]<=dio_in[1];
+        addr[20-4*addr_index]<=dio_in[0];
       end
       else if(state==WRITE) begin
         if(cnt==7'd1) begin
