@@ -189,10 +189,10 @@ module psram(
   assign debug = addr==24'h104;
 
   wire [7:0] data104,data105,data106,data107;
-  assign data104 = data[104];
-  assign data105 = data[105];
-  assign data106 = data[106];
-  assign data107 = data[107];
+  assign data104 = data[260];
+  assign data105 = data[261];
+  assign data106 = data[262];
+  assign data107 = data[263];
 
 
 endmodule
