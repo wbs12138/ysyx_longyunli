@@ -25,6 +25,7 @@ module psram(
   localparam ADDR = 3'd1;
   localparam WRITE = 3'd2;
   localparam READ = 3'd3;
+  localparam DUMMY = 3'd4;
 
   reg [6:0] cnt;
   always@(posedge sck or posedge ce_n) begin
@@ -36,6 +37,9 @@ module psram(
         cnt<='b0;
       end
       else if(state==ADDR & cnt==7'd5) begin
+        cnt<='b0;
+      end
+      else if(state==DUMMY & cnt==7'd5) begin
         cnt<='b0;
       end
       else if(state==WRITE & cnt==7'd1) begin
@@ -120,7 +124,7 @@ module psram(
             next_state = WRITE;
           end
           else if(cmd==8'heb) begin
-            next_state = READ;
+            next_state = DUMMY;
           end
           else begin
             next_state = CMD;
@@ -128,6 +132,15 @@ module psram(
         end
         else begin
           next_state = ADDR;
+        end
+      end
+
+      DUMMY: begin
+        if(cnt==7'd5) begin
+          next_state = READ;
+        end
+        else begin
+          next_state = DUMMY;
         end
       end
 

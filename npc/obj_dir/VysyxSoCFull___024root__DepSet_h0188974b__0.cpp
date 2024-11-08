@@ -1966,8 +1966,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__3(VysyxSoCFull___0
         } else if ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))) {
             if ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))) {
                 vlSelf->__Vdly__ysyxSoCFull__DOT__psram__DOT__addr 
-                    = (0xffffffU & (vlSelf->ysyxSoCFull__DOT__psram__DOT__addr 
-                                    - (IData)(1U)));
+                    = (0xffffffU & ((IData)(1U) + vlSelf->ysyxSoCFull__DOT__psram__DOT__addr));
             }
         } else if ((3U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))) {
             if ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))) {
@@ -3509,19 +3508,19 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__1(VysyxSoCFull___024r
     if ((0U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))) {
         vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_1 
             = (1U & (vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                     [(0x3fffffU & ((IData)(3U) + vlSelf->ysyxSoCFull__DOT__psram__DOT__addr))] 
+                     [(0x3fffffU & vlSelf->ysyxSoCFull__DOT__psram__DOT__addr)] 
                      >> 7U));
         vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_2 
             = (1U & (vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                     [(0x3fffffU & ((IData)(3U) + vlSelf->ysyxSoCFull__DOT__psram__DOT__addr))] 
+                     [(0x3fffffU & vlSelf->ysyxSoCFull__DOT__psram__DOT__addr)] 
                      >> 6U));
         vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_3 
             = (1U & (vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                     [(0x3fffffU & ((IData)(3U) + vlSelf->ysyxSoCFull__DOT__psram__DOT__addr))] 
+                     [(0x3fffffU & vlSelf->ysyxSoCFull__DOT__psram__DOT__addr)] 
                      >> 5U));
         vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_4 
             = (1U & (vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                     [(0x3fffffU & ((IData)(3U) + vlSelf->ysyxSoCFull__DOT__psram__DOT__addr))] 
+                     [(0x3fffffU & vlSelf->ysyxSoCFull__DOT__psram__DOT__addr)] 
                      >> 4U));
     } else {
         vlSelf->ysyxSoCFull__DOT__psram__DOT____VdfgRegularize_h95f21b40_0_1 
