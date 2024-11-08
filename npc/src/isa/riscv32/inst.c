@@ -110,6 +110,12 @@ int isa_exec_once(Decode *s) {
     }
 
     if(state_lsuar==1) {
+
+      #ifdef CONFIG_DIFFTEST
+        if(aw_addr>=0x10000000 & aw_addr<=0x10000fff) {
+          difftest_skip_ref();
+        }
+      #endif
       
       #ifdef CONFIG_MTRACE
         trace_memory(ar_addr,ar_len,0x0,0);
