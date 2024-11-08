@@ -138,6 +138,10 @@ module psram(
       READ: begin
         next_state = READ;
       end
+
+      default: begin
+        next_state = CMD;
+      end
     endcase
   end
 
