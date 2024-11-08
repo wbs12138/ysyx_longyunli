@@ -101,6 +101,7 @@ uint8_t* guest_to_host(paddr_t paddr) {
     return sdram + paddr - 0xa0000000;
   }
   else {
+    printf("nemu_difftest guest_to_host error!\n");
     out_of_bound(paddr);
     assert(0);
   }
