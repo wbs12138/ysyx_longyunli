@@ -118,14 +118,14 @@ module EF_PSRAM_CTRL_wb (
 
     wire [31:0] wdata = {byte3, byte2, byte1, byte0};
 
-    /*
+    
     wire [1:0]  waddr = (size==1 && sel_i[0]==1) ? 2'b00 :
                         (size==1 && sel_i[1]==1) ? 2'b01 :
                         (size==1 && sel_i[2]==1) ? 2'b10 :
                         (size==1 && sel_i[3]==1) ? 2'b11 :
                         (size==2 && sel_i[2]==1) ? 2'b10 :
                         2'b00;
-                      */
+                      
 
     assign mr_rd    = ( (state==ST_IDLE ) & wb_re );
     assign mw_wr    = ( (state==ST_IDLE ) & wb_we );
@@ -133,7 +133,7 @@ module EF_PSRAM_CTRL_wb (
     PSRAM_READER MR (
         .clk(clk_i),
         .rst_n(~rst_i),
-        .addr({adr_i[23:2],2'b0}),
+        .addr({adr_i[23:2],waddr}),
         .rd(mr_rd),
         //.size(size), Always read a word
         .size(3'd4),
