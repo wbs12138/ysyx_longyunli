@@ -44,4 +44,6 @@ SECTIONS {
     *(.scommon)
     . = ALIGN(4);
   } > PSRAM
+    end = .;
+  _end = .;
 }
