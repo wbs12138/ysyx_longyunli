@@ -83,7 +83,7 @@ module psram(
       end
       else if(state==WRITE) begin
         if(cnt==7'd1) begin
-          addr<=addr + 1'b1;
+          addr<=addr - 1'b1;
         end
       end
       else if(state==READ) begin
@@ -165,10 +165,10 @@ module psram(
     end
   end
 
-  assign dio_out[3] = (cnt==7'd1) ? data[data_index][7] : data[data_index][3] ;
-  assign dio_out[2] = (cnt==7'd1) ? data[data_index][6] : data[data_index][2] ;
-  assign dio_out[1] = (cnt==7'd1) ? data[data_index][5] : data[data_index][1] ;
-  assign dio_out[0] = (cnt==7'd1) ? data[data_index][4] : data[data_index][0] ;
+  assign dio_out[3] = (cnt==7'd0) ? data[data_index+3][7] : data[data_index][3] ;
+  assign dio_out[2] = (cnt==7'd0) ? data[data_index+3][6] : data[data_index][2] ;
+  assign dio_out[1] = (cnt==7'd0) ? data[data_index+3][5] : data[data_index][1] ;
+  assign dio_out[0] = (cnt==7'd0) ? data[data_index+3][4] : data[data_index][0] ;
 
   assign dio_en = (state==READ) ? 4'b1111 : 4'b0 ;
 
