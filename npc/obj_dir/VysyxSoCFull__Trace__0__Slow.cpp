@@ -4142,13 +4142,13 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                             ? 2U : 1U)
                                         : 1U)))),3);
     bufp->fullCData(oldp+797,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                              [0x68U]),8);
+                              [0x104U]),8);
     bufp->fullCData(oldp+798,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                              [0x69U]),8);
+                              [0x105U]),8);
     bufp->fullCData(oldp+799,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                              [0x6aU]),8);
+                              [0x106U]),8);
     bufp->fullCData(oldp+800,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                              [0x6bU]),8);
+                              [0x107U]),8);
     bufp->fullCData(oldp+801,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
     bufp->fullCData(oldp+802,(vlSelf->ysyxSoCFull__DOT__flash__DOT__counter),8);
     bufp->fullCData(oldp+803,(vlSelf->ysyxSoCFull__DOT__flash__DOT__cmd),8);

@@ -93,15 +93,17 @@ void trace_memory(paddr_t addr, int len , word_t data , int wr) {
   mringbuf[pm_cur].len = len;
   mringbuf[pm_cur].data = data;
   mringbuf[pm_cur].wr   = wr;
+  int pc;
+  pc = mringbuf[pm_cur].pc ;
   pm_cur = (pm_cur + 1) % MAX_MRINGBUF;
   full_m = full_m || pm_cur == 0;
   FILE *fp = fopen(MOUTPUT_FILE, "a"); 
     if (fp != NULL) {
 		if(wr){
-        	fprintf(fp,"write to %x , data is %x , len is %d\n",addr,data,len);
+        	fprintf(fp,"write to %x , data is %x , len is %d\npc is %x\n",addr,data,len,pc);
 		}
 		else {
-			fprintf(fp,"read from %x , len is %d\n",addr,len);
+			fprintf(fp,"read from %x , len is %d\npc is %x\n",addr,len,pc);
 		}
 		fclose(fp); 
     } else {
