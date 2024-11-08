@@ -1976,10 +1976,12 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__3(VysyxSoCFull___0
         }
         if ((0U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__state))) {
             vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd 
-                = (((~ ((IData)(1U) << (7U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))) 
+                = (((~ ((IData)(1U) << (7U & ((IData)(7U) 
+                                              - (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))))) 
                     & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd)) 
                    | (0xffU & ((1U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__dio_in)) 
-                               << (7U & (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt)))));
+                               << (7U & ((IData)(7U) 
+                                         - (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cnt))))));
         }
     }
 }
