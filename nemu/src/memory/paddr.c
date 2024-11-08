@@ -21,7 +21,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/itrace.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/nemu/include/cpu/decode.h>
 
-#ifdef CONFIG_TARGET_SHARE
+#ifndef CONFIG_TARGET_SHARE
 
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
@@ -84,21 +84,25 @@ static uint8_t flash[0xfffffff] PG_ALIGN = {};
 static uint8_t psram[0x1fffffff] PG_ALIGN = {};
 static uint8_t sdram[0x1fffffff] PG_ALIGN = {};
 
+static void out_of_bound(paddr_t addr) {
+  panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR "] at pc = " FMT_WORD,
+      addr, PMEM_LEFT, PMEM_RIGHT, cpu.pc);
+}
 
 uint8_t* guest_to_host(paddr_t paddr) {
-  if(paddr>=0x0f000000 & paddr<=0x0fffffff) {
+  if(paddr>=0x0f000000 && paddr<=0x0fffffff) {
     return sram + paddr - 0x0f000000;
   }
-  else if(paddr>=0x20000000 & paddr<=0x20000fff) {
+  else if(paddr>=0x20000000 && paddr<=0x20000fff) {
     return mrom + paddr - 0x20000000;
   }
-  else if(paddr>=0x30000000 & paddr<=0x3fffffff) {
+  else if(paddr>=0x30000000 && paddr<=0x3fffffff) {
     return flash + paddr - 0x30000000;
   }
-  else if(paddr>=0x80000000 & paddr<=0x9fffffff) {
+  else if(paddr>=0x80000000 && paddr<=0x9fffffff) {
     return psram + paddr - 0x80000000;
   }
-  else if(paddr>=0xa0000000 & paddr<=0xbfffffff) {
+  else if(paddr>=0xa0000000 && paddr<=0xbfffffff) {
     return sdram + paddr - 0xa0000000;
   }
   else {
@@ -119,10 +123,7 @@ static void pmem_write(paddr_t addr, int len, word_t data) {
   host_write(guest_to_host(addr), len, data);
 }
 
-static void out_of_bound(paddr_t addr) {
-  panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR "] at pc = " FMT_WORD,
-      addr, PMEM_LEFT, PMEM_RIGHT, cpu.pc);
-}
+
 
 void init_mem() {
   IFDEF(CONFIG_MEM_RANDOM, memset(sram, 0, 0xffffff));
