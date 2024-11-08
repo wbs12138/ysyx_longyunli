@@ -42,7 +42,6 @@ static void pmem_write(paddr_t addr, int len, word_t data) {
 }
 
 static void out_of_bound(paddr_t addr) {
-  printf("ooooo\n");
   panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR "] at pc = " FMT_WORD,
       addr, PMEM_LEFT, PMEM_RIGHT, cpu.pc);
 }
@@ -106,7 +105,6 @@ uint8_t* guest_to_host(paddr_t paddr) {
     return sdram + paddr - 0xa0000000;
   }
   else {
-    printf("nemu_difftest guest_to_host error!\n");
     out_of_bound(paddr);
     assert(0);
   }

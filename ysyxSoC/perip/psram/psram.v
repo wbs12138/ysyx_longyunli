@@ -185,4 +185,14 @@ module psram(
 
   assign dio_en = (state==READ) ? 4'b1111 : 4'b0 ;
 
+  wire debug;
+  assign debug = addr==24'h104;
+
+  wire [7:0] data104,data105,data106,data107;
+  assign data104 = data[104];
+  assign data105 = data[105];
+  assign data106 = data[106];
+  assign data107 = data[107];
+
+
 endmodule
