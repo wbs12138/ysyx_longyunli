@@ -63,7 +63,7 @@ void _trm_init() {
     memcpy(data_start, data_load_start, (size_t)data_size );
   }
 
-  // init_uart();
+  init_uart();
 
   // unsigned int ysyx;
   // unsigned int ysyx_number;
