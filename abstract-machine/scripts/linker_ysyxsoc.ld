@@ -33,8 +33,6 @@ SECTIONS {
     data_end = .;
   } > PSRAM AT>FLASH :data
 
-  _heap_start = . + 4 ;
-
   data_size = data_end - data_start ;
 
   data_load_start = LOADADDR(.data);
@@ -46,4 +44,7 @@ SECTIONS {
     *(.scommon)
     . = ALIGN(4);
   } > PSRAM
+
+
+  _heap_start = . + 4 ;
 }
