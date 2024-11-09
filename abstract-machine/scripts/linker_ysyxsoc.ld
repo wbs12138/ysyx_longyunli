@@ -33,7 +33,7 @@ SECTIONS {
     data_end = .;
   } > PSRAM AT>FLASH :data
 
-  _heap_start = . ;
+  _heap_start = . + 4 ;
 
   data_size = data_end - data_start ;
 
