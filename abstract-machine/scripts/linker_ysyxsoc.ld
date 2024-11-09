@@ -13,15 +13,27 @@ SECTIONS {
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
   .text : {
+    text_start = .;
     *(entry)
     *(.text*)
     . = ALIGN(4);
-  } > FLASH :text
+    text_end = .;
+  } > PSRAM AT>FLASH :text
+
+  text_size = text_end - text_start ;
+
+  text_load_start = LOADADDR(.text);
 
   .rodata : {
+    rodata_start = . ;
     *(.rodata*)
     . = ALIGN(4);
-  } >FLASH
+    rodata_end = .;
+  } > PSRAM AT>FLASH
+
+  rodata_size = rodata_end - rodata_start ;
+
+  rodata_load_start = LOADADDR(.rodata);
 
   .data : {
     data_start = .;
