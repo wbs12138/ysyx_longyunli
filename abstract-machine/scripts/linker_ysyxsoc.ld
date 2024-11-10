@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
+PHDRS { trm_init PT_LOAD ;entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
@@ -14,10 +14,14 @@ SECTIONS {
   . = _pmem_start + _entry_offset;
 
   .entry : {
-    KEEP(*(_start))
     KEEP(*(_trm_init))
     . = ALIGN(4) ;
   } > FLASH :entry
+
+  .trm_init : {
+    KEEP(*(_trm_init))
+    . = ALIGN(4) ;
+  } > FLASH :trm_init
 
   .text : {
     text_start = .;
