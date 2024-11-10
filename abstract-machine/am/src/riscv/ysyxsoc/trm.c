@@ -72,9 +72,9 @@ void halt(int code) {
 
 void _trm_init() {
 
-  if (text_start != text_load_start){
-    memcpy(text_start, text_load_start, (size_t)text_size );
-  }
+  // if (text_start != text_load_start){
+  //   memcpy(text_start, text_load_start, (size_t)text_size );
+  // }
 
   if (rodata_start != rodata_load_start){
     memcpy(rodata_start, rodata_load_start, (size_t)rodata_size );
