@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; }
+PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; data.extra PT_LOAD;}
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
