@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
+PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; bss PT_LOAD;}
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
@@ -29,8 +29,6 @@ SECTIONS {
 
   text_load_start = LOADADDR(.text);
 
-  . = .+4;
-
   .rodata : {
     rodata_start = . ;
     *(.rodata*)
@@ -41,8 +39,6 @@ SECTIONS {
   rodata_size = rodata_end - rodata_start ;
 
   rodata_load_start = LOADADDR(.rodata);
-
-  . = .+4;
 
   .data : {
     data_start = .;
@@ -58,15 +54,13 @@ SECTIONS {
 
   data_load_start = LOADADDR(.data);
 
-  . = .+4;
-
   .bss : {
 	_bss_start = .;
     *(.bss*)
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } > PSRAM
+  } > PSRAM :bss
 
-  _heap_start = . + 4 ;
+  _heap_start = . ;
 }
