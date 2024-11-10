@@ -18,7 +18,7 @@ SECTIONS {
     *(.text*)
     . = ALIGN(4);
     text_end = .;
-  } > PSRAM :text
+  } >FLASH :text
 
   text_size = text_end - text_start ;
 
