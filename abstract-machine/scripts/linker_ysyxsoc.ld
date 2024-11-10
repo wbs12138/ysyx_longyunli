@@ -14,8 +14,8 @@ SECTIONS {
   . = _pmem_start + _entry_offset;
 
   .entry : {
-    *(.start)
-    *(.trm_init)
+    KEEP(*(_start))
+    KEEP(*(_trm_init))
     . = ALIGN(4) ;
   } > FLASH :entry
 
