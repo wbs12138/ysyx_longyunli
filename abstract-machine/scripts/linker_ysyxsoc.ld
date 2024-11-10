@@ -3,7 +3,7 @@ PHDRS { text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
-  RAM :   ORIGIN = 0x0f000000 , LENGTH = 8K
+  RAM   : ORIGIN = 0x0f000000 , LENGTH = 8K
   PSRAM : ORIGIN = 0x80000000 , LENGTH = 4M
 }
 
@@ -18,7 +18,7 @@ SECTIONS {
     *(.text*)
     . = ALIGN(4);
     text_end = .;
-  } >FLASH :text
+  } >PSRAM AT>FLASH :text
 
   text_size = text_end - text_start ;
 
@@ -62,7 +62,6 @@ SECTIONS {
     *(.scommon)
     . = ALIGN(4);
   } > PSRAM
-
 
   _heap_start = . + 4 ;
 }
