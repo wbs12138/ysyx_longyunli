@@ -34,7 +34,6 @@ SECTIONS {
     *(.rodata*)
     rodata_end = .;
     . = ALIGN(4);
-    _end_rodata = .;
   } >PSRAM AT>FLASH :rodata
 
   rodata_size = rodata_end - rodata_start ;
@@ -42,14 +41,13 @@ SECTIONS {
   rodata_load_start = LOADADDR(.rodata);
 
   .data : {
-    data_start = _end_rodata;
+    data_start = .;
     *(.data)
     *(.data*)
     *(.sdata)
     *(.sdata*)
     data_end = .;
     . = ALIGN(4);
-    _end_data = .;
   } >PSRAM AT>FLASH :data
 
   data_size = data_end - data_start ;
@@ -57,7 +55,7 @@ SECTIONS {
   data_load_start = LOADADDR(.data);
 
   .bss : {
-	_bss_start = _end_data;
+	_bss_start = .;
     *(.bss*)
     *(.sbss*)
     *(.scommon)
