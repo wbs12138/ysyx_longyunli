@@ -14,12 +14,6 @@ extern char rodata_size [];
 
 extern char rodata_load_start [];
 
-extern char text_start [];
-
-extern char text_size [];
-
-extern char text_load_start [];
-
 # define npc_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
 
 extern char _heap_start;
@@ -71,10 +65,6 @@ void halt(int code) {
 
 
 void _trm_init() {
-
-  if (text_start != text_load_start){
-    memcpy(text_start, text_load_start, (size_t)text_size );
-  }
 
   if (rodata_start != rodata_load_start){
     memcpy(rodata_start, rodata_load_start, (size_t)rodata_size );
