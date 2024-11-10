@@ -36,7 +36,7 @@ SECTIONS {
     *(__am_apps.sdata*)
     __am_apps_data_end = .;
     . = ALIGN(8);
-  }>PSRAM AT>FLASH
+  }>PSRAM AT>FLASH :data
 }
 INSERT BEFORE .data;
 
