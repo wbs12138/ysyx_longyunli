@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
+PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; }
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
@@ -12,13 +12,18 @@ SECTIONS {
   _stack_pointer = . ;
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
+  
+  .entry : {
+    *(entry)
+    . = ALIGN(4);
+  } >FLASH :entry
+  
   .text : {
     text_start = .;
-    *(entry)
     *(.text*)
     . = ALIGN(4);
     text_end = .;
-  } >FLASH :text
+  } >PSRAM AT>FLASH :text
 
   text_size = text_end - text_start ;
 

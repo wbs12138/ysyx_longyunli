@@ -68,14 +68,8 @@ void halt(int code) {
   while (1);
 }
 
-
-
-void _trm_init() {
-
-  // if (text_start != text_load_start){
-  //   memcpy(text_start, text_load_start, (size_t)text_size );
-  // }
-
+void data_bootloader() {
+  
   if (rodata_start != rodata_load_start){
     memcpy(rodata_start, rodata_load_start, (size_t)rodata_size );
   }
@@ -83,6 +77,14 @@ void _trm_init() {
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t)data_size );
   }
+
+}
+
+
+
+void _trm_init() {
+  
+  data_bootloader();
 
   init_uart();
 

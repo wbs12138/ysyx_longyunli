@@ -5,4 +5,22 @@
 _start:
   mv s0, zero
   la sp, _stack_pointer
-  jal _trm_init
+  la a0, text_start
+  la a1, text_load_start
+  lw a0, 0(a0) 
+  lw a1, 0(a1) 
+  beq a0, a1, skip_memcpy
+  la a2, text_size
+  lw a2, 0(a2) 
+  lw a0, 0(a1) 
+  lw a1, 0(a0)
+_copy_loop:
+  lw a3, 0(a0)          
+  sw a3, 0(a1)       
+  addi a0, a0, 4       
+  addi a1, a1, 4      
+  addi a2, a2, -1       
+  bnez a2, _copy_loop   
+skip_memcpy:
+  la a0, _trm_init
+  jalr a0
