@@ -12,17 +12,13 @@ SECTIONS {
   _stack_pointer = . ;
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
-  
-  .entry : {
-    KEEP(*(.entry))
-  } >FLASH
-  
   .text : {
     text_start = .;
+    *(entry)
     *(.text*)
     . = ALIGN(4);
     text_end = .;
-  } >PSRAM AT>FLASH :text
+  } >FLASH :text
 
   text_size = text_end - text_start ;
 
