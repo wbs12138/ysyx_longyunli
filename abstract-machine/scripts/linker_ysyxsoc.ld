@@ -43,6 +43,7 @@ SECTIONS {
   .data : {
     data_start = .;
     *(.data)
+    *(.data.extra)
     *(.data*)
     *(.sdata)
     *(.sdata*)
