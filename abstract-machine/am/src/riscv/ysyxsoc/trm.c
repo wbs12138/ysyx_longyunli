@@ -38,12 +38,6 @@ static const char mainargs[] = MAINARGS;
 #define DEVICE_BASE     0x10000000
 #define SERIAL_PORT     (DEVICE_BASE + 0x0)
 
-bool ioe_init() {
-  return true;
-}
-
-void ioe_read (int reg, void *buf) { ; }
-
 void putch(char ch) {
 
   *(volatile char *)(SERIAL_PORT) = ch ;
