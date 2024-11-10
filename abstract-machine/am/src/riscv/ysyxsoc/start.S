@@ -7,13 +7,8 @@ _start:
   la sp, _stack_pointer
   la a0, text_start
   la a1, text_load_start
-  lw a0, 0(a0) 
-  lw a1, 0(a1) 
   beq a0, a1, skip_memcpy
   la a2, text_size
-  lw a2, 0(a2) 
-  lw a0, 0(a1) 
-  lw a1, 0(a0)
 _copy_loop:
   lw a3, 0(a0)          
   sw a3, 0(a1)       
