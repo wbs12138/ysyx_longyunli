@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD; bss PT_LOAD;}
+PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD;}
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
@@ -60,7 +60,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } > PSRAM :bss
+  } > PSRAM
 
   _heap_start = . ;
 }
