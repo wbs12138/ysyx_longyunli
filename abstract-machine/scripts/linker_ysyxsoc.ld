@@ -40,8 +40,6 @@ SECTIONS {
 
   rodata_load_start = LOADADDR(.rodata);
 
-  . = .+4;
-
   .data : {
     data_start = .;
     *(.data)
@@ -50,7 +48,7 @@ SECTIONS {
     *(.sdata*)
     . = ALIGN(4);
     data_end = .;
-  } > PSRAM AT>FLASH :data
+  } >PSRAM AT>FLASH :data
 
   data_size = data_end - data_start ;
 
@@ -62,7 +60,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } > PSRAM
+  } >PSRAM
 
   _heap_start = . ;
 }
