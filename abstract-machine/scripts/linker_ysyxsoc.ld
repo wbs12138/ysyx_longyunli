@@ -12,6 +12,11 @@ SECTIONS {
   _stack_pointer = . ;
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
   . = _pmem_start + _entry_offset;
+  .entry : {
+    *(entry)
+    . = ALIGN(4) ;
+  } > FLASH :text
+
   .text : {
     text_start = .;
     *(entry)
