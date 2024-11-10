@@ -24,6 +24,8 @@ SECTIONS {
 
   text_load_start = LOADADDR(.text);
 
+  . = .+4;
+
   .rodata : {
     rodata_start = . ;
     *(.rodata*)
@@ -34,6 +36,8 @@ SECTIONS {
   rodata_size = rodata_end - rodata_start ;
 
   rodata_load_start = LOADADDR(.rodata);
+
+  . = .+4;
 
   .data : {
     data_start = .;
@@ -49,6 +53,8 @@ SECTIONS {
 
   data_load_start = LOADADDR(.data);
 
+  . = .+4;
+  
   .bss : {
 	_bss_start = .;
     *(.bss*)
