@@ -40,6 +40,8 @@ SECTIONS {
 
   rodata_load_start = LOADADDR(.rodata);
 
+  . = .+4;
+
   .data : {
     data_start = .;
     *(.data)
