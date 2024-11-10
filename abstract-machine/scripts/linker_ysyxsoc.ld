@@ -29,7 +29,7 @@ SECTIONS {
     *(.rodata*)
     . = ALIGN(4);
     rodata_end = .;
-  } > PSRAM AT>FLASH
+  } >FLASH
 
   rodata_size = rodata_end - rodata_start ;
 
