@@ -10,8 +10,8 @@ _start:
   beq a0, a1, skip_memcpy
   la a2, text_size
 _copy_loop:
-  lw a3, 0(a0)          
-  sw a3, 0(a1)       
+  lw a3, 0(a1)          
+  sw a3, 0(a0)       
   addi a0, a0, 4       
   addi a1, a1, 4      
   addi a2, a2, -1       
