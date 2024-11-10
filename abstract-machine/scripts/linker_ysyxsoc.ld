@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD; rodata PT_LOAD;}
+PHDRS { entry PT_LOAD ;text PT_LOAD; data PT_LOAD;}
 
 MEMORY {
   FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
@@ -34,7 +34,7 @@ SECTIONS {
     *(.rodata*)
     . = ALIGN(4);
     rodata_end = .;
-  } >PSRAM AT>FLASH :rodata
+  } >PSRAM AT>FLASH
 
   rodata_size = rodata_end - rodata_start ;
 
