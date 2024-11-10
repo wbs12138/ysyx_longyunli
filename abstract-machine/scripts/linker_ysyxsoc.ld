@@ -21,8 +21,8 @@ SECTIONS {
   .text : {
     text_start = .;
     *(.text*)
-    . = ALIGN(4);
     text_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :text
 
   text_size = text_end - text_start ;
@@ -32,8 +32,8 @@ SECTIONS {
   .rodata : {
     rodata_start = . ;
     *(.rodata*)
-    . = ALIGN(4);
     rodata_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :rodata
 
   rodata_size = rodata_end - rodata_start ;
@@ -46,8 +46,8 @@ SECTIONS {
     *(.data*)
     *(.sdata)
     *(.sdata*)
-    . = ALIGN(4);
     data_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :data
 
   data_size = data_end - data_start ;
