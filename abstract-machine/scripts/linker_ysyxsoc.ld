@@ -1,10 +1,10 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; bss PT_LOAD;}
+PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD;}
 
 MEMORY {
-  FLASH : ORIGIN = 0x30000000 , LENGTH = 16M
-  RAM   : ORIGIN = 0x0f000000 , LENGTH = 8K
-  PSRAM : ORIGIN = 0x80000000 , LENGTH = 4M
+  FLASH (rx): ORIGIN = 0x30000000 , LENGTH = 16M
+  RAM   (rwx): ORIGIN = 0x0f000000 , LENGTH = 8K
+  PSRAM (rwx): ORIGIN = 0x80000000 , LENGTH = 4M
 }
 
 
@@ -84,8 +84,6 @@ SECTIONS {
   data_size = data_end - data_start ;
 
   data_load_start = LOADADDR(.data.extra);
-
-  . = .+ 16;
 
   .bss.extra : {
     . = ALIGN(8);
