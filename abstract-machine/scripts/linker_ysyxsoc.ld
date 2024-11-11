@@ -31,6 +31,7 @@ SECTIONS {
   .rodata : {
     rodata_start = . ;
     *(.rodata*)
+    *(.srodata*)
     rodata_end = .;
   } >PSRAM AT>FLASH :rodata
 
