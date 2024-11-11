@@ -93,7 +93,7 @@ SECTIONS {
     *(__am_apps.scommon*)
     __am_apps_bss_end = .;
     . = ALIGN(8);
-  } >PSRAM :bss
+  } >PSRAM AT>FLASH :bss
 
   .bss : {
 	_bss_start = .;
@@ -101,7 +101,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } >PSRAM :bss
+  } >PSRAM AT>FLASH :bss
 
   _heap_start = . ;
 }
