@@ -14,7 +14,7 @@ _copy_loop:
   sw a3, 0(a0)       
   addi a0, a0, 4       
   addi a1, a1, 4      
-  addi a2, a2, -1       
+  addi a2, a2, -4       
   bnez a2, _copy_loop   
 skip_memcpy:
   la a0, _trm_init
