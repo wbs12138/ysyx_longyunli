@@ -16,12 +16,14 @@ SECTIONS {
   
   .entry : {
     *(entry)
+    . = ALIGN(4);
   } >FLASH :entry
   
   .text : {
     text_start = .;
     *(.text*)
     text_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :text
 
   text_size = text_end - text_start ;
@@ -33,6 +35,7 @@ SECTIONS {
     *(.rodata*)
     *(.srodata*)
     rodata_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :rodata
 
   rodata_size = rodata_end - rodata_start ;
@@ -74,6 +77,7 @@ SECTIONS {
     *(.sdata)
     *(.sdata*)
     data_end = .;
+    . = ALIGN(4);
   } >PSRAM AT>FLASH :data
 
   data_size = data_end - data_start ;
@@ -92,6 +96,7 @@ SECTIONS {
     *(.bss*)
     *(.sbss*)
     *(.scommon)
+    . = ALIGN(4);
   } >PSRAM
 
   _heap_start = . ;
