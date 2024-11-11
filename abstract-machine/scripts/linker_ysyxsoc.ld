@@ -85,6 +85,8 @@ SECTIONS {
 
   data_load_start = LOADADDR(.data.extra);
 
+  . = .+ 16;
+
   .bss.extra : {
     . = ALIGN(8);
     __am_apps_bss_start = .;
@@ -93,7 +95,7 @@ SECTIONS {
     *(__am_apps.scommon*)
     __am_apps_bss_end = .;
     . = ALIGN(8);
-  } >PSRAM AT>FLASH :bss
+  } >PSRAM
 
   .bss : {
 	_bss_start = .;
@@ -101,7 +103,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } >PSRAM AT>FLASH :bss
+  } >PSRAM
 
   _heap_start = . ;
 }
