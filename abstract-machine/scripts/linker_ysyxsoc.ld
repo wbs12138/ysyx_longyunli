@@ -17,7 +17,7 @@ SECTIONS {
   .entry : {
     *(entry)
     . = ALIGN(4);
-  } >PSRAM AT>FLASH :entry
+  } >FLASH :entry
   
   .text : {
     text_start = .;
