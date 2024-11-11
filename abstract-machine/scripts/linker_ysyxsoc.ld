@@ -2,7 +2,7 @@ ENTRY(_start)
 PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; }
 
 MEMORY {
-  FLASH : ORIGIN = 0x30000000 , LENGTH = 256M
+  FLASH : ORIGIN = 0x30000000 , LENGTH = 16M
   RAM   : ORIGIN = 0x0f000000 , LENGTH = 8K
   PSRAM : ORIGIN = 0x80000000 , LENGTH = 4M
 }
@@ -41,34 +41,8 @@ SECTIONS {
 
   rodata_load_start = LOADADDR(.rodata);
 
-  .data : {
-    data_start = .;
-    *(.data)
-    *(.data*)
-    *(.sdata)
-    *(.sdata*)
-    data_end = .;
-    . = ALIGN(4);
-  } >PSRAM AT>FLASH :data
-
-  data_size = data_end - data_start ;
-
-  data_load_start = LOADADDR(.data);
-
-  .bss : {
-	_bss_start = .;
-    *(.bss*)
-    *(.sbss*)
-    *(.scommon)
-    . = ALIGN(4);
-  } >PSRAM
-
-  _heap_start = . ;
-}
-
-
-SECTIONS {
   .data.extra : {
+    data_start = .;
     /* section information for finsh shell */
     __fsymtab_start = .;
     KEEP(*(FSymTab))
@@ -96,11 +70,21 @@ SECTIONS {
     *(__am_apps.sdata*)
     __am_apps_data_end = .;
     . = ALIGN(8);
-  }>PSRAM AT>FLASH :data
-}
-INSERT BEFORE .data;
+  } >PSRAM AT>FLASH
 
-SECTIONS {
+  .data : {
+    *(.data)
+    *(.data*)
+    *(.sdata)
+    *(.sdata*)
+    data_end = .;
+    . = ALIGN(4);
+  } >PSRAM AT>FLASH :data
+
+  data_size = data_end - data_start ;
+
+  data_load_start = LOADADDR(.data.extra);
+
   .bss.extra : {
     . = ALIGN(8);
     __am_apps_bss_start = .;
@@ -109,6 +93,15 @@ SECTIONS {
     *(__am_apps.scommon*)
     __am_apps_bss_end = .;
     . = ALIGN(8);
-  }>PSRAM
+  } >PSRAM
+
+  .bss : {
+	_bss_start = .;
+    *(.bss*)
+    *(.sbss*)
+    *(.scommon)
+    . = ALIGN(4);
+  } >PSRAM
+
+  _heap_start = . ;
 }
-INSERT BEFORE .bss;
