@@ -54,12 +54,12 @@ int isa_exec_once(Decode *s) {
   while(state_exeu==0){
   	dut->eval();
     sim_time+=4;
-    m_trace->dump(sim_time);
+    //m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
-    m_trace->dump(sim_time);
+    //m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }
@@ -124,12 +124,12 @@ int isa_exec_once(Decode *s) {
 
   	dut->eval();
     sim_time+=4;
-    m_trace->dump(sim_time);
+    //m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
-    m_trace->dump(sim_time);
+    //m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
   }
