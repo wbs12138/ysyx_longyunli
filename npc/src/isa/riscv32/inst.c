@@ -49,8 +49,6 @@ int ar_addr,ar_len;
 
 int npc_ebreak;
 
-int mem_time = 0;
-
 int isa_exec_once(Decode *s) {
 
   while(state_exeu==0){
@@ -100,8 +98,6 @@ int isa_exec_once(Decode *s) {
 
     if(state_lsuaw==1) {
 
-      mem_time += 1;
-
       #ifdef CONFIG_DIFFTEST
         if(aw_addr>=0x10000000 & aw_addr<=0x10000fff) {
           difftest_skip_ref();
@@ -109,7 +105,7 @@ int isa_exec_once(Decode *s) {
       #endif
 
       #ifdef CONFIG_MTRACE
-      if(mem_time%100==0)
+      if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
         trace_memory(aw_addr,aw_len,aw_data,1);
       #endif
     }
@@ -123,7 +119,7 @@ int isa_exec_once(Decode *s) {
       #endif
       
       #ifdef CONFIG_MTRACE
-      if(mem_time%100==0)
+      if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
         trace_memory(ar_addr,ar_len,0x0,0);
       #endif
     }
