@@ -107,7 +107,7 @@ int isa_exec_once(Decode *s) {
       #endif
 
       #ifdef CONFIG_MTRACE
-      if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+      //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
         trace_memory(aw_addr,aw_len,aw_data,1);
       #endif
     }
@@ -121,7 +121,7 @@ int isa_exec_once(Decode *s) {
       #endif
       
       #ifdef CONFIG_MTRACE
-      if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+      //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
         trace_memory(ar_addr,ar_len,0x0,0);
       #endif
     }
