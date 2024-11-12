@@ -21,7 +21,7 @@ SECTIONS {
     _bootloader_start = .;
     *(.bootloader*)
     _bootloader_end = .;
-  } >SRAM AT > FLASH
+  } >RAM AT > FLASH
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
 
