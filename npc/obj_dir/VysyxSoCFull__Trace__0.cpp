@@ -1492,13 +1492,13 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[4U])) {
         bufp->chgCData(oldp+797,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                                 [0x104U]),8);
+                                 [0xa42dbU]),8);
         bufp->chgCData(oldp+798,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                                 [0x105U]),8);
+                                 [0xa42dcU]),8);
         bufp->chgCData(oldp+799,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                                 [0x106U]),8);
+                                 [0xa42ddU]),8);
         bufp->chgCData(oldp+800,(vlSelf->ysyxSoCFull__DOT__psram__DOT__data
-                                 [0x107U]),8);
+                                 [0xa42deU]),8);
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[5U])) {
         bufp->chgCData(oldp+801,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
