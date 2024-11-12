@@ -101,7 +101,7 @@ void _trm_init() {
   printf("ysyx, whose ascii is %x,welcome!\n",ysyx);
   printf("wangbaosen, whose number is %x,welcome!\n",ysyx_number);
 
-  printf("heap_start is %x\n",(uintptr_t)&_heap_start);
+  printf("heap_start is %ld\n",(uintptr_t)&_heap_start);
 
   int ret = main(mainargs);
   halt(ret);
