@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; bss PT_LOAD;}
+PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; bss PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD;}
 
 
 SECTIONS {
@@ -21,7 +21,7 @@ SECTIONS {
     _bootloader_start = .;
     *(.bootloader*)
     _bootloader_end = .;
-  } >RAM AT > FLASH
+  } >RAM AT >FLASH
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
 
