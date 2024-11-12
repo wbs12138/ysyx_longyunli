@@ -312,7 +312,7 @@ module axi_interface (
                             state==LSU_W_2S & mem_waddr[1:0]==2'd1 ? 4'b1 :
                             state==LSU_W_2S & mem_waddr[1:0]==2'd2 ? 4'b11 :
                             state==LSU_W_2S & mem_waddr[1:0]==2'd3 & mem_wmask==4'b11 ? 4'b1 :
-                            state==LSU_W_2S & mem_waddr[1:0]==2'd3 & mem_wmask==4'b1111? 4'b111 : 'b0;
+                            state==LSU_W_2S & mem_waddr[1:0]==2'd3 & mem_wmask==4'b1111 ? 4'b111 : 4'b0;
 
     assign io_master_wlast = ( state == LSU_W ) || ( state == LSU_W_2S );
 
