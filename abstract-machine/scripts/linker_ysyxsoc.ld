@@ -15,13 +15,13 @@ SECTIONS {
 
   .fsbl : {
     *(.fsbl*)
-  } >FLASH
+  } >FLASH :fsbl
 
   .bootloader : {
     _bootloader_start = .;
     *(.bootloader*)
     _bootloader_end = .;
-  } >RAM AT >FLASH
+  } >RAM AT >FLASH :boot_loader
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
 
