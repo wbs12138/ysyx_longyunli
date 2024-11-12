@@ -40,7 +40,6 @@ int reset_yet=0;
 __attribute__((unused)) static char *hbrk;
 __attribute__((unused)) static void heap_reset() {
   hbrk = (void *)ROUNDUP(heap.start, 8);
-  printf("reset hbrk is %x\n",(uintptr_t)hbrk);
 }
 
 void *malloc(size_t size) {
@@ -57,7 +56,6 @@ void *malloc(size_t size) {
   size  = (size_t)ROUNDUP(size, 8);
   char *old = hbrk;
   hbrk += size;
-  printf("malloc hbrk is %x\n",(uintptr_t)hbrk);
   assert((uintptr_t)heap.start <= (uintptr_t)hbrk && (uintptr_t)hbrk < (uintptr_t)heap.end);
   assert((uintptr_t)heap.start <= ((uintptr_t)hbrk+size) && ((uintptr_t)hbrk+size) < (uintptr_t)heap.end);
   for (uint64_t *p = (uint64_t *)old; p != (uint64_t *)hbrk; p ++) {

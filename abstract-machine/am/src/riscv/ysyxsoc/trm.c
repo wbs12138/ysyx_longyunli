@@ -2,29 +2,35 @@
 #include <klib-macros.h>
 #include <klib.h>
 
-extern char data_start [];
+extern char _data_start [];
 
-extern char data_size [];
+extern char _data_size [];
 
-extern char data_load_start [];
+extern char _data_load_start [];
 
-extern char rodata_start [];
+extern char _rodata_start [];
 
-extern char rodata_size [];
+extern char _rodata_size [];
 
-extern char rodata_load_start [];
+extern char _rodata_load_start [];
 
-extern char text_start [];
+extern char _text_start [];
 
-extern char text_size [];
+extern char _text_size [];
 
-extern char text_load_start [];
+extern char _text_load_start [];
 
 extern char _data_extra_start [];
 
-extern char data_extra_size [];
+extern char _data_extra_size [];
 
-extern char data_extra_load_start [];
+extern char _data_extra_load_start [];
+
+extern char _bootloader_start [];
+
+extern char _bootloader_size [];
+
+extern char _bootloader_load_start [];
 
 # define npc_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
 
@@ -68,27 +74,9 @@ void halt(int code) {
   while (1);
 }
 
-void data_bootloader() {
-  
-  if (rodata_start != rodata_load_start){
-    memcpy(rodata_start, rodata_load_start, (size_t)rodata_size );
-  }
-
-  if (_data_extra_start != data_extra_load_start){
-    memcpy(_data_extra_start, data_extra_load_start, (size_t)data_extra_size );
-  }
-
-  if (data_start != data_load_start){
-    memcpy(data_start, data_load_start, (size_t)data_size );
-  }
-
-}
-
 
 
 void _trm_init() {
-  
-  data_bootloader();
 
   init_uart();
 
@@ -101,8 +89,88 @@ void _trm_init() {
   printf("ysyx, whose ascii is %x,welcome!\n",ysyx);
   printf("wangbaosen, whose number is %x,welcome!\n",ysyx_number);
 
-  printf("heap_start is %ld\n",(uintptr_t)&_heap_start);
-
   int ret = main(mainargs);
   halt(ret);
 }
+
+
+void __attribute__((section(".bootloader"))) _bootloader_init() {
+
+  unsigned long  n;
+
+  if(_text_start != _text_load_start) {
+    unsigned char *dest = (unsigned char *)_text_start;
+    const unsigned char *src = (unsigned char *)_text_load_start;
+    n = (unsigned long)_text_size;
+    while ( n != 0) {
+      *dest = *src;
+      --n;
+      ++dest;
+      ++src;
+    }
+  }
+
+  if(_rodata_start != _rodata_load_start) {
+    unsigned char *dest = (unsigned char *)_rodata_start;
+    const unsigned char *src = (unsigned char *)_rodata_load_start;
+    n = (unsigned long)_rodata_size;
+    while ( n != 0) {
+      *dest = *src;
+      --n;
+      ++dest;
+      ++src;
+    }
+  }
+
+  if(_data_extra_start != _data_extra_load_start) {
+    unsigned char *dest = (unsigned char *)_data_extra_start;
+    const unsigned char *src = (unsigned char *)_data_extra_load_start;
+    n = (unsigned long)_data_extra_size;
+    while ( n != 0) {
+      *dest = *src;
+      --n;
+      ++dest;
+      ++src;
+    }
+  }
+
+  if(_data_start != _data_load_start) {
+    unsigned char *dest = (unsigned char *)_data_start;
+    const unsigned char *src = (unsigned char *)_data_load_start;
+    n = (unsigned long)_data_size;
+    while ( n != 0) {
+      *dest = *src;
+      --n;
+      ++dest;
+      ++src;
+    }
+  }
+
+  __asm__ volatile (
+        "la a0, %0\n\t"
+        "jalr a0\n\t"
+        :: "i"(_trm_init)
+  );
+}
+
+
+void __attribute__((section(".fsbl"))) _fsbl_init() {
+  if(_bootloader_start != _bootloader_load_start) {
+    unsigned char *dest = (unsigned char *)_bootloader_start;
+    const unsigned char *src = (unsigned char *)_bootloader_load_start;
+    unsigned long n = (unsigned long)_bootloader_size;
+    while ( n != 0) {
+      *dest = *src;
+      --n;
+      ++dest;
+      ++src;
+    }
+  }
+
+  __asm__ volatile (
+        "la a0, %0\n\t"
+        "jalr a0\n\t"
+        :: "i"(_bootloader_init)
+  );
+}
+

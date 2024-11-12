@@ -12,43 +12,57 @@ SECTIONS {
     *(entry)
     . = ALIGN(4);
   } >FLASH :entry
+
+  .fsbl : {
+    *(.fsbl*)
+  } >FLASH
+
+  .bootloader : {
+    _bootloader_start = .;
+    *(.bootloader*)
+    _bootloader_end = .;
+  } >SRAM AT > FLASH
+
+  _bootloader_size = _bootloader_end - _bootloader_start ;
+
+  _bootloader_load_start = LOADADDR(.bootloader);
   
   .text : {
-    text_start = .;
+    _text_start = .;
     *(.text*)
-    text_end = .;
+    _text_end = .;
     . = ALIGN(4);
   } >PSRAM AT>FLASH :text
 
-  text_size = text_end - text_start ;
+  _text_size = _text_end - _text_start ;
 
-  text_load_start = LOADADDR(.text);
+  _text_load_start = LOADADDR(.text);
 
   .rodata : {
-    rodata_start = . ;
+    _rodata_start = . ;
     *(.rodata*)
     *(.srodata*)
-    rodata_end = .;
+    _rodata_end = .;
     . = ALIGN(4);
   } >PSRAM AT>FLASH :rodata
 
-  rodata_size = rodata_end - rodata_start ;
+  _rodata_size = _rodata_end - _rodata_start ;
 
-  rodata_load_start = LOADADDR(.rodata);
+  _rodata_load_start = LOADADDR(.rodata);
 
   .data : {
-    data_start = .;
+    _data_start = .;
     *(.data)
     *(.data*)
     *(.sdata)
     *(.sdata*)
-    data_end = .;
+    _data_end = .;
     . = ALIGN(4);
   } >PSRAM AT>FLASH :data
 
-  data_size = data_end - data_start ;
+  _data_size = _data_end - _data_start ;
 
-  data_load_start = LOADADDR(.data);
+  _data_load_start = LOADADDR(.data);
 
   .bss : {
 	  _bss_start = .;
