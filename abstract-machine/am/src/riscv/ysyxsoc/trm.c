@@ -20,6 +20,12 @@ extern char text_size [];
 
 extern char text_load_start [];
 
+extern char _data_extra_start [];
+
+extern char data_extra_size [];
+
+extern char data_extra_load_start [];
+
 # define npc_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
 
 extern char _heap_start;
@@ -67,6 +73,11 @@ void data_bootloader() {
   if (rodata_start != rodata_load_start){
     memcpy(rodata_start, rodata_load_start, (size_t)rodata_size );
   }
+
+  if (_data_extra_start != data_extra_load_start){
+    memcpy(_data_extra_start, data_extra_load_start, (size_t)data_extra_size );
+  }
+
 
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t)data_size );
