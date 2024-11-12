@@ -56,7 +56,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } >PSRAM
+  } >PSRAM AT>PSRAM
 
   _heap_start = . ;
 }
