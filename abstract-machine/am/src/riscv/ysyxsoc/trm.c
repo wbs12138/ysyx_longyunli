@@ -78,7 +78,6 @@ void data_bootloader() {
     memcpy(_data_extra_start, data_extra_load_start, (size_t)data_extra_size );
   }
 
-
   if (data_start != data_load_start){
     memcpy(data_start, data_load_start, (size_t)data_size );
   }
