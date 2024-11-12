@@ -54,13 +54,13 @@ int isa_exec_once(Decode *s) {
   while(state_exeu==0){
   	dut->eval();
     sim_time+=4;
-    //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+    if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
       m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
-    //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+    if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
       m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
@@ -128,13 +128,13 @@ int isa_exec_once(Decode *s) {
 
   	dut->eval();
     sim_time+=4;
-    //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+    if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
       m_trace->dump(sim_time);
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
-    //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+    if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
       m_trace->dump(sim_time);
     dut->clock=1;
     dut->eval();
