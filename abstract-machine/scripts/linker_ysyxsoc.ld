@@ -1,12 +1,6 @@
 ENTRY(_start)
 PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD;}
 
-MEMORY {
-  FLASH (rx): ORIGIN = 0x30000000 , LENGTH = 16M
-  RAM   (rwx): ORIGIN = 0x0f000000 , LENGTH = 8K
-  PSRAM (rwx): ORIGIN = 0x80000000 , LENGTH = 4M
-}
-
 
 SECTIONS {
   . =  0xf002000 ;
