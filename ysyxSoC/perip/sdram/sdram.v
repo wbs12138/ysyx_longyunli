@@ -207,7 +207,7 @@ module sdram(
 
   wire addr_debug;
 
-  assign addr_debug = column_addr_w == 9'd419;
+  assign addr_debug = write & column_addr_w == 9'd419;
 
 
 
