@@ -2116,13 +2116,13 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__6(VysyxSoCFull___0
                       ? (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q)
                       : ((IData)(1U) + (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r))));
     if (vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) {
-        if (vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) {
+        if ((0U != (7U & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg)))) {
             __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 1U;
         }
     } else if (((IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__cke_q) 
                 & (6U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q)))) {
         __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0U;
-    } else if (vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) {
+    } else if ((0U != (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt))) {
         __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 
             (7U & ((IData)(1U) + (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt)));
         if ((1U == (7U & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg)))) {

@@ -108,7 +108,7 @@ module sdram(
 
   always@(posedge clk) begin
     if(start_cnt) begin
-      if(burst_length != 1'd0)
+      if(burst_length != 3'd0)
         cnt <= 3'd1;
     end
 
