@@ -54,21 +54,41 @@ module sdram(
 
   reg [2:0] cnt;
 
+  wire load_mode_register;
+
+  wire read;
+  
+  wire write;
+
+  wire active;
+
+  wire stop;
+
+  assign load_mode_register = cke & !cs & !ras & !cas & !we;
+
+  assign active = cke & !cs & !ras & cas & we;
+
+  assign read = cke & !cs & ras & !cas & we;
+
+  assign write = cke & !cs & ras & !cas & !we;
+
+  assign stop = cke & !cs & ras & cas & !we;
+
   always@(posedge clk) begin
-    if(cke & !cs & !ras & cas & we) begin
+    if(active) begin
       row_addr <= a;
       bank_addr <= ba;
     end
   end
 
   always@(posedge clk) begin
-    if(cke & !cs & !ras & !cas & !we) begin
+    if(load_mode_register) begin
       status_reg[9:0] <= a[9:0];
     end
   end
 
   always@(posedge clk) begin
-    if(cke & !cs & ras & !cas & we) begin
+    if(read) begin
       column_addr_r <= a[8:0];
     end
 
@@ -96,7 +116,7 @@ module sdram(
 
   always@(posedge clk) begin
     start_cnt <= 1'd0;
-    if(cke & !cs & ras & !cas & !we) begin
+    if(write) begin
       start_cnt <= 1'd1;
       column_addr_w <= a[8:0] + 1'b1;
     end
@@ -112,7 +132,7 @@ module sdram(
         cnt <= 3'd1;
     end
 
-    else if(cke & !cs & ras & cas & !we) begin
+    else if(stop) begin
       cnt <= 3'b0;
     end
     
@@ -140,10 +160,10 @@ module sdram(
 
   wire [15:0] remain_data;
 
-  assign remain_data =  cke & !cs & ras & !cas & !we & bank_addr==2'd0 ? bank0[row_addr][column_w] :
-                        cke & !cs & ras & !cas & !we & bank_addr==2'd1 ? bank1[row_addr][column_w] :
-                        cke & !cs & ras & !cas & !we & bank_addr==2'd2 ? bank2[row_addr][column_w] :
-                        cke & !cs & ras & !cas & !we & bank_addr==2'd3 ? bank3[row_addr][column_w] :
+  assign remain_data =  write & bank_addr==2'd0 ? bank0[row_addr][column_w] :
+                        write & bank_addr==2'd1 ? bank1[row_addr][column_w] :
+                        write & bank_addr==2'd2 ? bank2[row_addr][column_w] :
+                        write & bank_addr==2'd3 ? bank3[row_addr][column_w] :
                         bank_addr==2'd0                                ? bank0[row_addr][column_addr_w] :
                         bank_addr==2'd1                                ? bank1[row_addr][column_addr_w] :
                         bank_addr==2'd2                                ? bank2[row_addr][column_addr_w] :
@@ -157,7 +177,7 @@ module sdram(
 
 
   always@(posedge clk) begin
-    if(cke & !cs & ras & !cas & !we) begin
+    if(write) begin
       if(bank_addr == 2'd0)
         bank0[row_addr][column_w] <= data_in;
       else if(bank_addr == 2'd1)
@@ -167,7 +187,7 @@ module sdram(
       else
         bank3[row_addr][column_w] <= data_in;
     end
-    else if(cnt != 3'b0 & !(cke & !cs & ras & cas & !we)) begin
+    else if(cnt != 3'b0 & !stop) begin
       if(bank_addr == 2'd0)
         bank0[row_addr][column_addr_w] <= data_in;
       else if(bank_addr == 2'd1)
