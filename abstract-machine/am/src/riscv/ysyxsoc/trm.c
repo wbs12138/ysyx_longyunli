@@ -103,15 +103,11 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
     const unsigned char *src = (unsigned char *)_text_load_start;
     n = (unsigned long)_text_size;
 
-    if(n>4) {
-      for (; n > 4; n -= 4, src += 4, dest += 4) {
-        *(size_t *)dest = *(size_t *)src;
-      }
-    }
-
-    for (; n>0; dest+=1, src+=1) {
+    while ( n != 0) {
       *dest = *src;
       --n;
+      ++dest;
+      ++src;
     }
 
   }
@@ -120,15 +116,11 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
     unsigned char *dest = (unsigned char *)_rodata_start;
     const unsigned char *src = (unsigned char *)_rodata_load_start;
     n = (unsigned long)_rodata_size;
-    if(n>4) {
-      for (; n > 4; n -= 4, src += 4, dest += 4) {
-        *(size_t *)dest = *(size_t *)src;
-      }
-    }
-
-    for (; n>0; dest+=1, src+=1) {
+    while ( n != 0) {
       *dest = *src;
       --n;
+      ++dest;
+      ++src;
     }
   }
 
@@ -152,15 +144,11 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
     unsigned char *dest = (unsigned char *)_data_start;
     const unsigned char *src = (unsigned char *)_data_load_start;
     n = (unsigned long)_data_size;
-    if(n>4) {
-      for (; n > 4; n -= 4, src += 4, dest += 4) {
-        *(size_t *)dest = *(size_t *)src;
-      }
-    }
-
-    for (; n>0; dest+=1, src+=1) {
+    while ( n != 0) {
       *dest = *src;
       --n;
+      ++dest;
+      ++src;
     }
   }
 
