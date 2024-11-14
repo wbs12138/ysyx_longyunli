@@ -201,6 +201,14 @@ module sdram(
 
   assign dq_oe = !((cke & !cs & ras & !cas & !we) || (cnt != 3'b0));
 
+  wire [15:0] data_debug;
+
+  assign data_debug = bank0[0][419];
+
+  wire addr_debug;
+
+  assign addr_debug = column_addr_w == 9'd419;
+
 
 
 endmodule
