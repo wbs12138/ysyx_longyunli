@@ -134,7 +134,7 @@ module sdram(
 
   wire [8:0] column_w;
 
-  assign column_w == a[8:0];
+  assign column_w = a[8:0];
 
   wire [15:0] data_in;
 
