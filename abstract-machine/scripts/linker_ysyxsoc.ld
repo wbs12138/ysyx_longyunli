@@ -51,7 +51,7 @@ SECTIONS {
     *(.srodata*)
     _rodata_end = .;
     . = ALIGN(4);
-  } >PSRAM AT>FLASH :rodata
+  } >SDRAM AT>FLASH :rodata
 
   _rodata_size = _rodata_end - _rodata_start ;
 
@@ -65,7 +65,7 @@ SECTIONS {
     *(.sdata*)
     _data_end = .;
     . = ALIGN(4);
-  } >PSRAM AT>FLASH :data
+  } >SDRAM AT>FLASH :data
 
   _data_size = _data_end - _data_start ;
 
@@ -77,7 +77,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } >PSRAM AT>PSRAM
+  } >SDRAM AT>SDRAM
 
   _heap_start = . ;
 }
