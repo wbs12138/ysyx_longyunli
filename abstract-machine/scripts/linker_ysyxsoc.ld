@@ -1,6 +1,13 @@
 ENTRY(_start)
 PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; bss PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD;}
 
+MEMORY {
+  FLASH (rx): ORIGIN = 0x30000000 , LENGTH = 16M
+  RAM   (rwx): ORIGIN = 0x0f000000 , LENGTH = 8K
+  PSRAM (rwx): ORIGIN = 0x80000000 , LENGTH = 4M
+  SDRAM (rwx): ORIGIN = 0xa0000000 , LENGTH = 32M
+}
+
 
 SECTIONS {
   . =  0xf002000 ;
@@ -32,7 +39,7 @@ SECTIONS {
     *(.text*)
     _text_end = .;
     . = ALIGN(4);
-  } >PSRAM AT>FLASH :text
+  } >SDRAM AT>FLASH :text
 
   _text_size = _text_end - _text_start ;
 
