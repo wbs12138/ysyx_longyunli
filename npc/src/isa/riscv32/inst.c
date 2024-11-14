@@ -58,12 +58,14 @@ int isa_exec_once(Decode *s) {
     sim_time+=4;
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
+    #endif
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
+    #endif
     dut->clock=1;
     dut->eval();
   }
@@ -132,12 +134,14 @@ int isa_exec_once(Decode *s) {
     sim_time+=4;
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
+    #endif
     dut->clock=0;
     dut->eval();
     sim_time+=4;
     dut->eval();
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
+    #endif
     dut->clock=1;
     dut->eval();
   }
