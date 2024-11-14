@@ -2030,7 +2030,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__6(VysyxSoCFull___0
     __Vdly__ysyxSoCFull__DOT__sdram__DOT__column_addr_r = 0;
     SData/*8:0*/ __Vdly__ysyxSoCFull__DOT__sdram__DOT__column_addr_w;
     __Vdly__ysyxSoCFull__DOT__sdram__DOT__column_addr_w = 0;
-    CData/*0:0*/ __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt;
+    CData/*2:0*/ __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt;
     __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0;
     SData/*15:0*/ __VdlyVal__ysyxSoCFull__DOT__sdram__DOT__bank2__v0;
     __VdlyVal__ysyxSoCFull__DOT__sdram__DOT__bank2__v0 = 0;
@@ -2124,9 +2124,17 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__6(VysyxSoCFull___0
         __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0U;
     } else if (vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) {
         __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 
-            (1U & ((IData)(1U) + (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt)));
+            (7U & ((IData)(1U) + (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt)));
         if ((1U == (7U & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg)))) {
             __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0U;
+        } else if ((2U == (7U & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg)))) {
+            if ((3U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt))) {
+                __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0U;
+            }
+        } else if ((3U == (7U & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg)))) {
+            if ((7U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt))) {
+                __Vdly__ysyxSoCFull__DOT__sdram__DOT__cnt = 0U;
+            }
         }
     }
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p 
@@ -2183,7 +2191,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__6(VysyxSoCFull___0
     } else {
         __Vdly__ysyxSoCFull__DOT__sdram__DOT__column_addr_w 
             = (0x1ffU & ((IData)(1U) + (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w)));
-        if (((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt) 
+        if (((0U != (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt)) 
              & (~ ((IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__cke_q) 
                    & (6U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q)))))) {
             if ((0U != (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))) {
@@ -3784,7 +3792,8 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__0(VysyxSoCFull___024r
                                                                       == 
                                                                       (0xcU 
                                                                        & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q)))))) 
-                                                       | (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt))));
+                                                       | (0U 
+                                                          != (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt)))));
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__remain_data 
         = ((((IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__cke_q) 
              & (4U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q))) 

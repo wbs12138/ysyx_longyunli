@@ -685,7 +685,7 @@ class alignas(VL_CACHE_LINE_BYTES) VysyxSoCFull___024root final : public Verilat
         CData/*0:0*/ ysyxSoCFull__DOT__sdram__DOT__dq_oe;
         CData/*1:0*/ ysyxSoCFull__DOT__sdram__DOT__bank_addr;
         CData/*0:0*/ ysyxSoCFull__DOT__sdram__DOT__start_cnt;
-        CData/*0:0*/ ysyxSoCFull__DOT__sdram__DOT__cnt;
+        CData/*2:0*/ ysyxSoCFull__DOT__sdram__DOT__cnt;
         CData/*3:0*/ __VdfgRegularize_hd87f99a1_1_71;
         CData/*1:0*/ __Vtableidx1;
         CData/*7:0*/ __Vtableidx2;

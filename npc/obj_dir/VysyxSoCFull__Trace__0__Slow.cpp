@@ -2634,7 +2634,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_init_sub__TOP__0(VysyxSoCFull___
     tracep->declBus(c+680,0,"column_addr_r",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 8,0);
     tracep->declBus(c+681,0,"column_addr_w",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 8,0);
     tracep->declBit(c+682,0,"start_cnt",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBit(c+683,0,"cnt",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1);
+    tracep->declBus(c+683,0,"cnt",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+684,0,"data_to_out",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
     tracep->declBus(c+685,0,"data_to_out_p",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
     tracep->declBus(c+686,0,"data_to_out_2p",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
@@ -3958,7 +3958,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
     bufp->fullSData(oldp+680,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r),9);
     bufp->fullSData(oldp+681,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w),9);
     bufp->fullBit(oldp+682,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt));
-    bufp->fullBit(oldp+683,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt));
+    bufp->fullCData(oldp+683,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt),3);
     bufp->fullSData(oldp+684,(((0U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                 ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
                                [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]

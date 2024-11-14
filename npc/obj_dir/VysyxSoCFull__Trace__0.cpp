@@ -1238,7 +1238,7 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
         bufp->chgSData(oldp+679,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r),9);
         bufp->chgSData(oldp+680,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w),9);
         bufp->chgBit(oldp+681,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt));
-        bufp->chgBit(oldp+682,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt));
+        bufp->chgCData(oldp+682,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt),3);
         bufp->chgSData(oldp+683,(((0U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                    ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
