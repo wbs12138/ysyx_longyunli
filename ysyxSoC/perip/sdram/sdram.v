@@ -52,7 +52,7 @@ module sdram(
 
   reg start_cnt;
 
-  reg cnt;
+  reg [2:0] cnt;
 
   always@(posedge clk) begin
     if(cke & !cs & !ras & cas & we) begin

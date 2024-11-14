@@ -266,6 +266,8 @@ void VysyxSoCFull___024root___eval_triggers__act(VysyxSoCFull___024root* vlSelf)
                                         & (~ (IData)(vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT___asic_psram_sck__0)))));
     vlSelf->__VactTriggered.set(7U, ((IData)(vlSelf->ysyxSoCFull__DOT___asic_psram_sck) 
                                      & (~ (IData)(vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT___asic_psram_sck__0))));
+    vlSelf->__VactTriggered.set(8U, ((~ (IData)(vlSelf->clock)) 
+                                     & (IData)(vlSelf->__Vtrigprevexpr___TOP__clock__0)));
     vlSelf->__Vtrigprevexpr___TOP__clock__0 = vlSelf->clock;
     vlSelf->__Vtrigprevexpr___TOP__reset__0 = vlSelf->reset;
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT___asic_spi_sck__0 
@@ -4188,10 +4190,10 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__4(VysyxSoCFull___0
 
 void VysyxSoCFull___024unit____Vdpiimwrap_flash_read_TOP____024unit(IData/*31:0*/ addr, IData/*31:0*/ &data);
 
-VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__6(VysyxSoCFull___024root* vlSelf) {
+VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__7(VysyxSoCFull___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root___nba_sequent__TOP__6\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root___nba_sequent__TOP__7\n"); );
     // Init
     IData/*31:0*/ __Vtask_flash_read__12__data;
     __Vtask_flash_read__12__data = 0;
