@@ -107,8 +107,8 @@ module sdram(
   end
 
   assign data_to_out =  bank_addr==2'd0 ? bank0[row_addr][column_addr_r] :
-                        bank_addr==2'd0 ? bank1[row_addr][column_addr_r] :
-                        bank_addr==2'd0 ? bank2[row_addr][column_addr_r] :
+                        bank_addr==2'd1 ? bank1[row_addr][column_addr_r] :
+                        bank_addr==2'd2 ? bank2[row_addr][column_addr_r] :
                                           bank3[row_addr][column_addr_r] ;
 
   assign dq_out = cas_latency==3'd2 ? data_to_out_p :
