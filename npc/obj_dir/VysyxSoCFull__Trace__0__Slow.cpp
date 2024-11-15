@@ -3984,9 +3984,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                        [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r])))),16);
     bufp->fullSData(oldp+685,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
     bufp->fullSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
-    bufp->fullSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+    bufp->fullSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
                               [0U][0x6aU]),16);
-    bufp->fullSData(oldp+688,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+    bufp->fullSData(oldp+688,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
                               [0U][0x6bU]),16);
     bufp->fullCData(oldp+689,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
     bufp->fullCData(oldp+690,(vlSelf->ysyxSoCFull__DOT__flash__DOT__counter),8);

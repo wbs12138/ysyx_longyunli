@@ -1256,9 +1256,9 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r])))),16);
         bufp->chgSData(oldp+684,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
         bufp->chgSData(oldp+685,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
-        bufp->chgSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+        bufp->chgSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
                                  [0U][0x6aU]),16);
-        bufp->chgSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+        bufp->chgSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
                                  [0U][0x6bU]),16);
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[6U])) {
