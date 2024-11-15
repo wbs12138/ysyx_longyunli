@@ -20,11 +20,11 @@ extern char _text_size [];
 
 extern char _text_load_start [];
 
-// extern char _data_extra_start [];
+extern char _data_extra_start [];
 
-// extern char _data_extra_size [];
+extern char _data_extra_size [];
 
-// extern char _data_extra_load_start [];
+extern char _data_extra_load_start [];
 
 extern char _bootloader_start [];
 
@@ -80,14 +80,14 @@ void _trm_init() {
 
   init_uart();
 
-  //unsigned int ysyx;
-  //unsigned int ysyx_number;
+  unsigned int ysyx;
+  unsigned int ysyx_number;
 
-  //asm volatile("csrr %[dest], mvendorid" : [dest]"=r" (ysyx));
-  //asm volatile("csrr %0, marchid" : "=r" (ysyx_number));
+  asm volatile("csrr %[dest], mvendorid" : [dest]"=r" (ysyx));
+  asm volatile("csrr %0, marchid" : "=r" (ysyx_number));
 
-  //printf("ysyx, whose ascii is %x,welcome!\n",ysyx);
-  //printf("wangbaosen, whose number is %x,welcome!\n",ysyx_number);
+  printf("ysyx, whose ascii is %x,welcome!\n",ysyx);
+  printf("wangbaosen, whose number is %x,welcome!\n",ysyx_number);
 
   int ret = main(mainargs);
   halt(ret);
@@ -124,21 +124,21 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
     }
   }
 
-  // if(_data_extra_start != _data_extra_load_start) {
-  //   unsigned char *dest = (unsigned char *)_data_extra_start;
-  //   const unsigned char *src = (unsigned char *)_data_extra_load_start;
-  //   n = (unsigned long)_data_extra_size;
-  //   if(n>4) {
-  //     for (; n > 4; n -= 4, src += 4, dest += 4) {
-  //       *(size_t *)dest = *(size_t *)src;
-  //     }
-  //   }
+  if(_data_extra_start != _data_extra_load_start) {
+    unsigned char *dest = (unsigned char *)_data_extra_start;
+    const unsigned char *src = (unsigned char *)_data_extra_load_start;
+    n = (unsigned long)_data_extra_size;
+    if(n>4) {
+      for (; n > 4; n -= 4, src += 4, dest += 4) {
+        *(size_t *)dest = *(size_t *)src;
+      }
+    }
 
-  //   for (; n>0; dest+=1, src+=1) {
-  //     *dest = *src;
-  //     --n;
-  //   }
-  // }
+    for (; n>0; dest+=1, src+=1) {
+      *dest = *src;
+      --n;
+    }
+  }
 
   if(_data_start != _data_load_start) {
     unsigned char *dest = (unsigned char *)_data_start;
