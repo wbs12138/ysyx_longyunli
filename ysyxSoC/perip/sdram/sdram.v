@@ -50,7 +50,7 @@ module sdram(
 
   reg [8:0] column_addr_w;
 
-  reg start_cnt;
+  wire start_cnt;
 
   reg [2:0] cnt;
 
@@ -115,9 +115,7 @@ module sdram(
                                       data_to_out_2p;
 
   always@(posedge clk) begin
-    start_cnt <= 1'd0;
     if(write) begin
-      start_cnt <= 1'd1;
       column_addr_w <= a[8:0] + 1'b1;
     end
 
@@ -125,6 +123,8 @@ module sdram(
       column_addr_w <= column_addr_w + 1'b1;
     end
   end
+
+  assign start_cnt = write;
 
   always@(posedge clk) begin
     if(start_cnt) begin

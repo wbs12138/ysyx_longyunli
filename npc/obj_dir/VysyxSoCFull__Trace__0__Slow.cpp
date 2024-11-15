@@ -3985,7 +3985,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
     bufp->fullSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
     bufp->fullSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
     bufp->fullSData(oldp+688,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
-                              [0U][0x1a3U]),16);
+                              [0U][1U]),16);
     bufp->fullCData(oldp+689,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
     bufp->fullCData(oldp+690,(vlSelf->ysyxSoCFull__DOT__flash__DOT__counter),8);
     bufp->fullCData(oldp+691,(vlSelf->ysyxSoCFull__DOT__flash__DOT__cmd),8);
@@ -4604,5 +4604,5 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                           ? 1U : 0U))))),3);
     bufp->fullCData(oldp+1056,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->fullBit(oldp+1057,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__write) 
-                              & (0x1a3U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w)))));
+                              & (1U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w)))));
 }
