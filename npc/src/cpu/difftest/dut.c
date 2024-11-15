@@ -192,7 +192,7 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
       panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, ref_r.pc, pc);
     return;
   }
-
+  printf("here\n");
   if (is_skip_ref) {
     printf("skip\n");
     // to skip the checking of an instruction, just copy the reg state to reference design
@@ -200,12 +200,12 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
     is_skip_ref = false;
     return;
   }
-  else {
+
     ref_difftest_exec(1);
     ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
     checkregs(&ref_r, pc);
-  }
+
 }
 #else
 void init_difftest(char *ref_so_file, long img_size, int port) { }
