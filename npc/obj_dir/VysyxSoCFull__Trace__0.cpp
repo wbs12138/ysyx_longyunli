@@ -1243,11 +1243,11 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                    ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r]
-                                   : ((0U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
+                                   : ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                        ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank1
                                       [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
                                       [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r]
-                                       : ((0U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
+                                       : ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                            ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
                                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
                                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r]
