@@ -14,7 +14,7 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker_ysyxsoc.ld \
                         #  0xa1e84800
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
-YSYXSOC_FLAGS = -l $(shell dirname $(IMAGE).elf)/npc-log.txt -e $(IMAGE).elf
+YSYXSOC_FLAGS = -l $(shell dirname $(IMAGE).elf)/npc-log.txt -b -e $(IMAGE).elf
 .PHONY: $(AM_HOME)/am/src/riscv/ysyxsoc/trm.c
 
 image: $(IMAGE).elf
