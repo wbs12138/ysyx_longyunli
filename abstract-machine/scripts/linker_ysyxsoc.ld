@@ -51,7 +51,7 @@ SECTIONS {
     *(.srodata*)
     _rodata_end = .;
     . = ALIGN(4);
-  } >SDRAM AT>FLASH :rodata
+  } >PSRAM AT>FLASH :rodata
 
   _rodata_size = _rodata_end - _rodata_start ;
 
