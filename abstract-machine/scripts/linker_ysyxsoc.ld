@@ -44,7 +44,7 @@ SECTIONS {
     *(.text*)
     _text_end = .;
     . = ALIGN(4);
-  } >SDRAM AT>FLASH :text
+  } >PSRAM AT>FLASH :text
 
   _text_size = _text_end - _text_start ;
 
@@ -57,7 +57,7 @@ SECTIONS {
     *(.srodata*)
     _rodata_end = .;
     . = ALIGN(4);
-  } >SDRAM AT>FLASH :rodata
+  } >PSRAM AT>FLASH :rodata
 
   _rodata_size = _rodata_end - _rodata_start ;
 
@@ -72,7 +72,7 @@ SECTIONS {
     *(.sdata*)
     _data_end = .;
     . = ALIGN(4);
-  } >SDRAM AT>FLASH :data
+  } >PSRAM AT>FLASH :data
 
   _data_size = _data_end - _data_start ;
 
@@ -85,7 +85,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(4);
-  } >SDRAM 
+  } >PSRAM 
   /* AT>PSRAM need this or not ? TODO!!!!! */
 
   _heap_start = . ;
