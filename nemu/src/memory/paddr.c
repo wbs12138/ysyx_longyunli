@@ -129,7 +129,6 @@ void init_mem() {
   IFDEF(CONFIG_MEM_RANDOM, memset(flash, rand(), 0xfffffff));
   IFDEF(CONFIG_MEM_RANDOM, memset(psram, 0, 0x1fffffff));
   IFDEF(CONFIG_MEM_RANDOM, memset(sdram, 0, 0x1fffffff));
-
 }
 
 word_t paddr_read(paddr_t addr, int len) {
