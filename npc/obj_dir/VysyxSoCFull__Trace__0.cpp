@@ -1257,9 +1257,9 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
         bufp->chgSData(oldp+684,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
         bufp->chgSData(oldp+685,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
         bufp->chgSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
-                                 [0U][0x6aU]),16);
+                                 [7U][0x1a4U]),16);
         bufp->chgSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
-                                 [0U][0x6bU]),16);
+                                 [7U][0x1a5U]),16);
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[6U])) {
         bufp->chgCData(oldp+688,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
@@ -1899,8 +1899,8 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
     bufp->chgCData(oldp+1055,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->chgBit(oldp+1056,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                              & ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr)) 
-                                & (0x6aU == (0x1ffU 
-                                             & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q)))))));
+                                & (0x1a4U == (0x1ffU 
+                                              & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q)))))));
 }
 
 void VysyxSoCFull___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

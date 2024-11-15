@@ -384,4 +384,10 @@ module axi_interface (
                        state == LSU_R_2S         ? io_master_rvalid & io_master_rready :
                                 'b0;
 
+    wire addr_debug_axi_w,addr_debug_axi_r;
+
+    assign addr_debug_axi_w = io_master_awaddr == 32'ha0005b48 & io_master_awvalid & io_master_awready;
+
+    assign addr_debug_axi_r = io_master_araddr == 32'ha0005b48 & io_master_arvalid & io_master_arready;
+
 endmodule
