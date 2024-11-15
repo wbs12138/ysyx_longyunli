@@ -120,6 +120,7 @@ int isa_exec_once(Decode *s) {
 
       #ifdef CONFIG_DIFFTEST
         if(ar_addr>=0x10000000 & ar_addr<=0x10000fff) {
+          printf("uart read\n");
           difftest_skip_ref();
         }
       #endif
