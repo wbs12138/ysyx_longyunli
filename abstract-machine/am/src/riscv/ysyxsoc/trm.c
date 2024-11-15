@@ -96,7 +96,7 @@ void _trm_init() {
   asm volatile("csrr %[dest], mvendorid" : [dest]"=r" (ysyx));
   asm volatile("csrr %0, marchid" : "=r" (ysyx_number));
 
-  printf("ysyx, whose ascii is %x,welllllllllllllllllllllllcome!\n",ysyx);
+  printf("ysyx, whose ascii is ,welcome!\n");
   printf("wangbaosen, whose number is %x,welcome!\n",ysyx_number);
 
   int ret = main(mainargs);
