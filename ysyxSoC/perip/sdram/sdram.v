@@ -209,13 +209,13 @@ module sdram(
 
   wire [15:0] data_debug1,data_debug2;
 
-  assign data_debug1 = bank2[0][106];
+  assign data_debug1 = bank2[7][420];
 
-  assign data_debug2 = bank2[0][107];
+  assign data_debug2 = bank2[7][421];
 
   wire addr_debug;
 
-  assign addr_debug = write & bank_addr==2'b10 & column_w == 9'd106;
+  assign addr_debug = write & bank_addr==2'b10 & column_w == 9'd420;
 
 
 
