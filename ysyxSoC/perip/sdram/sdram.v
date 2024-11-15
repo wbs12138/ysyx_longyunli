@@ -209,7 +209,7 @@ module sdram(
 
   wire addr_debug;
 
-  assign addr_debug = write & bank_addr==2'b10 & column_addr_w == 9'd106;
+  assign addr_debug = write & bank_addr==2'b10 & column_w == 9'd106;
 
 
 
