@@ -23,8 +23,8 @@
 #define Mr vaddr_read
 #define Mw vaddr_write
 
-static const uint32_t mvendorid = 0x79737978; 
-static const uint32_t marchid = 0x016f6e88; 
+uint32_t mvendorid = 0x79737978; 
+uint32_t marchid = 0x016f6e88; 
 
 static vaddr_t *csr_register(word_t imm) {
   switch (imm) {

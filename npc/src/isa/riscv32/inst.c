@@ -106,9 +106,7 @@ int isa_exec_once(Decode *s) {
     if(state_lsuar==1) {
 
       #ifdef CONFIG_DIFFTEST
-        //printf("data is %x\n",ar_addr);
         if(ar_addr>=0x10000000 & ar_addr<=0x10000fff) {
-          printf("read pass\n");
           difftest_skip_ref();
         }
       #endif
@@ -123,13 +121,11 @@ int isa_exec_once(Decode *s) {
 
       #ifdef CONFIG_DIFFTEST
         if(aw_addr>=0x10000000 & aw_addr<=0x10000fff) {
-          printf("write pass\n");
           difftest_skip_ref();
         }
       #endif
 
       #ifdef CONFIG_MTRACE
-      //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
         trace_memory(aw_addr,aw_len,aw_data,1);
       #endif
     }
