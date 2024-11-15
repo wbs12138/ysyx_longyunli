@@ -1047,6 +1047,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root___stl_sequent__TOP__0(VysyxSoCFull___02
                                                           & (vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ist 
                                                              >> 8U))))))
                                            : 0U)))));
+    vlSelf->ysyxSoCFull__DOT__sdram__DOT__read = ((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT____VdfgRegularize_h49d81015_0_4) 
+                                                  & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q));
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt 
         = ((~ (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__command_q)) 
            & (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT____VdfgRegularize_h49d81015_0_4));
@@ -4148,6 +4150,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w = VL_RAND_RESET_I(9);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt = VL_RAND_RESET_I(1);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__cnt = VL_RAND_RESET_I(3);
+    vlSelf->ysyxSoCFull__DOT__sdram__DOT__read = VL_RAND_RESET_I(1);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__active = VL_RAND_RESET_I(1);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__stop = VL_RAND_RESET_I(1);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p = VL_RAND_RESET_I(16);

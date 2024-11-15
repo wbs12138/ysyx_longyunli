@@ -82,6 +82,9 @@ module sdram(
     else if(read) begin
       bank_addr <= ba;
     end
+    else if(write) begin
+      bank_addr <= ba;
+    end
   end
 
   always@(posedge clk) begin
@@ -163,10 +166,10 @@ module sdram(
 
   wire [15:0] remain_data;
 
-  assign remain_data =  write & bank_addr==2'd0 ? bank0[row_addr][column_w] :
-                        write & bank_addr==2'd1 ? bank1[row_addr][column_w] :
-                        write & bank_addr==2'd2 ? bank2[row_addr][column_w] :
-                        write & bank_addr==2'd3 ? bank3[row_addr][column_w] :
+  assign remain_data =  write & ba==2'd0 ? bank0[row_addr][column_w] :
+                        write & ba==2'd1 ? bank1[row_addr][column_w] :
+                        write & ba==2'd2 ? bank2[row_addr][column_w] :
+                        write & ba==2'd3 ? bank3[row_addr][column_w] :
                         bank_addr==2'd0                                ? bank0[row_addr][column_addr_w] :
                         bank_addr==2'd1                                ? bank1[row_addr][column_addr_w] :
                         bank_addr==2'd2                                ? bank2[row_addr][column_addr_w] :
@@ -181,11 +184,11 @@ module sdram(
 
   always@(posedge clk) begin
     if(write) begin
-      if(bank_addr == 2'd0)
+      if(ba == 2'd0)
         bank0[row_addr][column_w] <= data_in;
-      else if(bank_addr == 2'd1)
+      else if(ba == 2'd1)
         bank1[row_addr][column_w] <= data_in;
-      else if(bank_addr == 2'd2)
+      else if(ba == 2'd2)
         bank2[row_addr][column_w] <= data_in;
       else
         bank3[row_addr][column_w] <= data_in;
