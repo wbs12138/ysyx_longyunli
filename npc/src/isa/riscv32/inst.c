@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#define DUMP_WAVE 1
+//#define DUMP_WAVE 1
 
 #include "local-include/reg.h"
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
