@@ -170,9 +170,9 @@ module sdram(
                                                                          bank3[row_addr][column_addr_w] ;
 
 
-  assign data_in =  dqm[1] & dqm[0] ? dq_in :
-                    dqm[1] & !dqm[0]? {dq_in[15:8],remain_data[7:0]} :
-                    !dqm[1] & dqm[0]? {remain_data[15:8],dq_in[7:0]} :
+  assign data_in =  !dqm[1] & !dqm[0] ? dq_in :
+                    !dqm[1] & dqm[0]? {dq_in[15:8],remain_data[7:0]} :
+                    dqm[1] & !dqm[0]? {remain_data[15:8],dq_in[7:0]} :
                                       {remain_data} ;
 
 
