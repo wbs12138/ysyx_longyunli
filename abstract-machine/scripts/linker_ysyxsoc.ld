@@ -32,7 +32,7 @@ SECTIONS {
     *(.bootloader*)
     _bootloader_end = .;
     . = ALIGN(4);
-  } >RAM AT >FLASH :boot_loader
+  } >SDRAM AT >FLASH :boot_loader
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
 
