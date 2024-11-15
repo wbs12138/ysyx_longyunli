@@ -60,6 +60,8 @@ static const char mainargs[] = MAINARGS;
 #define DEVICE_BASE     0x10000000
 #define SERIAL_PORT     (DEVICE_BASE + 0x0)
 
+void putch(char ch) __attribute__((optimize("0")));
+
 void putch(char ch) {
   int a=0;
 
