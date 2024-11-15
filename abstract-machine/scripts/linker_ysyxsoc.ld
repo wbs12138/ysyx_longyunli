@@ -17,21 +17,21 @@ SECTIONS {
   
   .entry : {
     *(entry)
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >FLASH :entry
 
   .fsbl : {
-    . = ALIGN(4);
+    . = ALIGN(8);
     *(.fsbl*)
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >FLASH :fsbl
 
   .bootloader : {
-    . = ALIGN(4);
+    . = ALIGN(8);
     _bootloader_start = .;
     *(.bootloader*)
     _bootloader_end = .;
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >RAM AT >FLASH :boot_loader
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
@@ -39,11 +39,11 @@ SECTIONS {
   _bootloader_load_start = LOADADDR(.bootloader);
   
   .text : {
-    . = ALIGN(4);
+    . = ALIGN(8);
     _text_start = .;
     *(.text*)
     _text_end = .;
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >SDRAM AT>FLASH :text
 
   _text_size = _text_end - _text_start ;
@@ -51,12 +51,15 @@ SECTIONS {
   _text_load_start = LOADADDR(.text);
 
   .rodata : {
-    . = ALIGN(4);
+    . = ALIGN(8);
     _rodata_start = . ;
     *(.rodata*)
+    . = ALIGN(8);
+
+    . = ALIGN(8);
     *(.srodata*)
     _rodata_end = .;
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >PSRAM AT>FLASH :rodata
 
   _rodata_size = _rodata_end - _rodata_start ;
@@ -64,14 +67,14 @@ SECTIONS {
   _rodata_load_start = LOADADDR(.rodata);
 
   .data : {
-    . = ALIGN(4);
+    . = ALIGN(8);
     _data_start = .;
     *(.data)
     *(.data*)
     *(.sdata)
     *(.sdata*)
     _data_end = .;
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >PSRAM AT>FLASH :data
 
   _data_size = _data_end - _data_start ;
@@ -79,12 +82,12 @@ SECTIONS {
   _data_load_start = LOADADDR(.data);
 
   .bss : {
-    . = ALIGN(4);
+    . = ALIGN(8);
 	  _bss_start = .;
     *(.bss*)
     *(.sbss*)
     *(.scommon)
-    . = ALIGN(4);
+    . = ALIGN(8);
   } >PSRAM 
   /* AT>PSRAM need this or not ? TODO!!!!! */
 
