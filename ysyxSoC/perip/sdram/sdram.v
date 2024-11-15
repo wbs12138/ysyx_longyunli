@@ -203,11 +203,11 @@ module sdram(
 
   wire [15:0] data_debug;
 
-  assign data_debug = bank0[0][419];
+  assign data_debug = bank0[0][1];
 
   wire addr_debug;
 
-  assign addr_debug = write & column_addr_w == 9'd419;
+  assign addr_debug = write & column_addr_w == 9'd1;
 
 
 
