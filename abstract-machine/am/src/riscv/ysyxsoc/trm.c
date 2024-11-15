@@ -69,7 +69,7 @@ void putch(char ch) {
     status = *(volatile char *)(SERIAL_PORT + 5);
   }
 
-  while(a!=1000000) {
+  while(a!=1000000000) {
     a=a+1;
   }
 
