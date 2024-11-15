@@ -21,13 +21,17 @@ SECTIONS {
   } >FLASH :entry
 
   .fsbl : {
+    . = ALIGN(4);
     *(.fsbl*)
+    . = ALIGN(4);
   } >FLASH :fsbl
 
   .bootloader : {
+    . = ALIGN(4);
     _bootloader_start = .;
     *(.bootloader*)
     _bootloader_end = .;
+    . = ALIGN(4);
   } >RAM AT >FLASH :boot_loader
 
   _bootloader_size = _bootloader_end - _bootloader_start ;
@@ -35,6 +39,7 @@ SECTIONS {
   _bootloader_load_start = LOADADDR(.bootloader);
   
   .text : {
+    . = ALIGN(4);
     _text_start = .;
     *(.text*)
     _text_end = .;
@@ -46,6 +51,7 @@ SECTIONS {
   _text_load_start = LOADADDR(.text);
 
   .rodata : {
+    . = ALIGN(4);
     _rodata_start = . ;
     *(.rodata*)
     *(.srodata*)
@@ -58,6 +64,7 @@ SECTIONS {
   _rodata_load_start = LOADADDR(.rodata);
 
   .data : {
+    . = ALIGN(4);
     _data_start = .;
     *(.data)
     *(.data*)
@@ -72,6 +79,7 @@ SECTIONS {
   _data_load_start = LOADADDR(.data);
 
   .bss : {
+    . = ALIGN(4);
 	  _bss_start = .;
     *(.bss*)
     *(.sbss*)
