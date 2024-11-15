@@ -1256,8 +1256,8 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r])))),16);
         bufp->chgSData(oldp+684,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
         bufp->chgSData(oldp+685,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
-        bufp->chgSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
-                                 [0U][1U]),16);
+        bufp->chgBit(oldp+686,((1U & vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+                                [0U][0x6aU])));
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[6U])) {
         bufp->chgCData(oldp+687,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
@@ -1897,7 +1897,8 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
                                                    : 0U))))),3);
     bufp->chgCData(oldp+1054,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->chgBit(oldp+1055,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
-                             & (1U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w)))));
+                             & ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr)) 
+                                & (0x6aU == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w))))));
 }
 
 void VysyxSoCFull___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

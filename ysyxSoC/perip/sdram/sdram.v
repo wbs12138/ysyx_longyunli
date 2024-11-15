@@ -203,9 +203,9 @@ module sdram(
 
   wire [15:0] data_debug1,data_debug2;
 
-  assign data_debug = bank3[0][106];
+  assign data_debug1 = bank3[0][106];
 
-  assign data_debug = bank3[0][107];
+  assign data_debug2 = bank3[0][107];
 
   wire addr_debug;
 

@@ -2646,7 +2646,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_init_sub__TOP__0(VysyxSoCFull___
     tracep->declBus(c+773,0,"column_w",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 8,0);
     tracep->declBus(c+1005,0,"data_in",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
     tracep->declBus(c+1006,0,"remain_data",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
-    tracep->declBus(c+687,0,"data_debug",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
+    tracep->declBus(c+1120,0,"data_debug1",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
+    tracep->declBus(c+1121,0,"data_debug2",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 15,0);
+    tracep->declBit(c+687,0,"data_debug",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+1056,0,"addr_debug",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -2757,6 +2759,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_const_0_sub_0(VysyxSoCFull___024
     bufp->fullIData(oldp+1117,(0xbU),32);
     bufp->fullCData(oldp+1118,(3U),3);
     bufp->fullCData(oldp+1119,(5U),3);
+    bufp->fullSData(oldp+1120,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_debug1),16);
+    bufp->fullSData(oldp+1121,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_debug2),16);
 }
 
 VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024root* vlSelf, VerilatedVcd::Buffer* bufp);
@@ -3983,8 +3987,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                        [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r])))),16);
     bufp->fullSData(oldp+685,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_p),16);
     bufp->fullSData(oldp+686,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__data_to_out_2p),16);
-    bufp->fullSData(oldp+687,(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
-                              [0U][1U]),16);
+    bufp->fullBit(oldp+687,((1U & vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
+                             [0U][0x6aU])));
     bufp->fullCData(oldp+688,(vlSelf->ysyxSoCFull__DOT__flash__DOT__state),3);
     bufp->fullCData(oldp+689,(vlSelf->ysyxSoCFull__DOT__flash__DOT__counter),8);
     bufp->fullCData(oldp+690,(vlSelf->ysyxSoCFull__DOT__flash__DOT__cmd),8);
@@ -4603,5 +4607,6 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
                                           ? 1U : 0U))))),3);
     bufp->fullCData(oldp+1055,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->fullBit(oldp+1056,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
-                              & (1U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w)))));
+                              & ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr)) 
+                                 & (0x6aU == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w))))));
 }
