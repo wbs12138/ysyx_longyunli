@@ -98,7 +98,7 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
 
   unsigned long  n;
 
-  if(_text_start != _text_load_start) {
+  if((unsigned long)_text_size != 0) {
     unsigned char *dest = (unsigned char *)_text_start;
     const unsigned char *src = (unsigned char *)_text_load_start;
     n = (unsigned long)_text_size;
@@ -112,7 +112,7 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
 
   }
 
-  if(_rodata_start != _rodata_load_start) {
+  if((unsigned long)_rodata_size != 0) {
     unsigned char *dest = (unsigned char *)_rodata_start;
     const unsigned char *src = (unsigned char *)_rodata_load_start;
     n = (unsigned long)_rodata_size;
@@ -124,7 +124,7 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
     }
   }
 
-  // if(_data_extra_start != _data_extra_load_start) {
+  // if((unsigned long)_data_extra_size != 0) {
   //   unsigned char *dest = (unsigned char *)_data_extra_start;
   //   const unsigned char *src = (unsigned char *)_data_extra_load_start;
   //   n = (unsigned long)_data_extra_size;
@@ -140,7 +140,7 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
   //   }
   // }
 
-  if(_data_start != _data_load_start) {
+  if((unsigned long)_data_size != 0) {
     unsigned char *dest = (unsigned char *)_data_start;
     const unsigned char *src = (unsigned char *)_data_load_start;
     n = (unsigned long)_data_size;
@@ -161,7 +161,7 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
 
 
 void __attribute__((section(".fsbl"))) _fsbl_init() {
-  if(_bootloader_start != _bootloader_load_start) {
+  if((unsigned long)_bootloader_size != 0) {
     unsigned char *dest = (unsigned char *)_bootloader_start;
     const unsigned char *src = (unsigned char *)_bootloader_load_start;
     unsigned long n = (unsigned long)_bootloader_size;
