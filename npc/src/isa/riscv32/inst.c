@@ -119,7 +119,7 @@ int isa_exec_once(Decode *s) {
     if(state_lsuar==1) {
 
       #ifdef CONFIG_DIFFTEST
-        if(aw_addr>=0x10000000 & aw_addr<=0x10000fff) {
+        if(ar_addr>=0x10000000 & ar_addr<=0x10000fff) {
           difftest_skip_ref();
         }
       #endif
