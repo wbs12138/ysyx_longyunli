@@ -102,6 +102,23 @@ int isa_exec_once(Decode *s) {
 
   while(state_ifuar==0){
 
+
+    if(state_lsuar==1) {
+
+      #ifdef CONFIG_DIFFTEST
+        //printf("data is %x\n",ar_addr);
+        if(ar_addr>=0x10000000 & ar_addr<=0x10000fff) {
+          printf("read pass\n");
+          difftest_skip_ref();
+        }
+      #endif
+      
+      #ifdef CONFIG_MTRACE
+      //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
+        trace_memory(ar_addr,ar_len,0x0,0);
+      #endif
+    }
+
     if(state_lsuaw==1) {
 
       #ifdef CONFIG_DIFFTEST
@@ -117,21 +134,7 @@ int isa_exec_once(Decode *s) {
       #endif
     }
 
-    if(state_lsuar==1) {
-
-      #ifdef CONFIG_DIFFTEST
-        printf("data is %x\n",ar_addr);
-        if(ar_addr>=0x10000000 & ar_addr<=0x10000fff) {
-          printf("read pass\n");
-          difftest_skip_ref();
-        }
-      #endif
-      
-      #ifdef CONFIG_MTRACE
-      //if(!(s->dnpc >= 0xf000000 & s->dnpc <=0xf0001e4))
-        trace_memory(ar_addr,ar_len,0x0,0);
-      #endif
-    }
+    
 
   	dut->eval();
     sim_time+=4;
