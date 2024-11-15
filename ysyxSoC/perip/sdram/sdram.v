@@ -79,6 +79,9 @@ module sdram(
       row_addr <= a;
       bank_addr <= ba;
     end
+    else if(read) begin
+      bank_addr <= ba;
+    end
   end
 
   always@(posedge clk) begin

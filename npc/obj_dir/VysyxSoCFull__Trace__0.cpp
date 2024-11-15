@@ -1900,7 +1900,8 @@ void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, V
     bufp->chgCData(oldp+1055,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->chgBit(oldp+1056,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                              & ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr)) 
-                                & (0x6aU == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w))))));
+                                & (0x6aU == (0x1ffU 
+                                             & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q)))))));
 }
 
 void VysyxSoCFull___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

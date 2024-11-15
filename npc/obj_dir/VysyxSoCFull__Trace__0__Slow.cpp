@@ -4607,5 +4607,6 @@ VL_ATTR_COLD void VysyxSoCFull___024root__trace_full_0_sub_0(VysyxSoCFull___024r
     bufp->fullCData(oldp+1056,(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd),8);
     bufp->fullBit(oldp+1057,(((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                               & ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr)) 
-                                 & (0x6aU == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w))))));
+                                 & (0x6aU == (0x1ffU 
+                                              & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q)))))));
 }
