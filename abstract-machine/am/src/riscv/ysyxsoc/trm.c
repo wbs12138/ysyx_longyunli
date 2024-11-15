@@ -61,12 +61,18 @@ static const char mainargs[] = MAINARGS;
 #define SERIAL_PORT     (DEVICE_BASE + 0x0)
 
 void putch(char ch) {
+  int a=0;
 
   *(volatile char *)(SERIAL_PORT) = ch ;
   char status=0;
   while( status ==0 ) {
     status = *(volatile char *)(SERIAL_PORT + 5);
   }
+
+  while(a!=1000000) {
+    a=a+1;
+  }
+
   
 }
 
