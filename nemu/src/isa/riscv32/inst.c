@@ -23,13 +23,17 @@
 #define Mr vaddr_read
 #define Mw vaddr_write
 
+uint32_t mvendorid = 0x79737978; 
+uint32_t marchid = 0x016f6e88; 
+
 static vaddr_t *csr_register(word_t imm) {
-  switch (imm)
-  {
+  switch (imm) {
   case 0x341: return &(cpu.csr.mepc);
   case 0x342: return &(cpu.csr.mcause);
   case 0x300: return &(cpu.csr.mstatus);
   case 0x305: return &(cpu.csr.mtvec);
+  case 0xffffff11: return (vaddr_t *)&mvendorid;
+  case 0xffffff12: return (vaddr_t *)&marchid;
   default: panic("Unknown csr");
   }
 }

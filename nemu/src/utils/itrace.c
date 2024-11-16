@@ -15,6 +15,7 @@
 #define FOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/ftrace.txt"
 #define DOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/dtrace.txt"
 #define EOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/etrace.txt"
+#define MOUTPUT_FILE "/home/wangbaosen/ysyx/ysyx-workbench/nemu/src/utils/mtrace.txt"
 
 
 typedef struct {
@@ -91,6 +92,18 @@ void trace_memory(paddr_t addr, int len , word_t data , int wr) {
   mringbuf[pm_cur].wr   = wr;
   pm_cur = (pm_cur + 1) % MAX_MRINGBUF;
   full_m = full_m || pm_cur == 0;
+  FILE *fp = fopen(MOUTPUT_FILE, "a"); 
+    if (fp != NULL) {
+		if(wr){
+        	fprintf(fp,"write to %x , data is %x , len is %d\n",addr,data,len);
+		}
+		else {
+			fprintf(fp,"read from %x , len is %d\n",addr,len);
+		}
+		fclose(fp); 
+    } else {
+        printf("Error opening file %s\n", MOUTPUT_FILE);
+    }
 }
 
 
@@ -552,6 +565,7 @@ void parse_elf(const char *elf_file) {
   remove(FOUTPUT_FILE);
   remove(DOUTPUT_FILE);
   remove(EOUTPUT_FILE);
+  remove(MOUTPUT_FILE);
   Log("specified ELF file: %s", elf_file);
   int fd = open(elf_file, O_RDONLY|O_SYNC);
   Assert(fd >= 0, "Error %d: unable to open %s\n", fd, elf_file);
