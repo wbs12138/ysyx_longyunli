@@ -89,7 +89,7 @@ SECTIONS {
     *(.scommon)
     . = ALIGN(8);
   } >SDRAM AT>SDRAM
-  /* AT>PSRAM need this or not ? TODO!!!!! */
+  /* AT>PSRAM need this or not ? TODO! */
 
   _heap_start = . ;
 }
