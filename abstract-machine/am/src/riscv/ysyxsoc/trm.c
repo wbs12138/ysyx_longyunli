@@ -63,7 +63,7 @@ static const char mainargs[] = MAINARGS;
 void putch(char ch) __attribute__((optimize("0")));
 
 void putch(char ch) {
-  int a=0;
+  // int a=0;
 
   *(volatile char *)(SERIAL_PORT) = ch ;
   char status=0;
@@ -71,9 +71,9 @@ void putch(char ch) {
     status = *(volatile char *)(SERIAL_PORT + 5);
   }
 
-  while(a!=50) {
-    a=a+1;
-  }
+  // while(a!=50) {
+  //   a=a+1;
+  // }
 
   
 }

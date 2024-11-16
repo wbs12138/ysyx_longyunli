@@ -1093,38 +1093,38 @@ VL_ATTR_COLD void VysyxSoCFull___024root___stl_sequent__TOP__0(VysyxSoCFull___02
         = (((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
             & (0U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__bank_q)))
             ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
-           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-           [(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
+           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+           [0U]][(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
             : (((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                 & (1U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__bank_q)))
                 ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank1
-               [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-               [(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
+               [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+               [1U]][(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
                 : (((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                     & (2U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__bank_q)))
                     ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
-                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                   [(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
+                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                   [2U]][(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
                     : (((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
                         & (3U == (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__bank_q)))
                         ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
-                       [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                       [(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
+                       [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                       [3U]][(0x1ffU & (IData)(vlSelf->ysyxSoCFull__DOT__asic__DOT__lsdram_apb__DOT__msdram__DOT__u_sdram_ctrl__DOT__addr_q))]
                         : ((0U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                             ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank0
-                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
+                           [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                           [0U]][vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
                             : ((1U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                 ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank1
-                               [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                               [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
+                               [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                               [1U]][vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
                                 : ((2U == (IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr))
                                     ? vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank2
-                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
+                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                                   [2U]][vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w]
                                     : vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank3
-                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr]
-                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w])))))));
+                                   [vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr
+                                   [3U]][vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w])))))));
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__dq_oe = (1U 
                                                    & (~ 
                                                       ((IData)(vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt) 
@@ -4147,7 +4147,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     }
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__status_reg = VL_RAND_RESET_I(12);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__bank_addr = VL_RAND_RESET_I(2);
-    vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr = VL_RAND_RESET_I(13);
+    for (int __Vi0 = 0; __Vi0 < 4; ++__Vi0) {
+        vlSelf->ysyxSoCFull__DOT__sdram__DOT__row_addr[__Vi0] = VL_RAND_RESET_I(13);
+    }
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_r = VL_RAND_RESET_I(9);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__column_addr_w = VL_RAND_RESET_I(9);
     vlSelf->ysyxSoCFull__DOT__sdram__DOT__start_cnt = VL_RAND_RESET_I(1);
