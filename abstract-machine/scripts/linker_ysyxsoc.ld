@@ -1,5 +1,5 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD;}
+PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD; bss PT_LOAD;}
 
 
 
@@ -83,7 +83,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(8);
-  } >SDRAM 
+  } >SDRAM AT>SDRAM
   /* AT>PSRAM need this or not ? TODO!!!!! */
 
   _heap_start = . ;
