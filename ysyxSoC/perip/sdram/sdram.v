@@ -44,7 +44,14 @@ module sdram(
 
   reg [1:0] bank_addr;
 
-  reg [12:0] row_addr;
+  reg [12:0] row_addr[3:0];
+
+  wire [12:0] row_addr0,row_addr1,row_addr2,row_addr3;
+
+  assign row_addr0 = row_addr[0];
+  assign row_addr1 = row_addr[1];
+  assign row_addr2 = row_addr[2];
+  assign row_addr3 = row_addr[3];
 
   reg [8:0] column_addr_r;
 
@@ -76,7 +83,7 @@ module sdram(
 
   always@(posedge clk) begin
     if(active) begin
-      row_addr <= a;
+      row_addr[ba] <= a;
       bank_addr <= ba;
     end
     else if(read) begin
@@ -112,10 +119,10 @@ module sdram(
     data_to_out_2p <= data_to_out_p; 
   end
 
-  assign data_to_out =  bank_addr==2'd0 ? bank0[row_addr][column_addr_r] :
-                        bank_addr==2'd1 ? bank1[row_addr][column_addr_r] :
-                        bank_addr==2'd2 ? bank2[row_addr][column_addr_r] :
-                                          bank3[row_addr][column_addr_r] ;
+  assign data_to_out =  bank_addr==2'd0 ? bank0[row_addr0][column_addr_r] :
+                        bank_addr==2'd1 ? bank1[row_addr1][column_addr_r] :
+                        bank_addr==2'd2 ? bank2[row_addr2][column_addr_r] :
+                                          bank3[row_addr3][column_addr_r] ;
 
   assign dq_out = cas_latency==3'd2 ? data_to_out_p :
                                       data_to_out_2p;
@@ -166,14 +173,14 @@ module sdram(
 
   wire [15:0] remain_data;
 
-  assign remain_data =  write & ba==2'd0 ? bank0[row_addr][column_w] :
-                        write & ba==2'd1 ? bank1[row_addr][column_w] :
-                        write & ba==2'd2 ? bank2[row_addr][column_w] :
-                        write & ba==2'd3 ? bank3[row_addr][column_w] :
-                        bank_addr==2'd0                                ? bank0[row_addr][column_addr_w] :
-                        bank_addr==2'd1                                ? bank1[row_addr][column_addr_w] :
-                        bank_addr==2'd2                                ? bank2[row_addr][column_addr_w] :
-                                                                         bank3[row_addr][column_addr_w] ;
+  assign remain_data =  write & ba==2'd0 ? bank0[row_addr0][column_w] :
+                        write & ba==2'd1 ? bank1[row_addr1][column_w] :
+                        write & ba==2'd2 ? bank2[row_addr2][column_w] :
+                        write & ba==2'd3 ? bank3[row_addr3][column_w] :
+                        bank_addr==2'd0                                ? bank0[row_addr0][column_addr_w] :
+                        bank_addr==2'd1                                ? bank1[row_addr1][column_addr_w] :
+                        bank_addr==2'd2                                ? bank2[row_addr2][column_addr_w] :
+                                                                         bank3[row_addr3][column_addr_w] ;
 
 
   assign data_in =  !dqm[1] & !dqm[0] ? dq_in :
@@ -185,23 +192,23 @@ module sdram(
   always@(posedge clk) begin
     if(write) begin
       if(ba == 2'd0)
-        bank0[row_addr][column_w] <= data_in;
+        bank0[row_addr0][column_w] <= data_in;
       else if(ba == 2'd1)
-        bank1[row_addr][column_w] <= data_in;
+        bank1[row_addr1][column_w] <= data_in;
       else if(ba == 2'd2)
-        bank2[row_addr][column_w] <= data_in;
+        bank2[row_addr2][column_w] <= data_in;
       else
-        bank3[row_addr][column_w] <= data_in;
+        bank3[row_addr3][column_w] <= data_in;
     end
     else if(cnt != 3'b0 & !stop) begin
       if(bank_addr == 2'd0)
-        bank0[row_addr][column_addr_w] <= data_in;
+        bank0[row_addr0][column_addr_w] <= data_in;
       else if(bank_addr == 2'd1)
-        bank1[row_addr][column_addr_w] <= data_in;
+        bank1[row_addr1][column_addr_w] <= data_in;
       else if(bank_addr == 2'd2)
-        bank2[row_addr][column_addr_w] <= data_in;
+        bank2[row_addr2][column_addr_w] <= data_in;
       else
-        bank3[row_addr][column_addr_w] <= data_in;
+        bank3[row_addr3][column_addr_w] <= data_in;
     end 
   end
 
@@ -220,3 +227,4 @@ module sdram(
 
 
 endmodule
+
