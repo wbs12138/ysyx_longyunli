@@ -1,13 +1,13 @@
 ENTRY(_start)
-PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD; bss PT_LOAD;}
-/* PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD;} */
+/* PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD; bss PT_LOAD;} */
+PHDRS { entry PT_LOAD ;text PT_LOAD; rodata PT_LOAD; data PT_LOAD; boot_loader PT_LOAD; fsbl PT_LOAD;}
 
-/* MEMORY {
+MEMORY {
   FLASH (rx):  ORIGIN = 0x30000000 , LENGTH = 16M
   RAM   (rwx): ORIGIN = 0x0f000000 , LENGTH = 8K
   PSRAM (rwx): ORIGIN = 0x80000000 , LENGTH = 4M
   SDRAM (rwx): ORIGIN = 0xa0000000 , LENGTH = 32M
-}  */
+} 
 
 SECTIONS {
   . =  0xf002000 ;
@@ -88,7 +88,7 @@ SECTIONS {
     *(.sbss*)
     *(.scommon)
     . = ALIGN(8);
-  } >SDRAM AT>SDRAM
+  } >SDRAM /*AT>SDRAM*/
   /* AT>PSRAM need this or not ? TODO! */
 
   _heap_start = . ;
