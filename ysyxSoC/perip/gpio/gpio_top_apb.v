@@ -54,22 +54,24 @@ assign seg2 = segment[11: 8];
 assign seg1 = segment[ 7: 4];
 assign seg0 = segment[ 3: 0];
 
-integer i;
-
 always@(posedge clock) begin
   if(in_psel & in_penable & in_pwrite) begin
     if(in_paddr == 32'h10002000) begin
-      for(i=0;i<2;i=i+1) begin
-        if(in_pstrb[i])
-          led[7+8*i:8*i] <= in_pwdata[7+8*i:8*i];
-      end
+      if(in_pstrb[0])
+          led[7:0] <= in_pwdata[7:0];
+      if(in_pstrb[1])
+          led[15:8] <= in_pwdata[15:8];
     end
 
     else if(in_paddr == 32'h10002008) begin
-      for(i=0;i<4;i=i+1) begin
-        if(in_pstrb[i])
-          segment[7+8*i:8*i] <= in_pwdata[7+8*i:8*i];
-      end
+      if(in_pstrb[0])
+          segment[7:0] <= in_pwdata[7:0];
+      if(in_pstrb[1])
+          segment[15:8] <= in_pwdata[15:8];
+      if(in_pstrb[2])
+          segment[23:16] <= in_pwdata[23:16];
+      if(in_pstrb[3])
+          segment[31:24] <= in_pwdata[31:24];
     end
   end
 end
