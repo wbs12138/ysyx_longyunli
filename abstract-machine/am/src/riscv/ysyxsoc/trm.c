@@ -2,6 +2,8 @@
 #include <klib-macros.h>
 #include <klib.h>
 
+//#define RTT 1
+
 extern char _data_start [];
 
 extern char _data_end [];
@@ -26,6 +28,8 @@ extern char _text_size [];
 
 extern char _text_load_start [];
 
+#ifdef RTT
+
 extern char _data_extra_start [];
 
 extern char _data_extra_end [];
@@ -33,6 +37,7 @@ extern char _data_extra_end [];
 extern char _data_extra_size [];
 
 extern char _data_extra_load_start [];
+#endif
 
 extern char _bootloader_start [];
 
@@ -135,23 +140,19 @@ void __attribute__((section(".bootloader"))) _bootloader_init() {
       ++src;
     }
   }
-
+  #ifdef RTT
   if(_data_extra_start != _data_extra_end) {
     unsigned char *dest = (unsigned char *)_data_extra_start;
     const unsigned char *src = (unsigned char *)_data_extra_load_start;
     n = (unsigned long)_data_extra_size;
-    if(n>4) {
-      for (; n > 4; n -= 4, src += 4, dest += 4) {
-        *(size_t *)dest = *(size_t *)src;
-      }
-    }
-
-    for (; n>0; dest+=1, src+=1) {
+    while ( n != 0) {
       *dest = *src;
       --n;
+      ++dest;
+      ++src;
     }
   }
-
+  #endif
   if(_data_start != _data_end) {
     unsigned char *dest = (unsigned char *)_data_start;
     const unsigned char *src = (unsigned char *)_data_load_start;

@@ -1,5 +1,6 @@
 module sdram(
   input        clk,
+  input        sel,
   input        cke,
   input        cs,
   input        ras,
@@ -75,9 +76,9 @@ module sdram(
 
   assign active = cke & !cs & !ras & cas & we;
 
-  assign read = cke & !cs & ras & !cas & we;
+  assign read = cke & !cs & ras & !cas & we & sel;
 
-  assign write = cke & !cs & ras & !cas & !we;
+  assign write = cke & !cs & ras & !cas & !we & sel;
 
   assign stop = cke & !cs & ras & cas & !we;
 
