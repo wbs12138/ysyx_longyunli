@@ -260,7 +260,7 @@ begin
     //-----------------------------------------
     STATE_READ :
     begin
-        next_state_r = STATE_READ_WAIT;
+        next_state_r = STATE_IDLE;
     end
     //-----------------------------------------
     // STATE_READ_WAIT
@@ -282,7 +282,7 @@ begin
     //-----------------------------------------
     STATE_WRITE0 :
     begin
-        next_state_r = STATE_WRITE1;
+        next_state_r = STATE_IDLE;
     end
 
     STATE_WRITE1 :
@@ -689,29 +689,6 @@ assign sdram_dqm_o  = dqm_q;
 assign sdram_ba_o   = bank_q;
 assign sdram_addr_o = addr_q;
 
-//-----------------------------------------------------------------
-// Simulation only
-//-----------------------------------------------------------------
-`ifdef verilator
-reg [79:0] dbg_state;
-
-always @ *
-begin
-    case (state_q)
-    STATE_INIT        : dbg_state = "INIT";
-    STATE_DELAY       : dbg_state = "DELAY";
-    STATE_IDLE        : dbg_state = "IDLE";
-    STATE_ACTIVATE    : dbg_state = "ACTIVATE";
-    STATE_READ        : dbg_state = "READ";
-    STATE_READ_WAIT   : dbg_state = "READ_WAIT";
-    STATE_WRITE0      : dbg_state = "WRITE0";
-    STATE_WRITE1      : dbg_state = "WRITE1";
-    STATE_PRECHARGE   : dbg_state = "PRECHARGE";
-    STATE_REFRESH     : dbg_state = "REFRESH";
-    default           : dbg_state = "UNKNOWN";
-    endcase
-end
-`endif
 
 
 endmodule
