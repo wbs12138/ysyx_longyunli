@@ -675,7 +675,7 @@ always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
     data_buffer_q <= 32'b0;
 else if (state_q == STATE_WRITE0)
-    data_buffer_q <= ram_write_data_w[31:16];
+    data_buffer_q <= ram_write_data_w;
 else if (rd_q[SDRAM_READ_LATENCY+1])
     data_buffer_q <= sample_data_q;
 
