@@ -213,7 +213,7 @@ module sdram(
     end 
   end
 
-  assign dq_oe = !((cke & !cs & ras & !cas & !we) || (cnt != 3'b0));
+  assign dq_oe = !((cke & !cs & ras & !cas & !we) || (cnt != 3'b0)) & sel;
 
   wire [15:0] data_debug1,data_debug2;
 
