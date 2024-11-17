@@ -2,7 +2,7 @@
 #include <klib-macros.h>
 #include <klib.h>
 
-//#define RTT 1
+#define RTT 1
 
 extern char _data_start [];
 
