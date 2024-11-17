@@ -673,7 +673,7 @@ else
 // in WRITE0. Also buffer lower 16-bits of read data.
 always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
-    data_buffer_q <= 16'b0;
+    data_buffer_q <= 32'b0;
 else if (state_q == STATE_WRITE0)
     data_buffer_q <= ram_write_data_w[31:16];
 else if (rd_q[SDRAM_READ_LATENCY+1])
