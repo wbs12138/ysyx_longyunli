@@ -43,7 +43,7 @@ assign gpio_out = led;
 
 reg [31:0] segment;
 
-wire [3:0] seg0,seg2,seg3,seg4,seg5,seg6,seg7;
+wire [3:0] seg0,seg1,seg2,seg3,seg4,seg5,seg6,seg7;
 
 assign seg7 = segment[31:28];
 assign seg6 = segment[27:24];
