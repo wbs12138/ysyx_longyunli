@@ -4,57 +4,6 @@
 
 #include "verilated.h"
 
-extern const VlUnpacked<VlWide<3>/*79:0*/, 16> VysyxSoCFull__ConstPool__TABLE_h126e6d6a_0 = {{
-    {{ // VlWide 0
-        0x494e4954, 0x00000000, 0x00000000
-    }},
-    {{ // VlWide 1
-        0x454c4159, 0x00000044, 0x00000000
-    }},
-    {{ // VlWide 2
-        0x49444c45, 0x00000000, 0x00000000
-    }},
-    {{ // VlWide 3
-        0x56415445, 0x41435449, 0x00000000
-    }},
-    {{ // VlWide 4
-        0x52454144, 0x00000000, 0x00000000
-    }},
-    {{ // VlWide 5
-        0x57414954, 0x4541445f, 0x00000052
-    }},
-    {{ // VlWide 6
-        0x49544530, 0x00005752, 0x00000000
-    }},
-    {{ // VlWide 7
-        0x49544531, 0x00005752, 0x00000000
-    }},
-    {{ // VlWide 8
-        0x41524745, 0x52454348, 0x00000050
-    }},
-    {{ // VlWide 9
-        0x52455348, 0x00524546, 0x00000000
-    }},
-    {{ // VlWide 10
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }},
-    {{ // VlWide 11
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }},
-    {{ // VlWide 12
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }},
-    {{ // VlWide 13
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }},
-    {{ // VlWide 14
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }},
-    {{ // VlWide 15
-        0x4e4f574e, 0x00554e4b, 0x00000000
-    }}
-}};
-
 extern const VlUnpacked<CData/*0:0*/, 2048> VysyxSoCFull__ConstPool__TABLE_h1c69233a_0 = {{
     0x00U, 0x00U, 0x01U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U,
     0x01U, 0x00U, 0x01U, 0x00U, 0x01U, 0x00U, 0x00U, 0x00U,
