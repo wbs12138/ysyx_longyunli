@@ -94,7 +94,7 @@ localparam CMD_REFRESH       = 4'b0001;
 localparam CMD_LOAD_MODE     = 4'b0000;
 
 // Mode: Burst Length = 4 bytes, CAS=2
-localparam MODE_REG          = {4'b0000,1'b0,2'b00,3'b010,1'b0,3'b001};
+localparam MODE_REG          = {4'b0000,1'b0,2'b00,3'b010,1'b0,3'b000};
 
 // SM states
 localparam STATE_W           = 4;
@@ -285,30 +285,8 @@ begin
     STATE_WRITE0 :
     begin
         next_state_r = STATE_IDLE;
-
-        // // Another pending write request (with no refresh pending)
-        // if (!refresh_q && ram_req_w && (ram_wr_w != 4'b0))
-        // begin
-        //     // Open row hit
-        //     if (row_open_q[addr_bank_w] && addr_row_w == active_row_q[addr_bank_w])
-        //         next_state_r = STATE_WRITE0;
-        // end
     end
-    //-----------------------------------------
-    // STATE_WRITE1
-    //-----------------------------------------
-    STATE_WRITE1 :
-    begin
-        next_state_r = STATE_IDLE;
-
-        // Another pending write request (with no refresh pending)
-        if (!refresh_q && ram_req_w && (ram_wr_w != 4'b0))
-        begin
-            // Open row hit
-            if (row_open_q[addr_bank_w] && addr_row_w == active_row_q[addr_bank_w])
-                next_state_r = STATE_WRITE0;
-        end
-    end
+    
     //-----------------------------------------
     // STATE_PRECHARGE
     //-----------------------------------------
@@ -491,7 +469,7 @@ always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
 begin
     command_q       <= CMD_NOP;
-    data_q          <= 32'b0;
+    data_q          <= 16'b0;
     addr_q          <= {SDRAM_ROW_W{1'b0}};
     bank_q          <= {SDRAM_BANK_W{1'b0}};
     cke_q           <= 1'b0;
@@ -630,27 +608,13 @@ begin
         addr_q[AUTO_PRECHARGE]  <= 1'b0;
 
         // Write mask
-        dqm_q           <= ~ram_wr_w;
-        // dqm_buffer_q    <= ~ram_wr_w[3:2];
+        dqm_q           <= ~ram_wr_w[3:0];
 
         data_rd_en_q    <= 1'b0;
     end
     //-----------------------------------------
     // STATE_WRITE1
     //-----------------------------------------
-    STATE_WRITE1 :
-    begin
-        // Burst continuation
-        command_q   <= CMD_NOP;
-
-        data_q      <= data_buffer_q;
-
-        // Disable auto precharge (auto close of row)
-        addr_q[AUTO_PRECHARGE]  <= 1'b0;
-
-        // Write mask
-        dqm_q       <= dqm_buffer_q;
-    end
     endcase
 end
 
@@ -674,8 +638,6 @@ else
 always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
     data_buffer_q <= 32'b0;
-else if (state_q == STATE_WRITE0)
-    data_buffer_q <= ram_write_data_w;
 else if (rd_q[SDRAM_READ_LATENCY+1])
     data_buffer_q <= sample_data_q;
 
@@ -694,7 +656,7 @@ else
 begin
     if (state_q == STATE_WRITE0)
         ack_q <= 1'b1;
-    else if (rd_q[SDRAM_READ_LATENCY+1])
+    else if (rd_q[SDRAM_READ_LATENCY])
         ack_q <= 1'b1;
     else
         ack_q <= 1'b0;
