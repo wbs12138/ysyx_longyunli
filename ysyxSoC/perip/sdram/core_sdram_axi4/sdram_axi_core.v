@@ -491,7 +491,7 @@ always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
 begin
     command_q       <= CMD_NOP;
-    data_q          <= 16'b0;
+    data_q          <= 32'b0;
     addr_q          <= {SDRAM_ROW_W{1'b0}};
     bank_q          <= {SDRAM_BANK_W{1'b0}};
     cke_q           <= 1'b0;
