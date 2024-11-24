@@ -61,9 +61,13 @@ module axi_interface (
 
     wire read_mem ,write_mem;
 
-    assign read_mem = (mem_raddr>=32'hf000000 & mem_raddr<=32'hfffffff) || (mem_raddr>=32'h20000000 & mem_raddr<=32'h20000fff) || (mem_raddr>=32'h10000000 & mem_raddr<=32'h10000fff) || (mem_raddr>=32'h80000000 & mem_raddr<=32'h9fffffff) || (mem_raddr>=32'h30000000 & mem_raddr<=32'h3fffffff) || (mem_raddr>=32'ha0000000 & mem_raddr<=32'ha1e84800);
+    // assign read_mem = (mem_raddr>=32'hf000000 & mem_raddr<=32'hfffffff) || (mem_raddr>=32'h20000000 & mem_raddr<=32'h20000fff) || (mem_raddr>=32'h10000000 & mem_raddr<=32'h10000fff) || (mem_raddr>=32'h80000000 & mem_raddr<=32'h9fffffff) || (mem_raddr>=32'h30000000 & mem_raddr<=32'h3fffffff) || (mem_raddr>=32'ha0000000 & mem_raddr<=32'ha1e84800) ;
 
-    assign write_mem = (mem_waddr>=32'hf000000 & mem_waddr<=32'hfffffff) || (mem_waddr>=32'h10000000 & mem_waddr<=32'h10000fff) || (mem_waddr>=32'h80000000 & mem_waddr<=32'h9fffffff) || (mem_waddr>=32'ha0000000 & mem_waddr<=32'ha1e84800);
+    // assign write_mem = (mem_waddr>=32'hf000000 & mem_waddr<=32'hfffffff) || (mem_waddr>=32'h10000000 & mem_waddr<=32'h10000fff) || (mem_waddr>=32'h80000000 & mem_waddr<=32'h9fffffff) || (mem_waddr>=32'ha0000000 & mem_waddr<=32'ha1e84800);
+
+    assign read_mem = 1'b1;
+
+    assign write_mem = 1'b1;
 
     reg need_2s;
     
