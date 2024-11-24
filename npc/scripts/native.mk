@@ -34,8 +34,6 @@ $(shell mkdir -p $(NVBOARD_BUILD_DIR))
 
 # constraint file
 SRC_AUTO_BIND = /home/wangbaosen/ysyx/ysyx-workbench/npc/nvboard_build/auto_bind.cpp
-$(SRC_AUTO_BIND): $(NXDC_FILES)
-	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
 
 SRCS += $(SRC_AUTO_BIND)
 
