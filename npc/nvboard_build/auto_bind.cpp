@@ -1,7 +1,7 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
 #include "/home/wangbaosen/ysyx/ysyx-workbench/npc/obj_dir/VysyxSoCFull.h"
 
-void nvboard_bind_all_pins(Vtop* top) {
+void nvboard_bind_all_pins(VysyxSoCFull* top) {
 	nvboard_bind_pin( &top->VGA_VSYNC, 1, VGA_VSYNC);
 	nvboard_bind_pin( &top->VGA_HSYNC, 1, VGA_HSYNC);
 	nvboard_bind_pin( &top->VGA_BLANK_N, 1, VGA_BLANK_N);
