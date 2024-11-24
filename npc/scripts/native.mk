@@ -46,7 +46,7 @@ include $(NVBOARD_HOME)/scripts/nvboard.mk
 run:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@rm -rf $(NVBOARD_OBJ_DIR)
-	verilator $(VSRCS) $(SRCS) $(NVBOARD_ARCHIVE) $(NVBOARD_VERILATOR_CFLAGS) --Mdir $(VERILATOR_OBJ_DIR) --cc --exe --build -j --trace --autoflush --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(UART_INCLUDE_DIR) +incdir+$(SPI_INCLUDE_DIR) +incdir+$(CSRC_INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)' $(addprefix -CFLAGS , $(NVBOARD_CXXFLAGS)) $(addprefix -LDFLAGS , $(NVBOARD_LDFLAGS))
+	verilator $(VSRCS) $(SRCS) $(NVBOARD_ARCHIVE) $(NVBOARD_VERILATOR_CFLAGS) --Mdir $(VERILATOR_OBJ_DIR) --exe --build -j --trace --autoflush --top-module $(TOPNAME) --timescale "1ns/1ns" --no-timing +incdir+$(UART_INCLUDE_DIR) +incdir+$(SPI_INCLUDE_DIR) +incdir+$(CSRC_INCLUDE_DIR) -LDFLAGS '-lreadline -lSDL2 $(shell llvm-config --libs)' $(addprefix -CFLAGS , $(NVBOARD_CXXFLAGS)) $(addprefix -LDFLAGS , $(NVBOARD_LDFLAGS))
 	obj_dir/V$(TOPNAME) $(ARGS) $(IMG)
 
 clean-tools = $(dir $(shell find ./tools -maxdepth 2 -mindepth 2 -name "Makefile"))
