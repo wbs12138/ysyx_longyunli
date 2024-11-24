@@ -40,7 +40,7 @@ void init_verilator(int argc, char *argv[]) {
 
   Verilated::traceEverOn(true);
 
-  VysyxSocFull dut_nvboard &&dut;
+  VysyxSoCFull dut_nvboard &&dut;
 
   nvboard_bind_all_pins(dut_nvboard);
   
