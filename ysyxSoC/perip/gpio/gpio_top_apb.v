@@ -42,7 +42,7 @@ reg [15:0] led;
 assign gpio_out = led;
 
 always@(*) 
-  $$display("led is %x",gpio_out);
+  $display("led is %x",gpio_out);
 
 reg [31:0] segment;
 
