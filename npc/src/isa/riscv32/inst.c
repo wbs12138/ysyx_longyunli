@@ -23,6 +23,8 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/memory/paddr.h>
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/difftest.h>
 
+#include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
+
 #define R(i) gpr(i)
 
 extern "C" void flash_read(int32_t addr, int32_t *data) {
@@ -55,19 +57,31 @@ int isa_exec_once(Decode *s) {
 
   while(state_exeu==0){
   	dut->eval();
+
+    nvboard_update();
+
     sim_time+=4;
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
     #endif
     dut->clock=0;
     dut->eval();
+
+    nvboard_update();
+
     sim_time+=4;
     dut->eval();
+
+    nvboard_update();
+
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
     #endif
     dut->clock=1;
     dut->eval();
+
+    nvboard_update();
+
   }
 
 
@@ -133,19 +147,31 @@ int isa_exec_once(Decode *s) {
     
 
   	dut->eval();
+
+    nvboard_update();
+
     sim_time+=4;
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
     #endif
     dut->clock=0;
     dut->eval();
+
+    nvboard_update();
+
     sim_time+=4;
     dut->eval();
+
+    nvboard_update();
+
     #ifdef DUMP_WAVE
       m_trace->dump(sim_time);
     #endif
     dut->clock=1;
     dut->eval();
+
+    nvboard_update();
+
   }
 
   R(0 ) = x0  ;

@@ -17,6 +17,10 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/npc/include/cpu/cpu.h>
 
+#include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
+
+void nvboard_bind_all_pins(TOP_NAME* top);
+
 
 void init_monitor(int, char *[]);
 void sdb_mainloop();
@@ -33,7 +37,10 @@ void init_verilator(int argc, char *argv[]) {
   Verilated::commandArgs(argc,argv);  
 
   Verilated::traceEverOn(true);
+
+  nvboard_bind_all_pins(&dut);
   
+  nvboard_init();
 	
 	dut->trace(m_trace,5);
 	m_trace->open("waveform.vcd");
@@ -54,6 +61,8 @@ void init_verilator(int argc, char *argv[]) {
     dut->eval();
     sim_time+=4;
 		m_trace->dump(sim_time);
+
+    nvboard_update();
 		
 	}
 	dut->reset=0;
@@ -61,6 +70,8 @@ void init_verilator(int argc, char *argv[]) {
   sim_time+=4;
   dut->eval();
 	m_trace->dump(sim_time);
+
+  nvboard_update();
 
 
 }
