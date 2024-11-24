@@ -19,6 +19,8 @@
 
 #include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
 
+#define TOP_NAME VysyxSoCFull
+
 void nvboard_bind_all_pins(TOP_NAME* top);
 
 
