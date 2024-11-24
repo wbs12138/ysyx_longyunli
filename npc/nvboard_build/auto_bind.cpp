@@ -1,4 +1,4 @@
-#include <nvboard.h>
+#include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
 #include "VysyxSocFull.h"
 
 void nvboard_bind_all_pins(Vtop* top) {
