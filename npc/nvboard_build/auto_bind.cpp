@@ -1,5 +1,5 @@
 #include </home/wangbaosen/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h>
-#include "VysyxSocFull.h"
+#include "/home/wangbaosen/ysyx/ysyx-workbench/npc/--cc/VysyxSoCFull.h"
 
 void nvboard_bind_all_pins(Vtop* top) {
 	nvboard_bind_pin( &top->VGA_VSYNC, 1, VGA_VSYNC);
