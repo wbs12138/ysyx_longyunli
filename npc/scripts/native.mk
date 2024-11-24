@@ -30,6 +30,7 @@ NVBOARD_VERILATOR_CFLAGS += -MMD --build -cc  \
 				-O3 --x-assign fast --x-initial fast --noassert
 
 NVBOARD_BUILD_DIR = ./nvboard_build
+$(shell mkdir -p $(NVBOARD_BUILD_DIR))
 NVBOARD_OBJ_DIR = $(NVBOARD_BUILD_DIR)/obj_dir
 
 # constraint file
