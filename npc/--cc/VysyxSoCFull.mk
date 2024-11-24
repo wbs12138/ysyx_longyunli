@@ -73,7 +73,7 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/wangbaosen/ysyx/ysyx-workbench/nvboard/build \
+	/home/wangbaosen/ysyx/ysyx-workbench/nvboard/example/build \
 	src \
 	src/cpu \
 	src/cpu/difftest \
@@ -94,7 +94,7 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-auto_bind.o: /home/wangbaosen/ysyx/ysyx-workbench/nvboard/build/auto_bind.cpp
+auto_bind.o: /home/wangbaosen/ysyx/ysyx-workbench/nvboard/example/build/auto_bind.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu-exec.o: src/cpu/cpu-exec.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
