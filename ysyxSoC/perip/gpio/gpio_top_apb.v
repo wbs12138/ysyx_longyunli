@@ -41,9 +41,6 @@ reg [15:0] led;
 
 assign gpio_out = led;
 
-always@(*) 
-  $display("led is %x",gpio_out);
-
 reg [31:0] segment;
 
 wire [3:0] seg0,seg1,seg2,seg3,seg4,seg5,seg6,seg7;
