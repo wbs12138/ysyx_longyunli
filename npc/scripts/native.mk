@@ -34,7 +34,7 @@ $(shell mkdir -p $(NVBOARD_BUILD_DIR))
 NVBOARD_OBJ_DIR = $(NVBOARD_BUILD_DIR)/obj_dir
 
 # constraint file
-SRC_AUTO_BIND = $(abspath $(NVBOARD_BUILD_DIR)/auto_bind.cpp)
+SRC_AUTO_BIND = /home/wangbaosen/ysyx/ysyx-workbench/nvboard/example/build/auto_bind.cpp
 $(SRC_AUTO_BIND): $(NXDC_FILES)
 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
 
